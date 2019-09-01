@@ -1,0 +1,141 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+  <Application.Commands>
+
+    <Command Name="cmdTabMain"
+         Id="1001"
+         LabelTitle="Main">
+    </Command>
+
+    <Command Name="cmdGroupCommon"
+         Id="1002"
+         LabelTitle="Common">
+    </Command>
+
+    <Command Name="cmdGroupSimple"
+         Id="1003"
+         LabelTitle="Simple">
+    </Command>
+
+    <Command Name="cmdGroupAdvanced"
+         Id="1004"
+         LabelTitle="Advanced">
+    </Command>
+
+    <Command Name="cmdButtonNew"
+             Id="1005"
+             LabelTitle="&amp;New"
+             LabelDescription="New Description"
+             TooltipTitle="New (Ctrl+N)"
+             TooltipDescription="Create a new image.">
+      <Command.LargeImages>
+        <Image>Res/New32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonOpen"
+             Id="1006"
+             LabelTitle="Open"
+             LabelDescription="Open Description"
+             TooltipTitle="Open (Ctrl+O)"
+             TooltipDescription="Open an existing image.">
+      <Command.LargeImages>
+        <Image>Res/Open32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonSave"
+             Id="1007"
+             LabelTitle="Save"
+             LabelDescription="Save Description"
+             TooltipTitle="Save (Ctrl+S)"
+             TooltipDescription="Save the current image.">
+      <Command.LargeImages>
+        <Image>Res/Save32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropA"
+             Id="1008"
+             LabelTitle="Drop A"
+             LabelDescription="Sub button A"
+             TooltipTitle="Drop A">
+      <Command.LargeImages>
+        <Image>Res/DropA32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropB"
+             Id="1009"
+             LabelTitle="Drop B"
+             LabelDescription="Sub button B"
+             TooltipTitle="Drop B">
+      <Command.LargeImages>
+        <Image>Res/DropB32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropC"
+             Id="1010"
+             LabelTitle="Drop C"
+             LabelDescription="Sub button C"
+             TooltipTitle="Drop C">
+      <Command.LargeImages>
+        <Image>Res/DropC32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonSwitchToAdvanced"
+         Id="1011"
+         LabelTitle="Advanced"
+         LabelDescription="Switch to advanced mode"
+         TooltipTitle="Advanced"
+         TooltipDescription="Switch to advanced mode">
+      <Command.LargeImages>
+        <Image>Res/Simple32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonSwitchToSimple"
+         Id="1012"
+         LabelTitle="Simple"
+         LabelDescription="Switch to simple mode"
+         TooltipTitle="Simple"
+         TooltipDescription="Switch to simple mode">
+      <Command.LargeImages>
+        <Image>Res/Advanced32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+  </Application.Commands>
+
+  <Application.Views>
+    <Ribbon>
+      <Ribbon.Tabs>
+        <Tab CommandName="cmdTabMain" ApplicationModes="0,1">
+          <Group CommandName="cmdGroupCommon" 
+                 SizeDefinition="ThreeButtons" 
+                 ApplicationModes="0,1">
+            <Button CommandName="cmdButtonNew" />
+            <Button CommandName="cmdButtonOpen" />
+            <Button CommandName="cmdButtonSave" />
+          </Group>
+          <Group CommandName="cmdGroupSimple" 
+                 SizeDefinition="TwoButtons" 
+                 ApplicationModes="0">
+            <Button CommandName="cmdButtonSwitchToAdvanced" />
+            <Button CommandName="cmdButtonDropA" />
+          </Group>
+          <Group CommandName="cmdGroupAdvanced" 
+                 SizeDefinition="FourButtons" 
+                 ApplicationModes="1">
+            <Button CommandName="cmdButtonSwitchToSimple" />
+            <Button CommandName="cmdButtonDropA" />
+            <Button CommandName="cmdButtonDropB" />
+            <Button CommandName="cmdButtonDropC" />
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+    </Ribbon>
+  </Application.Views>
+</Application>

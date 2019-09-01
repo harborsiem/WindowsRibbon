@@ -1,0 +1,20 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+	<Application.Commands>
+    <Command Name="cmdTabMain" Id="1001" LabelTitle="Main" />
+    <Command Name="cmdGroupRichFont" Id="1002" LabelTitle="Rich Font" />
+    <Command Name="cmdRichFont" Id="1003" Keytip="F" />
+  </Application.Commands>
+
+	<Application.Views>
+		<Ribbon>
+      <Ribbon.Tabs>
+        <Tab CommandName="cmdTabMain">
+          <Group CommandName="cmdGroupRichFont" SizeDefinition="OneFontControl">
+            <FontControl CommandName="cmdRichFont" FontType="RichFont" />
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+    </Ribbon>
+	</Application.Views>
+</Application>

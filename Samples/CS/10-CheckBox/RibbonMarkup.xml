@@ -1,0 +1,121 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+  <Application.Commands>
+
+    <Command Name="cmdButton"
+             Id="1001"
+             LabelTitle="Button">
+      <Command.LargeImages>
+        <Image>Res/New32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/New16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdToggleButton"
+             Id="1002"
+             LabelTitle="Toggle Button">
+      <Command.LargeImages>
+        <Image>Res/Open32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Open16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdCheckBox"
+             Id="1003"
+             LabelTitle="Check Box">
+      <Command.LargeImages>
+        <Image>Res/Save32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Save16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdDropDown"
+          Id="1004"
+          LabelTitle="Drop Down">
+      <Command.LargeImages>
+        <Image>Res/Drop32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Drop16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdButtonDropA"
+        Id="1008"
+        LabelTitle="Drop A"
+        LabelDescription="Sub button A"
+       TooltipTitle="Drop A">
+      <Command.LargeImages>
+        <Image>Res/DropA32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropB"
+         Id="1009"
+         LabelTitle="Drop B"
+         LabelDescription="Sub button B"
+        TooltipTitle="Drop B">
+      <Command.LargeImages>
+        <Image>Res/DropB32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropC"
+         Id="1010"
+         LabelTitle="Drop C"
+         LabelDescription="Sub button C"
+       TooltipTitle="Drop C">
+      <Command.LargeImages>
+        <Image>Res/DropC32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdTabMain"
+             Id="1011"
+             LabelTitle="Main">
+    </Command>
+
+    <Command Name="cmdGroupButtons"
+             Id="1013"
+             LabelTitle="Buttons">
+    </Command>
+
+    <Command Name="cmdGroupCheckBox"
+             Id="1014"
+             LabelTitle="Checkbox">
+    </Command>
+  
+  </Application.Commands>
+
+  <Application.Views>
+    <Ribbon>
+      <Ribbon.Tabs>
+        <Tab CommandName="cmdTabMain">
+          <Group CommandName="cmdGroupButtons" SizeDefinition="ThreeButtons">
+            <Button CommandName="cmdButton" />
+            
+            <ToggleButton CommandName="cmdToggleButton" />
+            
+            <DropDownButton CommandName="cmdDropDown">
+              <MenuGroup Class='MajorItems'>
+                <Button CommandName='cmdButtonDropA' />
+                <Button CommandName='cmdButtonDropB' />
+                <Button CommandName='cmdButtonDropC' />
+              </MenuGroup>
+            </DropDownButton>
+          
+          </Group>
+          <Group CommandName="cmdGroupCheckBox">
+            <CheckBox CommandName="cmdCheckBox" />
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+    </Ribbon>
+  </Application.Views>
+</Application>

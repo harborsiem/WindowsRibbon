@@ -1,0 +1,160 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+	<Application.Commands>
+    
+    <Command Name="cmdButtonNew"
+             Id="1001"
+             LabelTitle="&amp;New"
+             LabelDescription="New Description"
+             TooltipTitle="New (Ctrl+N)"
+             TooltipDescription="Create a new image.">
+      <Command.LargeImages>
+        <Image>Res/New32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/New16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdButtonOpen"
+             Id="1002"
+             LabelTitle="Open"
+             LabelDescription="Open Description"
+             TooltipTitle="Open (Ctrl+O)"
+             TooltipDescription="Open an existing image.">
+      <Command.LargeImages>
+        <Image>Res/Open32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Open16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdButtonSave"
+             Id="1003"
+             LabelTitle="Save"
+             LabelDescription="Save Description"
+             TooltipTitle="Save (Ctrl+S)"
+             TooltipDescription="Save the current image.">
+      <Command.LargeImages>
+        <Image>Res/Save32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Save16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdButtonExit"
+             Id="1004"
+             LabelTitle="Exit"
+             LabelDescription="Exit Description"
+             TooltipTitle="Exit (Ctrl+X)"
+             TooltipDescription="Exit application.">
+      <Command.LargeImages>
+        <Image>Res/Exit32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Exit16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdButtonDropA"
+             Id="1008"
+             LabelTitle="Drop A"
+             LabelDescription="Sub button A"
+             TooltipTitle="Drop A">
+      <Command.LargeImages>
+        <Image>Res/DropA32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropB"
+             Id="1009"
+             LabelTitle="Drop B"
+             LabelDescription="Sub button B"
+             TooltipTitle="Drop B">
+      <Command.LargeImages>
+        <Image>Res/DropB32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropC"
+             Id="1010"
+             LabelTitle="Drop C"
+             LabelDescription="Sub button C"
+             TooltipTitle="Drop C">
+      <Command.LargeImages>
+        <Image>Res/DropC32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdTabMain"
+             Id="1011"
+             LabelTitle="Main">
+    </Command>
+
+    <Command Name="cmdTabDrop"
+         Id="1012"
+         LabelTitle="Drop">
+    </Command>
+
+    <Command Name="cmdGroupFileActions"
+             Id="1013"
+             LabelTitle="File Actions">
+    </Command>
+
+    <Command Name="cmdGroupExit"
+             Id="1014"
+             LabelTitle="">
+    </Command>
+
+    <Command Name="cmdGroupDrop"
+             Id="1015"
+             LabelTitle="">
+    </Command>
+
+    <Command Name="cmdHelpButton"
+             Id="1016">
+    </Command>
+
+  </Application.Commands>
+
+	<Application.Views>
+		<Ribbon>
+      <Ribbon.HelpButton>
+        <HelpButton CommandName="cmdHelpButton" />
+      </Ribbon.HelpButton>
+      <Ribbon.Tabs>
+        <Tab CommandName="cmdTabMain">
+          <!-- scary part -->
+          <Tab.ScalingPolicy>
+            <ScalingPolicy>
+              <ScalingPolicy.IdealSizes>
+                <Scale Group="cmdGroupFileActions" Size="Large" />
+                <Scale Group="cmdGroupExit" Size="Large" />
+              </ScalingPolicy.IdealSizes>
+              <Scale Group="cmdGroupFileActions" Size="Medium" />
+            </ScalingPolicy>
+          </Tab.ScalingPolicy>
+          
+          <!-- useful part -->
+          <Group CommandName="cmdGroupFileActions" SizeDefinition="ThreeButtons">
+            <Button CommandName="cmdButtonNew" />
+            <Button CommandName="cmdButtonOpen" />
+            <Button CommandName="cmdButtonSave" />
+          </Group>
+          <Group CommandName="cmdGroupExit" SizeDefinition="OneButton">
+            <Button CommandName="cmdButtonExit" />
+          </Group>
+        </Tab>
+        <Tab CommandName ="cmdTabDrop">
+          <Group CommandName="cmdGroupDrop" SizeDefinition="ThreeButtons">
+            <Button CommandName="cmdButtonDropA" />
+            <Button CommandName="cmdButtonDropB" />
+            <Button CommandName="cmdButtonDropC" />
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+		</Ribbon>
+	</Application.Views>
+</Application>

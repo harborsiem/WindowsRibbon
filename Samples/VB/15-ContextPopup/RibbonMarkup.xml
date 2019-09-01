@@ -1,0 +1,113 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+	<Application.Commands>
+
+    <Command Name="cmdButtonNew"
+             Id="1001"
+             LabelTitle="&amp;New"
+             LabelDescription="New Description"
+             TooltipTitle="New (Ctrl+N)"
+             TooltipDescription="Create a new image.">
+      <Command.LargeImages>
+        <Image>Res/New32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/New16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdButtonOpen"
+             Id="1002"
+             LabelTitle="Open"
+             LabelDescription="Open Description"
+             TooltipTitle="Open (Ctrl+O)"
+             TooltipDescription="Open an existing image.">
+      <Command.LargeImages>
+        <Image>Res/Open32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Open16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdButtonSave"
+             Id="1003"
+             LabelTitle="Save"
+             LabelDescription="Save Description"
+             TooltipTitle="Save (Ctrl+S)"
+             TooltipDescription="Save the current image.">
+      <Command.LargeImages>
+        <Image>Res/Save32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Save16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdButtonExit"
+             Id="1004"
+             LabelTitle="Exit"
+             LabelDescription="Exit Description"
+             TooltipTitle="Exit (Ctrl+X)"
+             TooltipDescription="Exit application.">
+      <Command.LargeImages>
+        <Image>Res/Exit32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Exit16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+    
+    <Command Name="cmdContextMap"
+             Id="1005">
+    </Command>
+    
+    <Command Name="cmdFontControl"
+             Id="1006">
+    </Command>
+    
+    <Command Name="cmdDropDownColorPicker"
+         Id="1007"
+         LabelTitle="Select Color">
+      <Command.LargeImages>
+        <Image>Res/Colors32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    
+  </Application.Commands>
+  <Application.Views>
+    <ContextPopup>
+      <ContextPopup.MiniToolbars>
+        <MiniToolbar Name="MiniToolbar">
+          <MenuGroup>
+            <FontControl CommandName="cmdFontControl"/>
+          </MenuGroup>
+          <MenuGroup>
+            <DropDownColorPicker CommandName="cmdDropDownColorPicker" />
+            <Button CommandName="cmdButtonNew" />
+            <Button CommandName="cmdButtonOpen" />
+            <Button CommandName="cmdButtonSave" />
+            <ComboBox />
+          </MenuGroup>
+        </MiniToolbar>
+      </ContextPopup.MiniToolbars>
+      <ContextPopup.ContextMenus>
+        <ContextMenu Name="ContextMenu">
+          <MenuGroup>
+            <Button CommandName="cmdButtonNew" />
+            <Button CommandName="cmdButtonOpen" />
+            <Button CommandName="cmdButtonSave" />
+          </MenuGroup>
+          <MenuGroup>
+            <DropDownColorPicker CommandName="cmdDropDownColorPicker" />
+          </MenuGroup>
+        </ContextMenu>
+      </ContextPopup.ContextMenus>
+      <ContextPopup.ContextMaps>
+        <ContextMap CommandName="cmdContextMap" ContextMenu="ContextMenu" MiniToolbar="MiniToolbar" />
+      </ContextPopup.ContextMaps>
+    </ContextPopup>
+		<Ribbon>
+		</Ribbon>
+	</Application.Views>
+</Application>

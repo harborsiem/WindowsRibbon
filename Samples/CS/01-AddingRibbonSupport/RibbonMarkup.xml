@@ -1,0 +1,11 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+	<Application.Commands>
+	</Application.Commands>
+
+	<Application.Views>
+		
+		<Ribbon>
+		</Ribbon>
+	</Application.Views>
+</Application>

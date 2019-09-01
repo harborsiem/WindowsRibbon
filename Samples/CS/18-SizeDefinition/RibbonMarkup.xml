@@ -1,0 +1,161 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+  <Application.Commands>
+
+    <Command Name="cmdDecreaseIndent"
+             Id="1001"
+             TooltipTitle="Decrease indent"
+             TooltipDescription="Decrease the indent level of the paragraph.">
+      <Command.SmallImages>
+        <Image>Res/DecreaseIndent.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdIncreaseIndent"
+             Id="1002"
+             TooltipTitle="Increase indent"
+             TooltipDescription="Increase the indent level of the paragraph.">
+      <Command.SmallImages>
+        <Image>Res/IncreaseIndent.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdStartList"
+             Id="1003"
+             TooltipTitle="Start a list"
+             TooltipDescription="Click the arrow to choose different list styles.">
+      <Command.SmallImages>
+        <Image>Res/StartList.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdLineSpacing"
+             Id="1004"
+             TooltipTitle="Line spacing"
+             TooltipDescription="Change the spacing between lines of text. Add or remove the space after paragraphs.">
+      <Command.SmallImages>
+        <Image>Res/LineSpacing.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdAlignLeft"
+             Id="1005"
+             TooltipTitle="Align text left (Ctrl+L)"
+             TooltipDescription="Align text to the left.">
+      <Command.SmallImages>
+        <Image>Res/AlignLeft.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdAlignCenter"
+             Id="1006"
+             TooltipTitle="Center (Ctrl+E)"
+             TooltipDescription="Center text.">
+      <Command.SmallImages>
+        <Image>Res/AlignCenter.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdAlignRight"
+             Id="1007"
+             TooltipTitle="Align text right (Ctrl+R)"
+             TooltipDescription="Align text to the right.">
+      <Command.SmallImages>
+        <Image>Res/AlignRight.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdJustify"
+             Id="1008"
+             TooltipTitle="Justify (Ctrl+J)"
+             TooltipDescription="Align text to both left and right margins, adding extra space between words as necessary. &#xA;This creates a clean look along the left and right side of the page.">
+      <Command.SmallImages>
+        <Image>Res/Justify.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdParagraph"
+             Id="1009"
+             TooltipTitle="Paragraph"
+             TooltipDescription="Show the Paragraph dialog box.">
+      <Command.SmallImages>
+        <Image>Res/Paragraph.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name="cmdGroupParagraph"
+             Id="1010"
+             LabelTitle="Paragraph">
+    </Command>
+
+    <Command Name="cmdTabHome"
+             Id="1011"
+             LabelTitle="Home">
+    </Command>
+
+  </Application.Commands>
+
+  <Application.Views>
+    <Ribbon>
+      <Ribbon.SizeDefinitions>
+        <SizeDefinition Name="ParagraphLayout">
+          <ControlNameMap>
+            <ControlNameDefinition Name="button1" />
+            <ControlNameDefinition Name="button2" />
+            <ControlNameDefinition Name="button3" />
+            <ControlNameDefinition Name="button4" />
+            <ControlNameDefinition Name="button5" />
+            <ControlNameDefinition Name="button6" />
+            <ControlNameDefinition Name="button7" />
+            <ControlNameDefinition Name="button8" />
+            <ControlNameDefinition Name="button9" />
+          </ControlNameMap>
+          <GroupSizeDefinition Size="Large">
+            <Row>
+              <ControlGroup>
+                <ControlSizeDefinition ControlName="button1" IsLabelVisible="false" />
+                <ControlSizeDefinition ControlName="button2" IsLabelVisible="false" />
+              </ControlGroup>
+              <ControlGroup>
+                <ControlSizeDefinition ControlName="button3" IsLabelVisible="false" />
+              </ControlGroup>
+              <ControlGroup>
+                <ControlSizeDefinition ControlName="button4" IsLabelVisible="false" />
+              </ControlGroup>
+            </Row>
+            <Row>
+              <ControlGroup>
+                <ControlSizeDefinition ControlName="button5" IsLabelVisible="false" />
+                <ControlSizeDefinition ControlName="button6" IsLabelVisible="false" />
+                <ControlSizeDefinition ControlName="button7" IsLabelVisible="false" />
+                <ControlSizeDefinition ControlName="button8" IsLabelVisible="false" />
+              </ControlGroup>
+              <ControlGroup>
+                <ControlSizeDefinition ControlName="button9" IsLabelVisible="false" />
+              </ControlGroup>
+            </Row>
+          </GroupSizeDefinition>
+        </SizeDefinition> 
+      </Ribbon.SizeDefinitions>
+      <Ribbon.Tabs>
+        <Tab CommandName="cmdTabHome">
+          <Group CommandName="cmdGroupParagraph" SizeDefinition="ParagraphLayout">
+            <Button CommandName="cmdDecreaseIndent" />
+            <Button CommandName="cmdIncreaseIndent" />
+            <SplitButton>
+              <Button CommandName="cmdStartList" />
+            </SplitButton>
+            <DropDownButton CommandName="cmdLineSpacing">
+              <Button />
+            </DropDownButton>
+            <Button CommandName="cmdAlignLeft" />
+            <Button CommandName="cmdAlignCenter" />
+            <Button CommandName="cmdAlignRight" />
+            <Button CommandName="cmdJustify" />
+            <Button CommandName="cmdParagraph" />
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+    </Ribbon>
+  </Application.Views>
+</Application>

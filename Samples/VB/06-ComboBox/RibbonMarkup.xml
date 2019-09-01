@@ -1,0 +1,119 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+  <Application.Commands>
+
+    <Command Name="cmdButtonDropA"
+             Id="1008"
+             LabelTitle="Get Simple">
+      <Command.LargeImages>
+        <Image>Res/DropA32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropB"
+             Id="1009"
+             LabelTitle="Get Advanced">
+      <Command.LargeImages>
+        <Image>Res/DropB32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropC"
+             Id="1010"
+             LabelTitle="Enumrate ComboBox">
+      <Command.LargeImages>
+        <Image>Res/DropC32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropD"
+         Id="1011"
+         LabelTitle="Register Event">
+      <Command.LargeImages>
+        <Image>Res/DropD32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropE"
+         Id="1012"
+         LabelTitle="Add element">
+      <Command.LargeImages>
+        <Image>Res/DropE32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropF"
+         Id="1013"
+         LabelTitle="Unregister Event">
+      <Command.LargeImages>
+        <Image>Res/DropF32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+
+    <Command Name="cmdTabDrop"
+             Id="1014"
+             LabelTitle="Drop">
+    </Command>
+
+    <Command Name="cmdGroupDrop"
+             Id="1015"
+             LabelTitle="">
+    </Command>
+
+    <Command Name="cmdGroupMore"
+             Id="1017"
+             LabelTitle="">
+    </Command>
+
+    <Command Name="cmdComboBox1"
+             Id="1018">
+    </Command>
+
+    <Command Name="cmdComboBox2"
+             Id="1019">
+    </Command>
+
+    <Command Name="cmdTabSecond"
+             Id="1020"
+             LabelTitle="Second Tab">
+    </Command>
+
+    <Command Name="cmdGroupSecond"
+             Id="1021"
+             LabelTitle="">
+    </Command>
+
+    <Command Name="cmdComboBox3"
+             Id="1022">
+    </Command>
+
+  </Application.Commands>
+
+  <Application.Views>
+    <Ribbon>
+      <Ribbon.Tabs>
+        <Tab CommandName ="cmdTabDrop">
+          <Group CommandName="cmdGroupDrop" SizeDefinition="SixButtons">
+            <Button CommandName="cmdButtonDropA" />
+            <Button CommandName="cmdButtonDropB" />
+            <Button CommandName="cmdButtonDropC" />
+            <Button CommandName="cmdButtonDropD" />
+            <Button CommandName="cmdButtonDropE" />
+            <Button CommandName="cmdButtonDropF" />
+          </Group>
+          <Group CommandName="cmdGroupMore">
+            <ComboBox CommandName="cmdComboBox1" IsAutoCompleteEnabled="true" IsEditable="false" ResizeType="NoResize" />
+            <ComboBox CommandName="cmdComboBox2" IsAutoCompleteEnabled="true" IsEditable="true" ResizeType="VerticalResize" />
+          </Group>
+        </Tab>
+        <Tab CommandName="cmdTabSecond">
+          <Group CommandName="cmdGroupSecond">
+            <ComboBox CommandName="cmdComboBox3" IsEditable="false" ResizeType="NoResize" />
+            
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+    </Ribbon>
+  </Application.Views>
+</Application>

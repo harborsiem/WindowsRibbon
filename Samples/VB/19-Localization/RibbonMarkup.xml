@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+  <Application.Commands>
+
+    <Command Name="cmdButtonOne"
+             Id="1008"
+             LabelTitle="{Resource:cmdButtonOne_LabelTitle}">
+      <Command.LargeImages>
+        <Image>Res/DropA32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonTwo"
+             Id="1009"
+             LabelTitle="{Resource:cmdButtonTwo_LabelTitle}">
+      <Command.LargeImages>
+        <Image>Res/DropB32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonThree"
+             Id="1010"
+             LabelTitle="{Resource:cmdButtonThree_LabelTitle}">
+      <Command.LargeImages>
+        <Image>Res/DropC32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdTab"
+         Id="1012"
+         LabelTitle="{Resource:cmdTab_LabelTitle}">
+    </Command>
+
+    <Command Name="cmdGroup"
+             Id="1015"
+             LabelTitle="{Resource:cmdGroup_LabelTitle}">
+    </Command>
+
+  </Application.Commands>
+
+  <Application.Views>
+    <Ribbon>
+      <Ribbon.Tabs>
+        <Tab CommandName ="cmdTab">
+          <Group CommandName="cmdGroup" SizeDefinition="ThreeButtons">
+            <Button CommandName="cmdButtonOne" />
+            <Button CommandName="cmdButtonTwo" />
+            <Button CommandName="cmdButtonThree" />
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+    </Ribbon>
+  </Application.Views>
+</Application>

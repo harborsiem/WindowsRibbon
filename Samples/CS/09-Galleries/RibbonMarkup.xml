@@ -1,0 +1,92 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+	<Application.Commands>
+
+    <Command Name='cmdTabMain' 
+             Id='1000'
+             LabelTitle='Main' >
+    </Command>
+
+    <Command Name='cmdGroupDropDownGallery'
+             Id='1001'
+             LabelTitle='Drop Down' >
+    </Command>
+
+    <Command Name='cmdDropDownGallery'
+             Id='1002'
+             LabelTitle='Size' >
+      <Command.LargeImages>
+        <Image>Res/Open32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Open16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name='cmdCommandSpace'
+             Id='1003'
+             LabelTitle='Command Space' >
+      <Command.LargeImages>
+        <Image>Res/Save32.bmp</Image>
+      </Command.LargeImages>
+      <Command.SmallImages>
+        <Image>Res/Save16.bmp</Image>
+      </Command.SmallImages>
+    </Command>
+
+    <Command Name='cmdGroupSplitButtonGallery'
+         Id='1004'
+         LabelTitle='Split Button' >
+    </Command>
+
+    <Command Name='cmdSplitButtonGallery'
+         Id='1005'
+         LabelTitle='Brushes' >
+      <Command.LargeImages>
+        <Image>Res/Brush1.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name='cmdGroupInRibbonGallery'
+     Id='1006'
+     LabelTitle='In Ribbon' >
+    </Command>
+
+    <Command Name='cmdInRibbonGallery'
+         Id='1007'>
+    </Command>
+    
+  </Application.Commands>
+
+	<Application.Views>
+		<Ribbon>
+      <Ribbon.Tabs>
+        <Tab CommandName='cmdTabMain'>
+          <Group CommandName='cmdGroupDropDownGallery' SizeDefinition='OneButton'>
+            <DropDownGallery CommandName='cmdDropDownGallery' TextPosition='Hide' Type='Items'>
+              <DropDownGallery.MenuLayout>
+                <FlowMenuLayout Columns='1' Rows='5' Gripper='None' />
+              </DropDownGallery.MenuLayout>
+              <DropDownGallery.MenuGroups>
+                <MenuGroup>
+                  <Button CommandName='cmdCommandSpace' />
+                </MenuGroup>
+              </DropDownGallery.MenuGroups>
+            </DropDownGallery>
+          </Group>
+          <Group CommandName="cmdGroupSplitButtonGallery" SizeDefinition="OneButton">
+            <SplitButtonGallery CommandName="cmdSplitButtonGallery" TextPosition="Hide" Type="Commands" HasLargeItems="true">
+              <SplitButtonGallery.MenuLayout>
+                <FlowMenuLayout Columns="4" Rows="3" Gripper="None"/>
+              </SplitButtonGallery.MenuLayout>
+            </SplitButtonGallery>
+          </Group>
+          <Group CommandName="cmdGroupInRibbonGallery" SizeDefinition="OneInRibbonGallery">
+            <InRibbonGallery CommandName="cmdInRibbonGallery" Type="Items" MaxRows="3" MaxColumns="7">
+            </InRibbonGallery>
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>	
+    </Ribbon>
+	</Application.Views>
+</Application>

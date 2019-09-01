@@ -1,0 +1,63 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+	<Application.Commands>
+    <Command Name="cmdTab"
+             Id="999"
+             LabelTitle="Main"/>
+    <Command Name="cmdButtonsGroup"
+             Id="1000"
+             LabelTitle="Buttons"/>
+    <Command Name="cmdDropDownColorPickerGroup"
+             Id="1001"
+             LabelTitle="Color Pickers"/>
+    <Command Name="cmdDropDownColorPickerThemeColors"
+             Id="1002"
+             LabelTitle="Theme Colors">
+      <Command.LargeImages>
+        <Image>Res/Colors32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdDropDownColorPickerStandardColors"
+             Id="1003"
+             LabelTitle="Standard Colors">
+      <Command.LargeImages>
+        <Image>Res/Colors32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdDropDownColorPickerHighlightColors"
+             Id="1004"
+             LabelTitle="Highlight Colors">
+      <Command.LargeImages>
+        <Image>Res/Colors32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonListColors"
+             Id="1006"
+             LabelTitle="List Colors">
+      <Command.LargeImages>
+        <Image>Res/Open32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+  </Application.Commands>
+
+	<Application.Views>
+		<Ribbon>
+      <Ribbon.Tabs>
+        <Tab CommandName="cmdTab">
+          <Group CommandName="cmdButtonsGroup" SizeDefinition="OneButton">
+            <Button CommandName="cmdButtonListColors" />
+          </Group>
+          <Group CommandName="cmdDropDownColorPickerGroup"
+                 SizeDefinition="ThreeButtons">
+            <DropDownColorPicker CommandName="cmdDropDownColorPickerThemeColors"
+                                 ColorTemplate="ThemeColors"/>
+            <DropDownColorPicker CommandName="cmdDropDownColorPickerStandardColors"
+                                 ColorTemplate="StandardColors"/>
+            <DropDownColorPicker CommandName="cmdDropDownColorPickerHighlightColors"
+                                 ColorTemplate="HighlightColors"/>
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+    </Ribbon>
+	</Application.Views>
+</Application>
