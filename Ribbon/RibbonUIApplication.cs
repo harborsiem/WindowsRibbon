@@ -9,6 +9,7 @@
 
 using System.Runtime.InteropServices;
 using RibbonLib.Interop;
+using System.Windows.Forms;
 
 namespace RibbonLib
 {
@@ -62,6 +63,7 @@ namespace RibbonLib
                         {
                             UIRibbon = view as IUIRibbon;
                         }
+                        _ribbonControl.BeginInvoke(new MethodInvoker(_ribbonControl.RaiseViewCreated));
                         hr = HRESULT.S_OK;
                         break;
 

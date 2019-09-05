@@ -5,10 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RibbonGenerator", "RibbonGe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0EBCEF0E-413C-4AC3-B2B6-F20C0A30C815}"
 	ProjectSection(SolutionItems) = preProject
+		RegisterCustomTool_VB2010Express.reg = RegisterCustomTool_VB2010Express.reg
+		RegisterCustomTool_VB2010Express_x64.reg = RegisterCustomTool_VB2010Express_x64.reg
+		RegisterCustomTool_VCS2010Express.reg = RegisterCustomTool_VCS2010Express.reg
+		RegisterCustomTool_VCS2010Express_x64.reg = RegisterCustomTool_VCS2010Express_x64.reg
 		RegisterCustomTool_VS2010.reg = RegisterCustomTool_VS2010.reg
 		RegisterCustomTool_VS2010_x64.reg = RegisterCustomTool_VS2010_x64.reg
-		UnRegisterCustomTool_VS2010.reg = UnRegisterCustomTool_VS2010.reg
-		UnRegisterCustomTool_VS2010_x64.reg = UnRegisterCustomTool_VS2010_x64.reg
+		UnRegisterCustomTool.reg = UnRegisterCustomTool.reg
+		UnRegisterCustomTool_x64.reg = UnRegisterCustomTool_x64.reg
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RibbonGenerator.Console", "RibbonGenerator.Console\RibbonGenerator.Console.csproj", "{1E12E24D-CF2E-411D-8650-282DA9B864A9}"

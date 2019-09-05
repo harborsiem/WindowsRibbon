@@ -91,9 +91,66 @@ namespace RibbonLib
             this.SetStyle(ControlStyles.UserPaint, false);
             this.SetStyle(ControlStyles.Opaque, true);
 
+            this.ParentChanged += new EventHandler(Ribbon_ParentChanged);
             this.HandleCreated += new EventHandler(RibbonControl_HandleCreated);
             this.HandleDestroyed += new EventHandler(Ribbon_HandleDestroyed);
         }
+
+        #region Form Windows State change bug workaround
+        
+        Form _form;
+        FormWindowState _previousWindowState;
+        int _previousNormalHeight;
+        int _preserveHeight;
+
+        void Ribbon_ParentChanged(object sender, EventArgs e)
+        {
+            var parent = this.Parent;
+            if (parent == null)
+            {
+                RegisterForm(null);
+                return;
+            }
+            var form = parent as Form;
+            if (form == null)
+                throw new ApplicationException("Parent of Ribbon does not derive from Form class.");
+
+            RegisterForm(form);
+        }
+        
+        void RegisterForm(Form form)
+        {
+            if (_form != null)
+                _form.SizeChanged -= new EventHandler(_form_SizeChanged);
+
+            _form = form;
+
+            if (_form == null)
+                return;
+
+            _form.SizeChanged += new EventHandler(_form_SizeChanged);
+        }
+
+        void _form_SizeChanged(object sender, EventArgs e)
+        {
+            if (_previousWindowState != FormWindowState.Normal
+                && _form.WindowState == FormWindowState.Normal
+                && _previousNormalHeight != 0)
+            {
+                _preserveHeight = _previousNormalHeight;
+                _form.BeginInvoke(new MethodInvoker(RestoreHeight));
+            }
+
+            if (_form.WindowState == FormWindowState.Normal)
+                _previousNormalHeight = _form.Height;
+            _previousWindowState = _form.WindowState;
+        }
+
+        void RestoreHeight()
+        {
+            _form.Height = _preserveHeight;
+        }
+        #endregion
 
         void Ribbon_HandleDestroyed(object sender, EventArgs e)
         {
@@ -358,6 +415,9 @@ namespace RibbonLib
                 // remove reference to framework object
                 Framework = null;
             }
+
+            // Unregister event handlers
+            RegisterForm(null);
 
             if (_loadedDllHandle != IntPtr.Zero)
             {
@@ -718,5 +778,13 @@ namespace RibbonLib
         }
 
         #endregion
+
+        public event EventHandler ViewCreated;
+
+        internal void RaiseViewCreated()
+        {
+            if (ViewCreated != null)
+                ViewCreated(this, EventArgs.Empty);
+        }
     }
 }
