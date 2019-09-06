@@ -12,7 +12,7 @@ Windows Ribbon for WinForms is a .NET wrapper for Windows 7 Ribbon control. It w
 
 The project includes the library RibbonLib, which adds support for Windows Ribbon to WinForms application and sample applications, written both in C# and VB.NET, that demonstrates the use of the library and the different Ribbon features available.
 
-Check my blog for more details on how to use the windows ribbon at 
+Check Arik Poznanski's blog for more details on how to use the windows ribbon at 
 [http://blogs.microsoft.co.il/blogs/arik/](http://blogs.microsoft.co.il/arik/2009/09/) Also have a look at this  [Quick Start Tutorial](https://bernhardelbl.wordpress.com/2010/11/17/quickstart-tutorial-windows-ribbon-for-winforms/)
 Note: you must have the Windows 7 SDK (or later) installed in order to compile the project. 
 
@@ -40,5 +40,14 @@ Following is the list of sample application and their description:
 
 see also:
 [Codeplex archive](https://archive.codeplex.com/?p=windowsribbon)
+
 [Documentation](https://www.codeproject.com/Articles/55599/Windows-Ribbon-for-WinForms-Part-Table-of-Conten)
+
+
+
+Thanks to Arik Poznanski and Bernhard Elbl for the great work.
+
+I will try to make it run in newer Visual Studio Versions and SDK Versions with a MSI-Setup (Wix Toolset) for the components. I will explain all steps for using the different components for a developer who want to build a Ribbon application with .NET WinForms.
+
+
 
