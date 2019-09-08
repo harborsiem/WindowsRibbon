@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "RibbonSetup", "RibbonSetup.wixproj", "{97992437-DF94-4BD5-8C53-DDACD1FF0303}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97992437-DF94-4BD5-8C53-DDACD1FF0303}.Release|x86.ActiveCfg = Release|x86
+		{97992437-DF94-4BD5-8C53-DDACD1FF0303}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C31C89F0-5ACA-43B9-870F-A25A99136FA9}
+	EndGlobalSection
+EndGlobal

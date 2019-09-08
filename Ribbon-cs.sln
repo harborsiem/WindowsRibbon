@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ribbon", "Ribbon\Ribbon.csproj", "{0D4F3C14-B605-4471-B581-79784A89675C}"
@@ -42,72 +42,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "19-Localization", "Samples\CS\19-Localization\19-Localization.csproj", "{71E235F8-8C28-4A96-8038-661DB0BE3ADD}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 21
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Ribbon\\Ribbon.csproj
-		SccProjectName1 = Ribbon
-		SccLocalPath1 = Ribbon
-		SccProjectUniqueName2 = Samples\\CS\\01-AddingRibbonSupport\\01-AddingRibbonSupport.csproj
-		SccProjectName2 = Samples/CS/01-AddingRibbonSupport
-		SccLocalPath2 = Samples\\CS\\01-AddingRibbonSupport
-		SccProjectUniqueName3 = Samples\\CS\\02-ApplicationMenuButton\\02-ApplicationMenuButton.csproj
-		SccProjectName3 = Samples/CS/02-ApplicationMenuButton
-		SccLocalPath3 = Samples\\CS\\02-ApplicationMenuButton
-		SccProjectUniqueName4 = Samples\\CS\\03-MenuDropDown\\03-MenuDropDown.csproj
-		SccProjectName4 = Samples/CS/03-MenuDropDown
-		SccLocalPath4 = Samples\\CS\\03-MenuDropDown
-		SccProjectUniqueName5 = Samples\\CS\\04-TabGroupHelp\\04-TabGroupHelp.csproj
-		SccProjectName5 = Samples/CS/04-TabGroupHelp
-		SccLocalPath5 = Samples\\CS\\04-TabGroupHelp
-		SccProjectUniqueName6 = Samples\\CS\\05-Spinner\\05-Spinner.csproj
-		SccProjectName6 = Samples/CS/05-Spinner
-		SccLocalPath6 = Samples\\CS\\05-Spinner
-		SccProjectUniqueName7 = Samples\\CS\\06-ComboBox\\06-ComboBox.csproj
-		SccProjectName7 = Samples/CS/06-ComboBox
-		SccLocalPath7 = Samples\\CS\\06-ComboBox
-		SccProjectUniqueName8 = Samples\\CS\\07-RibbonColor\\07-RibbonColor.csproj
-		SccProjectName8 = Samples/CS/07-RibbonColor
-		SccLocalPath8 = Samples\\CS\\07-RibbonColor
-		SccProjectUniqueName9 = Samples\\CS\\08-Images\\08-Images.csproj
-		SccProjectName9 = Samples/CS/08-Images
-		SccLocalPath9 = Samples\\CS\\08-Images
-		SccProjectUniqueName10 = Samples\\CS\\09-Galleries\\09-Galleries.csproj
-		SccProjectName10 = Samples/CS/09-Galleries
-		SccLocalPath10 = Samples\\CS\\09-Galleries
-		SccProjectUniqueName11 = Samples\\CS\\10-CheckBox\\10-CheckBox.csproj
-		SccProjectName11 = Samples/CS/10-CheckBox
-		SccLocalPath11 = Samples\\CS\\10-CheckBox
-		SccProjectUniqueName12 = Samples\\CS\\11-DropDownColorPicker\\11-DropDownColorPicker.csproj
-		SccProjectName12 = Samples/CS/11-DropDownColorPicker
-		SccLocalPath12 = Samples\\CS\\11-DropDownColorPicker
-		SccProjectUniqueName13 = Samples\\CS\\12-FontControl\\12-FontControl.csproj
-		SccProjectName13 = Samples/CS/12-FontControl
-		SccLocalPath13 = Samples\\CS\\12-FontControl
-		SccProjectUniqueName14 = Samples\\CS\\13-ApplicationModes\\13-ApplicationModes.csproj
-		SccProjectName14 = Samples/CS/13-ApplicationModes
-		SccLocalPath14 = Samples\\CS\\13-ApplicationModes
-		SccProjectUniqueName15 = Samples\\CS\\14-ContextualTabs\\14-ContextualTabs.csproj
-		SccProjectName15 = Samples/CS/14-ContextualTabs
-		SccLocalPath15 = Samples\\CS\\14-ContextualTabs
-		SccProjectUniqueName16 = Samples\\CS\\15-ContextPopup\\15-ContextPopup.csproj
-		SccProjectName16 = Samples/CS/15-ContextPopup
-		SccLocalPath16 = Samples\\CS\\15-ContextPopup
-		SccProjectUniqueName17 = Samples\\CS\\16-RecentItems\\16-RecentItems.csproj
-		SccProjectName17 = Samples/CS/16-RecentItems
-		SccLocalPath17 = Samples\\CS\\16-RecentItems
-		SccProjectUniqueName18 = Samples\\CS\\17-QuickAccessToolbar\\17-QuickAccessToolbar.csproj
-		SccProjectName18 = Samples/CS/17-QuickAccessToolbar
-		SccLocalPath18 = Samples\\CS\\17-QuickAccessToolbar
-		SccProjectUniqueName19 = Samples\\CS\\18-SizeDefinition\\18-SizeDefinition.csproj
-		SccProjectName19 = Samples/CS/18-SizeDefinition
-		SccLocalPath19 = Samples\\CS\\18-SizeDefinition
-		SccProjectUniqueName20 = Samples\\CS\\19-Localization\\19-Localization.csproj
-		SccProjectName20 = Samples/CS/19-Localization
-		SccLocalPath20 = Samples\\CS\\19-Localization
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

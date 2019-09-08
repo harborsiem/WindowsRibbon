@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -83,6 +83,10 @@ namespace RibbonGenerator
             try
             {
                 string path = Path.GetDirectoryName(RibbonXmlFilename);
+                if (string.IsNullOrEmpty(path))
+                {
+                    path = @".\";
+                }
                 string filenameWithoutExtension = Path.GetFileNameWithoutExtension(RibbonXmlFilename);
 
                 string fullFilenameWithoutExtension = Path.Combine(path, filenameWithoutExtension);
@@ -206,7 +210,7 @@ namespace RibbonGenerator
             {
                 StreamReader reader = new StreamReader(stream);
                 var content = reader.ReadToEnd();
-                content = content.Replace("{Windows7SDKToolsPath}", Util.DetectAppropariateWindows7SdkPath());
+                content = content.Replace("{WindowsSDKToolsPath}", Util.DetectAppropariateWindowsSdkPath());
                 File.WriteAllText(Util.TemplateBatFilename, content);
             }
 
@@ -244,6 +248,7 @@ namespace RibbonGenerator
             string rcFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".rc");
             string resFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".res");
             string dllFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".ribbondll");
+            string headerFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".h");
 
             this.CleanupFiles.AddRange(new string[] {batFilename, bmlFilename, rcFilename, resFilename, dllFilename });
 
@@ -253,6 +258,7 @@ namespace RibbonGenerator
             bat = bat.Replace("{RcFilename}", rcFilename);
             bat = bat.Replace("{DllFilename}", dllFilename);
             bat = bat.Replace("{ResFilename}", resFilename);
+            bat = bat.Replace("{HeaderFilename}", headerFilename);
             File.WriteAllText(batFilename, bat);
 
             System.Diagnostics.Process proc = new System.Diagnostics.Process();

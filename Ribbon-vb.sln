@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ribbon", "Ribbon\Ribbon.csproj", "{0D4F3C14-B605-4471-B581-79784A89675C}"
@@ -42,72 +42,6 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "19-Localization", "Samples\VB\19-Localization\19-Localization.vbproj", "{71E235F8-8C28-4A96-8038-661DB0BE3ADD}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 21
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs10
-		SccProjectUniqueName0 = Ribbon\\Ribbon.csproj
-		SccProjectName0 = Ribbon
-		SccLocalPath0 = Ribbon
-		SccLocalPath1 = .
-		SccProjectUniqueName2 = Samples\\VB\\01-AddingRibbonSupport\\01-AddingRibbonSupport.vbproj
-		SccProjectName2 = Samples/VB/01-AddingRibbonSupport
-		SccLocalPath2 = Samples\\VB\\01-AddingRibbonSupport
-		SccProjectUniqueName3 = Samples\\VB\\02-ApplicationMenuButton\\02-ApplicationMenuButton.vbproj
-		SccProjectName3 = Samples/VB/02-ApplicationMenuButton
-		SccLocalPath3 = Samples\\VB\\02-ApplicationMenuButton
-		SccProjectUniqueName4 = Samples\\VB\\03-MenuDropDown\\03-MenuDropDown.vbproj
-		SccProjectName4 = Samples/VB/03-MenuDropDown
-		SccLocalPath4 = Samples\\VB\\03-MenuDropDown
-		SccProjectUniqueName5 = Samples\\VB\\04-TabGroupHelp\\04-TabGroupHelp.vbproj
-		SccProjectName5 = Samples/VB/04-TabGroupHelp
-		SccLocalPath5 = Samples\\VB\\04-TabGroupHelp
-		SccProjectUniqueName6 = Samples\\VB\\05-Spinner\\05-Spinner.vbproj
-		SccProjectName6 = Samples/VB/05-Spinner
-		SccLocalPath6 = Samples\\VB\\05-Spinner
-		SccProjectUniqueName7 = Samples\\VB\\06-ComboBox\\06-ComboBox.vbproj
-		SccProjectName7 = Samples/VB/06-ComboBox
-		SccLocalPath7 = Samples\\VB\\06-ComboBox
-		SccProjectUniqueName8 = Samples\\VB\\07-RibbonColor\\07-RibbonColor.vbproj
-		SccProjectName8 = Samples/VB/07-RibbonColor
-		SccLocalPath8 = Samples\\VB\\07-RibbonColor
-		SccProjectUniqueName9 = Samples\\VB\\08-Images\\08-Images.vbproj
-		SccProjectName9 = Samples/VB/08-Images
-		SccLocalPath9 = Samples\\VB\\08-Images
-		SccProjectUniqueName10 = Samples\\VB\\09-Galleries\\09-Galleries.vbproj
-		SccProjectName10 = Samples/VB/09-Galleries
-		SccLocalPath10 = Samples\\VB\\09-Galleries
-		SccProjectUniqueName11 = Samples\\VB\\10-CheckBox\\10-CheckBox.vbproj
-		SccProjectName11 = Samples/VB/10-CheckBox
-		SccLocalPath11 = Samples\\VB\\10-CheckBox
-		SccProjectUniqueName12 = Samples\\VB\\11-DropDownColorPicker\\11-DropDownColorPicker.vbproj
-		SccProjectName12 = Samples/VB/11-DropDownColorPicker
-		SccLocalPath12 = Samples\\VB\\11-DropDownColorPicker
-		SccProjectUniqueName13 = Samples\\VB\\12-FontControl\\12-FontControl.vbproj
-		SccProjectName13 = Samples/VB/12-FontControl
-		SccLocalPath13 = Samples\\VB\\12-FontControl
-		SccProjectUniqueName14 = Samples\\VB\\13-ApplicationModes\\13-ApplicationModes.vbproj
-		SccProjectName14 = Samples/VB/13-ApplicationModes
-		SccLocalPath14 = Samples\\VB\\13-ApplicationModes
-		SccProjectUniqueName15 = Samples\\VB\\14-ContextualTabs\\14-ContextualTabs.vbproj
-		SccProjectName15 = Samples/VB/14-ContextualTabs
-		SccLocalPath15 = Samples\\VB\\14-ContextualTabs
-		SccProjectUniqueName16 = Samples\\VB\\15-ContextPopup\\15-ContextPopup.vbproj
-		SccProjectName16 = Samples/VB/15-ContextPopup
-		SccLocalPath16 = Samples\\VB\\15-ContextPopup
-		SccProjectUniqueName17 = Samples\\VB\\16-RecentItems\\16-RecentItems.vbproj
-		SccProjectName17 = Samples/VB/16-RecentItems
-		SccLocalPath17 = Samples\\VB\\16-RecentItems
-		SccProjectUniqueName18 = Samples\\VB\\17-QuickAccessToolbar\\17-QuickAccessToolbar.vbproj
-		SccProjectName18 = Samples/VB/17-QuickAccessToolbar
-		SccLocalPath18 = Samples\\VB\\17-QuickAccessToolbar
-		SccProjectUniqueName19 = Samples\\VB\\18-SizeDefinition\\18-SizeDefinition.vbproj
-		SccProjectName19 = Samples/VB/18-SizeDefinition
-		SccLocalPath19 = Samples\\VB\\18-SizeDefinition
-		SccProjectUniqueName20 = Samples\\VB\\19-Localization\\19-Localization.vbproj
-		SccProjectName20 = Samples/VB/19-Localization
-		SccLocalPath20 = Samples\\VB\\19-Localization
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
