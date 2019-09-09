@@ -18,9 +18,12 @@ open a Console Window in the folder of RibbonMarkup.xml (maybe we have a solutio
 11. Set the correctly path (depended to the Visual Studio version) of vcvars32.bat and link.exe and call again "rgc RibbonMarkup.xml"
 12. Now you get some generated files, eg. RibbonMarkup.ribbon. Add this file to your project.
 13. Set the Property Build Action of RibbonMarkup.ribbon to Embedded Resource
-14. In Windows Form Designer select the Ribbon and set the Property ResourceName of the Ribbon Control to [ApplicationNamespace].RibbonMarkup.ribbon
-15. Add using RibbonLib; and using RibbonLib.Controls; to the Form1.cs. Define your Application Command ID's as Int32 const to Form.cs and call the Wrapper Classes of the Application Views in Ctor of the Form.
-16. now compile your application and run
+14. In Windows Form Designer select the Ribbon and set the Property ResourceName of the Ribbon Control to [Assembly name].RibbonMarkup.ribbon
+14. Add
+     using RibbonLib;
+     using RibbonLib.Controls;
+     to the Form1.cs. Define your Application Command ID's as Int32 const to Form1.cs and call the Wrapper Classes of the Application Views in Ctor of the Form.
+15. now compile your application and run
 
 
 ## [Installation]
