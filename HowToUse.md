@@ -34,7 +34,7 @@
 
 13. Set the Property Build Action of RibbonMarkup.ribbon to Embedded Resource
 
-14. In Windows Form Designer select the Ribbon and set the Property ResourceName of the Ribbon Control to [Assembly name].RibbonMarkup.ribbon
+14. In Windows Form Designer select the Ribbon and set the Property ResourceName of the Ribbon Control to [Default namespace of your assembly].RibbonMarkup.ribbon
 
 15. Add
       using RibbonLib;
