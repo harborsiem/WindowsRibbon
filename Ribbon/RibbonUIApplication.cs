@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       RibbonUIApplication.cs
 //
@@ -24,7 +24,7 @@ namespace RibbonLib
         /// RibbonUIApplication ctor
         /// </summary>
         /// <param name="ribbon">Ribbon</param>
-        /// <param name="form">Form where ribbon should reside</param>
+        /// <param name="ribbonControl">Ribbon</param>
         public RibbonUIApplication(Ribbon ribbon, Ribbon ribbonControl)
         {
             _ribbon = ribbon;

@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       Ribbon.cs
 //
@@ -29,6 +29,8 @@ namespace RibbonLib
     /// </summary>
     public class Ribbon : Control, IUICommandHandler
     {
+        private const string uriFile = "file://";
+
         private IUIImageFromBitmap _imageFromBitmap;
         private RibbonUIApplication _application;
         private Dictionary<uint, IRibbonControl> _mapRibbonControls = new Dictionary<uint, IRibbonControl>();
@@ -97,7 +99,7 @@ namespace RibbonLib
         }
 
         #region Form Windows State change bug workaround
-        
+
         Form _form;
         FormWindowState _previousWindowState;
         int _previousNormalHeight;
@@ -117,7 +119,7 @@ namespace RibbonLib
 
             RegisterForm(form);
         }
-        
+
         void RegisterForm(Form form)
         {
             if (_form != null)
@@ -242,7 +244,7 @@ namespace RibbonLib
 
             ControlPaint.DrawContainerGrabHandle(e.Graphics, this.ClientRectangle);
         }
-        
+
         /// <summary>
         /// Check if ribbon framework has been initialized
         /// </summary>
@@ -262,6 +264,9 @@ namespace RibbonLib
 
         string _tempDllFilename;
 
+        /// <summary>
+        /// Embedded resource based Ribbon Dll
+        /// </summary>
         byte[] GetLocalizedRibbon(string ribbonResource, Assembly ribbonAssembly)
         {
             byte[] data = null;
@@ -278,7 +283,7 @@ namespace RibbonLib
 
             // try to get from current current culture fallback satellite assembly
             Assembly fallbackAssembly = null;
-            if(culture.Parent != null)
+            if (culture.Parent != null)
                 TryGetSatelliteAssembly(culture.Parent, ribbonAssembly, ref fallbackAssembly);
 
             found = TryGetRibbon(ribbonResource, fallbackAssembly, ref data);
@@ -292,7 +297,7 @@ namespace RibbonLib
 
             return data;
         }
-        
+
         bool TryGetSatelliteAssembly(CultureInfo culture, Assembly mainAssembly, ref Assembly satelliteAssembly)
         {
             try
@@ -306,16 +311,11 @@ namespace RibbonLib
             }
         }
 
-        
-
         bool TryGetRibbon(string ribbonResource, Assembly assembly, ref byte[] data)
         {
             try
             {
-                string path = Path.GetTempPath();
-                _tempDllFilename = Path.Combine(path, Path.GetTempFileName());
                 var buffer = Util.GetEmbeddedResource(ribbonResource, assembly);
-                File.WriteAllBytes(_tempDllFilename, buffer);
                 data = buffer;
                 return true;
             }
@@ -326,14 +326,113 @@ namespace RibbonLib
         }
 
         /// <summary>
+        /// File based Ribbon Dll method
+        /// </summary>
+        private byte[] GetLocalizedRibbonFileData(string ribbonResource)
+        {
+            string path = null;
+            string localizedPath = String.Empty;
+            string fileName;
+            string directoryName = null;
+            var culture = Thread.CurrentThread.CurrentUICulture;
+            try
+            {
+                int start = ribbonResource.IndexOf('{'); //Mark for Special Folder like LocalApplicationData
+                int last = -1;
+                if (start > 0)
+                {
+                    last = ribbonResource.IndexOf('}');
+                    string specialFolder = ribbonResource.Substring(start + 1, last - start - 1);
+                    Environment.SpecialFolder enumSpecial = (Environment.SpecialFolder)Enum.Parse(typeof(Environment.SpecialFolder), specialFolder);
+                    string specialFolderPath = Environment.GetFolderPath(enumSpecial);
+                    path = ribbonResource.Substring(0, start) + specialFolderPath + ribbonResource.Substring(last + 1);
+                }
+                else
+                {
+                    path = uriFile + Path.GetFullPath(ribbonResource.Substring(uriFile.Length));
+                }
+                path = new Uri(path).LocalPath;
+                localizedPath = path;
+                if (File.Exists(path))
+                {
+                    fileName = Path.GetFileName(path);
+                    directoryName = Path.GetDirectoryName(path);
+                    string cultureName = culture.Name;
+                    string localPath;
+                    if ((localPath = TryGetCultureFile(directoryName, fileName, cultureName, true)) == null)
+                    {
+                        if ((localPath = TryGetCultureFile(directoryName, fileName, cultureName, false)) == null)
+                        {
+                            if (culture.Parent != null)
+                            {
+                                cultureName = culture.Parent.Name;
+                                if ((localPath = TryGetCultureFile(directoryName, fileName, cultureName, true)) == null)
+                                {
+                                    localPath = TryGetCultureFile(directoryName, fileName, cultureName, false);
+                                }
+                            }
+                        }
+                    }
+                    if (localPath != null)
+                    {
+                        localizedPath = localPath;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Ribbon ResourceName is invalid", ex);
+            }
+            if (String.IsNullOrEmpty(localizedPath))
+                return null;
+            else
+                return File.ReadAllBytes(localizedPath);
+        }
+
+        private static string TryGetCultureFile(string directoryName, string fileName, string cultureName, bool root)
+        {
+            string localizedPath = null;
+            string localizedDirectory;
+            if (root)
+                localizedDirectory = directoryName;
+            else
+                localizedDirectory = Path.Combine(directoryName, cultureName);
+
+            if (Directory.Exists(localizedDirectory))
+            {
+                string tmpPath = Path.Combine(localizedDirectory, fileName);
+                if (File.Exists(tmpPath) && !root)
+                {
+                    localizedPath = tmpPath;
+                }
+                else
+                {
+                    tmpPath = Path.Combine(localizedDirectory, Path.GetFileNameWithoutExtension(fileName) + "." + cultureName + Path.GetExtension(fileName));
+                    if (File.Exists(tmpPath))
+                    {
+                        localizedPath = tmpPath;
+                    }
+                }
+            }
+            return localizedPath;
+        }
+
+        /// <summary>
         /// Initalize ribbon framework
         /// </summary>
-        /// <param name="form">Form where ribbon should reside</param>
+        /// <param name="ribbonResource">Name of ribbon dll</param>
+        /// <param name="ribbonAssembly">Assembly where ribbon should reside</param>
         void InitFramework(string ribbonResource, Assembly ribbonAssembly)
         {
-            string path = Path.Combine(Path.GetTempPath(), "RibbonDlls");
+            string path = Path.GetTempPath();
             _tempDllFilename = Path.Combine(path, Path.GetTempFileName());
-            var buffer = GetLocalizedRibbon(ribbonResource, ribbonAssembly);
+            byte[] buffer = null;
+            if (ribbonResource.ToLowerInvariant().StartsWith(uriFile))
+            {
+                buffer = GetLocalizedRibbonFileData(ribbonResource);
+            }
+            else
+                buffer = GetLocalizedRibbon(ribbonResource, ribbonAssembly);
 
             File.WriteAllBytes(_tempDllFilename, buffer);
 
@@ -348,7 +447,6 @@ namespace RibbonLib
         /// <summary>
         /// Initalize ribbon framework
         /// </summary>
-        /// <param name="form">Form where ribbon should reside</param>
         /// <param name="resourceName">Identifier of the ribbon resource</param>
         /// <param name="ribbonDllName">Dll name where to find ribbon resource</param>
         void InitFramework(string resourceName, string ribbonDllName)
@@ -369,9 +467,8 @@ namespace RibbonLib
         }
 
         /// <summary>
-        /// Initalize ribbon framework
+        /// Initialize ribbon framework
         /// </summary>
-        /// <param name="form">Form where ribbon should reside</param>
         /// <param name="resourceName">Identifier of the ribbon resource</param>
         /// <param name="hInstance">Pointer to HINSTANCE of module where we can find ribbon resource</param>
         void InitFramework(string resourceName, IntPtr hInstance)
@@ -399,13 +496,13 @@ namespace RibbonLib
                 Marshal.ThrowExceptionForHR((int)hr);
             }
         }
-        
+
         /// <summary>
         /// Destroy ribbon framework
         /// </summary>
         void DestroyFramework()
         {
-           
+
             if (Initalized)
             {
                 // destroy ribbon framework
@@ -469,7 +566,7 @@ namespace RibbonLib
             uint backgroundColor = ColorHelper.HSB2Uint(ColorHelper.HSL2HSB(ColorHelper.RGB2HSL(background)));
             uint highlightColor = ColorHelper.HSB2Uint(ColorHelper.HSL2HSB(ColorHelper.RGB2HSL(highlight)));
             uint textColor = ColorHelper.HSB2Uint(ColorHelper.HSL2HSB(ColorHelper.RGB2HSL(text)));
-            
+
             IPropertyStore propertyStore = (IPropertyStore)Framework;
 
             PropVariant backgroundColorProp = PropVariant.FromObject(backgroundColor);
@@ -491,6 +588,8 @@ namespace RibbonLib
         /// <returns>IUIImage wrapper</returns>
         public IUIImage ConvertToUIImage(Bitmap bitmap)
         {
+            if (bitmap == null)
+                throw new ArgumentNullException(nameof(bitmap));
             if (_imageFromBitmap == null)
             {
                 return null;
@@ -509,6 +608,8 @@ namespace RibbonLib
         /// <remarks>Unlisted modes will be unset</remarks>
         public void SetModes(params byte[] modesArray)
         {
+            if (modesArray == null)
+                throw new ArgumentNullException(nameof(modesArray));
             // check that ribbon is initialized
             if (!Initalized)
             {
@@ -528,7 +629,7 @@ namespace RibbonLib
             }
 
             // set modes
-            Framework.SetModes(compactModes);        
+            Framework.SetModes(compactModes);
         }
 
         /// <summary>
@@ -716,7 +817,7 @@ namespace RibbonLib
         {
             return Path.ChangeExtension(new Uri(Assembly.GetEntryAssembly().CodeBase).LocalPath, ".ribbon.dll");
         }
-        
+
         /// <summary>
         /// Adds a ribbon control to the internal map
         /// </summary>
@@ -725,7 +826,7 @@ namespace RibbonLib
         {
             _mapRibbonControls.Add(ribbonControl.CommandID, ribbonControl);
         }
-        
+
         #region Implementation of IUICommandHandler
 
         /// <summary>
@@ -744,7 +845,7 @@ namespace RibbonLib
 #if DEBUG
             Debug.WriteLine(string.Format("Execute verb: {0} for command {1}", verb, commandID));
 #endif
-            
+
             if (_mapRibbonControls.ContainsKey(commandID))
             {
                 return _mapRibbonControls[commandID].Execute(verb, key, currentValue, commandExecutionProperties);

@@ -9,7 +9,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:WixUI="http://schemas.microsoft.com/wix/UIExtension">
-  <Product Id="*" Name="Ribbon" Language="1033" Version="2.7.0.0" Manufacturer="RibbonLib" UpgradeCode="FA403F70-F169-497E-8DC2-CCA0609A1E30">
+  <Product Id="*" Name="Ribbon" Language="1033" Version="2.8.0.0" Manufacturer="RibbonLib" UpgradeCode="FA403F70-F169-497E-8DC2-CCA0609A1E30">
     <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x86" Description="Ribbon" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -63,9 +63,7 @@
       <Component Id="C.RibbonBin" Guid="D0AB8E49-9794-429B-888B-C591AF0B1E84">
         <File Id="Fi.RibbonDllClone" Name="Ribbon.dll" Source="..\Ribbon\bin\Release\Ribbon.dll" KeyPath="yes" />
         <File Id="Fi.RibbonPdb" Name="Ribbon.pdb" Source="..\Ribbon\bin\Release\Ribbon.pdb" />
-        <!--
-        <File Id="Fi.RibbonXml" Name="\Ribbon.xml" Source="..\Ribbon\bin\Release\Ribbon.xml" />
-          -->
+        <File Id="Fi.RibbonXml" Name="Ribbon.xml" Source="..\Ribbon\bin\Release\Ribbon.xml" />
       </Component>
     </ComponentGroup>
   </Fragment>
