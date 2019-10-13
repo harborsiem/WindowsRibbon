@@ -24,6 +24,7 @@ namespace RibbonGenerator
 
         //list build from .h file
         List<KeyValuePair<string, string>> pair3List = new List<KeyValuePair<string, string>>(); //Command Name, Command Id
+        private List<string> popupCommandNames = new List<string>(); //
         string ribbonItemsClass;
 
         public void Execute(string fileName) //RibbonMarkup.xml
@@ -80,6 +81,7 @@ namespace RibbonGenerator
         {
             pair1List.Clear();
             pair2List.Clear();
+            popupCommandNames.Clear();
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.Load(fileName);
             XmlNode node = xmlDocument.DocumentElement;
@@ -98,12 +100,51 @@ namespace RibbonGenerator
                 }
                 if (xmlNode.Name == "Application.Views")
                 {
-                    XmlNodeList ribbonList = xmlNode.ChildNodes;
-                    if (ribbonList.Count == 1 && ribbonList.Item(0).Name == "Ribbon")
+                    XmlNodeList viewsList = xmlNode.ChildNodes;
+                    XmlNode viewsNode;
+                    for (int j = 0; j < viewsList.Count; j++)
                     {
-                        ParseViews(ribbonList.Item(0));
+                        viewsNode = viewsList.Item(j);
+                        if (viewsNode.Name == "Ribbon")
+                        {
+                            ParseViews(viewsNode);
+                        }
+                        else if (viewsNode.Name == "ContextPopup")
+                        {
+                            ParseContextPopup(viewsNode);
+                        }
                     }
                     break;
+                }
+            }
+        }
+
+        private void ParseContextPopup(XmlNode node)
+        {
+            XmlNodeList nodeList = node.ChildNodes;
+            if (nodeList.Count == 0)
+                return;
+
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                XmlNode child = nodeList.Item(i);
+                if (child.Name == "ContextPopup.ContextMaps")
+                {
+                    XmlNodeList childList = child.ChildNodes;
+                    for (int j = 0; j < childList.Count; j++)
+                    {
+                        XmlNode cChild = childList.Item(j);
+                        String nodeName = cChild.Name;
+                        XmlAttributeCollection parms = cChild.Attributes;
+                        if (parms != null && parms.Count > 0)
+                        {
+                            XmlNode attr = parms.GetNamedItem(CommandNameAttribute);
+                            if (attr != null)
+                            {
+                                popupCommandNames.Add(attr.Value);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -186,6 +227,7 @@ namespace RibbonGenerator
         {
             StreamWriter sw = CreateCsFile(Path.Combine(path, ribbonItemsClass + ".Designer.cs"));
             WriteConst(sw);
+            WritePopupConst(sw);
             WriteProperties(sw);
             WriteConstructor(sw);
             CloseCsFile(sw);
@@ -229,6 +271,17 @@ namespace RibbonGenerator
                 sw.WriteLine(Ident + Ident + Ident + "public const uint " + pair1List[i].Key + " = " + pair1List[i].Value + ";");
             }
             sw.WriteLine(Ident + Ident + "}");
+            sw.WriteLine();
+        }
+
+        private void WritePopupConst(StreamWriter sw)
+        {
+            sw.WriteLine(Ident + Ident + "// ContextPopup CommandName");
+            for (int i = 0; i < popupCommandNames.Count; i++)
+            {
+                string name = popupCommandNames[i];
+                sw.WriteLine(Ident + Ident + "public const uint " + name + " = Cmd." + name + ";");
+            }
             sw.WriteLine();
         }
 
