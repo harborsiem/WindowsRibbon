@@ -27,7 +27,11 @@ namespace RibbonGenerator
         private List<string> popupCommandNames = new List<string>(); //
         string ribbonItemsClass;
 
-        public void Execute(string fileName) //RibbonMarkup.xml
+        /// <summary>
+        /// Method builds a C# file RibbonItems.Designer.cs
+        /// </summary>
+        /// <param name="fileName">RibbonMarkup.xml with path</param>
+        public void Execute(string fileName)
         {
             //string @namespace = System.Reflection.Assembly.GetEntryAssembly().EntryPoint.DeclaringType.Namespace;
             if (File.Exists(fileName))
@@ -107,7 +111,7 @@ namespace RibbonGenerator
                         viewsNode = viewsList.Item(j);
                         if (viewsNode.Name == "Ribbon")
                         {
-                            ParseViews(viewsNode);
+                            ParseRibbon(viewsNode);
                         }
                         else if (viewsNode.Name == "ContextPopup")
                         {
@@ -121,6 +125,8 @@ namespace RibbonGenerator
 
         private void ParseContextPopup(XmlNode node)
         {
+            if (node == null)
+                return;
             XmlNodeList nodeList = node.ChildNodes;
             if (nodeList.Count == 0)
                 return;
@@ -146,6 +152,8 @@ namespace RibbonGenerator
                         }
                     }
                 }
+                else
+                    ParseRibbon(child);
             }
         }
 
@@ -177,7 +185,7 @@ namespace RibbonGenerator
                 }
                 if (!string.IsNullOrEmpty(idOrSymbol))
                 {
-                    if (!ContainsKey(pair3List, name))
+                    if (ContainsKey(pair3List, name) == -1)
                     {
                         pair1List.Add(new KeyValuePair<string, string>(name, idOrSymbol));
                     }
@@ -185,7 +193,7 @@ namespace RibbonGenerator
             }
         }
 
-        private void ParseViews(XmlNode node)
+        private void ParseRibbon(XmlNode node)
         {
             XmlNodeList nodeList = node.ChildNodes;
             if (nodeList.Count == 0)
@@ -194,33 +202,39 @@ namespace RibbonGenerator
             for (int i = 0; i < nodeList.Count; i++)
             {
                 XmlNode child = nodeList.Item(i);
-                String nodeName = child.Name;
-                String name = null;
-                XmlAttributeCollection parms = child.Attributes;
-                if (parms != null && parms.Count > 0)
-                {
-                    XmlNode attr = parms.GetNamedItem(CommandNameAttribute);
-                    if (attr != null)
-                    {
-                        name = attr.Value;
-                        if ((ContainsKey(pair1List, name) || ContainsKey(pair3List, name)) && !(ContainsKey(pair2List, name)))
-                        {
-                            pair2List.Add(new KeyValuePair<string, string>(name, "Ribbon" + nodeName));
-                        }
-                    }
-                }
-                ParseViews(child);
+                string commandName = GetCommandName(child);
+                ParseRibbon(child);
             }
         }
 
-        private bool ContainsKey(List<KeyValuePair<string, string>> list, string key)
+        private string GetCommandName(XmlNode child)
+        {
+            String name = string.Empty;
+            String nodeName = child.Name;
+            XmlAttributeCollection parms = child.Attributes;
+            if (parms != null && parms.Count > 0)
+            {
+                XmlNode attr = parms.GetNamedItem(CommandNameAttribute);
+                if (attr != null)
+                {
+                    name = attr.Value;
+                    if ((ContainsKey(pair1List, name) >= 0 || ContainsKey(pair3List, name) >= 0) && (ContainsKey(pair2List, name) == -1))
+                    {
+                        pair2List.Add(new KeyValuePair<string, string>(name, "Ribbon" + nodeName));
+                    }
+                }
+            }
+            return name;
+        }
+
+        private int ContainsKey(List<KeyValuePair<string, string>> list, string key)
         {
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i].Key.Equals(key))
-                    return true;
+                    return i;
             }
-            return false;
+            return -1;
         }
 
         private void WriteCsFile(string path)
