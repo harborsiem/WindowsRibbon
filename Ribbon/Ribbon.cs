@@ -563,9 +563,9 @@ namespace RibbonLib
             }
 
             // convert colors to proper color format
-            uint backgroundColor = ColorHelper.HSB2Uint(ColorHelper.HSL2HSB(ColorHelper.RGB2HSL(background)));
-            uint highlightColor = ColorHelper.HSB2Uint(ColorHelper.HSL2HSB(ColorHelper.RGB2HSL(highlight)));
-            uint textColor = ColorHelper.HSB2Uint(ColorHelper.HSL2HSB(ColorHelper.RGB2HSL(text)));
+            uint backgroundColor = ColorHelper.RGBToUInt32(background);
+            uint highlightColor = ColorHelper.RGBToUInt32(highlight);
+            uint textColor = ColorHelper.RGBToUInt32(text);
 
             IPropertyStore propertyStore = (IPropertyStore)Framework;
 

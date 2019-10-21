@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       ColorHelper.cs
 //
@@ -12,26 +12,78 @@ using System.Drawing;
 
 namespace RibbonLib
 {
-    internal struct HSL
+    public struct HSL
     {
         public double H;
         public double S;
         public double L;
     }
 
-    internal struct HSB
+    public struct HSB
     {
         public byte H;
         public byte S;
         public byte B;
     }
 
-    internal static class ColorHelper
+    /// <summary>
+    /// Class for color conversions
+    /// </summary>
+    public static class ColorHelper
     {
+        /// <summary>
+        /// Convert RGB Color to Ribbon Color format
+        /// </summary>
+        /// <param name="color">RGB Color</param>
+        /// <returns>Ribbon Color format</returns>
+        public static uint RGBToUInt32(Color color)
+        {
+            HSL hsl = RGBToHSL(color);
+            HSB hsb = HSLToHSB(hsl);
+            uint result = HSBToUInt32(hsb);
+            return result;
+        }
+
+        /// <summary>
+        /// Convert Ribbon Color format to RGB Color
+        /// </summary>
+        /// <param name="value">Ribbon Color format</param>
+        /// <returns>RGB Color</returns>
+        public static Color UInt32ToRGB(uint value)
+        {
+            HSB hsb = UInt32ToHSB(value);
+            HSL hsl = HSBToHSL(hsb);
+            Color result = HSLToRGB(hsl);
+            return result;
+        }
+
+        public static HSB UInt32ToHSB(uint value)
+        {
+            HSB hsb = new HSB();
+            hsb.H = (byte)(value & 0xFF);
+            hsb.S = (byte)((value >> 8) & 0xFF);
+            hsb.B = (byte)((value >> 16) & 0xFF);
+            return hsb;
+        }
+
+        public static HSL HSBToHSL(HSB hsb)
+        {
+            HSL hsl = new HSL();
+            double ld;
+            // Convert B to L
+            ld = Math.Exp((hsb.B - 257.7) / 149.9);
+
+            // HSLToRGB requires H, L and S to be in 0..1 range.
+            hsl.H = (hsb.H) / 255.0;
+            hsl.S = (hsb.S) / 255.0;
+            hsl.L = ld;
+            return hsl;
+        }
+
         // based on http://www.geekymonkey.com/Programming/CSharp/RGB2HSL_HSL2RGB.htm
         // Given H,S,L in range of 0-1
         // Returns a Color (RGB struct) in range of 0-255
-        public static Color HSL2RGB(HSL hsl)
+        public static Color HSLToRGB(HSL hsl)
         {
             double v;
             double r, g, b;
@@ -101,7 +153,7 @@ namespace RibbonLib
 
         // Given a Color (RGB Struct) in range of 0-255
         // Return H,S,L in range of 0-1
-        public static HSL RGB2HSL(Color rgb)
+        public static HSL RGBToHSL(Color rgb)
         {
             HSL hsl;
 
@@ -161,25 +213,23 @@ namespace RibbonLib
             return hsl;
         }
 
-        public static HSB HSL2HSB(HSL hsl)
+        public static HSB HSLToHSB(HSL hsl)
         {
             HSB hsb;
 
-            hsb.H = (byte)(255.0 * hsl.H);
-            hsb.S = (byte)(255.0 * hsl.S);
-            if ((0.1793 <= hsl.L) && (hsl.L <= 0.9821))
-            {
-                hsb.B = (byte)(257.7 + 149.9 * Math.Log(hsl.L));
-            }
-            else
-            {
+            hsb.H = (byte)Math.Round(255.0 * hsl.H);
+            hsb.S = (byte)Math.Round(255.0 * hsl.S);
+            if (hsl.L < 0.1793)
                 hsb.B = 0;
-            }
+            else if (hsl.L > 0.9821)
+                hsb.B = 0xff;
+            else
+                hsb.B = (byte)Math.Round(257.7 + 149.9 * Math.Log(hsl.L));
 
             return hsb;
         }
 
-        public static uint HSB2Uint(HSB hsb)
+        public static uint HSBToUInt32(HSB hsb)
         {
             return (uint)(hsb.H | (hsb.S << 8) | (hsb.B << 16));
         }
