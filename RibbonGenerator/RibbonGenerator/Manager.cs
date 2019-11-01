@@ -178,6 +178,9 @@ namespace RibbonGenerator
                 // create the ribbon dll
                 string ribbonDll = ConvertXmlToDll(localizedRibbonXmlFilename);
 
+                // create the C# file RibbonItems.Designer.cs
+                new CSharpCodeBuilder().Execute(RibbonXmlFilename);
+
                 // return the content of the ribbon dll
                 var result = File.ReadAllBytes(ribbonDll);
 

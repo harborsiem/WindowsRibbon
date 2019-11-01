@@ -83,3 +83,6 @@ RibbonGenerator.msi installs the components to the 32 Bit ProgramFiles folder Ri
 
 [Windows Ribbon Framework for Delphi](https://bilsen.com/windowsribbon/index.shtml)
 From this page you can get a very good tutorial for the Ribbon and you can get a RibbonDesigner.exe. This tool will help you to design your RibbonMarkup.xml file.
+
+## Hints
+When using ApplicationModes to a Tab or Group then you should define ApplicationMode to all Tabs and Groups in the RibbonMarkup.xml. If you don't do this you can get a Application shutdown when switching the ApplicationMode.

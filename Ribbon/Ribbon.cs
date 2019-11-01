@@ -608,7 +608,7 @@ namespace RibbonLib
         /// <remarks>Unlisted modes will be unset</remarks>
         public void SetModes(params byte[] modesArray)
         {
-            if (modesArray == null)
+            if (modesArray == null || modesArray.Length == 0)
                 throw new ArgumentNullException(nameof(modesArray));
             // check that ribbon is initialized
             if (!Initalized)
