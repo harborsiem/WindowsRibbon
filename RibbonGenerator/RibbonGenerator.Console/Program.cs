@@ -26,6 +26,10 @@ namespace RibbonGenerator.Console
                     var buffer = manager.CreateRibbon(target);
                     File.WriteAllBytes(target.RibbonFilename, buffer);
                 }
+
+                // create the C# file RibbonItems.Designer.cs
+                new CSharpCodeBuilder().Execute(fileName, new RibbonParser(fileName));
+
             }
             catch (Exception ex)
             {

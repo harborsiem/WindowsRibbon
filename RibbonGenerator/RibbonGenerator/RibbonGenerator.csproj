@@ -53,10 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSharpCodeBuilder.cs" />
     <Compile Include="FaildException.cs" />
-    <Compile Include="RibbonItem.cs" />
-    <Compile Include="RibbonParser.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="IMessageOutput.cs" />
     <Compile Include="Manager.cs" />

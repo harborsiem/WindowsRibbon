@@ -33,7 +33,7 @@ namespace RibbonGenerator
         /// Method builds a C# file RibbonItems.Designer.cs
         /// </summary>
         /// <param name="path">RibbonMarkup.xml with path</param>
-        public void Execute(string path)
+        public void Execute(string path, RibbonParser parser)
         {
             //string @namespace = System.Reflection.Assembly.GetEntryAssembly().EntryPoint.DeclaringType.Namespace;
             if (File.Exists(path))
@@ -51,7 +51,6 @@ namespace RibbonGenerator
                     ribbonItemsClass = RibbonItems;
                 }
 
-                RibbonParser parser = new RibbonParser(path);
 
                 RibbonParser.ParseResult results = parser.Results;
                 //pair1List = (results.Pair1List);

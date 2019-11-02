@@ -18,7 +18,6 @@ namespace RibbonGenerator
         private const string SymbolAttribute = "Symbol";
         private const string ApplicationModesAttribute = "ApplicationModes";
 
-        //private XmlDocument xmlDocument;
         private XmlNode applicationCommands;
         private XmlNode applicationViewsRibbon;
         private XmlNode applicationViewsContextPopup;
