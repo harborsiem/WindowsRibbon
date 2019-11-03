@@ -111,7 +111,7 @@ namespace RibbonGenerator
             }
         }
 
-        public static string DetectAppropariateWindowsSdkPath()
+        public static string DetectAppropriateWindowsSdkPath()
         {
             return GetLatestSdkToolsPath();
             //RegistryKey hklm = Environment.Is64BitOperatingSystem

@@ -18,12 +18,15 @@ namespace RibbonPreview
         private Action<bool> buildActionEnabled;
         private Action<bool> previewActionEnabled;
         private Action<string> setText;
-        private string uiccXsdPath = @"..\..\UICC.xsd";
+        private string uiccXsdPath;
 
         public static PreviewRibbonItems Instance = new PreviewRibbonItems();
 
         private PreviewRibbonItems()
         {
+            //uiccXsdPath = @"..\..\UICC.xsd";
+            string sdkPath = Util.DetectAppropriateWindowsSdkPath();
+            uiccXsdPath = Path.Combine(sdkPath, "UICC.xsd");
         }
 
         internal RibbonParser Parser { get; private set; }

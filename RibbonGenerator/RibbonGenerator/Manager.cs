@@ -210,7 +210,7 @@ namespace RibbonGenerator
             {
                 StreamReader reader = new StreamReader(stream);
                 var content = reader.ReadToEnd();
-                content = content.Replace("{WindowsSDKToolsPath}", Util.DetectAppropariateWindowsSdkPath());
+                content = content.Replace("{WindowsSDKToolsPath}", Util.DetectAppropriateWindowsSdkPath());
                 File.WriteAllText(Util.TemplateBatFilename, content);
             }
 
