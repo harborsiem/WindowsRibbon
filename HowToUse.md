@@ -18,10 +18,10 @@
 6. Now create a RibbonMarkup.xml file in your Visual Studio project with "Properties -> Build Action" = Content. 
     Visual Studio Menu: XML -> Schemas...: Select http://schemas.microsoft.com/windows/2009/Ribbon with Filename UICC.xsd (UICC.xsd is in the Windows SDK bin folder). Maybe you have to add this schema first in the dialog "XML Schemas".
     Insert Application Commands and Application Views as you can see in the examples and the documentation in Arik's blogs (see the links below).
-**Hint**: If you have more then one Ribbon Controls for different Forms in the project, then you should name the RibbonMarkup.xml to RibbonMarkup1.xml, RibbonMarkup2.xml, ...
+**Hint**: If you have more then one Ribbon Controls for different Forms in the project, then you should name the RibbonMarkup.xml to RibbonMarkup1.xml, RibbonMarkup2.xml, ... ,RibbonMarkup9.xml 
     
 7. Because CustomTools, like Bernhard Elbl says, do not work this way in newer Visual Studio versions like VS 2017 you have to
-    open a Console Window in the folder of RibbonMarkup.xml (maybe we have a solution for a CustomTool later on).
+    open a Console Window in the folder of RibbonMarkup.xml (maybe we have a solution for a CustomTool later on). Or you can use the RibbonPreview to build and preview the markup file.
 
 8. Have a call in the Console Window: rgc RibbonMarkup.xml
 
@@ -60,6 +60,8 @@ Names of special directories you can find in [Environment.SpecialFolder](https:/
 
 Version 1.3 of RibbonGenerator.dll, rgc.exe: Generating of an additional file RibbonItems.Designer.cs.
 
+In the latest release we got the RibbonPreview to build and preview the Ribbon.
+
 ## [Installation]
 Installation of Visual Studio (any version since Visual Studio 2010 up to later ones) is required.
 Minimum installation components in Visual Studio are .NET Desktop Development and C++ Desktop Development.
@@ -68,11 +70,12 @@ Installation of the Windows SDK which is suitable for your Windows version
 eg. If you have Windows 7 as Operating System (OS), than you have to install Windows 7 SDK
 If you have Windows 10 as OS, than you have to install Windows 10 SDK.
 
-Download "msi.zip" from the releases page of this GitHub repository. Unzip "msi.zip" and install "Ribbon.msi" and "RibbonGenerator.msi".
+Download "msi.zip" from the releases page of this GitHub repository. Unzip "msi.zip" and install "Ribbon.msi" , "RibbonGenerator.msi" and "RibbonPreview.msi".
 RibbonGenerator installs the Commandline Tool rgc.exe and RibbonGenerator.dll. This Toolchain will build a .ribbon file.
 
 Ribbon.msi installs Ribbon.dll to the Global Assembly Cache (GAC). The Ribbon.dll contains a Ribbon Control and mainly the Wrapper Classes for the Ribbon Elements
 RibbonGenerator.msi installs the components to the 32 Bit ProgramFiles folder RibbonLib and adds the Environment Path to this folder.
+RibbonPreview  installs the components to the 32 Bit ProgramFiles folder RibbonLib. You can start the app from Windows Startmenu.
 
 ## Useful Links
 [Microsoft Windows Ribbon Framework](https://docs.microsoft.com/en-us/windows/win32/windowsribbon/-uiplat-windowsribbon-entry)

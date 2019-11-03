@@ -43,11 +43,19 @@ see also:
 
 [Documentation](https://www.codeproject.com/Articles/55599/Windows-Ribbon-for-WinForms-Part-Table-of-Conten)
 
-
-
 Thanks to Arik Poznanski and Bernhard Elbl for the great work.
 
-I will try to make it run in newer Visual Studio Versions and SDK Versions with a MSI-Setup (Wix Toolset) for the components. I will explain all steps for using the different components for a developer who want to build a Ribbon application with .NET WinForms.
+
+
+Now the WindowsRibbon project is running also in the latest Visual Studio Versions 2017 and 2019. Have a look to the file "HowToUse.md" to see how to use the WindowsRibbon in a .NET WinForms application. In the Releases page are also zipped *.msi setup files for the components. The msi files are build with the WIX Toolset.
+
+There is also a gui based build and preview tool called RibbonPreview. 
+
+The C# samples are added with are more complex Mainform application. Here you can see the Ribbon of Mainform in the RibbonPreview app.
+
+
+
+![PrintPreview](./Images\PrintPreview.png)
 
 
 
