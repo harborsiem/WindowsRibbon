@@ -55,7 +55,7 @@ The C# samples are added with are more complex Mainform application. Here you ca
 
 
 
-![PrintPreview](./Images\PrintPreview.png)
+![PrintPreview](./Images/PrintPreview.png)
 
 
 
