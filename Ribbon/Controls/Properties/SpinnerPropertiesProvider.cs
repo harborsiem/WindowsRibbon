@@ -134,7 +134,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant decimalValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.DecimalValue, out decimalValue);
@@ -148,7 +148,7 @@ namespace RibbonLib.Controls.Properties
             }
             set
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant decimalValue = PropVariant.FromObject(value);
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.DecimalValue, ref decimalValue);
@@ -168,7 +168,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _increment = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.Increment));
                 }
@@ -187,7 +187,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _maxValue = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.MaxValue));
                 }
@@ -206,7 +206,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _minValue = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.MinValue));
                 }
@@ -225,7 +225,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _decimalPlaces = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.DecimalPlaces));
                 }
@@ -244,7 +244,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _formatString = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.FormatString));
                 }

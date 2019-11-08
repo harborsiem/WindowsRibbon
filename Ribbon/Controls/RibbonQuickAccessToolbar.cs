@@ -87,7 +87,7 @@ namespace RibbonLib.Controls
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant unknownValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ItemsSource, out unknownValue);

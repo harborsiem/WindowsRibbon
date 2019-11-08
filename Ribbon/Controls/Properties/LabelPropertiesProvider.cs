@@ -74,7 +74,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _label = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.Label));
                 }

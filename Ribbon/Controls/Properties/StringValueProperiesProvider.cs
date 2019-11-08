@@ -69,7 +69,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant stringValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.StringValue, out stringValue);
@@ -85,7 +85,7 @@ namespace RibbonLib.Controls.Properties
             {
                 _stringValue = value;
 
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant stringValue;
                     if ((_stringValue == null) || (_stringValue.Trim() == string.Empty))

@@ -205,7 +205,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant iunknownValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.FontProperties, out iunknownValue);
@@ -228,7 +228,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     IPropertyStore propertyStore = FontProperties;
                     PropVariant propFamily;
@@ -241,7 +241,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _family = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.AllProperties, null);
                 }
@@ -255,7 +255,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     IPropertyStore propertyStore = FontProperties;
                     PropVariant propSize;
@@ -268,7 +268,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _size = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.AllProperties, null);
                 }
@@ -282,7 +282,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     IPropertyStore propertyStore = FontProperties;
                     PropVariant propBold;
@@ -295,7 +295,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _bold = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.AllProperties, null);
                 }
@@ -309,7 +309,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     IPropertyStore propertyStore = FontProperties;
                     PropVariant propItalic;
@@ -322,7 +322,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _italic = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.AllProperties, null);
                 }
@@ -336,7 +336,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     IPropertyStore propertyStore = FontProperties;
                     PropVariant propUnderline;
@@ -349,7 +349,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _underline = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.AllProperties, null);
                 }
@@ -363,7 +363,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     IPropertyStore propertyStore = FontProperties;
                     PropVariant propStrikethrough;
@@ -376,7 +376,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _strikethrough = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.AllProperties, null);
                 }
@@ -390,7 +390,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     IPropertyStore propertyStore = FontProperties;
                     PropVariant propForegroundColorType;
@@ -421,7 +421,7 @@ namespace RibbonLib.Controls.Properties
                 _foregroundColor = value;
                 _foregroundColorType = SwatchColorType.RGB;
 
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.AllProperties, null);
                 }
@@ -435,7 +435,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     IPropertyStore propertyStore = FontProperties;
                     PropVariant propBackgroundColorType;
@@ -466,7 +466,7 @@ namespace RibbonLib.Controls.Properties
                 _backgroundColor = value;
                 _backgroundColorType = SwatchColorType.RGB;
 
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.AllProperties, null);
                 }
@@ -480,7 +480,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     IPropertyStore propertyStore = FontProperties;
                     PropVariant propVerticalPositioning;
@@ -493,7 +493,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _verticalPositioning = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.AllProperties, null);
                 }

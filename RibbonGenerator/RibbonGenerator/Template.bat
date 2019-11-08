@@ -13,4 +13,4 @@
 @rem cmd /c "("C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat") && ("C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\Hostx86\x86\link.exe" /VERBOSE /NOENTRY /DLL /MACHINE:X86 /OUT:"{DllFilename}" "{ResFilename}")"
 
 @rem VS2019, Windows10 x64, rem previous line and delete rem next line
-cmd /c "("C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars32.bat") && ("C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905\bin\Hostx86\x86\link.exe" /VERBOSE /NOENTRY /DLL /MACHINE:X86 /OUT:"{DllFilename}" "{ResFilename}")"
+cmd /c "("C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars32.bat") && ("C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\bin\Hostx86\x86\link.exe" /VERBOSE /NOENTRY /DLL /MACHINE:X86 /OUT:"{DllFilename}" "{ResFilename}")"

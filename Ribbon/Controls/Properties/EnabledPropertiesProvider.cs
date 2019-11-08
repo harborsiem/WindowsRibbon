@@ -69,7 +69,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant boolValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.Enabled, out boolValue);
@@ -84,7 +84,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _enabled = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant boolValue = PropVariant.FromObject(value);
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.Enabled, ref boolValue);

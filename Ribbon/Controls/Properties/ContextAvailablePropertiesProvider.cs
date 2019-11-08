@@ -69,7 +69,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant uintValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ContextAvailable, out uintValue);
@@ -84,7 +84,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _contextAvailable = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant uintValue = PropVariant.FromObject((uint)value);
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.ContextAvailable, ref uintValue);

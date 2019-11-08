@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RibbonGenerator
 {
-    class RibbonItem
+    public class RibbonItem
     {
         public string CommandName { get; set; }
         public string RibbonClassName { get; set; }

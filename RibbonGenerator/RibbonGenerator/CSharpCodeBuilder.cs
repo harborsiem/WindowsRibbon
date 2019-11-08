@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace RibbonGenerator
 {
-    class CSharpCodeBuilder
+    public class CSharpCodeBuilder
     {
         private const string IdentString = "    ";
         private const string RibbonItems = "RibbonItems";

@@ -10,7 +10,7 @@ using System.IO;
 
 namespace RibbonGenerator
 {
-    class RibbonParser
+    public class RibbonParser
     {
         private const string CommandNameAttribute = "CommandName";
         private const string NameAttribute = "Name";
@@ -35,7 +35,7 @@ namespace RibbonGenerator
         private bool hasHFile;
 
         private List<RibbonItem> ribbonItems;
-        internal ParseResult Results { get; private set; }
+        public ParseResult Results { get; private set; }
 
         public RibbonParser(string path)
         {
@@ -234,7 +234,7 @@ namespace RibbonGenerator
                     for (int i = 0; i < modes.Length; i++)
                     {
                         int modeValue;
-                        if (int.TryParse(modes[i], out modeValue))
+                        if (int.TryParse(modes[i].Trim(), out modeValue))
                         {
                             if (modeValue >= 0 && modeValue <= 31)
                             {
@@ -324,7 +324,7 @@ namespace RibbonGenerator
             return 0;
         }
 
-        internal class ParseResult
+        public class ParseResult
         {
             public ParseResult(RibbonParser parser)
             {

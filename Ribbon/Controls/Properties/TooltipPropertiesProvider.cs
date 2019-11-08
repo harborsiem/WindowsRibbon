@@ -88,7 +88,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _tooltipTitle = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.TooltipTitle));
                 }
@@ -107,7 +107,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _tooltipDescription = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.TooltipDescription));
                 }

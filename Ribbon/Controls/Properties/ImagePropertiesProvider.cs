@@ -116,7 +116,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _largeImage = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.LargeImage));
                 }
@@ -135,7 +135,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _smallImage = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.SmallImage));
                 }
@@ -154,7 +154,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _largeHighContrastImage = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.LargeHighContrastImage));
                 }
@@ -173,7 +173,7 @@ namespace RibbonLib.Controls.Properties
             set
             {
                 _smallHighContrastImage = value;
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     HRESULT hr = _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.SmallHighContrastImage));
                 }

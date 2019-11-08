@@ -216,7 +216,7 @@ namespace RibbonLib
             if (Util.DesignMode)
                 return;
 
-            if (Initalized)
+            if (Initialized)
                 return;
 
             if (string.IsNullOrEmpty(ResourceName))
@@ -248,7 +248,19 @@ namespace RibbonLib
         /// <summary>
         /// Check if ribbon framework has been initialized
         /// </summary>
+        [Obsolete("Use Initialized")]
         public bool Initalized
+        {
+            get
+            {
+                return (Framework != null);
+            }
+        }
+
+        /// <summary>
+        /// Check if ribbon framework has been initialized
+        /// </summary>
+        public bool Initialized
         {
             get
             {
@@ -503,7 +515,7 @@ namespace RibbonLib
         void DestroyFramework()
         {
 
-            if (Initalized)
+            if (Initialized)
             {
                 // destroy ribbon framework
                 Framework.Destroy();
@@ -557,7 +569,7 @@ namespace RibbonLib
         /// <param name="text">new text color</param>
         public void SetColors(Color background, Color highlight, Color text)
         {
-            if (!Initalized)
+            if (!Initialized)
             {
                 return;
             }
@@ -611,7 +623,7 @@ namespace RibbonLib
             if (modesArray == null || modesArray.Length == 0)
                 throw new ArgumentNullException(nameof(modesArray));
             // check that ribbon is initialized
-            if (!Initalized)
+            if (!Initialized)
             {
                 return;
             }
@@ -641,7 +653,7 @@ namespace RibbonLib
         public void ShowContextPopup(uint contextPopupID, int x, int y)
         {
             // check that ribbon is initialized
-            if (!Initalized)
+            if (!Initialized)
             {
                 return;
             }
@@ -669,7 +681,7 @@ namespace RibbonLib
             get
             {
                 // check that ribbon is initialized
-                if (!Initalized)
+                if (!Initialized)
                 {
                     return false;
                 }
@@ -682,7 +694,7 @@ namespace RibbonLib
             set
             {
                 // check that ribbon is initialized
-                if (!Initalized)
+                if (!Initialized)
                 {
                     return;
                 }
@@ -703,7 +715,7 @@ namespace RibbonLib
             get
             {
                 // check that ribbon is initialized
-                if (!Initalized)
+                if (!Initialized)
                 {
                     return false;
                 }
@@ -716,7 +728,7 @@ namespace RibbonLib
             set
             {
                 // check that ribbon is initialized
-                if (!Initalized)
+                if (!Initialized)
                 {
                     return;
                 }
@@ -737,7 +749,7 @@ namespace RibbonLib
             get
             {
                 // check that ribbon is initialized
-                if (!Initalized)
+                if (!Initialized)
                 {
                     return ControlDock.Top;
                 }
@@ -750,7 +762,7 @@ namespace RibbonLib
             set
             {
                 // check that ribbon is initialized
-                if (!Initalized)
+                if (!Initialized)
                 {
                     return;
                 }
@@ -762,9 +774,13 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// The SaveSettingsToStream method is useful for persisting ribbon state, such as Quick Access Toolbar (QAT) items, across application instances.
+        /// </summary>
+        /// <param name="stream"></param>
         public void SaveSettingsToStream(Stream stream)
         {
-            if (!Initalized)
+            if (!Initialized)
             {
                 return;
             }
@@ -773,9 +789,13 @@ namespace RibbonLib
             HRESULT hr = _application.UIRibbon.SaveSettingsToStream(streamAdapter);
         }
 
+        /// <summary>
+        /// The LoadSettingsFromStream method is useful for persisting ribbon state, such as Quick Access Toolbar (QAT) items, across application instances.
+        /// </summary>
+        /// <param name="stream"></param>
         public void LoadSettingsFromStream(Stream stream)
         {
-            if (!Initalized)
+            if (!Initialized)
             {
                 return;
             }

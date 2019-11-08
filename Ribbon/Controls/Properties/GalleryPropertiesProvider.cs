@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       GalleryPropertiesProvider.cs
 //
@@ -48,12 +48,15 @@ namespace RibbonLib.Controls.Properties
     public class GalleryPropertiesProvider : BasePropertiesProvider, IGalleryPropertiesProvider
     {
         private object _sender;
+        private bool categoriesReadyFired;
+        private bool itemsSourceReadyFired;
 
         /// <summary>
         /// GalleryPropertiesProvider ctor
         /// </summary>
         /// <param name="ribbon">parent ribbon</param>
         /// <param name="commandId">ribbon control command id</param>
+        /// <param name="sender">ribbon control that instantiate the provider</param>
         public GalleryPropertiesProvider(Ribbon ribbon, uint commandId, object sender)
             : base(ribbon, commandId)
         {
@@ -78,15 +81,17 @@ namespace RibbonLib.Controls.Properties
         {
             if (key == RibbonProperties.Categories)
             {
-                if (CategoriesReady != null)
+                if (!categoriesReadyFired && CategoriesReady != null)
                 {
+                    categoriesReadyFired = true;
                     CategoriesReady(_sender, EventArgs.Empty);
                 }
             }
             else if (key == RibbonProperties.ItemsSource)
             {
-                if (ItemsSourceReady != null)
+                if (!itemsSourceReadyFired && ItemsSourceReady != null)
                 {
+                    itemsSourceReadyFired = true;
                     ItemsSourceReady(_sender, EventArgs.Empty);
                 }
             }
@@ -110,7 +115,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant unknownValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.Categories, out unknownValue);
@@ -131,7 +136,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant unknownValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ItemsSource, out unknownValue);
@@ -152,7 +157,7 @@ namespace RibbonLib.Controls.Properties
         {
             get
             {
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant uintValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.SelectedItem, out uintValue);
@@ -168,7 +173,7 @@ namespace RibbonLib.Controls.Properties
             {
                 _selectedItem = value;
 
-                if (_ribbon.Initalized)
+                if (_ribbon.Initialized)
                 {
                     PropVariant uintValue = PropVariant.FromObject(value);
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.SelectedItem, ref uintValue);
