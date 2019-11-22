@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       BaseRibbonControl.cs
 //
@@ -20,7 +20,7 @@ namespace RibbonLib.Controls
         /// <summary>
         /// reference for parent ribbon class
         /// </summary>
-        protected Ribbon _ribbon;
+        internal protected Ribbon _ribbon;
 
         /// <summary>
         /// ribbon control command id

@@ -1,4 +1,4 @@
-﻿//****************************************************************************
+//****************************************************************************
 //
 //  File:       CommonCOMInterfaces.cs
 //
@@ -13,12 +13,21 @@ using System.Runtime.InteropServices;
 namespace RibbonLib.Interop
 {
     /// <summary>
+    /// System error codes
+    /// </summary>
+    public enum ExitCode
+    {
+        ERROR_UNHANDLED_EXCEPTION = 574, // (0x23E)
+    }
+
+    /// <summary>
     /// HRESULT Wrapper
     /// </summary>
     public enum HRESULT : uint
     {
         S_OK = 0x00000000,
         S_FALSE = 0x00000001,
+        E_ABORT = 0x80004004,
         E_FAIL = 0x80004005,
         E_NOTIMPL = 0x80004001,
     }
@@ -63,7 +72,7 @@ namespace RibbonLib.Interop
         HRESULT Next([In, MarshalAs(UnmanagedType.U4)] uint celt,
                  [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.IUnknown, SizeParamIndex = 0)] object[] rgelt,
                  [Out, MarshalAs(UnmanagedType.U4)] out uint pceltFetched);
-       
+
         // Skips over the specified number of items in the enumeration sequence.
         [PreserveSig]
         HRESULT Skip([In, MarshalAs(UnmanagedType.U4)] uint celt);

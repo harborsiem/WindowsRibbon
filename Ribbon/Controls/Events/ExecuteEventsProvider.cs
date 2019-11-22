@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       ExecuteEventsProvider.cs
 //
@@ -8,6 +8,7 @@
 
 using RibbonLib.Interop;
 using System;
+using System.Threading;
 
 namespace RibbonLib.Controls.Events
 {
@@ -28,7 +29,7 @@ namespace RibbonLib.Controls.Events
     public class ExecuteEventsProvider : BaseEventsProvider, IExecuteEventsProvider
     {
         private object _sender;
-        
+
         public ExecuteEventsProvider(object sender)
         {
             _sender = sender;
@@ -49,7 +50,22 @@ namespace RibbonLib.Controls.Events
             {
                 if (ExecuteEvent != null)
                 {
-                    ExecuteEvent(_sender, new ExecuteEventArgs(key, currentValue, commandExecutionProperties));
+                    try
+                    {
+                        ExecuteEvent(_sender, new ExecuteEventArgs(key, currentValue, commandExecutionProperties));
+                    }
+                    catch (Exception ex)
+                    {
+                        BaseRibbonControl ctrl = _sender as BaseRibbonControl;
+                        if (ctrl != null)
+                        {
+                            ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
+                            if (ctrl._ribbon.OnRibbonEventException(_sender, e))
+                                return HRESULT.E_FAIL;
+                        }
+                        Environment.Exit((int)ExitCode.ERROR_UNHANDLED_EXCEPTION);
+                        return HRESULT.E_ABORT;
+                    }
                 }
             }
 

@@ -39,8 +39,8 @@ namespace RibbonGenerator
         public string RibbonXmlFilename
         {
             get
-            { 
-                return _ribbonXmlFilename; 
+            {
+                return _ribbonXmlFilename;
             }
         }
 
@@ -49,8 +49,8 @@ namespace RibbonGenerator
         public string RibbonXmlContent
         {
             get
-            { 
-                return _ribbonXmlContent; 
+            {
+                return _ribbonXmlContent;
             }
         }
 
@@ -124,7 +124,7 @@ namespace RibbonGenerator
                     targets.Add(target);
                 }
 
-                _targets = targets; 
+                _targets = targets;
 
                 // if there are ResX files for the ribbons create a ResXReader
                 if (target.Localize)
@@ -196,7 +196,7 @@ namespace RibbonGenerator
         }
 
         /// <summary>
-        /// Verifies that templte.bat file exists, if not, it will be created here.
+        /// Verifies that template.bat file exists, if not, it will be created here.
         /// </summary>
         void VerifyTemplateBat()
         {
@@ -205,15 +205,23 @@ namespace RibbonGenerator
                 this._output.WriteLine(string.Format("Verify Template.bat: File already exists '{0}'", Util.TemplateBatFilename));
                 return;
             }
-
+            string tmp;
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("RibbonGenerator.Template.bat"))
             {
                 StreamReader reader = new StreamReader(stream);
                 var content = reader.ReadToEnd();
-                content = content.Replace("{WindowsSDKToolsPath}", Util.DetectAppropriateWindowsSdkPath());
+                tmp = Util.DetectAppropriateWindowsSdkPath();
+                if (!string.IsNullOrEmpty(tmp))
+                {
+                    content = content.Replace("{WindowsSDKToolsPath}", tmp);
+                }
+                tmp = Util.GetLinkerCommand();
+                if (!string.IsNullOrEmpty(tmp))
+                {
+                    content = content.Replace("{LinkerCommand}", tmp);
+                }
                 File.WriteAllText(Util.TemplateBatFilename, content);
             }
-
             this._output.WriteLine(string.Format("Verify Template.bat: File is created '{0}'", Util.TemplateBatFilename));
         }
 
@@ -226,10 +234,10 @@ namespace RibbonGenerator
             {
                 try
                 {
-                    if(File.Exists(cleanupFile))
+                    if (File.Exists(cleanupFile))
                         File.Delete(cleanupFile);
                 }
-                catch(Exception ex) 
+                catch (Exception ex)
                 {
                     Util.LogError(new Exception(string.Format("Cleanup fails for file '{0}'", cleanupFile), ex));
                 }
@@ -250,7 +258,7 @@ namespace RibbonGenerator
             string dllFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".ribbondll");
             string headerFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".h");
 
-            this.CleanupFiles.AddRange(new string[] {batFilename, bmlFilename, rcFilename, resFilename, dllFilename });
+            this.CleanupFiles.AddRange(new string[] { batFilename, bmlFilename, rcFilename, resFilename, dllFilename });
 
             var bat = File.ReadAllText(Util.TemplateBatFilename);
             bat = bat.Replace("{XmlFilename}", localizedRibbonXmlFilename);
@@ -267,7 +275,7 @@ namespace RibbonGenerator
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.CreateNoWindow = true;
             proc.OutputDataReceived += new System.Diagnostics.DataReceivedEventHandler(proc_OutputDataReceived);
-            
+
             proc.Start();
             proc.BeginOutputReadLine();
 
@@ -277,7 +285,7 @@ namespace RibbonGenerator
                 throw new FaildException("uicc.exe failed to generate .bml or .rc file!");
             if (!File.Exists(resFilename))
                 throw new FaildException("rc.exe failed to generate binary .res file!");
-            if(!File.Exists(dllFilename))
+            if (!File.Exists(dllFilename))
                 throw new FaildException("link.exe failed to generate binary resource .dll file!");
 
             return dllFilename;
@@ -290,7 +298,7 @@ namespace RibbonGenerator
         /// <param name="e"></param>
         void proc_OutputDataReceived(object sender, System.Diagnostics.DataReceivedEventArgs e)
         {
-            if(_output != null)
+            if (_output != null)
                 _output.WriteLine(e.Data);
         }
 
@@ -325,7 +333,7 @@ namespace RibbonGenerator
 
                 int resourceKeyBegin = nextTokenBegin + LOCALIZEBEGINTOKEN.Length;
                 int resourceKeyLength = nextTokenEnd - resourceKeyBegin;
-                
+
                 string resourceKey = localizedContent.Substring(resourceKeyBegin, resourceKeyLength);
 
                 string localizedString = this.ResXReader.GetString(resourceKey);

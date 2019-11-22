@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       PreviewEventsProvider.cs
 //
@@ -8,6 +8,7 @@
 
 using RibbonLib.Interop;
 using System;
+using System.Threading;
 
 namespace RibbonLib.Controls.Events
 {
@@ -56,14 +57,42 @@ namespace RibbonLib.Controls.Events
                 case ExecutionVerb.Preview:
                     if (PreviewEvent != null)
                     {
-                        PreviewEvent(_sender, new ExecuteEventArgs(key, currentValue, commandExecutionProperties));
+                        try
+                        {
+                            PreviewEvent(_sender, new ExecuteEventArgs(key, currentValue, commandExecutionProperties));
+                        }
+                        catch (Exception ex) {
+                            BaseRibbonControl ctrl = _sender as BaseRibbonControl;
+                            if (ctrl != null)
+                            {
+                                ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
+                                if (ctrl._ribbon.OnRibbonEventException(_sender, e))
+                                    return HRESULT.E_FAIL;
+                            }
+                            Environment.Exit((int)ExitCode.ERROR_UNHANDLED_EXCEPTION);
+                            return HRESULT.E_ABORT;
+                        }
                     }
                     break;
 
                 case ExecutionVerb.CancelPreview:
                     if (CancelPreviewEvent != null)
                     {
-                        CancelPreviewEvent(_sender, new ExecuteEventArgs(key, currentValue, commandExecutionProperties));
+                        try
+                        {
+                            CancelPreviewEvent(_sender, new ExecuteEventArgs(key, currentValue, commandExecutionProperties));
+                        }
+                        catch (Exception ex) {
+                            BaseRibbonControl ctrl = _sender as BaseRibbonControl;
+                            if (ctrl != null)
+                            {
+                                ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
+                                if (ctrl._ribbon.OnRibbonEventException(_sender, e))
+                                    return HRESULT.E_FAIL;
+                            }
+                            Environment.Exit((int)ExitCode.ERROR_UNHANDLED_EXCEPTION);
+                            return HRESULT.E_ABORT;
+                        }
                     }
                     break;
             }

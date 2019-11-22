@@ -5,8 +5,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RibbonGenerator", "RibbonGenerator\RibbonGenerator.csproj", "{7C88C713-78FF-4580-A32D-D9623F3AD2E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RibbonGenerator.Console", "RibbonGenerator.Console\RibbonGenerator.Console.csproj", "{1E12E24D-CF2E-411D-8650-282DA9B864A9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7C88C713-78FF-4580-A32D-D9623F3AD2E4} = {7C88C713-78FF-4580-A32D-D9623F3AD2E4}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RibbonGeneratorEx", "RibbonGeneratorEx\RibbonGeneratorEx.csproj", "{48EB6DB5-F933-4652-862B-E239318DE8DC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7C88C713-78FF-4580-A32D-D9623F3AD2E4} = {7C88C713-78FF-4580-A32D-D9623F3AD2E4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

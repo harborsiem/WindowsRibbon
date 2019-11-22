@@ -847,6 +847,20 @@ namespace RibbonLib
             _mapRibbonControls.Add(ribbonControl.CommandID, ribbonControl);
         }
 
+        internal bool OnRibbonEventException(object sender, ThreadExceptionEventArgs args)
+        {
+            if (RibbonEventException != null) {
+                RibbonEventException(sender, args);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// User can handle untrapped Exceptions in the other events of the Ribbon
+        /// </summary>
+        public event EventHandler<ThreadExceptionEventArgs> RibbonEventException;
+
         #region Implementation of IUICommandHandler
 
         /// <summary>

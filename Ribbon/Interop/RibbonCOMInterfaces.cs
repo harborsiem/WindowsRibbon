@@ -1,4 +1,4 @@
-﻿//****************************************************************************
+//****************************************************************************
 //
 //  File:       RibbonCOMInterfaces.cs
 //
@@ -116,7 +116,7 @@ namespace RibbonLib.Interop
         Property = 0X00000004,          // Any property
         AllProperties = 0X00000008,     // All properties
     }
-    
+
 
     // Windows Ribbon Application interface
     [ComImport]
@@ -147,7 +147,7 @@ namespace RibbonLib.Interop
         // Immediately sets the value of a property
         [PreserveSig]
         HRESULT SetUICommandProperty(UInt32 commandID, [In] ref PropertyKey key, [In] ref PropVariant value);
-        
+
         // Asks the framework to retrieve the new value of a property at the next update cycle
         [PreserveSig]
         HRESULT InvalidateUICommand(UInt32 commandID, Invalidations flags, [In, Optional] PropertyKeyRef key);
@@ -225,7 +225,7 @@ namespace RibbonLib.Interop
         public const UInt32 UI_Collection_InvalidIndex = 0xffffffff;
         public const UInt32 UI_All_Commands = 0;
     }
-    
+
 
     // Connection Sink for listening to collection changes
     [ComImport]
@@ -235,9 +235,9 @@ namespace RibbonLib.Interop
     {
         [PreserveSig]
         HRESULT OnChanged(CollectionChange action,
-                          UInt32 oldIndex, 
+                          UInt32 oldIndex,
                           [In, Optional, MarshalAs(UnmanagedType.IUnknown)] object oldItem,
-                          UInt32 newIndex, 
+                          UInt32 newIndex,
                           [In, Optional, MarshalAs(UnmanagedType.IUnknown)] object newItem);
     }
 
@@ -366,4 +366,69 @@ namespace RibbonLib.Interop
         HRESULT CreateImage(IntPtr bitmap, Ownership options, [Out, MarshalAs(UnmanagedType.Interface)] out IUIImage image);
     }
 
+    //following types and interfaces are in UIRibbon since Windows 8, not used yet
+    public enum UI_EVENTTYPE
+    {
+        ApplicationMenuOpened = 0,
+        RibbonMinimized = 1,
+        RibbonExpanded = 2,
+        ApplicationModeSwitched = 3,
+        TabActivated = 4,
+        MenuOpened = 5,
+        CommandExecuted = 6,
+        TooltipShown = 7
+    }
+
+    public enum UI_EVENTLOCATION
+    {
+        Ribbon = 0,
+        QAT = 1,
+        ApplicationMenu = 2,
+        ContextPopup = 3
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct UI_EVENTPARAMS_COMMAND
+    {
+        public uint CommandID;
+        [MarshalAs(UnmanagedType.LPWStr)] //PCWStr
+        public String CommandName;
+        public uint ParentCommandID;
+        [MarshalAs(UnmanagedType.LPWStr)] //PCWStr
+        public String ParentCommandName;
+        public uint SelectionIndex;
+        public UI_EVENTLOCATION Location;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct UI_EVENTPARAMS
+    {
+        [FieldOffset(0)]
+        public UI_EVENTTYPE EventType;
+        [FieldOffset(4)]
+        public Int32 Modes;
+        [FieldOffset(4)]
+        public UI_EVENTPARAMS_COMMAND Params;
+    }
+
+    [ComImport]
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [Guid(RibbonIIDGuid.IUIEventLogger)]
+    public interface IUIEventLogger
+    {
+        [PreserveSig]
+        void OnUIEvent(ref UI_EVENTPARAMS pEventParams);
+    }
+
+    [ComImport]
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [Guid(RibbonIIDGuid.IUIEventingManager)]
+    public interface IUIEventingManager
+    {
+        [PreserveSig]
+        HRESULT SetEventLogger(IUIEventLogger eventLogger);
+    }
 }
+
+
+

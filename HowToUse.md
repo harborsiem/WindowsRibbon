@@ -10,16 +10,21 @@
 2. For building an application with Ribbon one have to create a Windows Forms App.
 
 3. In Solution Explorer References: choose -> Add Reference -> Assemblies -> Extensions -> Ribbon.dll
+![References](./Images/SelectRibbon.png)
 
 4. Visual Studio  Menu: Tool -> Choose Toolbox Items: Select Ribbon with Namespace RibbonLib
+    ![ToolBox Items](./Images/ToolBoxItems.png)
+    ![Choose ToolBox Items](./Images/ChooseToolBoxItems.png)
 
 5. Place a Ribbon to the Form with name ribbon1.
 
 6. Now create a RibbonMarkup.xml file in your Visual Studio project with "Properties -> Build Action" = Content. 
     Visual Studio Menu: XML -> Schemas...: Select http://schemas.microsoft.com/windows/2009/Ribbon with Filename UICC.xsd (UICC.xsd is in the Windows SDK bin folder). Maybe you have to add this schema first in the dialog "XML Schemas".
+    ![Schemas](./Images/Schemas.png)
+
     Insert Application Commands and Application Views as you can see in the examples and the documentation in Arik's blogs (see the links below).
-**Hint**: If you have more then one Ribbon Controls for different Forms in the project, then you should name the RibbonMarkup.xml to RibbonMarkup1.xml, RibbonMarkup2.xml, ... ,RibbonMarkup9.xml 
-    
+    **Hint**: If you have more then one Ribbon Controls for different Forms in the project, then you should name the RibbonMarkup.xml to RibbonMarkup1.xml, RibbonMarkup2.xml, ... ,RibbonMarkup9.xml 
+
 7. Because CustomTools, like Bernhard Elbl says, do not work this way in newer Visual Studio versions like VS 2017 you have to
     open a Console Window in the folder of RibbonMarkup.xml (maybe we have a solution for a CustomTool later on). Or you can use the RibbonPreview to build and preview the markup file.
 
@@ -34,17 +39,18 @@
 12. Now you get some generated files, eg. RibbonMarkup.ribbon and RibbonItems.Designer.cs. Add these files to your project.
 
 13. Set the Property Build Action of RibbonMarkup.ribbon to Embedded Resource
+![Embedded Resource](./Images/Embedded.png)
 
 14. In Windows Form Designer select the Ribbon and set the Property ResourceName of the Ribbon Control to [Default namespace of your assembly].RibbonMarkup.ribbon
 
 15. Add
-       using RibbonLib;
-       using RibbonLib.Controls;
-       using RibbonLib.Interop;
-       using RibbonLib.Controls.Events;
+        using RibbonLib;
+        using RibbonLib.Controls;
+        using RibbonLib.Interop;
+        using RibbonLib.Controls.Events;
 
-    to the Form1.cs. In the Constructor (Ctor) of the Forms1 after InitializeComponents you have to call   RibbonItems ribbonItems = new RibbonItems(ribbon1);
-    This is a wrapper class for all defined Ribbon Items. You can extend this class because it is a partial class.
+     to the Form1.cs. In the Constructor (Ctor) of the Forms1 after InitializeComponents you have to call   RibbonItems ribbonItems = new RibbonItems(ribbon1);
+     This is a wrapper class for all defined Ribbon Items. You can extend this class because it is a partial class.
 
 16. Define the code behind for the Ribbon items in C# or VB language.
 
@@ -54,7 +60,7 @@
 Version 2.8 of Ribbon.dll: The Ribbon property "ResourceName" can also be a file based resource file. In case of a file based resource file the name must start with file:// like an Uri path. If the RibbonMarkup.ribbon is located in the same path as the application.exe, then you can define 
 ResourceName = file://RibbonMarkup.ribbon
 If you have a special directory for the path you can also write file://{LocalApplicationData}/your_path/RibbonMarkup.ribbon.
-Localization is also supported in the file based resource file.
+Localization is also supported with the file based resource file.
 
 Names of special directories you can find in [Environment.SpecialFolder](https://docs.microsoft.com/en-Us/dotnet/api/system.environment.specialfolder?view=netframework-3.5) 
 

@@ -8,6 +8,7 @@
 
 using RibbonLib.Interop;
 using System;
+using System.Threading;
 
 namespace RibbonLib.Controls.Properties
 {
@@ -61,7 +62,7 @@ namespace RibbonLib.Controls.Properties
             : base(ribbon, commandId)
         {
             _sender = sender;
-            
+
             // add supported properties
             _supportedProperties.Add(RibbonProperties.Categories);
             _supportedProperties.Add(RibbonProperties.ItemsSource);
@@ -84,7 +85,18 @@ namespace RibbonLib.Controls.Properties
                 if (!categoriesReadyFired && CategoriesReady != null)
                 {
                     categoriesReadyFired = true;
-                    CategoriesReady(_sender, EventArgs.Empty);
+                    try
+                    {
+                        CategoriesReady(_sender, EventArgs.Empty);
+                    }
+                    catch (Exception ex)
+                    {
+                        ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
+                        if (_ribbon.OnRibbonEventException(_sender, e))
+                            return HRESULT.E_FAIL;
+                        Environment.Exit((int)ExitCode.ERROR_UNHANDLED_EXCEPTION);
+                        return HRESULT.E_ABORT;
+                    }
                 }
             }
             else if (key == RibbonProperties.ItemsSource)
@@ -92,7 +104,18 @@ namespace RibbonLib.Controls.Properties
                 if (!itemsSourceReadyFired && ItemsSourceReady != null)
                 {
                     itemsSourceReadyFired = true;
-                    ItemsSourceReady(_sender, EventArgs.Empty);
+                    try
+                    {
+                        ItemsSourceReady(_sender, EventArgs.Empty);
+                    }
+                    catch (Exception ex)
+                    {
+                        ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
+                        if (_ribbon.OnRibbonEventException(_sender, e))
+                            return HRESULT.E_FAIL;
+                        Environment.Exit((int)ExitCode.ERROR_UNHANDLED_EXCEPTION);
+                        return HRESULT.E_ABORT;
+                    }
                 }
             }
             else if (key == RibbonProperties.SelectedItem)
@@ -190,7 +213,7 @@ namespace RibbonLib.Controls.Properties
         /// Called when the ItemsSource property is ready to be initialized
         /// </summary>
         public event EventHandler<EventArgs> ItemsSourceReady;
-    
+
         #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿//****************************************************************************
+//****************************************************************************
 //
 //  File:       RibbonCOMGuids.cs
 //
@@ -22,6 +22,8 @@ namespace RibbonLib.Interop
         public const string IUIApplication = "D428903C-729A-491d-910D-682A08FF2522";
         public const string IUIImage = "23c8c838-4de6-436b-ab01-5554bb7c30dd";
         public const string IUIImageFromBitmap = "18aba7f3-4c1c-4ba2-bf6c-f5c3326fa816";
+        public const string IUIEventLogger = "ec3e1034-dbf4-41a1-95d5-03e0f1026e05";
+        public const string IUIEventingManager = "3BE6EA7F-9A9B-4198-9368-9B0F923BD534";
     }
 
     public static class RibbonCLSIDGuid
