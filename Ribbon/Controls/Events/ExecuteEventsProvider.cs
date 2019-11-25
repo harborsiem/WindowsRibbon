@@ -63,7 +63,7 @@ namespace RibbonLib.Controls.Events
                             if (ctrl._ribbon.OnRibbonEventException(_sender, e))
                                 return HRESULT.E_FAIL;
                         }
-                        Environment.Exit((int)ExitCode.ERROR_UNHANDLED_EXCEPTION);
+                        Environment.FailFast(ex.StackTrace);
                         return HRESULT.E_ABORT;
                     }
                 }

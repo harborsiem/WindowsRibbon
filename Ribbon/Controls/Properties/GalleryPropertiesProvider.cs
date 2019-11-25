@@ -94,7 +94,7 @@ namespace RibbonLib.Controls.Properties
                         ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
                         if (_ribbon.OnRibbonEventException(_sender, e))
                             return HRESULT.E_FAIL;
-                        Environment.Exit((int)ExitCode.ERROR_UNHANDLED_EXCEPTION);
+                        Environment.FailFast(ex.StackTrace);
                         return HRESULT.E_ABORT;
                     }
                 }
@@ -113,7 +113,7 @@ namespace RibbonLib.Controls.Properties
                         ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
                         if (_ribbon.OnRibbonEventException(_sender, e))
                             return HRESULT.E_FAIL;
-                        Environment.Exit((int)ExitCode.ERROR_UNHANDLED_EXCEPTION);
+                        Environment.FailFast(ex.StackTrace);
                         return HRESULT.E_ABORT;
                     }
                 }

@@ -2,13 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.8.4] - [2019-11-22]
+## [2.8.4] - [2019-11-25]
 
 ### Ribbon V2.8.4, RibbonGenerator V1.3.4, RibbonPreview V1.1
 
 ### Changed
 - Detection of latest Visual Studio Linker in RibbonGenerator for the Template.bat in LocalAppData folder RibbonGenerator.
-- In Ribbon events with unhandled Exceptions the application exits now with an errorcode "Unhandled Exception" or you can use the new Ribbon event "RibbonEventException" to handle it.
+- In Ribbon events with unhandled Exceptions the application exits now with Environment.FailFast(Stacktrace). Environment.FailFast write the informations to the Windows application event logger.  You can prevent this hard exit by using the new Ribbon event "RibbonEventException".
 
 ## [2.8.3] - [2019-11-08]
 
