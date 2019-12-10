@@ -24,6 +24,8 @@
     <Condition Message="This library requires .NET Framework 3.5.">Installed OR NETFRAMEWORK35</Condition>
     <UIRef Id="WixUI_Minimal" />
     <UIRef Id="WixUI_ErrorProgressText" />
+    <Icon Id="MainIcon.ico" SourceFile=".\Ribbon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="MainIcon.ico" />
     <WixVariable Id="WixUILicenseRtf" Value="Ms-PL_License.rtf" />
   </Product>
 

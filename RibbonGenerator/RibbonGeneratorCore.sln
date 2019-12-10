@@ -1,10 +1,11 @@
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.779
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RibbonGenerator", "RibbonGenerator\RibbonGenerator.csproj", "{7C88C713-78FF-4580-A32D-D9623F3AD2E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RibbonGenerator", "RibbonGenerator\RibbonGeneratorCore.csproj", "{7C88C713-78FF-4580-A32D-D9623F3AD2E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RibbonGenerator.Console", "RibbonGenerator.Console\RibbonGenerator.Console.csproj", "{1E12E24D-CF2E-411D-8650-282DA9B864A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RibbonGenerator.Console", "RibbonGenerator.Console\RibbonGeneratorCore.Console.csproj", "{1E12E24D-CF2E-411D-8650-282DA9B864A9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7C88C713-78FF-4580-A32D-D9623F3AD2E4} = {7C88C713-78FF-4580-A32D-D9623F3AD2E4}
 	EndProjectSection
@@ -28,6 +29,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A8824794-A8FB-4307-B861-233F9DB7D14C}
+		SolutionGuid = {07BC03F0-DD68-4AFD-A5AD-8E10336D886F}
 	EndGlobalSection
 EndGlobal

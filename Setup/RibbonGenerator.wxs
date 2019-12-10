@@ -9,7 +9,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:WixUI="http://schemas.microsoft.com/wix/UIExtension">
-  <Product Id="D31F2CBA-EC91-4B56-B543-B55C9D1B1B99" Name="RibbonGenerator" Language="1033" Version="1.3.4.0" Manufacturer="RibbonLib" UpgradeCode="0E0D959B-4F72-4208-989E-1E48698AFC75">
+  <Product Id="{E296F966-A6A1-44CB-8F8A-E7C9B02A32E5}" Name="RibbonGenerator" Language="1033" Version="1.3.5.0" Manufacturer="RibbonLib" UpgradeCode="0E0D959B-4F72-4208-989E-1E48698AFC75">
     <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x86" Description="RibbonGenerator" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -23,6 +23,8 @@
     <Condition Message="This library requires .NET Framework 4.0">Installed OR WIX_IS_NETFRAMEWORK_40_OR_LATER_INSTALLED</Condition>
     <UIRef Id="WixUI_Minimal" />
     <UIRef Id="WixUI_ErrorProgressText" />
+    <Icon Id="MainIcon.ico" SourceFile=".\Ribbon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="MainIcon.ico" />
     <WixVariable Id="WixUILicenseRtf" Value="Ms-PL_License.rtf" />
   </Product>
 

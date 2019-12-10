@@ -1,14 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
-using Microsoft.Win32;
 using System.IO;
 using System.Globalization;
-using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell;
 
 namespace RibbonGenerator
 {

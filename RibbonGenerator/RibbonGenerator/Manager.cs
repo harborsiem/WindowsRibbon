@@ -200,9 +200,37 @@ namespace RibbonGenerator
         /// </summary>
         void VerifyTemplateBat()
         {
+            const string Msvc = "MSVC";
             if (File.Exists(Util.TemplateBatFilename))
             {
-                this._output.WriteLine(string.Format("Verify Template.bat: File already exists '{0}'", Util.TemplateBatFilename));
+                bool modified = false;
+                string bat = File.ReadAllText(Util.TemplateBatFilename);
+                int startIndex = bat.LastIndexOf(Msvc, StringComparison.InvariantCultureIgnoreCase);
+                if (startIndex >= 0)
+                {
+                    startIndex += Msvc.Length + 1;
+                    int endIndex = bat.IndexOf(Path.DirectorySeparatorChar, startIndex);
+                    string msvcVersion = bat.Substring(startIndex, endIndex - startIndex);
+                    string actualVersion = null;
+                    string installRoot = null;
+                    string[] result = Util.DetectMSVCVersion();
+                    if (result.Length == 2)
+                    {
+                        actualVersion = result[0];
+                        installRoot = result[1];
+                    }
+                    if (!string.IsNullOrEmpty(installRoot) && bat.IndexOf(installRoot, StringComparison.InvariantCultureIgnoreCase) >= 0 && (actualVersion != msvcVersion))
+                    {
+                        bat = bat.Substring(0, startIndex) + actualVersion + bat.Substring(endIndex);
+                        File.WriteAllText(Util.TemplateBatFilename, bat);
+                        modified = true;
+                        this._output.WriteLine(string.Format("Verify Template.bat: Existing File modified '{0}'", Util.TemplateBatFilename));
+                    }
+                }
+                if (!modified)
+                {
+                    this._output.WriteLine(string.Format("Verify Template.bat: File already exists '{0}'", Util.TemplateBatFilename));
+                }
                 return;
             }
             string tmp;
@@ -215,11 +243,16 @@ namespace RibbonGenerator
                 {
                     content = content.Replace("{WindowsSDKToolsPath}", tmp);
                 }
+                else
+                    this._output.WriteLine("Verify Template.bat: Windows SDK not found");
                 tmp = Util.GetLinkerCommand();
                 if (!string.IsNullOrEmpty(tmp))
                 {
                     content = content.Replace("{LinkerCommand}", tmp);
                 }
+                else
+                    this._output.WriteLine("Verify Template.bat: Link.exe in Visual Studio C++ Tools not found");
+
                 File.WriteAllText(Util.TemplateBatFilename, content);
             }
             this._output.WriteLine(string.Format("Verify Template.bat: File is created '{0}'", Util.TemplateBatFilename));

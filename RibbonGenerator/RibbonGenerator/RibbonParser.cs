@@ -17,6 +17,7 @@ namespace RibbonGenerator
         private const string IdAttribute = "Id";
         private const string SymbolAttribute = "Symbol";
         private const string ApplicationModesAttribute = "ApplicationModes";
+        private const string RibbonString = "Ribbon";
 
         private XmlNode applicationCommands;
         private XmlNode applicationViewsRibbon;
@@ -29,6 +30,8 @@ namespace RibbonGenerator
 
         //list build from .h file
         private List<KeyValuePair<string, string>> pair3List = new List<KeyValuePair<string, string>>(); //Command Name, Command Id
+
+        private Dictionary<string, uint> commandIdPairs;
 
         private List<string> popupCommandNames = new List<string>(); //
         private uint allApplicationModes;
@@ -67,7 +70,7 @@ namespace RibbonGenerator
                     for (int j = 0; j < viewsList.Count; j++)
                     {
                         viewsNode = viewsList.Item(j);
-                        if (viewsNode.Name == "Ribbon")
+                        if (viewsNode.Name == RibbonString)
                         {
                             applicationViewsRibbon = viewsNode;
                         }
@@ -112,28 +115,33 @@ namespace RibbonGenerator
         private void Parse()
         {
             ParseApplicationCommands(applicationCommands);
+
+            commandIdPairs = GetCommandsAndIds();
+
             ParseRibbon(applicationViewsRibbon);
             ParseContextPopup(applicationViewsContextPopup);
-
-            IList<KeyValuePair<string, string>> pairs = MergeCommandIdLists();
             uint id;
             RibbonItem item;
             for (int i = 0; i < pair2List.Count; i++)
             {
                 string commandName = pair2List[i].Key;
                 string ribbonClassName = pair2List[i].Value;
-                int index = ContainsKey(pairs, commandName);
-                if (index == -1)
-                    throw new ArgumentException("unresolved CommandName");
-                string commandId = pairs[index].Value;
-                id = GetCommandId(pairs, commandName);
+                if (!commandIdPairs.TryGetValue(commandName, out id))
+                    if (!uint.TryParse(commandName, out id))
+                        throw new ArgumentException("Unresolved CommandName");
+                    else commandName = "cmd" + ribbonClassName.Substring(RibbonString.Length) + commandName;
                 item = new RibbonItem(commandName, ribbonClassName, id);
                 ribbonItems.Add(item);
             }
             for (int i = 0; i < popupCommandNames.Count; i++)
             {
-                id = GetCommandId(pairs, popupCommandNames[i]);
-                item = new RibbonItem(popupCommandNames[i], "ContextPopup", id);
+                string commandName;
+                commandName = popupCommandNames[i];
+                if (!commandIdPairs.TryGetValue(commandName, out id))
+                    if (!uint.TryParse(commandName, out id))
+                        throw new ArgumentException("Unresolved CommandName");
+                    else commandName = "_" + commandName;
+                item = new RibbonItem(commandName, "ContextPopup", id);
                 ribbonItems.Add(item);
             }
         }
@@ -151,6 +159,7 @@ namespace RibbonGenerator
         {
             String nodeName = node.Name;
             String name = null;
+            String symbol = null;
             String idOrSymbol = null;
             XmlAttributeCollection parms = node.Attributes;
             if (parms != null && parms.Count > 0)
@@ -165,13 +174,14 @@ namespace RibbonGenerator
                 {
                     idOrSymbol = idAttr.Value;
                 }
-                else
+                XmlNode symbolAttr = parms.GetNamedItem(SymbolAttribute);
+                if (symbolAttr != null)
                 {
-                    XmlNode symbolAttr = parms.GetNamedItem(SymbolAttribute);
-                    if (symbolAttr != null)
-                    {
-                        idOrSymbol = symbolAttr.Value;
-                    }
+                    symbol = symbolAttr.Value;
+                }
+                if (idOrSymbol == null)
+                {
+                    idOrSymbol = symbol;
                 }
                 if (!string.IsNullOrEmpty(idOrSymbol))
                 {
@@ -193,7 +203,7 @@ namespace RibbonGenerator
             {
                 XmlNode child = nodeList.Item(i);
                 string commandName = GetCommandName(child);
-                uint applicationModes = GetApplicationModes(child, commandName);
+                uint applicationModes = GetApplicationModes(child);
                 allApplicationModes |= applicationModes;
                 ParseRibbon(child);
             }
@@ -209,17 +219,17 @@ namespace RibbonGenerator
                 XmlNode attr = parms.GetNamedItem(CommandNameAttribute);
                 if (attr != null)
                 {
-                    name = attr.Value;
-                    if ((ContainsKey(pair1List, name) >= 0 || ContainsKey(pair3List, name) >= 0) && (ContainsKey(pair2List, name) == -1))
+                    name = GetCommandName(attr.Value);
+                    if ((ContainsKey(pair1List, name) >= 0 || ContainsKey(pair3List, name) >= 0 || Char.IsNumber(name[0])) && (ContainsKey(pair2List, name) == -1))
                     {
-                        pair2List.Add(new KeyValuePair<string, string>(name, "Ribbon" + nodeName));
+                        pair2List.Add(new KeyValuePair<string, string>(name, RibbonString + nodeName));
                     }
                 }
             }
             return name;
         }
 
-        private uint GetApplicationModes(XmlNode child, string commandName)
+        private uint GetApplicationModes(XmlNode child)
         {
             uint applicationModes = 0;
             String value = null;
@@ -272,7 +282,8 @@ namespace RibbonGenerator
                             XmlNode attr = parms.GetNamedItem(CommandNameAttribute);
                             if (attr != null)
                             {
-                                popupCommandNames.Add(attr.Value);
+                                string name = GetCommandName(attr.Value);
+                                popupCommandNames.Add(name);
                             }
                         }
                     }
@@ -286,6 +297,8 @@ namespace RibbonGenerator
 
         private int ContainsKey(IList<KeyValuePair<string, string>> list, string key)
         {
+            if (key == null)
+                return -1;
             for (int i = 0; i < list.Count; i++)
             {
                 if (list[i].Key.Equals(key))
@@ -294,11 +307,19 @@ namespace RibbonGenerator
             return -1;
         }
 
-        private IList<KeyValuePair<string, string>> MergeCommandIdLists()
+        private Dictionary<string, uint> GetCommandsAndIds()
         {
+            //Merge the 2 lists
             List<KeyValuePair<string, string>> pairs = new List<KeyValuePair<string, string>>(pair3List);
             pairs.AddRange(pair1List);
-            return pairs;
+
+            Dictionary<string, uint> result = new Dictionary<string, uint>();
+            for (int i = 0; i < pairs.Count; i++)
+            {
+                uint id = GetCommandId(pairs, pairs[i].Key);
+                result[pairs[i].Key] = id;
+            }
+            return result;
         }
 
         private uint GetCommandId(IList<KeyValuePair<string, string>> pairs, string commandName)
@@ -322,6 +343,24 @@ namespace RibbonGenerator
                 return uint.Parse(value);
             }
             return 0;
+        }
+
+        private string GetCommandName(string value)
+        {
+            uint id;
+            bool tryCheck;
+            if (!string.IsNullOrEmpty(value))
+            {
+                //check if name is Id
+                if (value.ToUpperInvariant().StartsWith("0X"))
+                    tryCheck = uint.TryParse(value.Substring(2), NumberStyles.AllowHexSpecifier, null, out id);
+                tryCheck = uint.TryParse(value, out id);
+                if (tryCheck)
+                {
+                    value = id.ToString();
+                }
+            }
+            return value;
         }
 
         public class ParseResult

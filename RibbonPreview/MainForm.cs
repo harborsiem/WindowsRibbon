@@ -27,9 +27,27 @@ namespace RibbonPreview
             previewRibbonToolStripMenuItem.Click += PreviewRibbonToolStripMenuItem_Click;
             previewToolStrip.Click += PreviewRibbonToolStripMenuItem_Click;
             openPreviewToolStripMenuItem.Click += OpenPreviewToolStripMenuItem_Click;
-            openPreviewToolStrip.Click += OpenPreviewToolStripMenuItem_Click;
-            ribbonItems.SetActions(SetBuildEnabled, SetPreviewEnabled, SetText);
-       }
+            languageComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            languageComboBox.SelectedIndex = 0;
+            languageComboBox.SelectedIndexChanged += ribbonItems.LanguageComboBox_SelectedIndexChanged;
+            ribbonItems.SetActions(SetBuildEnabled, SetPreviewEnabled, SetText, PopulateLanguage);
+        }
+
+        private void PopulateLanguage(IList<string> languages)
+        {
+            languageComboBox.SelectedIndexChanged -= ribbonItems.LanguageComboBox_SelectedIndexChanged;
+            languageComboBox.Items.Clear();
+            languageComboBox.Items.Add("Invariant");
+            if (languages != null)
+            {
+                for (int i = 0; i < languages.Count; i++)
+                {
+                    languageComboBox.Items.Add(languages[i]);
+                }
+            }
+            languageComboBox.SelectedIndex = 0;
+            languageComboBox.SelectedIndexChanged += ribbonItems.LanguageComboBox_SelectedIndexChanged;
+        }
 
         private void OpenPreviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -66,11 +84,12 @@ namespace RibbonPreview
         private void PreviewRibbonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetText(string.Empty);
+            ribbonItems.SetUiCulture();
             PreviewForm dialog = new PreviewForm();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-
             }
+            ribbonItems.ResetUiCulture();
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)

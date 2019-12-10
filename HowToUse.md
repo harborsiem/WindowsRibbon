@@ -16,17 +16,17 @@
     ![ToolBox Items](./Images/ToolBoxItems.png)
     ![Choose ToolBox Items](./Images/ChooseToolBoxItems.png)
 
-5. Place a Ribbon to the Form with name ribbon1.
+5. Place a Ribbon to the Form with name ribbon1 (you can choose an other name).
 
-6. Now create a RibbonMarkup.xml file in your Visual Studio project with "Properties -> Build Action" = Content. 
+6. Now create a RibbonMarkup.xml  (you can choose an other name) file in your Visual Studio project with "Properties -> Build Action" = Content. 
     Visual Studio Menu: XML -> Schemas...: Select http://schemas.microsoft.com/windows/2009/Ribbon with Filename UICC.xsd (UICC.xsd is in the Windows SDK bin folder). Maybe you have to add this schema first in the dialog "XML Schemas".
     ![Schemas](./Images/Schemas.png)
 
     Insert Application Commands and Application Views as you can see in the examples and the documentation in Arik's blogs (see the links below).
-    **Hint**: If you have more then one Ribbon Controls for different Forms in the project, then you should name the RibbonMarkup.xml to RibbonMarkup1.xml, RibbonMarkup2.xml, ... ,RibbonMarkup9.xml 
+    **Hint**: If you have more then one Ribbon Control for different Forms in the project, then you should name the RibbonMarkup.xml to RibbonMarkup1.xml, RibbonMarkup2.xml, ... ,RibbonMarkup9.xml 
 
 7. Because CustomTools, like Bernhard Elbl says, do not work this way in newer Visual Studio versions like VS 2017 you have to
-    open a Console Window in the folder of RibbonMarkup.xml (maybe we have a solution for a CustomTool later on). Or you can use the RibbonPreview to build and preview the markup file.
+    open a Console Window in the folder of RibbonMarkup.xml (maybe we have a solution for a CustomTool later on). Or you can use the RibbonPreview.exe to build and preview the markup file.
 
 8. Have a call in the Console Window: rgc RibbonMarkup.xml
 

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>rgc</AssemblyName>
+    <RootNamespace>RibbonGenerator.Console</RootNamespace>
+    <Copyright>Copyright ©  2010, 2019</Copyright>
+    <Authors>RibbonLib</Authors>
+    <Product>RibbonGenerator.Console</Product>
+    <FileVersion>1.3.3.0</FileVersion>
+    <Version>1.3.3</Version>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>RibbonGenerator.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;Core</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;Core</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="app.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RibbonGenerator">
+      <HintPath>..\RibbonGenerator\bin\Release\netcoreapp3.1\RibbonGenerator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -13,14 +13,6 @@ using System.Runtime.InteropServices;
 namespace RibbonLib.Interop
 {
     /// <summary>
-    /// System error codes
-    /// </summary>
-    public enum ExitCode
-    {
-        ERROR_UNHANDLED_EXCEPTION = 574, // (0x23E)
-    }
-
-    /// <summary>
     /// HRESULT Wrapper
     /// </summary>
     public enum HRESULT : uint

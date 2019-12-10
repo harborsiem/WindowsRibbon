@@ -42,11 +42,11 @@ namespace RibbonPreview
             this.previewRibbonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.openToolStrip = new System.Windows.Forms.ToolStripButton();
-            this.openPreviewToolStrip = new System.Windows.Forms.ToolStripButton();
             this.buildToolStrip = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.previewToolStrip = new System.Windows.Forms.ToolStripButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.languageComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -80,7 +80,7 @@ namespace RibbonPreview
             // 
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.ToolTipText = "RibbonMarkup.xml";
             // 
@@ -135,7 +135,7 @@ namespace RibbonPreview
             // 
             this.previewRibbonToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("previewRibbonToolStripMenuItem.Image")));
             this.previewRibbonToolStripMenuItem.Name = "previewRibbonToolStripMenuItem";
-            this.previewRibbonToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.previewRibbonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.previewRibbonToolStripMenuItem.Text = "Preview Ribbon";
             this.previewRibbonToolStripMenuItem.ToolTipText = "Preview Ribbon";
             // 
@@ -143,10 +143,10 @@ namespace RibbonPreview
             // 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStrip,
-            this.openPreviewToolStrip,
             this.buildToolStrip,
             this.toolStripSeparator1,
-            this.previewToolStrip});
+            this.previewToolStrip,
+            this.languageComboBox});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(478, 25);
@@ -161,15 +161,6 @@ namespace RibbonPreview
             this.openToolStrip.Size = new System.Drawing.Size(56, 22);
             this.openToolStrip.Text = "Open";
             this.openToolStrip.ToolTipText = "Open RibbonMarkup.xml";
-            // 
-            // openPreviewToolStrip
-            // 
-            this.openPreviewToolStrip.Image = ((System.Drawing.Image)(resources.GetObject("openPreviewToolStrip.Image")));
-            this.openPreviewToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openPreviewToolStrip.Name = "openPreviewToolStrip";
-            this.openPreviewToolStrip.Size = new System.Drawing.Size(123, 22);
-            this.openPreviewToolStrip.Text = "Open and Preview";
-            this.openPreviewToolStrip.ToolTipText = "Open RibbonMarkup.xml and Preview";
             // 
             // buildToolStrip
             // 
@@ -206,6 +197,15 @@ namespace RibbonPreview
             this.textBox1.TabIndex = 2;
             this.textBox1.WordWrap = false;
             // 
+            // languageComboBox
+            // 
+            this.languageComboBox.AutoToolTip = true;
+            this.languageComboBox.Items.AddRange(new object[] {
+            "Invariant"});
+            this.languageComboBox.Name = "languageComboBox";
+            this.languageComboBox.Size = new System.Drawing.Size(121, 25);
+            this.languageComboBox.ToolTipText = "Preview Language";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,6 +214,7 @@ namespace RibbonPreview
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
             this.Text = "MainForm";
@@ -244,7 +245,7 @@ namespace RibbonPreview
         private System.Windows.Forms.ToolStripMenuItem openPreviewToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton openPreviewToolStrip;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolStripComboBox languageComboBox;
     }
 }

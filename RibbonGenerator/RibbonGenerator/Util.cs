@@ -146,14 +146,14 @@ namespace RibbonGenerator
                         {
                             if (!sdkToolsPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
                             {
-                                sdkToolsPath += Path.DirectorySeparatorChar; 
+                                sdkToolsPath += Path.DirectorySeparatorChar;
                             }
                             return sdkToolsPath;
                         }
                     }
                 }
             }
-            return DEFAULTWINDOWS7SDKPATH;
+            return null;
         }
 
         /// <summary>
@@ -209,7 +209,8 @@ namespace RibbonGenerator
                     if (i < versionComponents.Length)
                     {
                         builder.Append(versionComponents[i] + ".");
-                    } else
+                    }
+                    else
                     {
                         builder.Append("0.");
                     }
@@ -247,7 +248,8 @@ namespace RibbonGenerator
             }
             if (!result)
             {
-                linkerCommand = "(\"{VcVars32Bat}\") && (\"{VcLinkExe}\"" + linkerAddString + ")";
+                linkerCommand = null;
+                //linkerCommand = "(\"{VcVars32Bat}\") && (\"{VcLinkExe}\"" + linkerAddString + ")";
             }
             else
             {
@@ -263,6 +265,25 @@ namespace RibbonGenerator
         {
             string filePath = Path.Combine(visualStudioInstallRoot, "VC", "Auxiliary", "Build", "Microsoft.VCToolsVersion.default.txt");
             return File.ReadAllText(filePath).Trim();
+        }
+
+        public static string[] DetectMSVCVersion()
+        {
+            string[] lines = GetVsWhereInfo("-latest");
+            if (lines != null)
+            {
+                string installRoot = null;
+                foreach (string line in lines)
+                {
+                    if (line.StartsWith("installationPath:"))
+                    {
+                        installRoot = line.Substring("installationPath:".Length).TrimStart();
+                        string msvcVersion = GetMSVCToolsVersion(installRoot);
+                        return new string[] { msvcVersion , installRoot };
+                    }
+                }
+            }
+            return new string[0];
         }
 
         private static bool DetectLatestVSVersion(LinkPaths linkPaths)
@@ -403,7 +424,7 @@ namespace RibbonGenerator
             return versions;
         }
 
-        public static string DEFAULTWINDOWS7SDKPATH = string.Format(@"%PROGRAMFILES{0}%\Microsoft SDKs\Windows\v7.1A\Bin\", Environment.Is64BitOperatingSystem ? "(x86)": "");
+        public static string DEFAULTWINDOWS7SDKPATH = string.Format(@"%PROGRAMFILES{0}%\Microsoft SDKs\Windows\v7.1A\Bin\", Environment.Is64BitOperatingSystem ? "(x86)" : "");
 
         class LinkPaths
         {

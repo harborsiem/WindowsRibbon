@@ -28,6 +28,7 @@ namespace RibbonPreview
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreviewForm));
             this.ribbon = new RibbonLib.Ribbon();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabSheetAppModes = new System.Windows.Forms.TabPage();
@@ -646,6 +647,7 @@ namespace RibbonPreview
             this.ClientSize = new System.Drawing.Size(800, 462);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.ribbon);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PreviewForm";
             this.ShowInTaskbar = false;
             this.Text = "Ribbon Preview";

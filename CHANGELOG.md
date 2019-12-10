@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.8.4, RibbonGenerator V1.3.5 beta, RibbonPreview V1.2 beta
+
+### Changed
+
+- CommandName can also have a Id which is not defined in the Commands.
+- Update function for the Template.bat (Linker path)
+- VBCodeBuilder as alpha version (not in RibbonGenerator included)
+- Setup Icon for Ribbon Components (from ennerperez)
+- RibbonPreview: Language selection for preview
+- Build files for .Net Core 3.1
+
 ## [2.8.4] - [2019-11-25]
 
 ### Ribbon V2.8.4, RibbonGenerator V1.3.4, RibbonPreview V1.1

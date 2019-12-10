@@ -34,7 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ribbon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4a850abcb1bad68b, processorArchitecture=MSIL" />
-    <Reference Include="RibbonGenerator, Version=1.2.0.0, Culture=neutral, PublicKeyToken=3cf107c5d7e68b1c, processorArchitecture=x86" />
+    <Reference Include="RibbonGenerator, Version=1.2.0.0, Culture=neutral, PublicKeyToken=3cf107c5d7e68b1c, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\RibbonGenerator\RibbonGenerator\bin\Release\RibbonGenerator.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

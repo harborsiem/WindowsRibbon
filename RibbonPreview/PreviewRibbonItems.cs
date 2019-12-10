@@ -9,6 +9,8 @@ using System.Xml.Linq;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Threading;
+using System.Globalization;
 using RibbonGenerator;
 
 namespace RibbonPreview
@@ -18,7 +20,9 @@ namespace RibbonPreview
         private Action<bool> buildActionEnabled;
         private Action<bool> previewActionEnabled;
         private Action<string> setText;
+        private Action<IList<string>> populateLanguages;
         private string uiccXsdPath;
+        private string selectedCulture = "INVARIANT";
 
         public static PreviewRibbonItems Instance = new PreviewRibbonItems();
 
@@ -29,13 +33,37 @@ namespace RibbonPreview
             uiccXsdPath = Path.Combine(sdkPath, "UICC.xsd");
         }
 
+        public void SetUiCulture()
+        {
+            if (selectedCulture.ToUpperInvariant().Equals("INVARIANT"))
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+            else
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(selectedCulture);
+        }
+
+        public void ResetUiCulture()
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InstalledUICulture;
+        }
+
+        public void LanguageComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ToolStripComboBox combo = sender as ToolStripComboBox;
+            if (combo != null)
+            {
+                selectedCulture = (string)combo.SelectedItem;
+            }
+        }
+
         internal RibbonParser Parser { get; private set; }
 
-        public void SetActions(Action<bool> buildActionEnabled, Action<bool> previewActionEnabled, Action<string> setText)
+        public void SetActions(Action<bool> buildActionEnabled, Action<bool> previewActionEnabled, Action<string> setText
+            , Action<IList<string>> populateLanguages)
         {
             this.buildActionEnabled = buildActionEnabled;
             this.previewActionEnabled = previewActionEnabled;
             this.setText = setText;
+            this.populateLanguages = populateLanguages;
             buildActionEnabled(false);
             previewActionEnabled(false);
         }
@@ -53,6 +81,8 @@ namespace RibbonPreview
                 {
                     XmlRibbonFile = path;
                     buildEnabled = true;
+                    populateLanguages(FindLanguages(path));
+                    selectedCulture = "INVARIANT";
                     previewEnabled = CheckRibbonResource(path);
                 }
                 else
@@ -63,6 +93,24 @@ namespace RibbonPreview
             }
             buildActionEnabled(buildEnabled);
             previewActionEnabled(previewEnabled);
+        }
+
+        private IList<string> FindLanguages(string path)
+        {
+            string directory = Path.GetDirectoryName(path);
+            string markup = Path.GetFileNameWithoutExtension(path);
+            string[] files = Directory.GetFiles(directory, markup + ".*.resx", SearchOption.TopDirectoryOnly);
+            List<string> languages = new List<string>();
+            for (int i = 0; i < files.Length; i++)
+            {
+                string languageMarkup = Path.GetFileNameWithoutExtension(files[i]);
+                int index = languageMarkup.LastIndexOf('.');
+                if (index >= 0)
+                {
+                    languages.Add(languageMarkup.Substring(index + 1));
+                }
+            }
+            return languages;
         }
 
         private bool CheckRibbonResource(string path)
