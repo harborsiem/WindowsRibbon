@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-### Ribbon V2.8.4, RibbonGenerator V1.3.5 beta, RibbonPreview V1.2 beta
+### Ribbon V2.8.4, RibbonGenerator V1.3.5, RibbonPreview V1.2
 
 ### Changed
 
