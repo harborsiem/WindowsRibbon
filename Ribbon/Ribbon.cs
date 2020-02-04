@@ -502,7 +502,6 @@ namespace RibbonLib
             // load ribbon ui
             hr = Framework.LoadUI(hInstance, resourceName);
 
-
             if (NativeMethods.Failed(hr))
             {
                 Marshal.ThrowExceptionForHR((int)hr);
@@ -591,6 +590,33 @@ namespace RibbonLib
             propertyStore.SetValue(ref RibbonProperties.GlobalTextColor, ref textColorProp);
 
             propertyStore.Commit();
+        }
+
+        /// <summary>
+        /// Get the three Colors of the Ribbon
+        /// </summary>
+        /// <returns>Ribbon Colors class or null</returns>
+        public RibbonColors GetColors()
+        {
+            RibbonColors colors = null;
+            if (!Initialized)
+            {
+                return colors;
+            }
+            IPropertyStore propertyStore = (IPropertyStore)this.Framework;
+            PropVariant backgroundColorProp;
+            PropVariant highlightColorProp;
+            PropVariant textColorProp;
+
+            // get ribbon colors
+            propertyStore.GetValue(ref RibbonProperties.GlobalBackgroundColor, out backgroundColorProp);
+            propertyStore.GetValue(ref RibbonProperties.GlobalHighlightColor, out highlightColorProp);
+            propertyStore.GetValue(ref RibbonProperties.GlobalTextColor, out textColorProp);
+            uint background = (uint)backgroundColorProp.Value;
+            uint highlight = (uint)highlightColorProp.Value;
+            uint text = (uint)textColorProp.Value;
+            colors = new RibbonColors(ColorHelper.UInt32ToRGB(background), ColorHelper.UInt32ToRGB(highlight), ColorHelper.UInt32ToRGB(text));
+            return colors;
         }
 
         /// <summary>
@@ -849,7 +875,8 @@ namespace RibbonLib
 
         internal bool OnRibbonEventException(object sender, ThreadExceptionEventArgs args)
         {
-            if (RibbonEventException != null) {
+            if (RibbonEventException != null)
+            {
                 RibbonEventException(sender, args);
                 return true;
             }

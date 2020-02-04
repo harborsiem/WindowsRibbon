@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -119,6 +119,7 @@
     <Compile Include="Interop\PropVariant.cs" />
     <Compile Include="Interop\StreamAdapter.cs" />
     <Compile Include="RecentItemsPropertySet.cs" />
+    <Compile Include="RibbonColors.cs" />
     <Compile Include="RibbonShortcutTable.cs" />
     <Compile Include="UICollection.cs" />
     <Compile Include="UICollectionChangedEvent.cs" />

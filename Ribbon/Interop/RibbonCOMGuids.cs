@@ -33,4 +33,10 @@ namespace RibbonLib.Interop
         public const string UIRibbonImageFromBitmapFactory = "0F7434B6-59B6-4250-999E-D168D6AE4293";
     }
 
+    public static class RibbonLibIDGuid
+    {
+        //DEFINE_GUID(LIBID_UIRibbon,         0x942f35c2, 0xe83b, 0x45ef, 0xb0, 0x85, 0xac, 0x29, 0x5d, 0xd6, 0x3d, 0x5b);
+        public const string UIRibbon = "942f35c2-e83b-45ef-b085-ac295dd63d5b";
+    }
+
 }

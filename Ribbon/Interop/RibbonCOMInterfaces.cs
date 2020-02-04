@@ -367,7 +367,7 @@ namespace RibbonLib.Interop
     }
 
     //following types and interfaces are in UIRibbon since Windows 8, not used yet
-    public enum UI_EVENTTYPE
+    public enum EventType //UI_EVENTTYPE
     {
         ApplicationMenuOpened = 0,
         RibbonMinimized = 1,
@@ -379,7 +379,7 @@ namespace RibbonLib.Interop
         TooltipShown = 7
     }
 
-    public enum UI_EVENTLOCATION
+    public enum EventLocation //UI_EVENTLOCATION
     {
         Ribbon = 0,
         QAT = 1,
@@ -388,7 +388,7 @@ namespace RibbonLib.Interop
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct UI_EVENTPARAMS_COMMAND
+    public struct EventParametersCommand //UI_EVENTPARAMS_COMMAND
     {
         public uint CommandID;
         [MarshalAs(UnmanagedType.LPWStr)] //PCWStr
@@ -397,18 +397,18 @@ namespace RibbonLib.Interop
         [MarshalAs(UnmanagedType.LPWStr)] //PCWStr
         public String ParentCommandName;
         public uint SelectionIndex;
-        public UI_EVENTLOCATION Location;
+        public EventLocation Location;
     }
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct UI_EVENTPARAMS
+    public struct EventParameters //UI_EVENTPARAMS
     {
         [FieldOffset(0)]
-        public UI_EVENTTYPE EventType;
+        public EventType EventType;
         [FieldOffset(4)]
         public Int32 Modes;
         [FieldOffset(4)]
-        public UI_EVENTPARAMS_COMMAND Params;
+        public EventParametersCommand Params;
     }
 
     [ComImport]
@@ -417,7 +417,7 @@ namespace RibbonLib.Interop
     public interface IUIEventLogger
     {
         [PreserveSig]
-        void OnUIEvent(ref UI_EVENTPARAMS pEventParams);
+        void OnUIEvent([In] ref EventParameters pEventParams);
     }
 
     [ComImport]
@@ -426,7 +426,7 @@ namespace RibbonLib.Interop
     public interface IUIEventingManager
     {
         [PreserveSig]
-        HRESULT SetEventLogger(IUIEventLogger eventLogger);
+        HRESULT SetEventLogger([In] IUIEventLogger eventLogger);
     }
 }
 
