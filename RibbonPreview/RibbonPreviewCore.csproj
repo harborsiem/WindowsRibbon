@@ -6,10 +6,10 @@
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>RibbonPreview</AssemblyName>
     <RootNamespace>RibbonPreview</RootNamespace>
-    <Copyright>Copyright ©  2019</Copyright>
+    <Copyright>Copyright ©  2019, 2020</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Authors>RibbonLib</Authors>
-    <FileVersion>1.2.0.0</FileVersion>
+    <FileVersion>1.2.1.0</FileVersion>
     <Version>1.0.0</Version>
     <Company>RibbonLib</Company>
   </PropertyGroup>

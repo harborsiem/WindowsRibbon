@@ -9,7 +9,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:WixUI="http://schemas.microsoft.com/wix/UIExtension">
-  <Product Id="{3C2E8889-8A09-4D12-A28E-21F54CE85C47}" Name="RibbonPreview" Language="1033" Version="1.2.0.0" Manufacturer="RibbonLib" UpgradeCode="86BEE5B7-6ECE-4B4A-91B8-6CC541787347">
+  <Product Id="{F4783CB3-3D02-4312-808D-23EAB550C4F2}" Name="RibbonPreview" Language="1033" Version="1.2.1.0" Manufacturer="RibbonLib" UpgradeCode="86BEE5B7-6ECE-4B4A-91B8-6CC541787347">
     <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x86" Description="RibbonPreview" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />

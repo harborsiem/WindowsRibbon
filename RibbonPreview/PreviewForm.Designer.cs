@@ -71,6 +71,9 @@ namespace RibbonPreview
             this.highlightColorPanel = new System.Windows.Forms.Panel();
             this.textColorPanel = new System.Windows.Forms.Panel();
             this.getColorsButton = new System.Windows.Forms.Button();
+            this.backgroundButton = new System.Windows.Forms.Button();
+            this.highlightButton = new System.Windows.Forms.Button();
+            this.textButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabSheetAppModes.SuspendLayout();
             this.tabSheetContextTabs.SuspendLayout();
@@ -248,18 +251,22 @@ namespace RibbonPreview
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.textButton, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.highlightButton, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.backgroundGroupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.highlightGroup, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.textColorGroup, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.backgroundColorPanel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.highlightColorPanel, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.textColorPanel, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.backgroundButton, 0, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(618, 156);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(618, 171);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // backgroundGroupBox1
@@ -606,7 +613,7 @@ namespace RibbonPreview
             this.backgroundColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.backgroundColorPanel.Location = new System.Drawing.Point(3, 135);
+            this.backgroundColorPanel.Location = new System.Drawing.Point(3, 121);
             this.backgroundColorPanel.Name = "backgroundColorPanel";
             this.backgroundColorPanel.Size = new System.Drawing.Size(200, 18);
             this.backgroundColorPanel.TabIndex = 3;
@@ -616,7 +623,7 @@ namespace RibbonPreview
             this.highlightColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.highlightColorPanel.Location = new System.Drawing.Point(209, 135);
+            this.highlightColorPanel.Location = new System.Drawing.Point(209, 121);
             this.highlightColorPanel.Name = "highlightColorPanel";
             this.highlightColorPanel.Size = new System.Drawing.Size(200, 18);
             this.highlightColorPanel.TabIndex = 4;
@@ -626,7 +633,7 @@ namespace RibbonPreview
             this.textColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textColorPanel.Location = new System.Drawing.Point(415, 135);
+            this.textColorPanel.Location = new System.Drawing.Point(415, 121);
             this.textColorPanel.Name = "textColorPanel";
             this.textColorPanel.Size = new System.Drawing.Size(200, 18);
             this.textColorPanel.TabIndex = 5;
@@ -639,6 +646,36 @@ namespace RibbonPreview
             this.getColorsButton.TabIndex = 0;
             this.getColorsButton.Text = "Get Colors";
             this.getColorsButton.UseVisualStyleBackColor = true;
+            // 
+            // backgroundButton
+            // 
+            this.backgroundButton.AutoSize = true;
+            this.backgroundButton.Location = new System.Drawing.Point(3, 145);
+            this.backgroundButton.Name = "backgroundButton";
+            this.backgroundButton.Size = new System.Drawing.Size(94, 23);
+            this.backgroundButton.TabIndex = 6;
+            this.backgroundButton.Text = "Set Background";
+            this.backgroundButton.UseVisualStyleBackColor = true;
+            // 
+            // highlightButton
+            // 
+            this.highlightButton.AutoSize = true;
+            this.highlightButton.Location = new System.Drawing.Point(209, 145);
+            this.highlightButton.Name = "highlightButton";
+            this.highlightButton.Size = new System.Drawing.Size(94, 23);
+            this.highlightButton.TabIndex = 7;
+            this.highlightButton.Text = "Set Highlight";
+            this.highlightButton.UseVisualStyleBackColor = true;
+            // 
+            // textButton
+            // 
+            this.textButton.AutoSize = true;
+            this.textButton.Location = new System.Drawing.Point(415, 145);
+            this.textButton.Name = "textButton";
+            this.textButton.Size = new System.Drawing.Size(94, 23);
+            this.textButton.TabIndex = 8;
+            this.textButton.Text = "Set Text";
+            this.textButton.UseVisualStyleBackColor = true;
             // 
             // PreviewForm
             // 
@@ -661,6 +698,7 @@ namespace RibbonPreview
             this.tabSheetColorize.ResumeLayout(false);
             this.tabSheetColorize.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.backgroundGroupBox1.ResumeLayout(false);
             this.backgroundLayout.ResumeLayout(false);
             this.backgroundLayout.PerformLayout();
@@ -727,6 +765,9 @@ namespace RibbonPreview
         private System.Windows.Forms.Panel highlightColorPanel;
         private System.Windows.Forms.Panel backgroundColorPanel;
         private System.Windows.Forms.Button setColorsButton;
+        private System.Windows.Forms.Button textButton;
+        private System.Windows.Forms.Button highlightButton;
+        private System.Windows.Forms.Button backgroundButton;
     }
 }
 

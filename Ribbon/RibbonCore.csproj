@@ -9,12 +9,12 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Ribbon.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <FileVersion>2.8.4.0</FileVersion>
-    <Version>2.8.4</Version>
+    <FileVersion>2.8.6.0</FileVersion>
+    <Version>2.8.6</Version>
     <Authors>RibbonLib</Authors>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <PackageProjectUrl>https://github.com/harborsiem/WindowsRibbon</PackageProjectUrl>
-    <Copyright>Copyright © 2009, 2019</Copyright>
+    <Copyright>Copyright © 2009, 2020</Copyright>
     <Description>Com based Microsoft UIRibbon for .NET Core</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <RepositoryType>Git</RepositoryType>
@@ -33,10 +33,6 @@
     <DefineConstants>TRACE;Core</DefineConstants>
     <DocumentationFile>.\bin\Release\netcoreapp3.1\Ribbon.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="IRibbonForm.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">

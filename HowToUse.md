@@ -23,7 +23,7 @@
     ![Schemas](./Images/Schemas.png)
 
     Insert Application Commands and Application Views as you can see in the examples and the documentation in Arik's blogs (see the links below).
-    **Hint**: If you have more then one Ribbon Control for different Forms in the project, then you should name the RibbonMarkup.xml to RibbonMarkup1.xml, RibbonMarkup2.xml, ... ,RibbonMarkup9.xml 
+    **Hint**: If you have more than one Ribbon Control for different Forms in the project, then you should name the RibbonMarkup.xml to RibbonMarkup1.xml, RibbonMarkup2.xml, ... ,RibbonMarkup9.xml 
 
 7. Because CustomTools, like Bernhard Elbl says, do not work this way in newer Visual Studio versions like VS 2017 you have to
     open a Console Window in the folder of RibbonMarkup.xml (maybe we have a solution for a CustomTool later on). Or you can use the RibbonPreview.exe to build and preview the markup file.

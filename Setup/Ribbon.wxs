@@ -9,13 +9,13 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:WixUI="http://schemas.microsoft.com/wix/UIExtension">
-  <Product Id="70AAEC1A-4B9E-43A0-AC9F-1B0A2F8AB54F" Name="Ribbon" Language="1033" Version="2.8.4.0" Manufacturer="RibbonLib" UpgradeCode="FA403F70-F169-497E-8DC2-CCA0609A1E30">
-    <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x86" Description="Ribbon" />
+  <Product Id="{C93F8858-3F89-4CAF-88CE-31717D359DFB}" Name="Ribbon" Language="1033" Version="2.8.6.0" Manufacturer="RibbonLib" UpgradeCode="FA403F70-F169-497E-8DC2-CCA0609A1E30">
+    <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x86" Description="UIRibbon" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <Media Id="1" Cabinet="Data.cab" EmbedCab="yes" />
 
-    <Feature Id="ProductFeature" Title="Ribbon Setup" Level="1">
+    <Feature Id="ProductFeature" Title="UIRibbon Setup" Level="1">
       <ComponentGroupRef Id="GACComponents" />
       <ComponentGroupRef Id="ProductComponents" />
     </Feature>

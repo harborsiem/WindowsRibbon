@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.8.6, RibbonGenerator V1.3.5, RibbonPreview V1.2.1
+
+### Changed
+
+- Ribbon.dll: Calculation of Ribbon colors to / from HSB values as W3C describe. Calculation is not lossless. In Windows 10 Background and Highlight setting is a bit of strange.
+- Ribbon.dll: new methods in Ribbon Control. SetBackgroundColor, SetHighlightColor, SetTextColor.
+- RibbonPreview.exe: Single Color settings possible.
+
 ### Ribbon V2.8.4, RibbonGenerator V1.3.5, RibbonPreview V1.2
 
 ### Changed

@@ -593,6 +593,78 @@ namespace RibbonLib
         }
 
         /// <summary>
+        /// Change ribbon background color
+        /// </summary>
+        /// <param name="background">new background color</param>
+        public void SetBackgroundColor(Color background)
+        {
+            if (!Initialized)
+            {
+                return;
+            }
+
+            // convert color to proper color format
+            uint color = ColorHelper.RGBToUInt32(background);
+
+            IPropertyStore propertyStore = (IPropertyStore)Framework;
+
+            PropVariant colorProp = PropVariant.FromObject(color);
+
+            // set ribbon color
+            propertyStore.SetValue(ref RibbonProperties.GlobalBackgroundColor, ref colorProp);
+
+            propertyStore.Commit();
+        }
+
+        /// <summary>
+        /// Change ribbon highlight color
+        /// </summary>
+        /// <param name="highlight">new highlight color</param>
+        public void SetHighlightColor(Color highlight)
+        {
+            if (!Initialized)
+            {
+                return;
+            }
+
+            // convert color to proper color format
+            uint color = ColorHelper.RGBToUInt32(highlight);
+
+            IPropertyStore propertyStore = (IPropertyStore)Framework;
+
+            PropVariant colorProp = PropVariant.FromObject(color);
+
+            // set ribbon color
+            propertyStore.SetValue(ref RibbonProperties.GlobalHighlightColor, ref colorProp);
+
+            propertyStore.Commit();
+        }
+
+        /// <summary>
+        /// Change ribbon text color
+        /// </summary>
+        /// <param name="text">new text color</param>
+        public void SetTextColor(Color text)
+        {
+            if (!Initialized)
+            {
+                return;
+            }
+
+            // convert color to proper color format
+            uint color = ColorHelper.RGBToUInt32(text);
+
+            IPropertyStore propertyStore = (IPropertyStore)Framework;
+
+            PropVariant colorProp = PropVariant.FromObject(color);
+
+            // set ribbon color
+            propertyStore.SetValue(ref RibbonProperties.GlobalTextColor, ref colorProp);
+
+            propertyStore.Commit();
+        }
+
+        /// <summary>
         /// Get the three Colors of the Ribbon
         /// </summary>
         /// <returns>Ribbon Colors class or null</returns>

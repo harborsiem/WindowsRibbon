@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RibbonGenerator;
+using RibbonLib;
 using RibbonLib.Controls;
 using RibbonLib.Interop;
 
@@ -47,6 +48,24 @@ namespace RibbonPreview
             numericUpDownT_B.ValueChanged += TextColor_ValueChanged;
             this.getColorsButton.Click += new System.EventHandler(this.GetColorsButton_Click);
             this.setColorsButton.Click += new System.EventHandler(this.SetColorsButton_Click);
+            this.textButton.Click += TextButton_Click;
+            this.highlightButton.Click += HighlightButton_Click;
+            this.backgroundButton.Click += BackgroundButton_Click;
+        }
+
+        private void BackgroundButton_Click(object sender, EventArgs e)
+        {
+            ribbon.SetBackgroundColor(backgroundColorPanel.BackColor);
+        }
+
+        private void HighlightButton_Click(object sender, EventArgs e)
+        {
+            ribbon.SetHighlightColor(highlightColorPanel.BackColor);
+        }
+
+        private void TextButton_Click(object sender, EventArgs e)
+        {
+            ribbon.SetTextColor(textColorPanel.BackColor);
         }
 
         private void TextColor_ValueChanged(object sender, EventArgs e)
@@ -218,40 +237,6 @@ namespace RibbonPreview
         {
             RibbonColors colors = GetRibbonColors();
             SetRibbonColors(colors);
-            //float b_h = colors.BackgroundColor.GetHue();
-            //float b_s = colors.BackgroundColor.GetSaturation();
-            //float b_b = colors.BackgroundColor.GetBrightness();
-            //HSL b_hsl = new HSL();
-            //b_hsl.H = (b_h / 360.0);
-            //b_hsl.S = (b_s);
-            //b_hsl.L = (b_b);
-
-            //float h_h = colors.HighlightColor.GetHue();
-            //float h_s = colors.HighlightColor.GetSaturation();
-            //float h_b = colors.HighlightColor.GetBrightness();
-            //HSL h_hsl = new HSL();
-            //h_hsl.H = (h_h / 360.0);
-            //h_hsl.S = (h_s);
-            //h_hsl.L = (h_b); ;
-
-            //float t_h = colors.TextColor.GetHue();
-            //float t_s = colors.TextColor.GetSaturation();
-            //float t_b = colors.TextColor.GetBrightness();
-            //HSL t_hsl = new HSL();
-            //t_hsl.H = (t_h / 360.0);
-            //t_hsl.S = (t_s);
-            //t_hsl.L = (t_b);
-
-            //HSB b_hsb = ColorHelp.HSLToHSB(b_hsl);
-            //HSB h_hsb = ColorHelp.HSLToHSB(h_hsl);
-            //HSB t_hsb = ColorHelp.HSLToHSB(t_hsl);
-
-            //uint backgroundresult = ColorHelper.HSBToUInt32(ColorHelper.HSLToHSB(ColorHelper.RGBToHSL(backgroundColor)));
-            //uint highlightresult = ColorHelper.HSBToUInt32(ColorHelper.HSLToHSB(ColorHelper.RGBToHSL(highlightColor)));
-            //uint textresult = ColorHelper.HSBToUInt32(ColorHelper.HSLToHSB(ColorHelper.RGBToHSL(textColor)));
-            //uint backgroundresult = ColorHelp.RGBToUInt32(backgroundColor);
-            //uint highlightresult = ColorHelp.RGBToUInt32(highlightColor);
-            //uint textresult = ColorHelp.RGBToUInt32(textColor);
         }
 
         private void SetColorsButton_Click(object sender, EventArgs e)
@@ -277,30 +262,30 @@ namespace RibbonPreview
 
         internal RibbonColors GetRibbonColors()
         {
-            RibbonColors colors = new RibbonColors();
-            IPropertyStore propertyStore = (IPropertyStore)ribbon.Framework;
-            PropVariant backgroundColorProp;
-            PropVariant highlightColorProp;
-            PropVariant textColorProp;
+            RibbonColors colors = ribbon.GetColors(); //.new RibbonColors();
+            //IPropertyStore propertyStore = (IPropertyStore)ribbon.Framework;
+            //PropVariant backgroundColorProp;
+            //PropVariant highlightColorProp;
+            //PropVariant textColorProp;
 
-            // get ribbon colors
-            propertyStore.GetValue(ref RibbonProperties.GlobalBackgroundColor, out backgroundColorProp);
-            propertyStore.GetValue(ref RibbonProperties.GlobalHighlightColor, out highlightColorProp);
-            propertyStore.GetValue(ref RibbonProperties.GlobalTextColor, out textColorProp);
-            uint background = (uint)backgroundColorProp.Value;
-            uint highlight = (uint)highlightColorProp.Value;
-            uint text = (uint)textColorProp.Value;
-            colors.BackgroundColor = ColorHelp.UInt32ToRGB(background);
-            colors.HighlightColor = ColorHelp.UInt32ToRGB(highlight);
-            colors.TextColor = ColorHelp.UInt32ToRGB(text);
+            //// get ribbon colors
+            //propertyStore.GetValue(ref RibbonProperties.GlobalBackgroundColor, out backgroundColorProp);
+            //propertyStore.GetValue(ref RibbonProperties.GlobalHighlightColor, out highlightColorProp);
+            //propertyStore.GetValue(ref RibbonProperties.GlobalTextColor, out textColorProp);
+            //uint background = (uint)backgroundColorProp.Value;
+            //uint highlight = (uint)highlightColorProp.Value;
+            //uint text = (uint)textColorProp.Value;
+            //colors.BackgroundColor = ColorHelp.UInt32ToRGB(background);
+            //colors.HighlightColor = ColorHelp.UInt32ToRGB(highlight);
+            //colors.TextColor = ColorHelp.UInt32ToRGB(text);
             return colors;
         }
 
-        internal class RibbonColors
-        {
-            public Color BackgroundColor;
-            public Color HighlightColor;
-            public Color TextColor;
-        }
+        //internal class RibbonColors
+        //{
+        //    public Color BackgroundColor;
+        //    public Color HighlightColor;
+        //    public Color TextColor;
+        //}
     }
 }
