@@ -1,0 +1,19 @@
+Pascal to c#
+
+" = " " == "
+ := 	 = 
+ <> 	 != 
+''	string.Empty
+'	"
+not	!
+False false
+True true
+Self this
+ and 	 && 
+ or 	 || 
+ then 	 
+begin	{
+end;	}
+end	}
+
+

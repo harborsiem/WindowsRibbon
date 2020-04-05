@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9B642095-6E14-4B82-A6E7-707F44865520}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>UIRibbonTools</RootNamespace>
+    <AssemblyName>UIRibbonTools</AssemblyName>
+    <ApplicationIcon>Images\Ribbon.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ribbon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4a850abcb1bad68b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Ribbon\bin\Release\Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\Action.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Actions\Action.Designer.cs">
+      <DependentUpon>Action.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\ActionCollection.cs" />
+    <Compile Include="Actions\ActionList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Actions\ActionList.Designer.cs">
+      <DependentUpon>ActionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Actions\Design.cs" />
+    <Compile Include="Actions\ImageIndexEditor.cs" />
+    <Compile Include="Build\AbstractCodeBuilder.cs" />
+    <Compile Include="Build\CSharpCodeBuilder.cs" />
+    <Compile Include="Build\FaildException.cs" />
+    <Compile Include="Build\IMessageOutput.cs" />
+    <Compile Include="Build\Manager.cs" />
+    <Compile Include="Build\MessageOutput.cs" />
+    <Compile Include="Build\ResXReader.cs" />
+    <Compile Include="Build\RibbonItem.cs" />
+    <Compile Include="Build\RibbonParser.cs" />
+    <Compile Include="Build\Target.cs" />
+    <Compile Include="Build\Util.cs" />
+    <Compile Include="Build\VBCodeBuilder.cs" />
+    <Compile Include="Commands\ImageListFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\ImageListFrame.Designer.cs">
+      <DependentUpon>ImageListFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\InputQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\InputQuery.Designer.cs">
+      <DependentUpon>InputQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ImageEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ImageEditForm.Designer.cs">
+      <DependentUpon>ImageEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CommandSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CommandSearchForm.Designer.cs">
+      <DependentUpon>CommandSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ApplicationModesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ApplicationModesForm.Designer.cs">
+      <DependentUpon>ApplicationModesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\NewFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\NewFileForm.Designer.cs">
+      <DependentUpon>NewFileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ViewsSampleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ViewsSampleForm.Designer.cs">
+      <DependentUpon>ViewsSampleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\Addons.cs" />
+    <Compile Include="Misc\IActivate.cs" />
+    <Compile Include="Misc\ImageManager.cs" />
+    <Compile Include="Misc\ListViewColumnSorter.cs" />
+    <Compile Include="Misc\NativeMethods.cs" />
+    <Compile Include="Misc\Enums.cs" />
+    <Compile Include="Misc\Extension.cs" />
+    <Compile Include="Misc\RibbonCommandItem.cs" />
+    <Compile Include="Misc\RibbonSizeDef.cs" />
+    <Compile Include="Misc\TRibbonObject.Const.cs" />
+    <Compile Include="Misc\UIImage.cs" />
+    <Compile Include="Misc\XMarkupClasses.cs" />
+    <Compile Include="Preview\PreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Preview\PreviewForm.Designer.cs">
+      <DependentUpon>PreviewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preview\PreviewHelper.cs" />
+    <Compile Include="Preview\RibbonClassBuilder.cs" />
+    <Compile Include="Views\AbstractClass\BaseFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\AbstractClass\BaseFrame.Designer.cs">
+      <DependentUpon>BaseFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AbstractClass\TFrameCommandRefObject.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\AbstractClass\TFrameCommandRefObject.Designer.cs">
+      <DependentUpon>TFrameCommandRefObject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AbstractClass\TFrameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\AbstractClass\TFrameControl.Designer.cs">
+      <DependentUpon>TFrameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AbstractClass\TFrameGallery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\AbstractClass\TFrameGallery.Designer.cs">
+      <DependentUpon>TFrameGallery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommandsFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommandsFrame.Designer.cs">
+      <DependentUpon>CommandsFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewsFrame.Addon.cs">
+      <DependentUpon>ViewsFrame.cs</DependentUpon>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewsFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewsFrame.Designer.cs">
+      <DependentUpon>ViewsFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XmlSourceFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XmlSourceFrame.Designer.cs">
+      <DependentUpon>XmlSourceFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameApplicationMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameApplicationMenu.Designer.cs">
+      <DependentUpon>TFrameApplicationMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameAppMenuGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameAppMenuGroup.Designer.cs">
+      <DependentUpon>TFrameAppMenuGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameCheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameCheckBox.Designer.cs">
+      <DependentUpon>TFrameCheckBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameComboBox.Designer.cs">
+      <DependentUpon>TFrameComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameContextMap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameContextMap.Designer.cs">
+      <DependentUpon>TFrameContextMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameDropDownColorPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameDropDownColorPicker.Designer.cs">
+      <DependentUpon>TFrameDropDownColorPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameFloatieFontControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameFloatieFontControl.Designer.cs">
+      <DependentUpon>TFrameFloatieFontControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameFontControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameFontControl.Designer.cs">
+      <DependentUpon>TFrameFontControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameHelpButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameHelpButton.Designer.cs">
+      <DependentUpon>TFrameHelpButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameMenuGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameMenuGroup.Designer.cs">
+      <DependentUpon>TFrameMenuGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameQatControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameQatControl.Designer.cs">
+      <DependentUpon>TFrameQatControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameQuickAccessToolbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameQuickAccessToolbar.Designer.cs">
+      <DependentUpon>TFrameQuickAccessToolbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameScale.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameScale.Designer.cs">
+      <DependentUpon>TFrameScale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameSpinner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameSpinner.Designer.cs">
+      <DependentUpon>TFrameSpinner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameTabGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameTabGroup.Designer.cs">
+      <DependentUpon>TFrameTabGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameToggleButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CommandRef\TFrameToggleButton.Designer.cs">
+      <DependentUpon>TFrameToggleButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Control\TFrameButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Control\TFrameButton.Designer.cs">
+      <DependentUpon>TFrameButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Control\TFrameDropDownButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Control\TFrameDropDownButton.Designer.cs">
+      <DependentUpon>TFrameDropDownButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Control\TFrameGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Control\TFrameGroup.Designer.cs">
+      <DependentUpon>TFrameGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Control\TFrameSplitButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Control\TFrameSplitButton.Designer.cs">
+      <DependentUpon>TFrameSplitButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Control\TFrameTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Control\TFrameTab.Designer.cs">
+      <DependentUpon>TFrameTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Gallery\TFrameDropDownGallery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Gallery\TFrameDropDownGallery.Designer.cs">
+      <DependentUpon>TFrameDropDownGallery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Gallery\TFrameInRibbonGallery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Gallery\TFrameInRibbonGallery.Designer.cs">
+      <DependentUpon>TFrameInRibbonGallery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Gallery\TFrameSplitButtonGallery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Gallery\TFrameSplitButtonGallery.Designer.cs">
+      <DependentUpon>TFrameSplitButtonGallery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameColumnBreak.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameColumnBreak.Designer.cs">
+      <DependentUpon>TFrameColumnBreak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameContextMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameContextMenu.Designer.cs">
+      <DependentUpon>TFrameContextMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameControlGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameControlGroup.Designer.cs">
+      <DependentUpon>TFrameControlGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameControlSizeDefinition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameControlSizeDefinition.Designer.cs">
+      <DependentUpon>TFrameControlSizeDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameGroupSizeDefinition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameGroupSizeDefinition.Designer.cs">
+      <DependentUpon>TFrameGroupSizeDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameMiniToolbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameMiniToolbar.Designer.cs">
+      <DependentUpon>TFrameMiniToolbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameSizeDefinition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameSizeDefinition.Designer.cs">
+      <DependentUpon>TFrameSizeDefinition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameViewRibbon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\SimpleControl\TFrameViewRibbon.Designer.cs">
+      <DependentUpon>TFrameViewRibbon.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Actions\Action.resx">
+      <DependentUpon>Action.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Actions\ActionList.resx">
+      <DependentUpon>ActionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\ImageListFrame.resx">
+      <DependentUpon>ImageListFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\InputQuery.resx">
+      <DependentUpon>InputQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CommandSearchForm.resx">
+      <DependentUpon>CommandSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ApplicationModesForm.resx">
+      <DependentUpon>ApplicationModesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ImageEditForm.resx">
+      <DependentUpon>ImageEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewFileForm.resx">
+      <DependentUpon>NewFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ViewsSampleForm.resx">
+      <DependentUpon>ViewsSampleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preview\PreviewForm.resx">
+      <DependentUpon>PreviewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AbstractClass\BaseFrame.resx">
+      <DependentUpon>BaseFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AbstractClass\TFrameCommandRefObject.resx">
+      <DependentUpon>TFrameCommandRefObject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AbstractClass\TFrameControl.resx">
+      <DependentUpon>TFrameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AbstractClass\TFrameGallery.resx">
+      <DependentUpon>TFrameGallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameApplicationMenu.resx">
+      <DependentUpon>TFrameApplicationMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameAppMenuGroup.resx">
+      <DependentUpon>TFrameAppMenuGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameCheckBox.resx">
+      <DependentUpon>TFrameCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameComboBox.resx">
+      <DependentUpon>TFrameComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameContextMap.resx">
+      <DependentUpon>TFrameContextMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameDropDownColorPicker.resx">
+      <DependentUpon>TFrameDropDownColorPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameFloatieFontControl.resx">
+      <DependentUpon>TFrameFloatieFontControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameFontControl.resx">
+      <DependentUpon>TFrameFontControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameHelpButton.resx">
+      <DependentUpon>TFrameHelpButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameMenuGroup.resx">
+      <DependentUpon>TFrameMenuGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameQatControl.resx">
+      <DependentUpon>TFrameQatControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameQuickAccessToolbar.resx">
+      <DependentUpon>TFrameQuickAccessToolbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameScale.resx">
+      <DependentUpon>TFrameScale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameSpinner.resx">
+      <DependentUpon>TFrameSpinner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameTabGroup.resx">
+      <DependentUpon>TFrameTabGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandRef\TFrameToggleButton.resx">
+      <DependentUpon>TFrameToggleButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Control\TFrameButton.resx">
+      <DependentUpon>TFrameButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommandsFrame.resx">
+      <DependentUpon>CommandsFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewsFrame.resx">
+      <DependentUpon>ViewsFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XmlSourceFrame.resx">
+      <DependentUpon>XmlSourceFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Views\Control\TFrameDropDownButton.resx">
+      <DependentUpon>TFrameDropDownButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Control\TFrameGroup.resx">
+      <DependentUpon>TFrameGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Control\TFrameSplitButton.resx">
+      <DependentUpon>TFrameSplitButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Control\TFrameTab.resx">
+      <DependentUpon>TFrameTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Gallery\TFrameDropDownGallery.resx">
+      <DependentUpon>TFrameDropDownGallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Gallery\TFrameInRibbonGallery.resx">
+      <DependentUpon>TFrameInRibbonGallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Gallery\TFrameSplitButtonGallery.resx">
+      <DependentUpon>TFrameSplitButtonGallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SimpleControl\TFrameColumnBreak.resx">
+      <DependentUpon>TFrameColumnBreak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SimpleControl\TFrameContextMenu.resx">
+      <DependentUpon>TFrameContextMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SimpleControl\TFrameControlGroup.resx">
+      <DependentUpon>TFrameControlGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SimpleControl\TFrameControlSizeDefinition.resx">
+      <DependentUpon>TFrameControlSizeDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SimpleControl\TFrameGroupSizeDefinition.resx">
+      <DependentUpon>TFrameGroupSizeDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SimpleControl\TFrameMiniToolbar.resx">
+      <DependentUpon>TFrameMiniToolbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SimpleControl\TFrameSizeDefinition.resx">
+      <DependentUpon>TFrameSizeDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SimpleControl\TFrameViewRibbon.resx">
+      <DependentUpon>TFrameViewRibbon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wordpad.zip" />
+    <EmbeddedResource Include="Template.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ImageListAppModes_Shared.bmp" />
+    <EmbeddedResource Include="Images\ImageListToolbars_Commands.bmp" />
+    <EmbeddedResource Include="Images\ImageListToolbars_ImageList.bmp" />
+    <EmbeddedResource Include="Images\ImageListTreeView_Views.bmp" />
+    <EmbeddedResource Include="Images\ImageList_Edit.bmp" />
+    <EmbeddedResource Include="Images\ImageList_NewFile.bmp" />
+    <EmbeddedResource Include="Images\ImageList_Settings.bmp" />
+    <EmbeddedResource Include="Images\Images_Main.bmp" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
