@@ -102,7 +102,7 @@ namespace UIRibbonTools
 
         public static bool IsValidCommandValue(int value)
         {
-            bool result = (value == 0) || ((value >= 2) && (value < 59999));
+            bool result = (value == 0) || ((value >= 2) && (value <= 59999)); //@ bugfix
             return result;
         }
 
@@ -492,28 +492,25 @@ namespace UIRibbonTools
             _id = 0;
             _symbol = string.Empty;
 
-            if (E.Nodes().Count() == 0)
+            if (E.Elements().Count() == 0)
                 return;
 
-            if (E.Nodes().Count() > 1)
+            if (E.Elements().Count() > 1)
                 Error(E, RS_MULTIPLE_RIBBON_STRINGS);
             else
             {
-                C = (XElement)E.Nodes().ElementAt(0);
+                C = E.Elements().ElementAt(0);
                 if (C.Name.LocalName != EN_STRING)
                     Error(C, RS_ELEMENT_EXPECTED, EN_STRING, C.Name.LocalName);
 
                 _content = C.Attribute(AN_CONTENT)?.Value;
-                if (string.IsNullOrEmpty(_content) && C.Nodes().Count() == 1 && C.FirstNode is XText)
+                if (string.IsNullOrEmpty(_content))
                     _content = C.Value;
                 SetId(StringToCommandValue(C.Attribute(AN_ID)?.Value));
                 SetSymbol(C.Attribute(AN_SYMBOL)?.Value);
 
-                foreach (XNode GCNode in C.Nodes()) //@
+                foreach (XElement GC in C.Elements())
                 {
-                    XElement GC = GCNode as XElement;
-                    if (GC == null) continue;
-
                     if (GC.Name.LocalName == EN_STRING_CONTENT)
                         _content = GC.Value;
                     else if (GC.Name.LocalName == EN_STRING_ID)
@@ -611,18 +608,15 @@ namespace UIRibbonTools
                 Error(E, RS_ELEMENT_EXPECTED, EN_IMAGE, E.Name.LocalName);
 
             _source = E.Attribute(AN_SOURCE)?.Value;
-            if (string.IsNullOrEmpty(_source) && E.Nodes().Count() == 1 && E.FirstNode is XText)
+            if (string.IsNullOrEmpty(_source))
                 _source = E.Value;
             SetId(StringToCommandValue(E.Attribute(AN_ID)?.Value));
             SetSymbol(E.Attribute(AN_SYMBOL)?.Value);
             string tmp = E.Attribute(AN_MIN_DPI)?.Value;
             SetMinDpi(string.IsNullOrEmpty(tmp) ? 0 : XmlConvert.ToInt32(tmp));
 
-            foreach (XNode CNode in E.Nodes()) //@
+            foreach (XElement C in E.Elements())
             {
-                XElement C = CNode as XElement;
-                if (C == null) continue;
-
                 if (C.Name.LocalName == EN_IMAGE_SOURCE)
                     _source = C.Value;
                 else
@@ -1054,7 +1048,7 @@ namespace UIRibbonTools
 
         private void LoadImages(TRibbonList<TRibbonImage> list, XElement E)
         {
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
                 list.Add(new TRibbonImage(Owner, C));
         }
 
@@ -1101,7 +1095,7 @@ namespace UIRibbonTools
             _tooltipDescription.Content = E.Attribute(AN_TOOLTIP_DESCRIPTION)?.Value;
             _keytip.Content = E.Attribute(AN_KEYTIP)?.Value;
 
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_COMMAND_NAME)
                     SetName(C.Value);
@@ -1391,7 +1385,7 @@ namespace UIRibbonTools
         public TRibbonApplicationMenuRecentItems(TRibbonDocument owner, XElement E, TRibbonCommandRefObject parent) : base(owner, E, parent)
         {
             //@ changed at caller
-            //if ((E.Nodes().Count() == 0) || (E[0].Name != EN_RECENT_ITEMS))
+            //if ((E.Elements().Count() == 0) || (E[0].Name != EN_RECENT_ITEMS))
             //    Error(E, RS_SINGLE_ELEMENT, E.Name.LocalName, EN_RECENT_ITEMS);
             //inherited Create(Owner, E[0]);
             XElement C = E;
@@ -1546,7 +1540,7 @@ namespace UIRibbonTools
             else
                 Error(E, RS_INVALID_CATEGORY_CLASS);
 
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (!AddControl(C))
                     Error(C, RS_UNSUPPORTED_CHILD_ELEMENT, C.Name.LocalName, E.Name.LocalName);
@@ -1787,15 +1781,15 @@ namespace UIRibbonTools
             _menuGroups = new TRibbonList<TRibbonMenuGroup>(owner, true);
             _controls = new TRibbonList<TRibbonControl>(owner, true);
             bool hasMenuGroups = false;
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_SPLIT_BUTTON_BUTTON_ITEM)
                 {
-                    if (C.Nodes().Count() > 1)
+                    if (C.Elements().Count() > 1)
                         Error(C, RS_MULTIPLE_ELEMENTS, C.Name.LocalName, C.Elements().ElementAt(0).Name.LocalName);
-                    if (C.Nodes().Count() == 1)
+                    if (C.Elements().Count() == 1)
                     {
-                        XElement GC = (XElement)C.Nodes().ElementAt(0);
+                        XElement GC = C.Elements().ElementAt(0);
                         if (GC.Name.LocalName == EN_BUTTON)
                             _buttonItem = new TRibbonButton(owner, GC, this);
                         else if (GC.Name.LocalName == EN_TOGGLE_BUTTON)
@@ -1809,7 +1803,7 @@ namespace UIRibbonTools
                     if (hasMenuGroups)
                         Error(C, RS_SINGLE_ELEMENT, C.Name.LocalName, EN_MENU_GROUP);
                     hasMenuGroups = true;
-                    foreach (XElement GC in C.Nodes())
+                    foreach (XElement GC in C.Elements())
                         _menuGroups.Add(new TRibbonMenuGroup(owner, GC, this));
                 }
                 else if (C.Name.LocalName == EN_TOGGLE_BUTTON)
@@ -1999,7 +1993,7 @@ namespace UIRibbonTools
         {
             _controls = new TRibbonList<TRibbonControl>(owner, true);
             _menuGroups = new TRibbonList<TRibbonMenuGroup>(owner, true);
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_MENU_GROUP)
                     _menuGroups.Add(new TRibbonMenuGroup(owner, C, this));
@@ -2595,7 +2589,7 @@ namespace UIRibbonTools
             _controls = new TRibbonList<TRibbonControl>(owner, true);
             string tmp = E.Attribute(AN_SEQUENCE_NUMBER)?.Value;
             _sequenceNumber = string.IsNullOrEmpty(tmp) ? 0 : XmlConvert.ToInt32(tmp);
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_CONTROL_GROUP)
                     _controls.Add(new TRibbonControlGroup(owner, C, null));
@@ -2886,7 +2880,7 @@ namespace UIRibbonTools
             else
                 Error(E, RS_INVALID_TEXT_POSITION);
 
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
                 if (!HandleElement(C))
                     Error(C, RS_UNSUPPORTED_CHILD_ELEMENT, C.Name.LocalName, E.Name.LocalName);
 
@@ -2957,10 +2951,10 @@ namespace UIRibbonTools
 
         protected void LoadMenuLayout(XElement E)
         {
-            if (E.Nodes().Count() != 1)
+            if (E.Elements().Count() != 1)
                 Error(E, RS_SINGLE_ELEMENT, E.Name.LocalName, EN_VERTICAL_MENU_LAYOUT + "/" + EN_FLOW_MENU_LAYOUT);
 
-            XElement C = (XElement)E.Nodes().ElementAt(0);
+            XElement C = E.Elements().ElementAt(0);
             if (C.Name.LocalName == EN_VERTICAL_MENU_LAYOUT)
                 _menuLayout = new TRibbonVerticalMenuLayout(Owner, C);
             else if (C.Name.LocalName == EN_FLOW_MENU_LAYOUT)
@@ -2971,10 +2965,10 @@ namespace UIRibbonTools
 
         protected void LoadMenuGroups(XElement E)
         {
-            if (E.Nodes().Count() == 0)
+            if (E.Elements().Count() == 0)
                 Error(E, RS_REQUIRED_ELEMENT, E.Name.LocalName, EN_MENU_GROUP);
 
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
                 _menuGroups.Add(new TRibbonMenuGroup(Owner, C, this));
         }
 
@@ -3256,26 +3250,26 @@ namespace UIRibbonTools
         {
             //@ changed at caller
             _menuGroups = new TRibbonList<TRibbonAppMenuGroup>(owner, true);
-            if (E.Nodes().Count() > 0)
+            if (E.Elements().Count() > 0)
             {
-                XElement C = (XElement)E.Nodes().ElementAt(0);
+                XElement C = E.Elements().ElementAt(0);
                 if (C.Name.LocalName != EN_APPLICATION_MENU)
                     Error(C, RS_ELEMENT_EXPECTED, EN_APPLICATION_MENU, C.Name.LocalName);
 
-                if (E.Nodes().Count() > 1)
+                if (E.Elements().Count() > 1)
                     Error(E, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, C.Name.LocalName);
 
-                foreach (XElement GC in C.Nodes())
+                foreach (XElement GC in C.Elements())
                 {
                     if (GC.Name.LocalName == EN_APPLICATION_MENU_RECENT_ITEMS)
                     {
                         if (null != _recentItems)
                             Error(GC, RS_MULTIPLE_ELEMENTS, C.Name.LocalName, GC.Name.LocalName);
                         //@@ changed
-                        if ((GC.Nodes().Count() == 0) || (GC.Elements().ElementAt(0).Name.LocalName != EN_RECENT_ITEMS))
+                        if ((GC.Elements().Count() == 0) || (GC.Elements().ElementAt(0).Name.LocalName != EN_RECENT_ITEMS))
                             Error(GC, RS_SINGLE_ELEMENT, GC.Name.LocalName, EN_RECENT_ITEMS);
                         //@@
-                        _recentItems = new TRibbonApplicationMenuRecentItems(owner, (XElement)GC.Nodes().ElementAt(0), this);
+                        _recentItems = new TRibbonApplicationMenuRecentItems(owner, GC.Elements().ElementAt(0), this);
                     }
                     else if (GC.Name.LocalName == EN_MENU_GROUP)
                         _menuGroups.Add(new TRibbonAppMenuGroup(owner, GC, this));
@@ -3396,15 +3390,15 @@ namespace UIRibbonTools
             _customizeCommandRef = owner.FindCommand(name);
             if (null != _customizeCommandRef)
                 _customizeCommandRef.FreeNotification(this);
-            if (E.Nodes().Count() > 1)
+            if (E.Elements().Count() > 1)
                 Error(E, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, E.Elements().ElementAt(0).Name.LocalName);
-            if (E.Nodes().Count() == 1)
+            if (E.Elements().Count() == 1)
             {
-                XElement C = (XElement)E.Nodes().ElementAt(0);
+                XElement C = E.Elements().ElementAt(0);
                 if (C.Name.LocalName != EN_QUICK_ACCESS_TOOLBAR_APPLICATION_DEFAULTS)
                     Error(C, RS_ELEMENT_EXPECTED, EN_QUICK_ACCESS_TOOLBAR_APPLICATION_DEFAULTS, C.Name.LocalName);
 
-                foreach (XElement GC in C.Nodes())
+                foreach (XElement GC in C.Elements())
                 {
                     if (GC.Name.LocalName == EN_BUTTON)
                         _controls.Add(new TRibbonQatButton(owner, GC, this));
@@ -3656,14 +3650,14 @@ namespace UIRibbonTools
             _idealSizes = new TRibbonList<TRibbonScale>(owner, true);
             _scales = new TRibbonList<TRibbonScale>(owner, true);
             bool hasIdealSizes = false;
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_SCALING_POLICY_IDEAL_SIZES)
                 {
                     if (hasIdealSizes)
                         Error(C, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, C.Name.LocalName);
                     hasIdealSizes = true;
-                    foreach (XElement GC in C.Nodes())
+                    foreach (XElement GC in C.Elements())
                     {
                         if (GC.Name.LocalName != EN_SCALE)
                             Error(GC, RS_UNSUPPORTED_CHILD_ELEMENT, GC.Name.LocalName, C.Name.LocalName);
@@ -3779,7 +3773,7 @@ namespace UIRibbonTools
         public TRibbonControlNameMap(TRibbonDocument owner, XElement E) : base(owner)
         {
             _controlNameDefinitions = new List<string>();
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_CONTROL_NAME_DEFINITION)
                 {
@@ -3953,7 +3947,7 @@ namespace UIRibbonTools
         {
             _elements = new TRibbonList<TRibbonGroupSizeDefinitionElement>(owner, true);
 
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_CONTROL_SIZE_DEFINITION)
                     _elements.Add(new TRibbonControlSizeDefinition(owner, ownerDefinition, C));
@@ -4063,7 +4057,7 @@ namespace UIRibbonTools
         {
             _controlSizeDefinitions = new TRibbonList<TRibbonControlSizeDefinition>(owner, true);
 
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_CONTROL_SIZE_DEFINITION)
                     _controlSizeDefinitions.Add(new TRibbonControlSizeDefinition(owner, ownerDefinition, C));
@@ -4211,7 +4205,7 @@ namespace UIRibbonTools
             else
                 Error(E, RS_INVALID_SIZE);
 
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_CONTROL_SIZE_DEFINITION)
                     _elements.Add(new TRibbonControlSizeDefinition(owner, ownerDefinition, C));
@@ -4343,7 +4337,7 @@ namespace UIRibbonTools
         public TRibbonSizeDefinition(TRibbonDocument owner, XElement E) : base(owner)
         {
             _groupSizeDefinitions = new TRibbonList<TRibbonGroupSizeDefinition>(owner, true);
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_CONTROL_NAME_MAP)
                 {
@@ -4534,7 +4528,7 @@ namespace UIRibbonTools
             if (_basicSizeDefinition == RibbonBasicSizeDefinition.Custom)
                 _customSizeDefinition = s;
 
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_SIZE_DEFINITION)
                 {
@@ -4706,13 +4700,13 @@ namespace UIRibbonTools
             _groups = new TRibbonList<TRibbonGroup>(owner, true);
             if (E.Name.LocalName != EN_TAB)
                 Error(E, RS_ELEMENT_EXPECTED, EN_TAB, E.Name.LocalName);
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_TAB_SCALING_POLICY)
                 {
-                    if (C.Nodes().Count() != 1)
+                    if (C.Elements().Count() != 1)
                         Error(C, RS_SINGLE_ELEMENT, C.Name.LocalName, EN_SCALING_POLICY);
-                    XElement GC = (XElement)C.Nodes().ElementAt(0);
+                    XElement GC = C.Elements().ElementAt(0);
                     if (GC.Name.LocalName != EN_SCALING_POLICY)
                         Error(GC, RS_ELEMENT_EXPECTED, EN_SCALING_POLICY, GC.Name.LocalName);
                     _scalingPolicy = new TRibbonScalingPolicy(owner, GC);
@@ -4808,7 +4802,7 @@ namespace UIRibbonTools
         public TRibbonTabGroup(TRibbonDocument owner, XElement E, TRibbonCommandRefObject parent) : base(owner, E, parent)
         {
             _tabs = new TRibbonList<TRibbonTab>(owner, true);
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName != EN_TAB)
                     Error(C, RS_ELEMENT_EXPECTED, EN_TAB, C.Name.LocalName);
@@ -4968,11 +4962,11 @@ namespace UIRibbonTools
             else
                 Error(E, RS_INVALID_GROUP_SPACING);
 
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_RIBBON_SIZE_DEFINITIONS)
                 {
-                    foreach (XElement GC in C.Nodes())
+                    foreach (XElement GC in C.Elements())
                     {
                         if (GC.Name.LocalName != EN_SIZE_DEFINITION)
                             Error(GC, RS_ELEMENT_EXPECTED, EN_SIZE_DEFINITION, GC.Name.LocalName);
@@ -4985,8 +4979,8 @@ namespace UIRibbonTools
                         Error(C, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, C.Name.LocalName);
                     //@@ changed
                     XElement C1;
-                    if (C.Nodes().Count() > 0)
-                        C1 = (XElement)C.Nodes().ElementAt(0);
+                    if (C.Elements().Count() > 0)
+                        C1 = (XElement)C.Elements().ElementAt(0);
                     else
                         C1 = C;
                     _applicationMenu = new TRibbonApplicationMenu(owner, C, C1, null);
@@ -4994,11 +4988,11 @@ namespace UIRibbonTools
                 }
                 else if (C.Name.LocalName == EN_RIBBON_HELP_BUTTON)
                 {
-                    if (C.Nodes().Count() > 1)
+                    if (C.Elements().Count() > 1)
                         Error(C, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, C.Name.LocalName);
-                    if (C.Nodes().Count() == 1)
+                    if (C.Elements().Count() == 1)
                     {
-                        XElement GC = (XElement)C.Nodes().ElementAt(0);
+                        XElement GC = C.Elements().ElementAt(0);
                         if (GC.Name.LocalName != EN_HELP_BUTTON)
                             Error(C, RS_ELEMENT_EXPECTED, EN_HELP_BUTTON, GC.Name.LocalName);
                         _helpButton = new TRibbonHelpButton(owner, GC, null);
@@ -5008,14 +5002,14 @@ namespace UIRibbonTools
                 {
                     if (_tabs.Count > 0)
                         Error(C, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, C.Name.LocalName);
-                    foreach (XElement GC in C.Nodes())
+                    foreach (XElement GC in C.Elements())
                         _tabs.Add(new TRibbonTab(owner, GC, null));
                 }
                 else if (C.Name.LocalName == EN_RIBBON_CONTEXTUAL_TABS)
                 {
-                    if (C.Nodes().Count() == 0)
+                    if (C.Elements().Count() == 0)
                         Error(C, RS_REQUIRED_ELEMENT, C.Name.LocalName, EN_TAB_GROUP);
-                    foreach (XElement GC in C.Nodes())
+                    foreach (XElement GC in C.Elements())
                     {
                         if (GC.Name.LocalName != EN_TAB_GROUP)
                             Error(GC, RS_ELEMENT_EXPECTED, EN_TAB_GROUP, GC.Name.LocalName);
@@ -5026,9 +5020,9 @@ namespace UIRibbonTools
                 {
                     if (null != _quickAccessToolbar)
                         Error(C, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, C.Name.LocalName);
-                    if (C.Nodes().Count() != 1)
+                    if (C.Elements().Count() != 1)
                         Error(C, RS_SINGLE_ELEMENT, C.Name.LocalName, EN_QUICK_ACCESS_TOOLBAR);
-                    XElement GC = (XElement)C.Nodes().ElementAt(0);
+                    XElement GC = C.Elements().ElementAt(0);
                     if (GC.Name.LocalName != EN_QUICK_ACCESS_TOOLBAR)
                         Error(GC, RS_ELEMENT_EXPECTED, EN_QUICK_ACCESS_TOOLBAR, GC.Name.LocalName);
                     _quickAccessToolbar = new TRibbonQuickAccessToolbar(owner, GC, null);
@@ -5156,9 +5150,9 @@ namespace UIRibbonTools
         {
             _menuGroups = new TRibbonList<TRibbonMiniToolbarMenuGroup>(owner, true);
             _name = E.Attribute(AN_NAME)?.Value;
-            if (E.Nodes().Count() == 0)
+            if (E.Elements().Count() == 0)
                 Error(E, RS_REQUIRED_ELEMENT, E.Name.LocalName, EN_MENU_GROUP);
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName != EN_MENU_GROUP)
                     Error(C, RS_ELEMENT_EXPECTED, EN_MENU_GROUP, C.Name.LocalName);
@@ -5270,9 +5264,9 @@ namespace UIRibbonTools
         {
             _menuGroups = new TRibbonList<TRibbonMenuGroup>(owner, true);
             _name = E.Attribute(AN_NAME)?.Value;
-            if (E.Nodes().Count() == 0)
+            if (E.Elements().Count() == 0)
                 Error(E, RS_REQUIRED_ELEMENT, E.Name.LocalName, EN_MENU_GROUP);
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName != EN_MENU_GROUP)
                     Error(C, RS_ELEMENT_EXPECTED, EN_MENU_GROUP, C.Name.LocalName);
@@ -5580,13 +5574,13 @@ namespace UIRibbonTools
             _miniToolbars = new TRibbonList<TRibbonMiniToolbar>(owner, true);
             _contextMenus = new TRibbonList<TRibbonContextMenu>(owner, true);
             _contextMaps = new TRibbonList<TRibbonContextMap>(owner, true);
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_CONTEXT_POPUP_MINI_TOOLBARS)
                 {
                     if (_miniToolbars.Count > 0)
                         Error(C, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, C.Name.LocalName);
-                    foreach (XElement GC in C.Nodes())
+                    foreach (XElement GC in C.Elements())
                     {
                         if (GC.Name.LocalName != EN_MINI_TOOLBAR)
                             Error(GC, RS_ELEMENT_EXPECTED, EN_MINI_TOOLBAR, GC.Name.LocalName);
@@ -5597,7 +5591,7 @@ namespace UIRibbonTools
                 {
                     if (_contextMenus.Count > 0)
                         Error(C, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, C.Name.LocalName);
-                    foreach (XElement GC in C.Nodes())
+                    foreach (XElement GC in C.Elements())
                     {
                         if (GC.Name.LocalName != EN_CONTEXT_MENU)
                             Error(GC, RS_ELEMENT_EXPECTED, EN_CONTEXT_MENU, GC.Name.LocalName);
@@ -5608,7 +5602,7 @@ namespace UIRibbonTools
                 {
                     if (_contextMaps.Count > 0)
                         Error(C, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, C.Name.LocalName);
-                    foreach (XElement GC in C.Nodes())
+                    foreach (XElement GC in C.Elements())
                     {
                         if (GC.Name.LocalName != EN_CONTEXT_MAP)
                             Error(GC, RS_ELEMENT_EXPECTED, EN_CONTEXT_MAP, GC.Name.LocalName);
@@ -5738,7 +5732,7 @@ namespace UIRibbonTools
             bool hasRibbon = false;
 
             // Load commands first
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_APPLICATION_COMMANDS)
                 {
@@ -5747,8 +5741,11 @@ namespace UIRibbonTools
                     _commands = new TRibbonList<TRibbonCommand>(Owner, true);
                     _commandsByName = new TRibbonDictionary<string, TRibbonCommand>(Owner);
                     _commandsById = new TRibbonDictionary<Int32, TRibbonCommand>(Owner);
-                    foreach (XElement GC in C.Nodes())
+                    foreach (XElement GC in C.Elements())
                     {
+                        //XElement GC = GCNode as XElement;
+                        //if (GC == null)
+                        //    continue;
                         TRibbonCommand command = new TRibbonCommand(Owner, GC);
                         _commands.Add(command);
                         if (!string.IsNullOrEmpty(command.Name))
@@ -5770,14 +5767,14 @@ namespace UIRibbonTools
 
             // Load views next.These depends
             // on the commands.
-            foreach (XElement C in E.Nodes())
+            foreach (XElement C in E.Elements())
             {
                 if (C.Name.LocalName == EN_APPLICATION_VIEWS)
                 {
                     if (null != _views)
                         Error(C, RS_INVALID_VIEWS);
                     _views = new TRibbonList<TRibbonView>(Owner, true);
-                    foreach (XElement GC in C.Nodes())
+                    foreach (XElement GC in C.Elements())
                     {
                         if (GC.Name.LocalName == EN_RIBBON)
                         {

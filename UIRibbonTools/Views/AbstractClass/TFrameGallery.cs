@@ -112,6 +112,8 @@ namespace UIRibbonTools
             // _comboBoxGalleryType
             // 
             this.LayoutPanel.SetColumnSpan(this._comboBoxGalleryType, 3);
+            this._comboBoxGalleryType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._comboBoxGalleryType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboBoxGalleryType.FormattingEnabled = true;
             this._comboBoxGalleryType.Items.AddRange(new object[] {
@@ -138,6 +140,8 @@ namespace UIRibbonTools
             // _comboBoxTextPosition
             // 
             this.LayoutPanel.SetColumnSpan(this._comboBoxTextPosition, 3);
+            this._comboBoxTextPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._comboBoxTextPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboBoxTextPosition.FormattingEnabled = true;
             this._comboBoxTextPosition.Items.AddRange(new object[] {
@@ -268,7 +272,7 @@ namespace UIRibbonTools
             this.groupLayout.ColumnCount = 3;
             this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
             this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 163F));
+            this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, ThirdColumnWidth + 18F));
             this.groupLayout.Controls.Add(this._label8, 0, 0);
             this.groupLayout.Controls.Add(this._comboBoxLayoutType, 1, 0);
             this.groupLayout.Controls.Add(this._labelRowCount, 0, 1);
@@ -431,6 +435,8 @@ namespace UIRibbonTools
             // _groupBox1
             // 
             this.LayoutPanel.SetColumnSpan(this._groupBox1, 4);
+            this._groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._groupBox1.Controls.Add(this.groupLayout);
             this._groupBox1.Location = new System.Drawing.Point(3, 186);
             this._groupBox1.Name = "_groupBox1";

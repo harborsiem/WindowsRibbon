@@ -73,9 +73,11 @@ namespace UIRibbonTools
             CreateMainBitmaps();
             _buildPreviewHelper = BuildPreviewHelper.Instance;
             _buildPreviewHelper.SetActions(null, SetPreviewEnabled, Log, SetLanguages);
+            toolPreviewLanguageCombo.Enabled = false;
             toolPreviewLanguageCombo.SelectedIndex = 0;
             InitEvents();
             InitActions();
+            //string localAppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "UIRibbonTools");
 
             //    constructor TFormMain.Create(AOwner: TComponent)
             //{
@@ -285,14 +287,14 @@ namespace UIRibbonTools
 
         private void MainForm_ResizeBegin(object sender, EventArgs e)
         {
-            _commandsFrame.PropertiesPanel.SuspendLayout();
+            this.SuspendLayout();
         }
 
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
-            NativeMethods.SuspendPainting(_commandsFrame.PropertiesPanel.Handle);
-            _commandsFrame.PropertiesPanel.ResumeLayout();
-            NativeMethods.ResumePainting(_commandsFrame.PropertiesPanel.Handle);
+            NativeMethods.SuspendPainting(this.Handle);
+            this.ResumeLayout(true);
+            NativeMethods.ResumePainting(this.Handle);
             this.Refresh();
         }
 
@@ -887,6 +889,7 @@ namespace UIRibbonTools
             toolPreviewLanguageCombo.SelectedIndexChanged -= LanguageComboBox_SelectedIndexChanged;
             toolPreviewLanguageCombo.BeginUpdate();
             toolPreviewLanguageCombo.Items.Clear();
+            toolPreviewLanguageCombo.Enabled = true;
             toolPreviewLanguageCombo.Items.Add(BuildPreviewHelper.Neutral);
             if (languages != null)
             {

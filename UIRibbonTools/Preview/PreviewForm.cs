@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 using RibbonLib;
 using RibbonLib.Controls;
 using RibbonLib.Interop;
@@ -23,6 +24,7 @@ namespace UIRibbonTools
         {
             _buildPreviewHelper = BuildPreviewHelper.Instance;
             InitializeComponent();
+            this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             ribbon.ResourceName = _buildPreviewHelper.RibbonResourceName;
             _classBuilder = new RibbonClassBuilder(ribbon);
 

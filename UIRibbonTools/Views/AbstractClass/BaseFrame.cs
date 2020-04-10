@@ -58,6 +58,9 @@ namespace UIRibbonTools
 {
     partial class BaseFrame : UserControl
     {
+        protected const float ThirdColumnWidth = 200f; //145f
+        protected const float FourthColumnWidth = 24f; //24f
+
         private TRibbonObject _subject;
         private TreeNode _subjectNode;
         private bool _updating;
@@ -157,8 +160,8 @@ namespace UIRibbonTools
             this._layoutPanel.ColumnCount = 4;
             this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F)); // 145F)); //@ ?
-            this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, ThirdColumnWidth)); // 145F)); //@ ?
+            this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, FourthColumnWidth));
             this._layoutPanel.Location = new System.Drawing.Point(3, 3);
             this._layoutPanel.Name = "_layoutPanel";
             this._layoutPanel.RowCount = 14;

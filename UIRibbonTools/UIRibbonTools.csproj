@@ -9,7 +9,7 @@
     <RootNamespace>UIRibbonTools</RootNamespace>
     <AssemblyName>UIRibbonTools</AssemblyName>
     <ApplicationIcon>Images\Ribbon.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -152,7 +152,7 @@
     <Compile Include="Preview\PreviewForm.Designer.cs">
       <DependentUpon>PreviewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Preview\PreviewHelper.cs" />
+    <Compile Include="Preview\BuildPreviewHelper.cs" />
     <Compile Include="Preview\RibbonClassBuilder.cs" />
     <Compile Include="Views\AbstractClass\BaseFrame.cs">
       <SubType>UserControl</SubType>

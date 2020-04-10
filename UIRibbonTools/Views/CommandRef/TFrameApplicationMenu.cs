@@ -66,7 +66,7 @@ namespace UIRibbonTools
             this.groupLayout.ColumnCount = 3;
             this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
             this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
+            this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, ThirdColumnWidth + 18F));
             this.groupLayout.Controls.Add(this._checkBoxEnableRecentItems, 0, 0);
             this.groupLayout.Controls.Add(this._labelCaptionCommand, 0, 1);
             this.groupLayout.Controls.Add(this._comboBoxCaptionCommand, 1, 1);

@@ -30,7 +30,6 @@ namespace UIRibbonTools
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreviewForm));
             this.ribbon = new RibbonLib.Ribbon();
-            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabSheetAppModes = new System.Windows.Forms.TabPage();
             this.checkedListBoxAppModes = new System.Windows.Forms.CheckedListBox();
             this.labelAppModes = new System.Windows.Forms.Label();
@@ -51,6 +50,8 @@ namespace UIRibbonTools
             this.numericUpDownB_G = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDownB_B = new System.Windows.Forms.NumericUpDown();
+            this.backgroundColorPanel = new System.Windows.Forms.Panel();
+            this.backgroundButton = new System.Windows.Forms.Button();
             this.highlightGroup = new System.Windows.Forms.GroupBox();
             this.highlightLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,6 +60,8 @@ namespace UIRibbonTools
             this.numericUpDownH_G = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDownH_B = new System.Windows.Forms.NumericUpDown();
+            this.highlightColorPanel = new System.Windows.Forms.Panel();
+            this.highlightButton = new System.Windows.Forms.Button();
             this.textColorGroup = new System.Windows.Forms.GroupBox();
             this.textLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
@@ -67,14 +70,10 @@ namespace UIRibbonTools
             this.numericUpDownT_G = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.numericUpDownT_B = new System.Windows.Forms.NumericUpDown();
-            this.backgroundColorPanel = new System.Windows.Forms.Panel();
-            this.highlightColorPanel = new System.Windows.Forms.Panel();
             this.textColorPanel = new System.Windows.Forms.Panel();
-            this.getColorsButton = new System.Windows.Forms.Button();
-            this.backgroundButton = new System.Windows.Forms.Button();
-            this.highlightButton = new System.Windows.Forms.Button();
             this.textButton = new System.Windows.Forms.Button();
-            this.tabControl.SuspendLayout();
+            this.getColorsButton = new System.Windows.Forms.Button();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabSheetAppModes.SuspendLayout();
             this.tabSheetContextTabs.SuspendLayout();
             this.tabSheetContextPopups.SuspendLayout();
@@ -95,6 +94,7 @@ namespace UIRibbonTools
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownT_R)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownT_G)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownT_B)).BeginInit();
+            this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbon
@@ -106,21 +106,6 @@ namespace UIRibbonTools
             this.ribbon.ShortcutTableResourceName = null;
             this.ribbon.Size = new System.Drawing.Size(800, 114);
             this.ribbon.TabIndex = 0;
-            // 
-            // tabControl
-            // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl.Controls.Add(this.tabSheetAppModes);
-            this.tabControl.Controls.Add(this.tabSheetContextTabs);
-            this.tabControl.Controls.Add(this.tabSheetContextPopups);
-            this.tabControl.Controls.Add(this.tabSheetColorize);
-            this.tabControl.Location = new System.Drawing.Point(0, 134);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(800, 316);
-            this.tabControl.TabIndex = 1;
             // 
             // tabSheetAppModes
             // 
@@ -251,15 +236,15 @@ namespace UIRibbonTools
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.textButton, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.highlightButton, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.backgroundGroupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.highlightGroup, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textColorGroup, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.backgroundColorPanel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.highlightColorPanel, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textColorPanel, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.backgroundButton, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.highlightGroup, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.highlightColorPanel, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.highlightButton, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.textColorGroup, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.textColorPanel, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textButton, 2, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
@@ -382,6 +367,26 @@ namespace UIRibbonTools
             this.numericUpDownB_B.Size = new System.Drawing.Size(91, 20);
             this.numericUpDownB_B.TabIndex = 6;
             // 
+            // backgroundColorPanel
+            // 
+            this.backgroundColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.backgroundColorPanel.Location = new System.Drawing.Point(3, 121);
+            this.backgroundColorPanel.Name = "backgroundColorPanel";
+            this.backgroundColorPanel.Size = new System.Drawing.Size(200, 18);
+            this.backgroundColorPanel.TabIndex = 3;
+            // 
+            // backgroundButton
+            // 
+            this.backgroundButton.AutoSize = true;
+            this.backgroundButton.Location = new System.Drawing.Point(3, 145);
+            this.backgroundButton.Name = "backgroundButton";
+            this.backgroundButton.Size = new System.Drawing.Size(94, 23);
+            this.backgroundButton.TabIndex = 6;
+            this.backgroundButton.Text = "Set Background";
+            this.backgroundButton.UseVisualStyleBackColor = true;
+            // 
             // highlightGroup
             // 
             this.highlightGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -494,6 +499,26 @@ namespace UIRibbonTools
             this.numericUpDownH_B.Name = "numericUpDownH_B";
             this.numericUpDownH_B.Size = new System.Drawing.Size(91, 20);
             this.numericUpDownH_B.TabIndex = 6;
+            // 
+            // highlightColorPanel
+            // 
+            this.highlightColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.highlightColorPanel.Location = new System.Drawing.Point(209, 121);
+            this.highlightColorPanel.Name = "highlightColorPanel";
+            this.highlightColorPanel.Size = new System.Drawing.Size(200, 18);
+            this.highlightColorPanel.TabIndex = 4;
+            // 
+            // highlightButton
+            // 
+            this.highlightButton.AutoSize = true;
+            this.highlightButton.Location = new System.Drawing.Point(209, 145);
+            this.highlightButton.Name = "highlightButton";
+            this.highlightButton.Size = new System.Drawing.Size(94, 23);
+            this.highlightButton.TabIndex = 7;
+            this.highlightButton.Text = "Set Highlight";
+            this.highlightButton.UseVisualStyleBackColor = true;
             // 
             // textColorGroup
             // 
@@ -608,26 +633,6 @@ namespace UIRibbonTools
             this.numericUpDownT_B.Size = new System.Drawing.Size(91, 20);
             this.numericUpDownT_B.TabIndex = 6;
             // 
-            // backgroundColorPanel
-            // 
-            this.backgroundColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.backgroundColorPanel.Location = new System.Drawing.Point(3, 121);
-            this.backgroundColorPanel.Name = "backgroundColorPanel";
-            this.backgroundColorPanel.Size = new System.Drawing.Size(200, 18);
-            this.backgroundColorPanel.TabIndex = 3;
-            // 
-            // highlightColorPanel
-            // 
-            this.highlightColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.highlightColorPanel.Location = new System.Drawing.Point(209, 121);
-            this.highlightColorPanel.Name = "highlightColorPanel";
-            this.highlightColorPanel.Size = new System.Drawing.Size(200, 18);
-            this.highlightColorPanel.TabIndex = 4;
-            // 
             // textColorPanel
             // 
             this.textColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -637,35 +642,6 @@ namespace UIRibbonTools
             this.textColorPanel.Name = "textColorPanel";
             this.textColorPanel.Size = new System.Drawing.Size(200, 18);
             this.textColorPanel.TabIndex = 5;
-            // 
-            // getColorsButton
-            // 
-            this.getColorsButton.Location = new System.Drawing.Point(8, 180);
-            this.getColorsButton.Name = "getColorsButton";
-            this.getColorsButton.Size = new System.Drawing.Size(75, 23);
-            this.getColorsButton.TabIndex = 0;
-            this.getColorsButton.Text = "Get Colors";
-            this.getColorsButton.UseVisualStyleBackColor = true;
-            // 
-            // backgroundButton
-            // 
-            this.backgroundButton.AutoSize = true;
-            this.backgroundButton.Location = new System.Drawing.Point(3, 145);
-            this.backgroundButton.Name = "backgroundButton";
-            this.backgroundButton.Size = new System.Drawing.Size(94, 23);
-            this.backgroundButton.TabIndex = 6;
-            this.backgroundButton.Text = "Set Background";
-            this.backgroundButton.UseVisualStyleBackColor = true;
-            // 
-            // highlightButton
-            // 
-            this.highlightButton.AutoSize = true;
-            this.highlightButton.Location = new System.Drawing.Point(209, 145);
-            this.highlightButton.Name = "highlightButton";
-            this.highlightButton.Size = new System.Drawing.Size(94, 23);
-            this.highlightButton.TabIndex = 7;
-            this.highlightButton.Text = "Set Highlight";
-            this.highlightButton.UseVisualStyleBackColor = true;
             // 
             // textButton
             // 
@@ -677,6 +653,30 @@ namespace UIRibbonTools
             this.textButton.Text = "Set Text";
             this.textButton.UseVisualStyleBackColor = true;
             // 
+            // getColorsButton
+            // 
+            this.getColorsButton.Location = new System.Drawing.Point(8, 180);
+            this.getColorsButton.Name = "getColorsButton";
+            this.getColorsButton.Size = new System.Drawing.Size(75, 23);
+            this.getColorsButton.TabIndex = 0;
+            this.getColorsButton.Text = "Get Colors";
+            this.getColorsButton.UseVisualStyleBackColor = true;
+            // 
+            // tabControl
+            // 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Controls.Add(this.tabSheetAppModes);
+            this.tabControl.Controls.Add(this.tabSheetContextTabs);
+            this.tabControl.Controls.Add(this.tabSheetContextPopups);
+            this.tabControl.Controls.Add(this.tabSheetColorize);
+            this.tabControl.Location = new System.Drawing.Point(0, 134);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(800, 316);
+            this.tabControl.TabIndex = 1;
+            // 
             // PreviewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -684,11 +684,9 @@ namespace UIRibbonTools
             this.ClientSize = new System.Drawing.Size(800, 462);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.ribbon);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PreviewForm";
             this.ShowInTaskbar = false;
             this.Text = "Ribbon Preview";
-            this.tabControl.ResumeLayout(false);
             this.tabSheetAppModes.ResumeLayout(false);
             this.tabSheetAppModes.PerformLayout();
             this.tabSheetContextTabs.ResumeLayout(false);
@@ -717,6 +715,7 @@ namespace UIRibbonTools
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownT_R)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownT_G)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownT_B)).EndInit();
+            this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
