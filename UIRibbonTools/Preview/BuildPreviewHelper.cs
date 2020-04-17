@@ -25,6 +25,18 @@ namespace UIRibbonTools
         private string _selectedCulture = Neutral;
         private Action<MessageKind, string> _log;
 
+        public bool HasValidParser
+        {
+            get { return (Parser != null); }
+            set
+            {
+                if (!value)
+                    Parser = null;
+                else if (Parser == null)
+                    Parser = new RibbonParser(XmlRibbonFile);
+            }
+        }
+
         public static BuildPreviewHelper Instance = new BuildPreviewHelper();
 
         private BuildPreviewHelper()
@@ -63,7 +75,7 @@ namespace UIRibbonTools
             set { _selectedCulture = value; }
         }
 
-        public RibbonParser Parser { get; set; }
+        public RibbonParser Parser { get; private set; }
 
         public void SetActions(Action<bool> buildActionEnabled, Action<bool> previewActionEnabled, Action<MessageKind, string> log
             , Action<IList<string>> setLanguages)
@@ -129,7 +141,8 @@ namespace UIRibbonTools
             {
                 SetRibbonResourceName(ribbonResourceFileName);
                 previewEnabled = true;
-                Parser = new RibbonParser(path);
+                if (Parser == null)
+                    Parser = new RibbonParser(path);
             }
             return previewEnabled;
         }

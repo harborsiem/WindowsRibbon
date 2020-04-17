@@ -67,8 +67,7 @@ namespace UIRibbonTools
             InitializeComponent();
             if (components == null)
                 components = new Container();
-            Icon appIcon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
-            this.Icon = appIcon;
+            this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             FormMain = this;
             CreateMainBitmaps();
             _buildPreviewHelper = BuildPreviewHelper.Instance;
@@ -236,13 +235,14 @@ namespace UIRibbonTools
             _actionWebSite.SetComponent(menuWebSite, true);
 
             _actionDotnetWebSite.Execute += ActionDotnetWebSiteExecute;
+            _actionDotnetWebSite.Hint = "C#, VB UIRibbon Framework";
             _actionDotnetWebSite.ImageIndex = 7;
-            _actionDotnetWebSite.Text = "Website for .NET UIRibbon Framework";
+            _actionDotnetWebSite.Text = "Website for .NET WindowsRibbon";
             _actionDotnetWebSite.SetComponent(menuDotnetWebSite, true);
 
             _actionMSDN.Execute += ActionMSDNExecute;
             _actionMSDN.ImageIndex = 6;
-            _actionMSDN.Text = "MSDN UIRibbon Documentation";
+            _actionMSDN.Text = "MSDN WindowsRibbon Documentation";
             _actionMSDN.SetComponent(menuMSDN, true);
 
             _actionSetResourceName.Execute += ActionSetResourceNameExecute;
@@ -692,7 +692,7 @@ namespace UIRibbonTools
             {
                 _modified = true;
                 statusModified.Text = RS_MODIFIED;
-                _buildPreviewHelper.Parser = null;
+                _buildPreviewHelper.HasValidParser = false;
             }
         }
 

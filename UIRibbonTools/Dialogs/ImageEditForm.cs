@@ -142,6 +142,7 @@ namespace UIRibbonTools
             openDialog.FileName = Path.GetFileName(_filename);
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
+                bool saveToBmp = false;
                 newFilename = openDialog.FileName;
 
                 //TUIImage will automatically convert to 32 - bit alpha image
@@ -156,16 +157,26 @@ namespace UIRibbonTools
 
                     if (!Addons.StartsText(_image.Owner.Directory, newFilename))
                     {
+                        saveToBmp = true;
                         newFilename = Path.Combine(_image.Owner.Directory, "Res");
                         Addons.ForceDirectories(newFilename);
                         newFilename = Path.Combine(newFilename, Path.GetFileName(openDialog.FileName));
-                        newFilename = Path.ChangeExtension(newFilename, ".bmp");
-                        bitmap.Save(newFilename, ImageFormat.Bmp); //@ changed, don't override the same file
+                        //newFilename = Path.ChangeExtension(newFilename, ".bmp");
+                        //bitmap.Save(newFilename, ImageFormat.Bmp); //@ changed, don't override the same file
                         //It seems to be a better solution when we copy the file when it is a .bmp with BM Header than bitmap.Save
                         //If the file from openDialog is the same as newFilename we can delete the openDialog file first
                         //or jump around the bitmap.Save
                         //we have to do some checks if the choosen file has a BM Header
                         //or is it possible for the UIRibbon, that we can use png files ?
+                    }
+                    if (!Path.GetExtension(newFilename).Equals("bmp", StringComparison.OrdinalIgnoreCase))
+                    {
+                        saveToBmp = true;
+                        newFilename = Path.ChangeExtension(newFilename, ".bmp");
+                    }
+                    if (saveToBmp)
+                    {
+                        bitmap.Save(newFilename, ImageFormat.Bmp); //@ changed, don't override the same file
                     }
 
                     EditImageFile.Text = _image.Owner.BuildRelativeFilename(newFilename);
@@ -173,6 +184,8 @@ namespace UIRibbonTools
 
                     ClearBitmap(_bitmap);
                     Graphics canvas = Graphics.FromImage(_bitmap);
+                    if (uIImage.PixelFormat != PixelFormat.Format32bppArgb)
+                        uIImage.MakeTransparent();
                     canvas.DrawImage(uIImage, new Point((64 - uIImage.Width) / 2, (64 - uIImage.Height) / 2));
                     canvas.Dispose();
                     PaintBox.Invalidate();

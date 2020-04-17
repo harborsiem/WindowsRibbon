@@ -49,8 +49,8 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Right)));
             this.topPanel.AutoSize = true;
             this.topPanel.ColumnCount = 2;
-            this.topPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.topPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.topPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.topPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.topPanel.Controls.Add(this.label1, 0, 0);
             this.topPanel.Controls.Add(this.LabeledEditSearchInput, 1, 0);
             this.topPanel.Location = new System.Drawing.Point(12, 3);
@@ -77,14 +77,15 @@ namespace UIRibbonTools
             // 
             this.LabeledEditSearchInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.LabeledEditSearchInput.Location = new System.Drawing.Point(113, 3);
+            this.LabeledEditSearchInput.Location = new System.Drawing.Point(98, 3);
             this.LabeledEditSearchInput.Name = "LabeledEditSearchInput";
-            this.LabeledEditSearchInput.Size = new System.Drawing.Size(251, 20);
+            this.LabeledEditSearchInput.Size = new System.Drawing.Size(266, 20);
             this.LabeledEditSearchInput.TabIndex = 1;
             // 
             // ListViewCommands
             // 
-            this.ListViewCommands.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ListViewCommands.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ListViewCommands.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
@@ -108,7 +109,7 @@ namespace UIRibbonTools
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Caption";
+            this.columnHeader2.Text = "Label Title";
             this.columnHeader2.Width = 220;
             // 
             // bottomPanel
@@ -155,6 +156,8 @@ namespace UIRibbonTools
             this.dialogLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dialogLayout.AutoSize = true;
+            this.dialogLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.dialogLayout.ColumnCount = 1;
             this.dialogLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.dialogLayout.Controls.Add(this.topPanel, 0, 0);
@@ -165,18 +168,21 @@ namespace UIRibbonTools
             this.dialogLayout.Name = "dialogLayout";
             this.dialogLayout.RowCount = 3;
             this.dialogLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.dialogLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.dialogLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.dialogLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.dialogLayout.Size = new System.Drawing.Size(391, 246);
             this.dialogLayout.TabIndex = 0;
             // 
-            // TCommandSearchForm
+            // CommandSearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 264);
             this.Controls.Add(this.dialogLayout);
-            this.Name = "TCommandSearchForm";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(407, 303);
+            this.Name = "CommandSearchForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Search for command";
@@ -186,6 +192,7 @@ namespace UIRibbonTools
             this.dialogLayout.ResumeLayout(false);
             this.dialogLayout.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

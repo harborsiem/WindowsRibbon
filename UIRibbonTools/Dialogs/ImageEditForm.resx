@@ -123,7 +123,7 @@ Ribbon file (or a subdirectory of this directory), then the image will be copied
 subdirectory.
 2. For best results, regular image files should be 32-bit BMP or PNG files with an Alpha 
 channel. The image will automatically be converted to a 32-bit BMP file. If the image file
-is 24-bit or lower, to color of the lower-left pixel will be treated as the transparent color.
+is 24-bit or lower, the color of the lower-left pixel will be treated as the transparent color.
 3. High-Contrast images should be 4-bit BMP files, where the Magenta color is treated
 as transparent.
 4. Small images should be 16x16 pixels, large images should be 32x32 pixels.

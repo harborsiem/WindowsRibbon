@@ -29,11 +29,11 @@ namespace UIRibbonTools
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.emptyRadioButton = new System.Windows.Forms.RadioButton();
+            this.wordPadRadioButton = new System.Windows.Forms.RadioButton();
             this.RadioGroupTemplate = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.directoryButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.EditDirectory = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,8 +58,8 @@ namespace UIRibbonTools
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.radioButton1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.radioButton2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.emptyRadioButton, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.wordPadRadioButton, 0, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -69,27 +69,27 @@ namespace UIRibbonTools
             this.tableLayoutPanel1.Size = new System.Drawing.Size(334, 46);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // radioButton1
+            // emptyRadioButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(3, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(206, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Create a new empty Ribbon document";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.emptyRadioButton.AutoSize = true;
+            this.emptyRadioButton.Checked = true;
+            this.emptyRadioButton.Location = new System.Drawing.Point(3, 3);
+            this.emptyRadioButton.Name = "emptyRadioButton";
+            this.emptyRadioButton.Size = new System.Drawing.Size(206, 17);
+            this.emptyRadioButton.TabIndex = 0;
+            this.emptyRadioButton.TabStop = true;
+            this.emptyRadioButton.Text = "Create a new empty Ribbon document";
+            this.emptyRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // wordPadRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(3, 26);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(312, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Create a new Ribbon document using the WordPad template";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.wordPadRadioButton.AutoSize = true;
+            this.wordPadRadioButton.Location = new System.Drawing.Point(3, 26);
+            this.wordPadRadioButton.Name = "wordPadRadioButton";
+            this.wordPadRadioButton.Size = new System.Drawing.Size(312, 17);
+            this.wordPadRadioButton.TabIndex = 1;
+            this.wordPadRadioButton.Text = "Create a new Ribbon document using the WordPad template";
+            this.wordPadRadioButton.UseVisualStyleBackColor = true;
             // 
             // RadioGroupTemplate
             // 
@@ -106,11 +106,14 @@ namespace UIRibbonTools
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel2.Controls.Add(this.button1, 2, 0);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel2.Controls.Add(this.directoryButton, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.EditDirectory, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 1);
@@ -124,14 +127,14 @@ namespace UIRibbonTools
             this.tableLayoutPanel2.Size = new System.Drawing.Size(334, 53);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
-            // button1
+            // directoryButton
             // 
-            this.button1.Location = new System.Drawing.Point(302, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 24);
-            this.button1.TabIndex = 2;
-            this.button1.UseVisualStyleBackColor = true;
+            this.directoryButton.Location = new System.Drawing.Point(307, 0);
+            this.directoryButton.Margin = new System.Windows.Forms.Padding(0);
+            this.directoryButton.Name = "directoryButton";
+            this.directoryButton.Size = new System.Drawing.Size(24, 24);
+            this.directoryButton.TabIndex = 2;
+            this.directoryButton.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -151,7 +154,7 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EditDirectory.Location = new System.Drawing.Point(58, 3);
             this.EditDirectory.Name = "EditDirectory";
-            this.EditDirectory.Size = new System.Drawing.Size(241, 20);
+            this.EditDirectory.Size = new System.Drawing.Size(246, 20);
             this.EditDirectory.TabIndex = 1;
             // 
             // label2
@@ -208,6 +211,7 @@ namespace UIRibbonTools
             // ButtonOk
             // 
             this.ButtonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.ButtonOk.Enabled = false;
             this.ButtonOk.Location = new System.Drawing.Point(3, 3);
             this.ButtonOk.Name = "ButtonOk";
             this.ButtonOk.Size = new System.Drawing.Size(75, 23);
@@ -246,18 +250,17 @@ namespace UIRibbonTools
             this.dialogLayout.Size = new System.Drawing.Size(346, 216);
             this.dialogLayout.TabIndex = 0;
             // 
-            // TFormNewFile
+            // NewFileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 234);
             this.Controls.Add(this.dialogLayout);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "TFormNewFile";
+            this.Name = "NewFileForm";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Ribbon Document";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -266,6 +269,7 @@ namespace UIRibbonTools
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.GroupBoxPath.ResumeLayout(false);
+            this.GroupBoxPath.PerformLayout();
             this.buttons.ResumeLayout(false);
             this.dialogLayout.ResumeLayout(false);
             this.dialogLayout.PerformLayout();
@@ -276,8 +280,8 @@ namespace UIRibbonTools
 
         #endregion
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton wordPadRadioButton;
+        private System.Windows.Forms.RadioButton emptyRadioButton;
         private System.Windows.Forms.GroupBox RadioGroupTemplate;
         private System.Windows.Forms.GroupBox GroupBoxPath;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -288,7 +292,7 @@ namespace UIRibbonTools
         private System.Windows.Forms.TableLayoutPanel buttons;
         private System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.Button ButtonOk;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button directoryButton;
         private System.Windows.Forms.TableLayoutPanel dialogLayout;
     }
 }

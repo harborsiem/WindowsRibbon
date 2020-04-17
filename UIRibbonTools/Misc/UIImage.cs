@@ -11,7 +11,7 @@ using System.IO;
 
 namespace UIRibbonTools
 {
-    sealed class UIImage : IUIImage
+    public sealed class UIImage : IUIImage
     {
         static IUIImageFromBitmap s_imageFactory;
         static UIImage()
@@ -70,6 +70,23 @@ namespace UIRibbonTools
         //    s_imageFactory = null;
         //}
 
+        public static bool IsBmpFile(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                byte[] bytes = File.ReadAllBytes(fileName);
+                if (bytes.Length > 54)
+                {
+                    string headerMark = Encoding.ASCII.GetString(bytes, 0, 2);
+                    if (headerMark.Equals("BM"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public static Bitmap BitmapFromFile(string fileName, bool highContrast = false)
         {
             Bitmap bitmap = null;
@@ -104,6 +121,20 @@ namespace UIRibbonTools
                 if (!(bitmap.PixelFormat == PixelFormat.Format32bppArgb || bitmap.PixelFormat == PixelFormat.Format32bppPArgb))
                     bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
             return bitmap;
+        }
+
+        public static Bitmap GetManagedARGBBitmap(IntPtr hBmp)
+        {
+            // Create the BITMAP structure and get info from our nativeHBitmap
+            NativeMethods.BITMAP bitmapStruct = new NativeMethods.BITMAP();
+            NativeMethods.GetObjectBitmap(hBmp, Marshal.SizeOf(bitmapStruct), ref bitmapStruct);
+
+            // Create the managed bitmap using the pointer to the pixel data of the native HBitmap
+            Bitmap managedBitmap = new Bitmap(
+                bitmapStruct.bmWidth, bitmapStruct.bmHeight, bitmapStruct.bmWidthBytes, PixelFormat.Format32bppArgb, bitmapStruct.bmBits);
+            if (bitmapStruct.bmHeight > 0)
+                managedBitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            return managedBitmap;
         }
 
         public void Load(string fileName, bool highContrast = false)

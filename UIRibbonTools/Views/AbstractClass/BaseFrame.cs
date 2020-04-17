@@ -198,13 +198,13 @@ namespace UIRibbonTools
         protected virtual void InitComponentStep3()
         {
             // 
-            // TBaseFrame
+            // BaseFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._panel);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "TBaseFrame";
+            this.Name = "BaseFrame";
             this.Size = new System.Drawing.Size(469, 240);
         }
 

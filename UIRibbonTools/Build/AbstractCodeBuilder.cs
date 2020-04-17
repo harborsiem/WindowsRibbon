@@ -113,7 +113,7 @@ namespace UIRibbonTools
         protected string GetPropertyName(string commandName)
         {
             string result;
-            if (commandName.StartsWith("cmd", StringComparison.InvariantCultureIgnoreCase))
+            if (commandName.StartsWith("cmd", StringComparison.OrdinalIgnoreCase))
             {
                 result = commandName.Substring(3);
             }

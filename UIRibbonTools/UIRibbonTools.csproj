@@ -38,6 +38,12 @@
     <NoWarn>
     </NoWarn>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>RibbonGenerator.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ribbon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4a850abcb1bad68b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -574,6 +580,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Wordpad.zip" />
     <EmbeddedResource Include="Template.bat" />
+    <None Include="RibbonGenerator.snk" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

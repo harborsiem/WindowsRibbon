@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace UIRibbonTools
 {
-    public partial class ApplicationModesForm : Form
+    partial class ApplicationModesForm : Form
     {
         private uint _appModes;
 

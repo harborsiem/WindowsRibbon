@@ -178,6 +178,7 @@ namespace UIRibbonTools
             {
                 foreach (string s in openDialog.FileNames)
                 {
+                    bool saveToBmp = false;
                     filename = s;
 
                     if ((ImageFlags.Large & _flags) != 0)
@@ -199,10 +200,17 @@ namespace UIRibbonTools
 
                         if (!Addons.StartsText(image.Owner.Directory, filename))
                         {
+                            saveToBmp = true;
                             filename = Path.Combine(image.Owner.Directory, "Res");
                             Addons.ForceDirectories(filename);
                             filename = Path.Combine(filename, Path.GetFileName(s));
+                        }
+                        if (!Path.GetExtension(filename).Equals("bmp", StringComparison.OrdinalIgnoreCase)) {
+                            saveToBmp = true;
                             filename = Path.ChangeExtension(filename, ".bmp");
+                        }
+                        if (saveToBmp)
+                        {
                             bitmap.Save(filename, ImageFormat.Bmp); //@ changed, don't override the same file
                         }
                         image.Source = image.Owner.BuildRelativeFilename(filename);

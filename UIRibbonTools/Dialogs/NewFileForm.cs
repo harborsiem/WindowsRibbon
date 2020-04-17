@@ -17,51 +17,57 @@ namespace UIRibbonTools
 
         public NewFileForm()
         {
+            //if (!DesignMode)
+            //    Font = SystemFonts.MessageBoxFont;
             InitializeComponent();
+            this.Icon = Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            //this.ClientSize = new Size(dialogLayout.Width + 18, dialogLayout.Height + 18);
+            this.MinimumSize = this.Size;
+            this.MaximumSize = new Size(Int32.MaxValue, this.Size.Height);
             if (components == null)
                 components = new Container();
-            button1.ImageList = ImageManager.ImageList_NewFile(components);
-            button1.ImageIndex = 0;
-            button1.MouseEnter += Button1_MouseEnter;
-            button1.MouseLeave += Button1_MouseLeave;
-            EditDirectory.Text = Directory.GetCurrentDirectory();
-            button1.Click += EditDirectoryRightButtonClick;
+            directoryButton.ImageList = ImageManager.ImageList_NewFile(components);
+            directoryButton.ImageIndex = 0;
+            directoryButton.MouseEnter += Button1_MouseEnter;
+            directoryButton.MouseLeave += Button1_MouseLeave;
+            //EditDirectory.Text = Directory.GetCurrentDirectory();
+            directoryButton.Click += EditDirectoryRightButtonClick;
             EditFilename.TextChanged += EditFilenameChange;
             EditDirectory.TextChanged += EditDirectoryChange;
         }
 
         private void Button1_MouseLeave(object sender, EventArgs e)
         {
-            button1.ImageIndex = 0;
+            directoryButton.ImageIndex = 0;
         }
 
         private void Button1_MouseEnter(object sender, EventArgs e)
         {
-            button1.ImageIndex = 1;
+            directoryButton.ImageIndex = 1;
         }
 
         public static bool NewFileDialog(out RibbonTemplate template, out string fileName)
         {
-            NewFileForm form;
+            NewFileForm dialog;
             bool result;
             template = RibbonTemplate.None;
             fileName = string.Empty;
-            form = new NewFileForm();
+            dialog = new NewFileForm();
             try
             {
-                result = (form.ShowDialog() == DialogResult.OK);
+                result = (dialog.ShowDialog() == DialogResult.OK);
                 if (result)
                 {
                     int itemIndex = 0;
-                    if (form.radioButton2.Checked)
+                    if (dialog.wordPadRadioButton.Checked)
                         itemIndex = 1;
                     template = (RibbonTemplate)(itemIndex);
-                    fileName = Path.Combine(form.EditDirectory.Text, form.EditFilename.Text);
+                    fileName = Path.Combine(dialog.EditDirectory.Text, dialog.EditFilename.Text);
                 }
             }
             finally
             {
-                form.Close();
+                dialog.Close();
             }
             return result;
         }

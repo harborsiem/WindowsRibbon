@@ -217,7 +217,7 @@ namespace UIRibbonTools
 
         public virtual string DisplayName()
         {
-            const string TRibbon = "TRibbon"; //@ attention with renaming class names
+            const string TRibbon = "TRibbon"; //@ attention when renaming class names
             string result = GetType().Name;
             if (result.StartsWith(TRibbon))
                 result = result.Substring(TRibbon.Length);
