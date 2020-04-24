@@ -269,6 +269,7 @@ namespace UIRibbonTools
             // 
             this.groupLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupLayout.AutoSize = true;
             this.groupLayout.ColumnCount = 3;
             this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
             this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
@@ -436,7 +437,8 @@ namespace UIRibbonTools
             // 
             this.LayoutPanel.SetColumnSpan(this._groupBox1, 4);
             this._groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom)));
+            this._groupBox1.AutoSize = true;
             this._groupBox1.Controls.Add(this.groupLayout);
             this._groupBox1.Location = new System.Drawing.Point(3, 186);
             this._groupBox1.Name = "_groupBox1";

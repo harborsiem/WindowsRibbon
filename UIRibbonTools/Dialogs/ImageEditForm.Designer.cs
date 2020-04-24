@@ -34,7 +34,7 @@ namespace UIRibbonTools
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageEditForm));
             this.PaintBox = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.topRightLayout = new System.Windows.Forms.TableLayoutPanel();
             this.Label2 = new System.Windows.Forms.Label();
             this.EditImageFile = new System.Windows.Forms.TextBox();
             this.Label3 = new System.Windows.Forms.Label();
@@ -46,14 +46,14 @@ namespace UIRibbonTools
             this.RightButton = new System.Windows.Forms.Button();
             this.Label1 = new System.Windows.Forms.Label();
             this.MemoHelp = new System.Windows.Forms.TextBox();
-            this.PanelButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonOk = new System.Windows.Forms.Button();
+            this.buttonsPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonOk = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.dialogLayout = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.PaintBox)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.topRightLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EditResourceId)).BeginInit();
-            this.PanelButtons.SuspendLayout();
+            this.buttonsPanel.SuspendLayout();
             this.dialogLayout.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,35 +67,35 @@ namespace UIRibbonTools
             this.PaintBox.TabIndex = 2;
             this.PaintBox.TabStop = false;
             // 
-            // tableLayoutPanel1
+            // topRightLayout
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.topRightLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.Controls.Add(this.Label2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.EditImageFile, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.Label3, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.ComboBoxMinDpi, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.EditResourceId, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.EditSymbol, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.RightButton, 2, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(67, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(359, 105);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.topRightLayout.AutoSize = true;
+            this.topRightLayout.ColumnCount = 3;
+            this.topRightLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.topRightLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.topRightLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.topRightLayout.Controls.Add(this.Label2, 0, 0);
+            this.topRightLayout.Controls.Add(this.EditImageFile, 1, 0);
+            this.topRightLayout.Controls.Add(this.Label3, 0, 1);
+            this.topRightLayout.Controls.Add(this.ComboBoxMinDpi, 1, 1);
+            this.topRightLayout.Controls.Add(this.label6, 0, 2);
+            this.topRightLayout.Controls.Add(this.EditResourceId, 1, 2);
+            this.topRightLayout.Controls.Add(this.label7, 0, 3);
+            this.topRightLayout.Controls.Add(this.EditSymbol, 1, 3);
+            this.topRightLayout.Controls.Add(this.RightButton, 2, 0);
+            this.topRightLayout.Location = new System.Drawing.Point(67, 0);
+            this.topRightLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.topRightLayout.Name = "topRightLayout";
+            this.topRightLayout.RowCount = 4;
+            this.topRightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.topRightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.topRightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.topRightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.topRightLayout.Size = new System.Drawing.Size(359, 105);
+            this.topRightLayout.TabIndex = 2;
             // 
             // Label2
             // 
@@ -225,32 +225,32 @@ namespace UIRibbonTools
             this.MemoHelp.Text = resources.GetString("MemoHelp.Text");
             this.MemoHelp.WordWrap = false;
             // 
-            // PanelButtons
+            // buttonsPanel
             // 
-            this.PanelButtons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.PanelButtons.AutoSize = true;
-            this.PanelButtons.ColumnCount = 2;
-            this.PanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.PanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.PanelButtons.Controls.Add(this.ButtonOk, 0, 0);
-            this.PanelButtons.Controls.Add(this.buttonCancel, 1, 0);
-            this.PanelButtons.Location = new System.Drawing.Point(264, 327);
-            this.PanelButtons.Margin = new System.Windows.Forms.Padding(0);
-            this.PanelButtons.Name = "PanelButtons";
-            this.PanelButtons.RowCount = 1;
-            this.PanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.PanelButtons.Size = new System.Drawing.Size(162, 29);
-            this.PanelButtons.TabIndex = 0;
+            this.buttonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonsPanel.AutoSize = true;
+            this.buttonsPanel.ColumnCount = 2;
+            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.buttonsPanel.Controls.Add(this.buttonOk, 0, 0);
+            this.buttonsPanel.Controls.Add(this.buttonCancel, 1, 0);
+            this.buttonsPanel.Location = new System.Drawing.Point(264, 327);
+            this.buttonsPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonsPanel.Name = "buttonsPanel";
+            this.buttonsPanel.RowCount = 1;
+            this.buttonsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttonsPanel.Size = new System.Drawing.Size(162, 29);
+            this.buttonsPanel.TabIndex = 0;
             // 
-            // ButtonOk
+            // buttonOk
             // 
-            this.ButtonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.ButtonOk.Location = new System.Drawing.Point(3, 3);
-            this.ButtonOk.Name = "ButtonOk";
-            this.ButtonOk.Size = new System.Drawing.Size(75, 23);
-            this.ButtonOk.TabIndex = 0;
-            this.ButtonOk.Text = "OK";
-            this.ButtonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonOk.Location = new System.Drawing.Point(3, 3);
+            this.buttonOk.Name = "buttonOk";
+            this.buttonOk.Size = new System.Drawing.Size(75, 23);
+            this.buttonOk.TabIndex = 0;
+            this.buttonOk.Text = "OK";
+            this.buttonOk.UseVisualStyleBackColor = true;
             // 
             // buttonCancel
             // 
@@ -273,10 +273,10 @@ namespace UIRibbonTools
             this.dialogLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.dialogLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.dialogLayout.Controls.Add(this.PaintBox, 0, 0);
-            this.dialogLayout.Controls.Add(this.tableLayoutPanel1, 1, 0);
+            this.dialogLayout.Controls.Add(this.topRightLayout, 1, 0);
             this.dialogLayout.Controls.Add(this.Label1, 0, 1);
             this.dialogLayout.Controls.Add(this.MemoHelp, 0, 2);
-            this.dialogLayout.Controls.Add(this.PanelButtons, 1, 3);
+            this.dialogLayout.Controls.Add(this.buttonsPanel, 1, 3);
             this.dialogLayout.Location = new System.Drawing.Point(9, 9);
             this.dialogLayout.Margin = new System.Windows.Forms.Padding(0);
             this.dialogLayout.Name = "dialogLayout";
@@ -290,7 +290,7 @@ namespace UIRibbonTools
             // 
             // ImageEditForm
             // 
-            this.AcceptButton = this.ButtonOk;
+            this.AcceptButton = this.buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
@@ -306,10 +306,10 @@ namespace UIRibbonTools
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit Image";
             ((System.ComponentModel.ISupportInitialize)(this.PaintBox)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.topRightLayout.ResumeLayout(false);
+            this.topRightLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EditResourceId)).EndInit();
-            this.PanelButtons.ResumeLayout(false);
+            this.buttonsPanel.ResumeLayout(false);
             this.dialogLayout.ResumeLayout(false);
             this.dialogLayout.PerformLayout();
             this.ResumeLayout(false);
@@ -322,7 +322,7 @@ namespace UIRibbonTools
         private System.Windows.Forms.Label Label1;
         private System.Windows.Forms.TextBox MemoHelp;
         private System.Windows.Forms.PictureBox PaintBox;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel topRightLayout;
         private System.Windows.Forms.Label Label2;
         private System.Windows.Forms.TextBox EditImageFile;
         private System.Windows.Forms.Label Label3;
@@ -332,8 +332,8 @@ namespace UIRibbonTools
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox EditSymbol;
         private System.Windows.Forms.Button RightButton;
-        private System.Windows.Forms.TableLayoutPanel PanelButtons;
-        private System.Windows.Forms.Button ButtonOk;
+        private System.Windows.Forms.TableLayoutPanel buttonsPanel;
+        private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TableLayoutPanel dialogLayout;
     }

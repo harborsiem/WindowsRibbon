@@ -23,7 +23,11 @@ namespace UIRibbonTools
         public PreviewForm()
         {
             _buildPreviewHelper = BuildPreviewHelper.Instance;
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
+            this.Font = SystemFonts.MessageBoxFont;
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             ribbon.ResourceName = _buildPreviewHelper.RibbonResourceName;
             _classBuilder = new RibbonClassBuilder(ribbon);

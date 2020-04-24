@@ -67,7 +67,8 @@ namespace UIRibbonTools
             // 
             // _editApplicationModes
             // 
-            this._editApplicationModes.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+            this._editApplicationModes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._editApplicationModes.Location = new System.Drawing.Point(103, 0);
             this._editApplicationModes.Margin = new Padding(3, 3, 0, 3);
             this._editApplicationModes.Name = "_editApplicationModes";
@@ -77,7 +78,8 @@ namespace UIRibbonTools
             // 
             // _rightButton
             // 
-            this._rightButton.Anchor = AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Right;
+            this._rightButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._rightButton.ImageIndex = 0;
             this._rightButton.ImageList = _imageList;
             this._rightButton.Location = new System.Drawing.Point(229, 0);

@@ -18,9 +18,11 @@ namespace UIRibbonTools
 
         private CommandSearchForm()
         {
-            //if (!DesignMode)
-            //    Font = SystemFonts.MessageBoxFont;
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
+            this.Font = SystemFonts.MessageBoxFont;
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             buttonCancel.Click += ButtonCancelClick;
             buttonOK.Click += ButtonOKClick;

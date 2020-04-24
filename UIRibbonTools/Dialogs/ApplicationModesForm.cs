@@ -16,7 +16,11 @@ namespace UIRibbonTools
 
         public ApplicationModesForm()
         {
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
+            this.Font = SystemFonts.MessageBoxFont;
             ButtonCheckAll.Click += ButtonCheckAllClick;
             ButtonClearAll.Click += ButtonClearAllClick;
             this.Load += ApplicationModesForm_Load;

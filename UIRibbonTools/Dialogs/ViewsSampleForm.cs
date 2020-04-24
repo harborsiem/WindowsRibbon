@@ -14,6 +14,9 @@ namespace UIRibbonTools.Dialogs
     {
         public ViewsSampleForm()
         {
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
         }
     }

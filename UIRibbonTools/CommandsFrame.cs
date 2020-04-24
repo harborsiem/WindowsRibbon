@@ -31,7 +31,6 @@ namespace UIRibbonTools
         private int _newCommandIndex;
         //private TCommandSortType FSortBy;
         //private bool FSortDescending;
-        internal TableLayoutPanel PropertiesPanel { get; private set; }
         private TActionList _actionList;
         private TAction _actionAddCommand;
         private TAction _actionRemoveCommand;
@@ -44,19 +43,12 @@ namespace UIRibbonTools
 
         public CommandsFrame()
         {
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
             if (components == null)
                 components = new Container();
-            label10.Font = new Font(label10.Font, FontStyle.Bold);
-            label11.Font = new Font(label11.Font, FontStyle.Bold);
-            label8.Font = new Font(label8.Font, FontStyle.Bold);
-            label7.Font = new Font(label7.Font, FontStyle.Bold);
-            label20.Font = new Font(label20.Font, FontStyle.Bold);
-            label21.Font = new Font(label21.Font, FontStyle.Bold);
-            label22.Font = new Font(label22.Font, FontStyle.Bold);
-            label23.Font = new Font(label23.Font, FontStyle.Bold);
-            LabelHeader.Font = new Font(LabelHeader.Font, FontStyle.Bold);
-            PropertiesPanel = _propertiesPanel;
 
             _listViewColumnSorter = new ListViewColumnSorter();
             _listViewTimer = new Timer(); //@ added, because we don't want unEnabled the right site after each selection change
@@ -65,6 +57,28 @@ namespace UIRibbonTools
             bool runtime = (LicenseManager.UsageMode == LicenseUsageMode.Runtime);
             if (runtime)
                 InitAddon();
+        }
+
+        public void SetBoldFonts()
+        {
+            labelProperty.Font = new Font(labelProperty.Font, FontStyle.Bold);
+            labelValue.Font = new Font(labelValue.Font, FontStyle.Bold);
+            labelID.Font = new Font(labelID.Font, FontStyle.Bold);
+            labelSymbol.Font = new Font(labelSymbol.Font, FontStyle.Bold);
+            labelSmallImages.Font = new Font(labelSmallImages.Font, FontStyle.Bold);
+            labelLargeImages.Font = new Font(labelLargeImages.Font, FontStyle.Bold);
+            labelSmallHCImages.Font = new Font(labelSmallHCImages.Font, FontStyle.Bold);
+            labelLargeHCImages.Font = new Font(labelLargeHCImages.Font, FontStyle.Bold);
+            LabelHeader.Font = new Font(LabelHeader.Font, FontStyle.Bold);
+        }
+
+        public void SetFonts(Font font)
+        {
+            this.Font = font;
+            _smallImagesFrame.Font = font;
+            _largeImagesFrame.Font = font;
+            _smallHCImagesFrame.Font = font;
+            _largeHCImagesFrame.Font = font;
         }
 
         private void InitActions()
@@ -176,7 +190,7 @@ namespace UIRibbonTools
             EditKeytip.TextChanged += EditKeytipChange;
             EditKeytipId.TextChanged += EditKeytipIdChange;
             EditKeytipId.ValueChanged += UpDownChanging;
-            EditKeyTipSymbol.TextChanged += EditKeyTipSymbolChange;
+            EditKeytipSymbol.TextChanged += EditKeyTipSymbolChange;
 
             EditComment.TextChanged += EditCommentChange;
         }
@@ -235,7 +249,7 @@ namespace UIRibbonTools
             new ToolTip(components).SetToolTip(EditKeytipId,
                 "Numeric resource string identifier for the keytip." + Environment.NewLine +
                 "Use 0 for auto-generated identifiers.");
-            new ToolTip(components).SetToolTip(EditKeyTipSymbol,
+            new ToolTip(components).SetToolTip(EditKeytipSymbol,
                 "Constant name for the resource identifier." + Environment.NewLine +
                 "If not specified, it is automatically generated.");
             new ToolTip(components).SetToolTip(EditComment,
@@ -567,9 +581,9 @@ namespace UIRibbonTools
 
         private void EditKeyTipSymbolChange(object sender, EventArgs e)
         {
-            if (_command != null && (_command.Keytip.Symbol != EditKeyTipSymbol.Text))
+            if (_command != null && (_command.Keytip.Symbol != EditKeytipSymbol.Text))
             {
-                _command.Keytip.Symbol = EditKeyTipSymbol.Text;
+                _command.Keytip.Symbol = EditKeytipSymbol.Text;
                 Modified();
             }
         }
@@ -928,7 +942,7 @@ namespace UIRibbonTools
 
                     EditKeytip.Text = _command.Keytip.Content;
                     EditKeytipId.Value = _command.Keytip.Id;
-                    EditKeyTipSymbol.Text = _command.Keytip.Symbol;
+                    EditKeytipSymbol.Text = _command.Keytip.Symbol;
                 }
                 else
                 {
@@ -956,7 +970,7 @@ namespace UIRibbonTools
 
                     EditKeytip.Text = string.Empty;
                     EditKeytipId.Value = 0;
-                    EditKeyTipSymbol.Text = string.Empty;
+                    EditKeytipSymbol.Text = string.Empty;
                 }
                 _smallImagesFrame.ShowImages(_command, ImageFlags.None);
                 _largeImagesFrame.ShowImages(_command, ImageFlags.Large);
@@ -982,7 +996,7 @@ namespace UIRibbonTools
                     upDown.Value = 0;
             }
         }
-        
+
         //@ different
         //private void UpDownChangingEx(object sender, EventArgs e,
         //ref bool AllowChange, int NewValue, TUpDownDirection Direction)

@@ -14,28 +14,30 @@ namespace UIRibbonTools
     {
         protected InputBox()
         {
-            if (!DesignMode)
-                Font = SystemFonts.MessageBoxFont;
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
-            if (!DesignMode)
-            {
-                Graphics g = CreateGraphics();
-                int width = 640 * (int)g.DpiX / 96;
-                g.Dispose();
-                this.Size = new Size(width, this.Height);
-            }
+            //this.Font = SystemFonts.MessageBoxFont;
+        //    if (!DesignMode)
+        //    {
+        //        Graphics g = CreateGraphics();
+        //        int width = 640 * (int)g.DpiX / 96;
+        //        g.Dispose();
+        //        this.Size = new Size(width, this.Height);
+        //    }
         }
 
         public static string Show(string caption, string label, string text)
         {
             InputBox dialog = new InputBox();
-            dialog.label1.Text = label;
+            dialog.label.Text = label;
             dialog.Text = caption;
-            dialog.textBox1.Text = text;
+            dialog.textBox.Text = text;
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                return dialog.textBox1.Text;
+                return dialog.textBox.Text;
             }
             else
                 return string.Empty;
@@ -44,14 +46,14 @@ namespace UIRibbonTools
         public static string Show(Form owner, string caption, string label, string text)
         {
             InputBox dialog = new InputBox();
-            dialog.label1.Text = label;
+            dialog.label.Text = label;
             dialog.Text = caption;
-            dialog.textBox1.Text = text;
+            dialog.textBox.Text = text;
             dialog.Owner = owner;
 
             if (dialog.ShowDialog(owner) == DialogResult.OK)
             {
-                return dialog.textBox1.Text;
+                return dialog.textBox.Text;
             }
             else
                 return string.Empty;

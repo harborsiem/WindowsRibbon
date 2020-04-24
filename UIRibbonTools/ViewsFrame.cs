@@ -68,6 +68,9 @@ namespace UIRibbonTools
 
         public ViewsFrame()
         {
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
             if (components == null)
                 components = new Container();
@@ -77,6 +80,16 @@ namespace UIRibbonTools
                 InitializeAddon();
             _commands = new List<RibbonCommandItem>();
             _viewClasses = new Dictionary<ViewClasses, BaseFrame>(36);
+        }
+
+        public void SetBoldFonts()
+        {
+
+        }
+
+        public void SetFonts(Font font)
+        {
+            this.Font = font;
         }
 
         public List<RibbonCommandItem> Commands { get { return _commands; } }
@@ -804,6 +817,9 @@ namespace UIRibbonTools
             else
             {
                 T obj1 = new T();
+#if Core
+                obj1.Font = this.Font;
+#endif
                 _viewClasses[viewClazz] = obj1;
                 obj = obj1;
 

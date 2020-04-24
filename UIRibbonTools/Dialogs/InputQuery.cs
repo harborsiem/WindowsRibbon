@@ -14,28 +14,30 @@ namespace UIRibbonTools
     {
         protected InputQuery()
         {
-            if (!DesignMode)
-                Font = SystemFonts.MessageBoxFont;
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
-            if (!DesignMode)
-            {
-                Graphics g = CreateGraphics();
-                int width = 640 * (int)g.DpiX / 96;
-                g.Dispose();
-                this.Size = new Size(width, this.Height);
-            }
+            //this.Font = SystemFonts.MessageBoxFont;
+            //if (!DesignMode)
+            //{
+            //    Graphics g = CreateGraphics();
+            //    int width = 640 * (int)g.DpiX / 96;
+            //    g.Dispose();
+            //    this.Size = new Size(width, this.Height);
+            //}
         }
 
         public static DialogResult Show(string caption, string label, out string text)
         {
             InputQuery dialog = new InputQuery();
-            dialog.label1.Text = label;
+            dialog.label.Text = label;
             dialog.Text = caption;
             DialogResult result;
 
             if ((result = dialog.ShowDialog()) == DialogResult.OK)
             {
-                text = dialog.textBox1.Text;
+                text = dialog.textBox.Text;
             }
             else
                 text = string.Empty;
@@ -45,14 +47,14 @@ namespace UIRibbonTools
         public static DialogResult Show(Form owner, string caption, string label, out string text)
         {
             InputQuery dialog = new InputQuery();
-            dialog.label1.Text = label;
+            dialog.label.Text = label;
             dialog.Text = caption;
             DialogResult result;
             dialog.Owner = owner;
 
             if ((result = dialog.ShowDialog(owner)) == DialogResult.OK)
             {
-                text = dialog.textBox1.Text;
+                text = dialog.textBox.Text;
             }
             else
                 text = string.Empty;

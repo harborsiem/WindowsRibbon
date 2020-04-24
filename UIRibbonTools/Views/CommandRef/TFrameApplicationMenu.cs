@@ -63,6 +63,7 @@ namespace UIRibbonTools
             // 
             this.groupLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupLayout.AutoSize = true;
             this.groupLayout.ColumnCount = 3;
             this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
             this.groupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
@@ -159,8 +160,9 @@ namespace UIRibbonTools
             // _groupBoxRecentItems
             // 
             this._groupBoxRecentItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom)));
             this.LayoutPanel.SetColumnSpan(this._groupBoxRecentItems, 4);
+            this._groupBoxRecentItems.AutoSize = true;
             this._groupBoxRecentItems.Controls.Add(this.groupLayout);
             this._groupBoxRecentItems.Location = new System.Drawing.Point(3, 30);
             this._groupBoxRecentItems.Name = "_groupBoxRecentItems";

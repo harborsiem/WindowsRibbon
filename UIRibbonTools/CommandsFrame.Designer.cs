@@ -47,17 +47,17 @@ namespace UIRibbonTools
             this.menuMoveDown = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.LabelHeader = new System.Windows.Forms.ToolStripLabel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.labelProperty = new System.Windows.Forms.Label();
+            this.labelValue = new System.Windows.Forms.Label();
+            this.labelID = new System.Windows.Forms.Label();
+            this.labelSymbol = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelLabelTitle = new System.Windows.Forms.Label();
+            this.labelLabelDescription = new System.Windows.Forms.Label();
+            this.labelTooltipTitle = new System.Windows.Forms.Label();
+            this.labelTooltipDescription = new System.Windows.Forms.Label();
+            this.labelKeytip = new System.Windows.Forms.Label();
+            this.labelComment = new System.Windows.Forms.Label();
             this.EditName = new System.Windows.Forms.TextBox();
             this.EditCaption = new System.Windows.Forms.TextBox();
             this.EditDescription = new System.Windows.Forms.TextBox();
@@ -76,16 +76,16 @@ namespace UIRibbonTools
             this.EditDescriptionSymbol = new System.Windows.Forms.TextBox();
             this.EditTooltipTitleSymbol = new System.Windows.Forms.TextBox();
             this.EditTooltipDescriptionSymbol = new System.Windows.Forms.TextBox();
-            this.EditKeyTipSymbol = new System.Windows.Forms.TextBox();
+            this.EditKeytipSymbol = new System.Windows.Forms.TextBox();
             this._propertiesPanel = new System.Windows.Forms.TableLayoutPanel();
             this._smallImagesPanel = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
+            this.labelSmallImages = new System.Windows.Forms.Label();
             this._largeImagesPanel = new System.Windows.Forms.Panel();
-            this.label21 = new System.Windows.Forms.Label();
+            this.labelLargeImages = new System.Windows.Forms.Label();
             this._highContrastImagesPanel = new System.Windows.Forms.Panel();
-            this.label22 = new System.Windows.Forms.Label();
+            this.labelSmallHCImages = new System.Windows.Forms.Label();
             this._largeHCImagesPanel = new System.Windows.Forms.Panel();
-            this.label23 = new System.Windows.Forms.Label();
+            this.labelLargeHCImages = new System.Windows.Forms.Label();
             this.imagesPanel = new System.Windows.Forms.TableLayoutPanel();
             this._smallImagesFrame = new UIRibbonTools.ImageListFrame();
             this._largeImagesFrame = new UIRibbonTools.ImageListFrame();
@@ -257,128 +257,128 @@ namespace UIRibbonTools
             this.LabelHeader.Size = new System.Drawing.Size(126, 22);
             this.LabelHeader.Text = "  Command Properties";
             // 
-            // label10
+            // labelProperty
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(27, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(46, 19);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Property";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelProperty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.labelProperty.AutoSize = true;
+            this.labelProperty.Location = new System.Drawing.Point(27, 0);
+            this.labelProperty.Name = "labelProperty";
+            this.labelProperty.Size = new System.Drawing.Size(46, 19);
+            this.labelProperty.TabIndex = 0;
+            this.labelProperty.Text = "Property";
+            this.labelProperty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label11
+            // labelValue
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(205, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(34, 19);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Value";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.labelValue.AutoSize = true;
+            this.labelValue.Location = new System.Drawing.Point(205, 0);
+            this.labelValue.Name = "labelValue";
+            this.labelValue.Size = new System.Drawing.Size(34, 19);
+            this.labelValue.TabIndex = 1;
+            this.labelValue.Text = "Value";
+            this.labelValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label8
+            // labelID
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(374, 3);
-            this.label8.Margin = new System.Windows.Forms.Padding(3);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(18, 13);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "ID";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.labelID.AutoSize = true;
+            this.labelID.Location = new System.Drawing.Point(374, 3);
+            this.labelID.Margin = new System.Windows.Forms.Padding(3);
+            this.labelID.Name = "labelID";
+            this.labelID.Size = new System.Drawing.Size(18, 13);
+            this.labelID.TabIndex = 2;
+            this.labelID.Text = "ID";
+            this.labelID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label7
+            // labelSymbol
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(490, 3);
-            this.label7.Margin = new System.Windows.Forms.Padding(3);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 13);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Symbol";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelSymbol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.labelSymbol.AutoSize = true;
+            this.labelSymbol.Location = new System.Drawing.Point(490, 3);
+            this.labelSymbol.Margin = new System.Windows.Forms.Padding(3);
+            this.labelSymbol.Name = "labelSymbol";
+            this.labelSymbol.Size = new System.Drawing.Size(41, 13);
+            this.labelSymbol.TabIndex = 3;
+            this.labelSymbol.Text = "Symbol";
+            this.labelSymbol.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
+            // labelName
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.Location = new System.Drawing.Point(3, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 26);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Name";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelName.Location = new System.Drawing.Point(3, 19);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(95, 26);
+            this.labelName.TabIndex = 4;
+            this.labelName.Text = "Name";
+            this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // labelLabelTitle
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelLabelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.Location = new System.Drawing.Point(3, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 26);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Label Title";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelLabelTitle.Location = new System.Drawing.Point(3, 45);
+            this.labelLabelTitle.Name = "labelLabelTitle";
+            this.labelLabelTitle.Size = new System.Drawing.Size(95, 26);
+            this.labelLabelTitle.TabIndex = 8;
+            this.labelLabelTitle.Text = "Label Title";
+            this.labelLabelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
+            // labelLabelDescription
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelLabelDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label3.Location = new System.Drawing.Point(3, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 26);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Label Description";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelLabelDescription.Location = new System.Drawing.Point(3, 71);
+            this.labelLabelDescription.Name = "labelLabelDescription";
+            this.labelLabelDescription.Size = new System.Drawing.Size(95, 26);
+            this.labelLabelDescription.TabIndex = 12;
+            this.labelLabelDescription.Text = "Label Description";
+            this.labelLabelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // labelTooltipTitle
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelTooltipTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.Location = new System.Drawing.Point(3, 97);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 26);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Tooltip Title";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelTooltipTitle.Location = new System.Drawing.Point(3, 97);
+            this.labelTooltipTitle.Name = "labelTooltipTitle";
+            this.labelTooltipTitle.Size = new System.Drawing.Size(95, 26);
+            this.labelTooltipTitle.TabIndex = 16;
+            this.labelTooltipTitle.Text = "Tooltip Title";
+            this.labelTooltipTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label5
+            // labelTooltipDescription
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelTooltipDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.Location = new System.Drawing.Point(3, 123);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 26);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "Tooltip Description";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelTooltipDescription.Location = new System.Drawing.Point(3, 123);
+            this.labelTooltipDescription.Name = "labelTooltipDescription";
+            this.labelTooltipDescription.Size = new System.Drawing.Size(95, 26);
+            this.labelTooltipDescription.TabIndex = 20;
+            this.labelTooltipDescription.Text = "Tooltip Description";
+            this.labelTooltipDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label6
+            // labelKeytip
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelKeytip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.Location = new System.Drawing.Point(3, 149);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(95, 26);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Keytip";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelKeytip.Location = new System.Drawing.Point(3, 149);
+            this.labelKeytip.Name = "labelKeytip";
+            this.labelKeytip.Size = new System.Drawing.Size(95, 26);
+            this.labelKeytip.TabIndex = 24;
+            this.labelKeytip.Text = "Keytip";
+            this.labelKeytip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label9
+            // labelComment
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label9.Location = new System.Drawing.Point(3, 175);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(95, 26);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "Comment";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelComment.Location = new System.Drawing.Point(3, 175);
+            this.labelComment.Name = "labelComment";
+            this.labelComment.Size = new System.Drawing.Size(95, 26);
+            this.labelComment.TabIndex = 28;
+            this.labelComment.Text = "Comment";
+            this.labelComment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // EditName
             // 
@@ -590,15 +590,15 @@ namespace UIRibbonTools
             this.EditTooltipDescriptionSymbol.Size = new System.Drawing.Size(167, 20);
             this.EditTooltipDescriptionSymbol.TabIndex = 23;
             // 
-            // EditKeyTipSymbol
+            // EditKeytipSymbol
             // 
-            this.EditKeyTipSymbol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.EditKeytipSymbol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditKeyTipSymbol.Location = new System.Drawing.Point(427, 152);
-            this.EditKeyTipSymbol.Name = "EditKeyTipSymbol";
-            this.EditKeyTipSymbol.Size = new System.Drawing.Size(167, 20);
-            this.EditKeyTipSymbol.TabIndex = 27;
+            this.EditKeytipSymbol.Location = new System.Drawing.Point(427, 152);
+            this.EditKeytipSymbol.Name = "EditKeytipSymbol";
+            this.EditKeytipSymbol.Size = new System.Drawing.Size(167, 20);
+            this.EditKeytipSymbol.TabIndex = 27;
             // 
             // _propertiesPanel
             // 
@@ -610,35 +610,35 @@ namespace UIRibbonTools
             this._propertiesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this._propertiesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this._propertiesPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this._propertiesPanel.Controls.Add(this.label10, 0, 0);
-            this._propertiesPanel.Controls.Add(this.label11, 1, 0);
-            this._propertiesPanel.Controls.Add(this.label8, 2, 0);
-            this._propertiesPanel.Controls.Add(this.label7, 3, 0);
-            this._propertiesPanel.Controls.Add(this.label1, 0, 1);
+            this._propertiesPanel.Controls.Add(this.labelProperty, 0, 0);
+            this._propertiesPanel.Controls.Add(this.labelValue, 1, 0);
+            this._propertiesPanel.Controls.Add(this.labelID, 2, 0);
+            this._propertiesPanel.Controls.Add(this.labelSymbol, 3, 0);
+            this._propertiesPanel.Controls.Add(this.labelName, 0, 1);
             this._propertiesPanel.Controls.Add(this.EditName, 1, 1);
             this._propertiesPanel.Controls.Add(this.EditId, 2, 1);
             this._propertiesPanel.Controls.Add(this.EditSymbol, 3, 1);
-            this._propertiesPanel.Controls.Add(this.label2, 0, 2);
+            this._propertiesPanel.Controls.Add(this.labelLabelTitle, 0, 2);
             this._propertiesPanel.Controls.Add(this.EditCaption, 1, 2);
             this._propertiesPanel.Controls.Add(this.EditCaptionId, 2, 2);
             this._propertiesPanel.Controls.Add(this.EditCaptionSymbol, 3, 2);
-            this._propertiesPanel.Controls.Add(this.label3, 0, 3);
+            this._propertiesPanel.Controls.Add(this.labelLabelDescription, 0, 3);
             this._propertiesPanel.Controls.Add(this.EditDescription, 1, 3);
             this._propertiesPanel.Controls.Add(this.EditDescriptionId, 2, 3);
             this._propertiesPanel.Controls.Add(this.EditDescriptionSymbol, 3, 3);
-            this._propertiesPanel.Controls.Add(this.label4, 0, 4);
+            this._propertiesPanel.Controls.Add(this.labelTooltipTitle, 0, 4);
             this._propertiesPanel.Controls.Add(this.EditTooltipTitle, 1, 4);
             this._propertiesPanel.Controls.Add(this.EditTooltipTitleId, 2, 4);
             this._propertiesPanel.Controls.Add(this.EditTooltipTitleSymbol, 3, 4);
-            this._propertiesPanel.Controls.Add(this.label5, 0, 5);
+            this._propertiesPanel.Controls.Add(this.labelTooltipDescription, 0, 5);
             this._propertiesPanel.Controls.Add(this.EditTooltipDescription, 1, 5);
             this._propertiesPanel.Controls.Add(this.EditTooltipDescriptionId, 2, 5);
             this._propertiesPanel.Controls.Add(this.EditTooltipDescriptionSymbol, 3, 5);
-            this._propertiesPanel.Controls.Add(this.label6, 0, 6);
+            this._propertiesPanel.Controls.Add(this.labelKeytip, 0, 6);
             this._propertiesPanel.Controls.Add(this.EditKeytip, 1, 6);
             this._propertiesPanel.Controls.Add(this.EditKeytipId, 2, 6);
-            this._propertiesPanel.Controls.Add(this.EditKeyTipSymbol, 3, 6);
-            this._propertiesPanel.Controls.Add(this.label9, 0, 7);
+            this._propertiesPanel.Controls.Add(this.EditKeytipSymbol, 3, 6);
+            this._propertiesPanel.Controls.Add(this.labelComment, 0, 7);
             this._propertiesPanel.Controls.Add(this.EditComment, 1, 7);
             this._propertiesPanel.Location = new System.Drawing.Point(0, 0);
             this._propertiesPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -661,22 +661,22 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._smallImagesPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this._smallImagesPanel.Controls.Add(this.label20);
+            this._smallImagesPanel.Controls.Add(this.labelSmallImages);
             this._smallImagesPanel.Location = new System.Drawing.Point(0, 0);
             this._smallImagesPanel.Margin = new System.Windows.Forms.Padding(0);
             this._smallImagesPanel.Name = "_smallImagesPanel";
             this._smallImagesPanel.Size = new System.Drawing.Size(298, 21);
             this._smallImagesPanel.TabIndex = 0;
             // 
-            // label20
+            // labelSmallImages
             // 
-            this.label20.Location = new System.Drawing.Point(3, 3);
-            this.label20.Margin = new System.Windows.Forms.Padding(3);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(142, 13);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "  Small Images";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelSmallImages.Location = new System.Drawing.Point(3, 3);
+            this.labelSmallImages.Margin = new System.Windows.Forms.Padding(3);
+            this.labelSmallImages.Name = "labelSmallImages";
+            this.labelSmallImages.Size = new System.Drawing.Size(142, 13);
+            this.labelSmallImages.TabIndex = 0;
+            this.labelSmallImages.Text = "  Small Images";
+            this.labelSmallImages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // _largeImagesPanel
             // 
@@ -684,22 +684,22 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._largeImagesPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this._largeImagesPanel.Controls.Add(this.label21);
+            this._largeImagesPanel.Controls.Add(this.labelLargeImages);
             this._largeImagesPanel.Location = new System.Drawing.Point(298, 0);
             this._largeImagesPanel.Margin = new System.Windows.Forms.Padding(0);
             this._largeImagesPanel.Name = "_largeImagesPanel";
             this._largeImagesPanel.Size = new System.Drawing.Size(299, 21);
             this._largeImagesPanel.TabIndex = 1;
             // 
-            // label21
+            // labelLargeImages
             // 
-            this.label21.Location = new System.Drawing.Point(3, 3);
-            this.label21.Margin = new System.Windows.Forms.Padding(3);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(204, 13);
-            this.label21.TabIndex = 0;
-            this.label21.Text = "  Large Images";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelLargeImages.Location = new System.Drawing.Point(3, 3);
+            this.labelLargeImages.Margin = new System.Windows.Forms.Padding(3);
+            this.labelLargeImages.Name = "labelLargeImages";
+            this.labelLargeImages.Size = new System.Drawing.Size(204, 13);
+            this.labelLargeImages.TabIndex = 0;
+            this.labelLargeImages.Text = "  Large Images";
+            this.labelLargeImages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // _highContrastImagesPanel
             // 
@@ -707,22 +707,22 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._highContrastImagesPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this._highContrastImagesPanel.Controls.Add(this.label22);
+            this._highContrastImagesPanel.Controls.Add(this.labelSmallHCImages);
             this._highContrastImagesPanel.Location = new System.Drawing.Point(0, 79);
             this._highContrastImagesPanel.Margin = new System.Windows.Forms.Padding(0);
             this._highContrastImagesPanel.Name = "_highContrastImagesPanel";
             this._highContrastImagesPanel.Size = new System.Drawing.Size(298, 21);
             this._highContrastImagesPanel.TabIndex = 4;
             // 
-            // label22
+            // labelSmallHCImages
             // 
-            this.label22.Location = new System.Drawing.Point(3, 3);
-            this.label22.Margin = new System.Windows.Forms.Padding(3);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(224, 13);
-            this.label22.TabIndex = 0;
-            this.label22.Text = "  Small High-Contrast Images";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelSmallHCImages.Location = new System.Drawing.Point(3, 3);
+            this.labelSmallHCImages.Margin = new System.Windows.Forms.Padding(3);
+            this.labelSmallHCImages.Name = "labelSmallHCImages";
+            this.labelSmallHCImages.Size = new System.Drawing.Size(224, 13);
+            this.labelSmallHCImages.TabIndex = 0;
+            this.labelSmallHCImages.Text = "  Small High-Contrast Images";
+            this.labelSmallHCImages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // _largeHCImagesPanel
             // 
@@ -730,22 +730,22 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._largeHCImagesPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this._largeHCImagesPanel.Controls.Add(this.label23);
+            this._largeHCImagesPanel.Controls.Add(this.labelLargeHCImages);
             this._largeHCImagesPanel.Location = new System.Drawing.Point(298, 79);
             this._largeHCImagesPanel.Margin = new System.Windows.Forms.Padding(0);
             this._largeHCImagesPanel.Name = "_largeHCImagesPanel";
             this._largeHCImagesPanel.Size = new System.Drawing.Size(299, 21);
             this._largeHCImagesPanel.TabIndex = 5;
             // 
-            // label23
+            // labelLargeHCImages
             // 
-            this.label23.Location = new System.Drawing.Point(3, 3);
-            this.label23.Margin = new System.Windows.Forms.Padding(3);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(275, 13);
-            this.label23.TabIndex = 0;
-            this.label23.Text = "  Large High-Contrast Images";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelLargeHCImages.Location = new System.Drawing.Point(3, 3);
+            this.labelLargeHCImages.Margin = new System.Windows.Forms.Padding(3);
+            this.labelLargeHCImages.Name = "labelLargeHCImages";
+            this.labelLargeHCImages.Size = new System.Drawing.Size(275, 13);
+            this.labelLargeHCImages.TabIndex = 0;
+            this.labelLargeHCImages.Text = "  Large High-Contrast Images";
+            this.labelLargeHCImages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // imagesPanel
             // 
@@ -905,15 +905,15 @@ namespace UIRibbonTools
         private System.Windows.Forms.ToolStripButton toolButtonMoveDown;
         private System.Windows.Forms.ToolStripButton toolButtonSearchCommand;
         private System.Windows.Forms.TableLayoutPanel _propertiesPanel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Label labelLabelTitle;
+        private System.Windows.Forms.Label labelLabelDescription;
+        private System.Windows.Forms.Label labelTooltipTitle;
+        private System.Windows.Forms.Label labelTooltipDescription;
+        private System.Windows.Forms.Label labelKeytip;
+        private System.Windows.Forms.Label labelSymbol;
+        private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.Label labelComment;
         private System.Windows.Forms.TextBox EditName;
         private System.Windows.Forms.TextBox EditCaption;
         private System.Windows.Forms.TextBox EditDescription;
@@ -926,7 +926,7 @@ namespace UIRibbonTools
         private System.Windows.Forms.TextBox EditDescriptionSymbol;
         private System.Windows.Forms.TextBox EditTooltipTitleSymbol;
         private System.Windows.Forms.TextBox EditTooltipDescriptionSymbol;
-        private System.Windows.Forms.TextBox EditKeyTipSymbol;
+        private System.Windows.Forms.TextBox EditKeytipSymbol;
         private System.Windows.Forms.NumericUpDown EditId;
         private System.Windows.Forms.NumericUpDown EditCaptionId;
         private System.Windows.Forms.NumericUpDown EditDescriptionId;
@@ -944,17 +944,17 @@ namespace UIRibbonTools
         private System.Windows.Forms.ToolStripLabel LabelHeader;
         internal System.Windows.Forms.TableLayoutPanel _panel2Layout;
         private ImageListFrame _smallImagesFrame;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelProperty;
+        private System.Windows.Forms.Label labelValue;
         private ImageListFrame _largeImagesFrame;
         private System.Windows.Forms.Panel _largeHCImagesPanel;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label labelLargeHCImages;
         private System.Windows.Forms.Panel _highContrastImagesPanel;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label labelSmallHCImages;
         private System.Windows.Forms.Panel _largeImagesPanel;
-        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label labelLargeImages;
         private System.Windows.Forms.Panel _smallImagesPanel;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label labelSmallImages;
         private ImageListFrame _largeHCImagesFrame;
         private ImageListFrame _smallHCImagesFrame;
         private System.Windows.Forms.TableLayoutPanel imagesPanel;

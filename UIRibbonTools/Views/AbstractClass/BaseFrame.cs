@@ -71,6 +71,9 @@ namespace UIRibbonTools
 
         public BaseFrame()
         {
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             bool designtime = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
             if (designtime)
                 InitializeComponent();
@@ -146,6 +149,7 @@ namespace UIRibbonTools
             // 
             // _labelHeader
             // 
+            this._labelHeader.Font = new Font(_labelHeader.Font, FontStyle.Bold);
             this._labelHeader.Name = "_labelHeader";
             this._labelHeader.Size = new System.Drawing.Size(51, 22);
             this._labelHeader.Text = "  Header";
@@ -187,7 +191,7 @@ namespace UIRibbonTools
             this._panel.AutoScroll = true;
             //this._panel.BackColor = Color.Bisque;
             this._panel.Controls.Add(this._layoutPanel);
-            this._panel.Controls.Add(this._imageSample);
+            //this._panel.Controls.Add(this._imageSample);
             this._panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._panel.Location = new System.Drawing.Point(0, 25);
             this._panel.Name = "_panel";

@@ -17,9 +17,11 @@ namespace UIRibbonTools
 
         public NewFileForm()
         {
-            //if (!DesignMode)
-            //    Font = SystemFonts.MessageBoxFont;
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
+            this.Font = SystemFonts.MessageBoxFont;
             this.Icon = Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
             //this.ClientSize = new Size(dialogLayout.Width + 18, dialogLayout.Height + 18);
             this.MinimumSize = this.Size;

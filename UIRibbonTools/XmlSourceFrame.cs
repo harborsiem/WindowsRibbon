@@ -70,6 +70,9 @@ namespace UIRibbonTools
 
         public XmlSourceFrame()
         {
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
 #if xele
             treeViewXmlSource.NodeMouseClick += TreeViewXmlSourceClick;
@@ -80,6 +83,11 @@ namespace UIRibbonTools
             treeViewXmlSource.DrawMode = TreeViewDrawMode.OwnerDrawAll;
             treeViewXmlSource.DrawNode += TreeViewXmlSourceCustomDrawItemX2;
 #endif
+        }
+
+        public void SetFonts(Font font)
+        {
+            this.Font = font;
         }
 
 #if xele

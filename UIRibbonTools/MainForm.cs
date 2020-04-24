@@ -62,9 +62,19 @@ namespace UIRibbonTools
 
         public MainForm()
         {
-            //if (!DesignMode)
-            //    this.Font = SystemFonts.MessageBoxFont;
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
+            _commandsFrame.SetBoldFonts();
+            _viewsFrame.SetBoldFonts();
+
+            this.Font = SystemFonts.MessageBoxFont;
+#if Core
+            _commandsFrame.SetFonts(this.Font);
+            _viewsFrame.SetFonts(this.Font);
+            _xmlSourceFrame.SetFonts(this.Font);
+#endif
             if (components == null)
                 components = new Container();
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
@@ -535,7 +545,8 @@ namespace UIRibbonTools
             if (preview)
             {
                 _buildPreviewHelper.ShowDialog(this);
-            } else
+            }
+            else
             {
                 _buildPreviewHelper.BuildRibbonFile();
             }

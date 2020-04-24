@@ -22,17 +22,17 @@ namespace UIRibbonTools
 
         public ImageEditForm()
         {
-            //if (!DesignMode)
-            //    Font = SystemFonts.MessageBoxFont;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
             InitializeComponent();
+            Label1.Font = new Font(Label1.Font, FontStyle.Bold);
+            //MemoHelp.Size = new Size(MemoHelp.Width, (MemoHelp.Font.Height) * (MemoHelp.Lines.Length + 1));
+            this.Font = SystemFonts.MessageBoxFont;
             if (components == null)
                 components = new Container();
             RightButton.ImageList = ImageManager.ImageList_Edit(components);
             RightButton.ImageIndex = 0;
             RightButton.MouseEnter += RightButton_MouseEnter;
             RightButton.MouseLeave += RightButton_MouseLeave;
-            Label1.Font = new Font(Label1.Font, FontStyle.Bold);
-            MemoHelp.Size = new Size(MemoHelp.Width, (MemoHelp.Font.Height) * (MemoHelp.Lines.Length + 1));
             InitializeEvents();
         }
 
@@ -246,7 +246,7 @@ namespace UIRibbonTools
 
         private void UpdateControls()
         {
-            ButtonOk.Enabled = File.Exists(_filename);
+            buttonOk.Enabled = File.Exists(_filename);
         }
     }
 }

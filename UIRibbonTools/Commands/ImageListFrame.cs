@@ -35,6 +35,9 @@ namespace UIRibbonTools
 
         public ImageListFrame()
         {
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
             if (components == null)
                 components = new Container();
@@ -47,10 +50,10 @@ namespace UIRibbonTools
             InitActions(components);
         }
 
-        public ImageListFrame(Control frameCommand) : this()
-        {
+        //public ImageListFrame(Control frameCommand) : this()
+        //{
 
-        }
+        //}
 
         private void InitEvents()
         {
