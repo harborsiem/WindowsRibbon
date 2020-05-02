@@ -104,9 +104,9 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(CheckBoxEditable, "Whether the user can enter text in the combo box");
-            new ToolTip(components).SetToolTip(CheckBoxResizeable, "Whether the user can resize the drop down list vertically");
-            new ToolTip(components).SetToolTip(CheckBoxAutoComplete, "Whether the combo box supports auto-completion");
+            viewsTip.SetToolTip(CheckBoxEditable, "Whether the user can enter text in the combo box");
+            viewsTip.SetToolTip(CheckBoxResizeable, "Whether the user can resize the drop down list vertically");
+            viewsTip.SetToolTip(CheckBoxAutoComplete, "Whether the combo box supports auto-completion");
         }
 
         private void CheckBoxAutoCompleteClick(object sender, EventArgs e)

@@ -359,17 +359,17 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(UpDownMinColumnsLarge,
+            viewsTip.SetToolTip(UpDownMinColumnsLarge,
                 "Minimum number of columns that the gallery displays in" + Environment.NewLine +
                 "Large group layout, before switching to Medium");
-            new ToolTip(components).SetToolTip(UpDownMinColumnsMedium,
+            viewsTip.SetToolTip(UpDownMinColumnsMedium,
                 "Minimum number of columns that the gallery displays in" + Environment.NewLine +
                 "Medium group layout, before switching to Small");
-            new ToolTip(components).SetToolTip(UpDownMaxColumnsMedium,
+            viewsTip.SetToolTip(UpDownMaxColumnsMedium,
                 "Maximum number of columns that the gallery displays in" + Environment.NewLine +
                 "Medium group layout, before switching to Large");
-            new ToolTip(components).SetToolTip(UpDownMaxColumns, "Maximum number of columns that the gallery displays");
-            new ToolTip(components).SetToolTip(UpDownMaxRows, "Maximum number of rows that the gallery displays");
+            viewsTip.SetToolTip(UpDownMaxColumns, "Maximum number of columns that the gallery displays");
+            viewsTip.SetToolTip(UpDownMaxRows, "Maximum number of rows that the gallery displays");
         }
 
         private void EditMaxColumnsChange(object sender, EventArgs e)

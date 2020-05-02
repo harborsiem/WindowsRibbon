@@ -177,20 +177,48 @@ namespace System.Windows.Forms
 
             dialog.SetOptions(FOS.PICKFOLDERS | FOS.FORCEFILESYSTEM | FOS.FILEMUSTEXIST);
 
+            string parent;
+            string folder = string.Empty;
+
             if (!string.IsNullOrEmpty(_selectedPath))
             {
-                string parent = Path.GetDirectoryName(_selectedPath);
+                parent = Path.GetDirectoryName(_selectedPath);
                 if (parent == null || !Directory.Exists(parent))
                 {
-                    dialog.SetFileName(_selectedPath);
+                    if (Directory.Exists(_selectedPath))
+                    {
+                        folder = Path.GetFileName(_selectedPath);
+                        parent = _selectedPath;
+                    }
+                    else
+                        parent = string.Empty;    
                 }
                 else
                 {
-                    string folder = Path.GetFileName(_selectedPath);
-                    dialog.SetFolder(FileDialogNative.CreateItemFromParsingName(parent));
-                    dialog.SetFileName(folder);
+                    folder = Path.GetFileName(_selectedPath);
                 }
             }
+            else
+            {
+                parent = string.Empty;
+            }
+            dialog.SetFolder(FileDialogNative.CreateItemFromParsingName(parent));
+            dialog.SetFileName(folder);
+
+            //if (!string.IsNullOrEmpty(_selectedPath))
+            //{
+            //    string parent = Path.GetDirectoryName(_selectedPath);
+            //    if (parent == null || !Directory.Exists(parent))
+            //    {
+            //        dialog.SetFileName(_selectedPath);
+            //    }
+            //    else
+            //    {
+            //        string folder = Path.GetFileName(_selectedPath);
+            //        dialog.SetFolder(FileDialogNative.CreateItemFromParsingName(parent));
+            //        dialog.SetFileName(folder);
+            //    }
+            //}
         }
 
         private void GetResult(FileDialogNative.IFileDialog dialog)

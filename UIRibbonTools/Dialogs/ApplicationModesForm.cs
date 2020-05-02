@@ -20,7 +20,10 @@ namespace UIRibbonTools
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
 #endif
             InitializeComponent();
-            this.Font = SystemFonts.MessageBoxFont;
+            //#if SegoeFont
+            //this.Font = SystemFonts.MessageBoxFont;
+            //#endif
+            CheckListBoxModes.ClientSize = new Size(CheckListBoxModes.ClientSize.Width, CheckListBoxModes.GetItemRectangle(0).Height * 8);
             ButtonCheckAll.Click += ButtonCheckAllClick;
             ButtonClearAll.Click += ButtonClearAllClick;
             this.Load += ApplicationModesForm_Load;

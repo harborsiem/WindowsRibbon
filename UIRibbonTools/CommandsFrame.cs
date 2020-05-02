@@ -197,64 +197,75 @@ namespace UIRibbonTools
 
         private void InitToolTips()
         {
-            ToolTip editNameTip = new ToolTip(components);
-            editNameTip.SetToolTip(EditName,
+            ToolTip commandsTip = new ToolTip(components);
+            commandsTip.SetToolTip(EditName,
                 "The command name is used to connect commands with controls." + Environment.NewLine +
                 "Unless you specify a Symbol name, this name is also used" + Environment.NewLine +
                 "as the name of the constant for this command.");
-            editNameTip.IsBalloon = false;
-            new ToolTip(components).SetToolTip(EditId,
+            commandsTip.IsBalloon = false;
+            //commandsTip.Popup += CommandsTip_Popup;
+            commandsTip.SetToolTip(EditId,
                 "A unique numeric identifier for the command (the value of" + Environment.NewLine +
                 "the Symbol constant). Use 0 for auto-generated identifiers.");
-            new ToolTip(components).SetToolTip(EditSymbol,
+            commandsTip.SetToolTip(EditSymbol,
                 "This is the name of the constant that will be generated to access" + Environment.NewLine +
                 "this command. If not specified, the command Name is used.");
-            new ToolTip(components).SetToolTip(EditCaption, "The caption/label title for the command.");
-            new ToolTip(components).SetToolTip(EditCaptionId,
+            commandsTip.SetToolTip(EditCaption, "The caption/label title for the command.");
+            commandsTip.SetToolTip(EditCaptionId,
                 "Numeric resource string identifier for the caption." + Environment.NewLine +
                 "Use 0 for auto-generated identifiers.");
-            new ToolTip(components).SetToolTip(EditCaptionSymbol,
+            commandsTip.SetToolTip(EditCaptionSymbol,
                 "Constant name for the resource identifier." + Environment.NewLine +
                 "If not specified, it is automatically generated.");
-            new ToolTip(components).SetToolTip(EditDescription,
+            commandsTip.SetToolTip(EditDescription,
                 "The label description for the command." + Environment.NewLine +
                 "Is used when the command is displayed in the application menu.");
-            new ToolTip(components).SetToolTip(EditDescriptionId,
+            commandsTip.SetToolTip(EditDescriptionId,
                 "Numeric resource string identifier for the description." + Environment.NewLine +
                 "Use 0 for auto-generated identifiers.");
-            new ToolTip(components).SetToolTip(EditDescriptionSymbol,
+            commandsTip.SetToolTip(EditDescriptionSymbol,
                 "Constant name for the resource identifier." + Environment.NewLine +
                 "If not specified, it is automatically generated.");
-            new ToolTip(components).SetToolTip(EditTooltipTitle,
+            commandsTip.SetToolTip(EditTooltipTitle,
                 "The tooltip title for the command." + Environment.NewLine +
                 "(This is the bold caption of the tooltip)");
-            new ToolTip(components).SetToolTip(EditTooltipTitleId,
+            commandsTip.SetToolTip(EditTooltipTitleId,
                 "Numeric resource string identifier for the tooltip title." + Environment.NewLine +
                 "Use 0 for auto-generated identifiers.");
-            new ToolTip(components).SetToolTip(EditTooltipTitleSymbol,
+            commandsTip.SetToolTip(EditTooltipTitleSymbol,
                 "Constant name for the resource identifier." + Environment.NewLine +
                 "If not specified, it is automatically generated.");
-            new ToolTip(components).SetToolTip(EditTooltipDescription,
+            commandsTip.SetToolTip(EditTooltipDescription,
                 "The tooltip description for the command." + Environment.NewLine +
                 "(Is displayed below the tooltip title in the tooltip popup)");
-            new ToolTip(components).SetToolTip(EditTooltipDescriptionId,
+            commandsTip.SetToolTip(EditTooltipDescriptionId,
                 "Numeric resource string identifier for the tooltip description." + Environment.NewLine +
                 "Use 0 for auto-generated identifiers.");
-            new ToolTip(components).SetToolTip(EditTooltipDescriptionSymbol,
+            commandsTip.SetToolTip(EditTooltipDescriptionSymbol,
                 "Constant name for the resource identifier." + Environment.NewLine +
                 "If not specified, it is automatically generated.");
-            new ToolTip(components).SetToolTip(EditKeytip,
+            commandsTip.SetToolTip(EditKeytip,
                 "The keytip for the command. This is key sequence that is shown" + Environment.NewLine +
                 "when the user pressed the Alt key to access ribbon controls.");
-            new ToolTip(components).SetToolTip(EditKeytipId,
+            commandsTip.SetToolTip(EditKeytipId,
                 "Numeric resource string identifier for the keytip." + Environment.NewLine +
                 "Use 0 for auto-generated identifiers.");
-            new ToolTip(components).SetToolTip(EditKeytipSymbol,
+            commandsTip.SetToolTip(EditKeytipSymbol,
                 "Constant name for the resource identifier." + Environment.NewLine +
                 "If not specified, it is automatically generated.");
-            new ToolTip(components).SetToolTip(EditComment,
+            commandsTip.SetToolTip(EditComment,
                 "This text is placed as a comment in the *.h file" + Environment.NewLine +
                 "containing the constant for this command.");
+        }
+
+        private void CommandsTip_Popup(object sender, PopupEventArgs e)
+        {
+            ToolTip tip = sender as ToolTip;
+            string text;
+            if (tip != null)
+            {
+                text = tip.GetToolTip(e.AssociatedControl);
+            }
         }
 
         private void ActionAddCommandExecute(object sender, EventArgs e)

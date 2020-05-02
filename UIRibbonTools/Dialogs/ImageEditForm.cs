@@ -26,7 +26,9 @@ namespace UIRibbonTools
             InitializeComponent();
             Label1.Font = new Font(Label1.Font, FontStyle.Bold);
             //MemoHelp.Size = new Size(MemoHelp.Width, (MemoHelp.Font.Height) * (MemoHelp.Lines.Length + 1));
+#if SegoeFont
             this.Font = SystemFonts.MessageBoxFont;
+#endif
             if (components == null)
                 components = new Container();
             RightButton.ImageList = ImageManager.ImageList_Edit(components);

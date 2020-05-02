@@ -21,7 +21,9 @@ namespace UIRibbonTools
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
 #endif
             InitializeComponent();
+#if SegoeFont
             this.Font = SystemFonts.MessageBoxFont;
+#endif
             this.Icon = Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
             //this.ClientSize = new Size(dialogLayout.Width + 18, dialogLayout.Height + 18);
             this.MinimumSize = this.Size;
@@ -84,7 +86,11 @@ namespace UIRibbonTools
             string directory;
 
             directory = EditDirectory.Text;
+#if Core
             FolderBrowserDialog dialog = new FolderBrowserDialog();
+#else
+            VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
+#endif
             dialog.Description = RS_SELECT_DIR_CAPTION;
             dialog.RootFolder = Environment.SpecialFolder.MyComputer;
             if (!string.IsNullOrEmpty(directory) && Directory.Exists(directory))

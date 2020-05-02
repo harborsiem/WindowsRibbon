@@ -95,7 +95,7 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxCustomizeCommand, "The command to use to customize the quick access toolbar");
+            viewsTip.SetToolTip(ComboBoxCustomizeCommand, "The command to use to customize the quick access toolbar");
         }
 
         public override void Activate_()

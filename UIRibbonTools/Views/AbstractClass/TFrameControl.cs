@@ -117,7 +117,7 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(EditApplicationModes, "The application modes in which this control is available.");
+            viewsTip.SetToolTip(EditApplicationModes, "The application modes in which this control is available.");
         }
 
         private void InitializeBaseComponent()

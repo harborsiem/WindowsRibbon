@@ -320,14 +320,14 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxTemplate, "The type of drop down to show");
-            new ToolTip(components).SetToolTip(ComboBoxChipSize, "Size of the color swatches");
-            new ToolTip(components).SetToolTip(UpDownColumns, "Number of columns of color swatches");
-            new ToolTip(components).SetToolTip(UpDownRecentRows, "Number of color swatch rows in the Recent Colors area");
-            new ToolTip(components).SetToolTip(UpDownStandardRows, "Number of color swatch rows in the Standard Colors area");
-            new ToolTip(components).SetToolTip(UpDownThemeRows, "Number of color swatch rows in the Theme Colors area");
-            new ToolTip(components).SetToolTip(CheckBoxAutoColor, "Whether the Automatic Color button is visible");
-            new ToolTip(components).SetToolTip(CheckBoxNoColor, "Whether the No Color button is visible");
+            viewsTip.SetToolTip(ComboBoxTemplate, "The type of drop down to show");
+            viewsTip.SetToolTip(ComboBoxChipSize, "Size of the color swatches");
+            viewsTip.SetToolTip(UpDownColumns, "Number of columns of color swatches");
+            viewsTip.SetToolTip(UpDownRecentRows, "Number of color swatch rows in the Recent Colors area");
+            viewsTip.SetToolTip(UpDownStandardRows, "Number of color swatch rows in the Standard Colors area");
+            viewsTip.SetToolTip(UpDownThemeRows, "Number of color swatch rows in the Theme Colors area");
+            viewsTip.SetToolTip(CheckBoxAutoColor, "Whether the Automatic Color button is visible");
+            viewsTip.SetToolTip(CheckBoxNoColor, "Whether the No Color button is visible");
         }
 
         private void CheckBoxAutoColorClick(object sender, EventArgs e)

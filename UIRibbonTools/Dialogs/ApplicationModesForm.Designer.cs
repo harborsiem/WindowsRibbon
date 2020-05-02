@@ -67,6 +67,8 @@ namespace UIRibbonTools
             // 
             // CheckListBoxModes
             // 
+            this.CheckListBoxModes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CheckListBoxModes.CheckOnClick = true;
             this.dialogLayout.SetColumnSpan(this.CheckListBoxModes, 2);
             this.CheckListBoxModes.FormattingEnabled = true;
@@ -111,7 +113,8 @@ namespace UIRibbonTools
             // 
             // buttons2
             // 
-            this.buttons2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttons2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.buttons2.AutoSize = true;
             this.buttons2.ColumnCount = 2;
             this.buttons2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -145,7 +148,8 @@ namespace UIRibbonTools
             // 
             // buttons
             // 
-            this.buttons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttons.AutoSize = true;
             this.buttons.ColumnCount = 2;
             this.buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));

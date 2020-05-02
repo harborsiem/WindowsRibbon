@@ -99,7 +99,7 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxSize, "The command associated with this control.");
+            viewsTip.SetToolTip(ComboBoxSize, "The command associated with this control.");
         }
 
         private void ComboBoxSizeChange(object sender, EventArgs e)

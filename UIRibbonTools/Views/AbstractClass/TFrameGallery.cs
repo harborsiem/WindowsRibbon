@@ -494,15 +494,15 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxGalleryType, "Whether the gallery shows items or commands");
-            new ToolTip(components).SetToolTip(CheckBoxHasLargeItems, "Whether the gallery shows large or small images");
-            new ToolTip(components).SetToolTip(UpDownItemWidth, "Width of the items in the gallery");
-            new ToolTip(components).SetToolTip(UpDownItemHeight, "Height of the items in the gallery");
-            new ToolTip(components).SetToolTip(ComboBoxTextPosition, "Position of the text for the items");
-            new ToolTip(components).SetToolTip(ComboBoxLayoutType, "How the items are layed out in the gallery");
-            new ToolTip(components).SetToolTip(UpDownRows, "Number of rows in the layout");
-            new ToolTip(components).SetToolTip(UpDownColumns, "Number of columns in the flow layout");
-            new ToolTip(components).SetToolTip(ComboBoxGripper, "How the items are layed out in the gallery");
+            viewsTip.SetToolTip(ComboBoxGalleryType, "Whether the gallery shows items or commands");
+            viewsTip.SetToolTip(CheckBoxHasLargeItems, "Whether the gallery shows large or small images");
+            viewsTip.SetToolTip(UpDownItemWidth, "Width of the items in the gallery");
+            viewsTip.SetToolTip(UpDownItemHeight, "Height of the items in the gallery");
+            viewsTip.SetToolTip(ComboBoxTextPosition, "Position of the text for the items");
+            viewsTip.SetToolTip(ComboBoxLayoutType, "How the items are layed out in the gallery");
+            viewsTip.SetToolTip(UpDownRows, "Number of rows in the layout");
+            viewsTip.SetToolTip(UpDownColumns, "Number of columns in the flow layout");
+            viewsTip.SetToolTip(ComboBoxGripper, "How the items are layed out in the gallery");
         }
 
         private void InitializeBaseComponent()

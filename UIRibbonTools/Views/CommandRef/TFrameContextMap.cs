@@ -130,8 +130,8 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxMiniToolbar, "The mini toolbar to use in this mapping");
-            new ToolTip(components).SetToolTip(ComboBoxContextMenu, "The context menu to use in this mapping");
+            viewsTip.SetToolTip(ComboBoxMiniToolbar, "The mini toolbar to use in this mapping");
+            viewsTip.SetToolTip(ComboBoxContextMenu, "The context menu to use in this mapping");
         }
 
         private void ComboBoxContextMenuChange(object sender, EventArgs e)

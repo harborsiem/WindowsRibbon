@@ -7,7 +7,7 @@ using System.Resources;
 using System.Globalization;
 using System.Reflection;
 
-namespace RibbonGenerator
+namespace UIRibbonTools
 {
     public class Manager
     {

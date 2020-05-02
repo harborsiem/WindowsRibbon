@@ -28,11 +28,11 @@ namespace UIRibbonTools
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.templateGroupLayout = new System.Windows.Forms.TableLayoutPanel();
             this.emptyRadioButton = new System.Windows.Forms.RadioButton();
             this.wordPadRadioButton = new System.Windows.Forms.RadioButton();
             this.RadioGroupTemplate = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.saveGroupLayout = new System.Windows.Forms.TableLayoutPanel();
             this.directoryButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.EditDirectory = new System.Windows.Forms.TextBox();
@@ -43,31 +43,31 @@ namespace UIRibbonTools
             this.ButtonOk = new System.Windows.Forms.Button();
             this.ButtonCancel = new System.Windows.Forms.Button();
             this.dialogLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.templateGroupLayout.SuspendLayout();
             this.RadioGroupTemplate.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.saveGroupLayout.SuspendLayout();
             this.GroupBoxPath.SuspendLayout();
             this.buttons.SuspendLayout();
             this.dialogLayout.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // templateGroupLayout
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.templateGroupLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.emptyRadioButton, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.wordPadRadioButton, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(334, 46);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.templateGroupLayout.AutoSize = true;
+            this.templateGroupLayout.ColumnCount = 1;
+            this.templateGroupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.templateGroupLayout.Controls.Add(this.emptyRadioButton, 0, 0);
+            this.templateGroupLayout.Controls.Add(this.wordPadRadioButton, 0, 1);
+            this.templateGroupLayout.Location = new System.Drawing.Point(3, 19);
+            this.templateGroupLayout.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.templateGroupLayout.Name = "templateGroupLayout";
+            this.templateGroupLayout.RowCount = 2;
+            this.templateGroupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.templateGroupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.templateGroupLayout.Size = new System.Drawing.Size(334, 46);
+            this.templateGroupLayout.TabIndex = 0;
             // 
             // emptyRadioButton
             // 
@@ -96,7 +96,7 @@ namespace UIRibbonTools
             this.RadioGroupTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RadioGroupTemplate.AutoSize = true;
-            this.RadioGroupTemplate.Controls.Add(this.tableLayoutPanel1);
+            this.RadioGroupTemplate.Controls.Add(this.templateGroupLayout);
             this.RadioGroupTemplate.Location = new System.Drawing.Point(3, 3);
             this.RadioGroupTemplate.Name = "RadioGroupTemplate";
             this.RadioGroupTemplate.Size = new System.Drawing.Size(340, 81);
@@ -104,28 +104,28 @@ namespace UIRibbonTools
             this.RadioGroupTemplate.TabStop = false;
             this.RadioGroupTemplate.Text = "Template";
             // 
-            // tableLayoutPanel2
+            // saveGroupLayout
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.saveGroupLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.AutoSize = true;
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel2.Controls.Add(this.directoryButton, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.EditDirectory, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.EditFilename, 1, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 19);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(334, 53);
-            this.tableLayoutPanel2.TabIndex = 4;
+            this.saveGroupLayout.AutoSize = true;
+            this.saveGroupLayout.ColumnCount = 3;
+            this.saveGroupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.saveGroupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.saveGroupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.saveGroupLayout.Controls.Add(this.directoryButton, 2, 0);
+            this.saveGroupLayout.Controls.Add(this.label1, 0, 0);
+            this.saveGroupLayout.Controls.Add(this.EditDirectory, 1, 0);
+            this.saveGroupLayout.Controls.Add(this.label2, 0, 1);
+            this.saveGroupLayout.Controls.Add(this.EditFilename, 1, 1);
+            this.saveGroupLayout.Location = new System.Drawing.Point(3, 19);
+            this.saveGroupLayout.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.saveGroupLayout.Name = "saveGroupLayout";
+            this.saveGroupLayout.RowCount = 2;
+            this.saveGroupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.saveGroupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.saveGroupLayout.Size = new System.Drawing.Size(334, 53);
+            this.saveGroupLayout.TabIndex = 4;
             // 
             // directoryButton
             // 
@@ -173,7 +173,7 @@ namespace UIRibbonTools
             // 
             this.EditFilename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.SetColumnSpan(this.EditFilename, 2);
+            this.saveGroupLayout.SetColumnSpan(this.EditFilename, 2);
             this.EditFilename.Location = new System.Drawing.Point(58, 29);
             this.EditFilename.Name = "EditFilename";
             this.EditFilename.Size = new System.Drawing.Size(273, 20);
@@ -185,7 +185,7 @@ namespace UIRibbonTools
             this.GroupBoxPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBoxPath.AutoSize = true;
-            this.GroupBoxPath.Controls.Add(this.tableLayoutPanel2);
+            this.GroupBoxPath.Controls.Add(this.saveGroupLayout);
             this.GroupBoxPath.Location = new System.Drawing.Point(3, 90);
             this.GroupBoxPath.Name = "GroupBoxPath";
             this.GroupBoxPath.Size = new System.Drawing.Size(340, 88);
@@ -262,12 +262,12 @@ namespace UIRibbonTools
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Ribbon Document";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.templateGroupLayout.ResumeLayout(false);
+            this.templateGroupLayout.PerformLayout();
             this.RadioGroupTemplate.ResumeLayout(false);
             this.RadioGroupTemplate.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.saveGroupLayout.ResumeLayout(false);
+            this.saveGroupLayout.PerformLayout();
             this.GroupBoxPath.ResumeLayout(false);
             this.GroupBoxPath.PerformLayout();
             this.buttons.ResumeLayout(false);
@@ -279,12 +279,12 @@ namespace UIRibbonTools
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel templateGroupLayout;
         private System.Windows.Forms.RadioButton wordPadRadioButton;
         private System.Windows.Forms.RadioButton emptyRadioButton;
         private System.Windows.Forms.GroupBox RadioGroupTemplate;
         private System.Windows.Forms.GroupBox GroupBoxPath;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel saveGroupLayout;
         private System.Windows.Forms.TextBox EditFilename;
         private System.Windows.Forms.TextBox EditDirectory;
         private System.Windows.Forms.Label label1;

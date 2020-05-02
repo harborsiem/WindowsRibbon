@@ -98,6 +98,7 @@
     <Compile Include="Commands\ImageListFrame.Designer.cs">
       <DependentUpon>ImageListFrame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\FileDialog_Vista_Interop.cs" />
     <Compile Include="Dialogs\InputBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,7 +141,12 @@
     <Compile Include="Dialogs\ViewsSampleForm.Designer.cs">
       <DependentUpon>ViewsSampleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\VistaFolderBrowserDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Misc\Addons.cs" />
+    <Compile Include="Misc\ConsoleHelper.cs" />
+    <Compile Include="Build\ConsoleMessageOutput.cs" />
     <Compile Include="Misc\IActivate.cs" />
     <Compile Include="Misc\ImageManager.cs" />
     <Compile Include="Misc\ListViewColumnSorter.cs" />

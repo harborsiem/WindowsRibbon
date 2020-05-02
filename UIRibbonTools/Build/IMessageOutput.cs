@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RibbonGenerator
+namespace UIRibbonTools
 {
     /// <summary>
     /// Common interface to forward message output for console and visual studio custom tool

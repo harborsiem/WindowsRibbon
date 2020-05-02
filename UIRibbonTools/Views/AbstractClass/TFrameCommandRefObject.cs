@@ -92,7 +92,7 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxCommand, "The command associated with this control.");
+            viewsTip.SetToolTip(ComboBoxCommand, "The command associated with this control.");
         }
 
         private void InitializeBaseComponent()

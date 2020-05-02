@@ -28,52 +28,15 @@ namespace UIRibbonTools
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonOK = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.label = new System.Windows.Forms.Label();
             this.textBox = new System.Windows.Forms.TextBox();
+            this.buttonOK = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.dialogLayout = new System.Windows.Forms.TableLayoutPanel();
             this.buttonLayoutPanel.SuspendLayout();
             this.dialogLayout.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // buttonLayoutPanel
-            // 
-            this.buttonLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLayoutPanel.AutoSize = true;
-            this.buttonLayoutPanel.ColumnCount = 2;
-            this.buttonLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.buttonLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.buttonLayoutPanel.Controls.Add(this.buttonOK, 0, 0);
-            this.buttonLayoutPanel.Controls.Add(this.buttonCancel, 1, 0);
-            this.buttonLayoutPanel.Location = new System.Drawing.Point(420, 29);
-            this.buttonLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonLayoutPanel.Name = "buttonLayoutPanel";
-            this.buttonLayoutPanel.RowCount = 1;
-            this.buttonLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.buttonLayoutPanel.Size = new System.Drawing.Size(186, 33);
-            this.buttonLayoutPanel.TabIndex = 3;
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOK.Location = new System.Drawing.Point(3, 3);
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(87, 27);
-            this.buttonOK.TabIndex = 0;
-            this.buttonOK.Text = "OK";
-            this.buttonOK.UseVisualStyleBackColor = true;
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(96, 3);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(87, 27);
-            this.buttonCancel.TabIndex = 1;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // label
             // 
@@ -99,6 +62,44 @@ namespace UIRibbonTools
             this.textBox.Size = new System.Drawing.Size(328, 23);
             this.textBox.TabIndex = 1;
             // 
+            // buttonOK
+            // 
+            this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonOK.Location = new System.Drawing.Point(3, 3);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(87, 27);
+            this.buttonOK.TabIndex = 0;
+            this.buttonOK.Text = "OK";
+            this.buttonOK.UseVisualStyleBackColor = true;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.Location = new System.Drawing.Point(96, 3);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(87, 27);
+            this.buttonCancel.TabIndex = 1;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            // 
+            // buttonLayoutPanel
+            // 
+            this.buttonLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonLayoutPanel.AutoSize = true;
+            this.buttonLayoutPanel.ColumnCount = 2;
+            this.dialogLayout.SetColumnSpan(this.buttonLayoutPanel, 2);
+            this.buttonLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.buttonLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.buttonLayoutPanel.Controls.Add(this.buttonOK, 0, 0);
+            this.buttonLayoutPanel.Controls.Add(this.buttonCancel, 1, 0);
+            this.buttonLayoutPanel.Location = new System.Drawing.Point(420, 29);
+            this.buttonLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonLayoutPanel.Name = "buttonLayoutPanel";
+            this.buttonLayoutPanel.RowCount = 1;
+            this.buttonLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.buttonLayoutPanel.Size = new System.Drawing.Size(186, 33);
+            this.buttonLayoutPanel.TabIndex = 3;
+            // 
             // dialogLayout
             // 
             this.dialogLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -110,7 +111,7 @@ namespace UIRibbonTools
             this.dialogLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.dialogLayout.Controls.Add(this.label, 0, 0);
             this.dialogLayout.Controls.Add(this.textBox, 1, 0);
-            this.dialogLayout.Controls.Add(this.buttonLayoutPanel, 1, 1);
+            this.dialogLayout.Controls.Add(this.buttonLayoutPanel, 0, 1);
             this.dialogLayout.Location = new System.Drawing.Point(9, 9);
             this.dialogLayout.Margin = new System.Windows.Forms.Padding(0);
             this.dialogLayout.Name = "dialogLayout";

@@ -93,7 +93,7 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(EditName, "Name of the mini toolbar");
+            viewsTip.SetToolTip(EditName, "Name of the mini toolbar");
         }
 
         private void EditNameChange(object sender, EventArgs e)

@@ -203,12 +203,12 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(UpDownMaxCount, "Maximum number of recent items in the application menu");
-            new ToolTip(components).SetToolTip(CheckBoxEnablePinning, "Whether recent items can be pinned to the application menu.");
-            new ToolTip(components).SetToolTip(ComboBoxCaptionCommand,
+            viewsTip.SetToolTip(UpDownMaxCount, "Maximum number of recent items in the application menu");
+            viewsTip.SetToolTip(CheckBoxEnablePinning, "Whether recent items can be pinned to the application menu.");
+            viewsTip.SetToolTip(ComboBoxCaptionCommand,
                 "The command that contains the caption display" + Environment.NewLine +
                 "at the top of the recent items list.");
-            new ToolTip(components).SetToolTip(CheckBoxEnableRecentItems, "Whether the application menu supports recent items");
+            viewsTip.SetToolTip(CheckBoxEnableRecentItems, "Whether the application menu supports recent items");
         }
 
         public override void Activate_()

@@ -106,7 +106,7 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxButtonItemType,
+            viewsTip.SetToolTip(ComboBoxButtonItemType,
                 "The type of item to use for the button (top) part of the control" + Environment.NewLine +
                 " (see tree on the left for details)");
         }

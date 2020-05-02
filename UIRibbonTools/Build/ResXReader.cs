@@ -6,7 +6,7 @@ using System.Xml.XPath;
 using System.Xml;
 using System.Globalization;
 
-namespace RibbonGenerator
+namespace UIRibbonTools
 {
     public class ResXReader
     {

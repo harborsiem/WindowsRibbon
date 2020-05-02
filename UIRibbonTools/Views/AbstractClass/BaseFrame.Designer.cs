@@ -28,26 +28,14 @@ namespace UIRibbonTools
         /// </summary>
         private void InitializeComponent()
         {
-            this._imageSample = new System.Windows.Forms.PictureBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this._blanks = new System.Windows.Forms.ToolStripLabel();
             this._labelHeader = new System.Windows.Forms.ToolStripLabel();
             this._layoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this._panel = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this._imageSample)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this._panel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // _imageSample
-            // 
-            //this._imageSample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._imageSample.Location = new System.Drawing.Point(382, 3);
-            //this._imageSample.Margin = new System.Windows.Forms.Padding(0);
-            this._imageSample.Name = "_imageSample";
-            this._imageSample.Size = new System.Drawing.Size(105, 105);
-            this._imageSample.TabIndex = 0;
-            this._imageSample.TabStop = false;
             // 
             // toolStrip1
             // 
@@ -105,22 +93,20 @@ namespace UIRibbonTools
             // 
             this._panel.AutoScroll = true;
             this._panel.Controls.Add(this._layoutPanel);
-            this._panel.Controls.Add(this._imageSample);
             this._panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._panel.Location = new System.Drawing.Point(0, 25);
             this._panel.Name = "_panel";
             this._panel.Size = new System.Drawing.Size(498, 215);
             this._panel.TabIndex = 0;
             // 
-            // TBaseFrame
+            // BaseFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._panel);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "TBaseFrame";
+            this.Name = "BaseFrame";
             this.Size = new System.Drawing.Size(498, 240);
-            ((System.ComponentModel.ISupportInitialize)(this._imageSample)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this._panel.ResumeLayout(false);
@@ -131,7 +117,6 @@ namespace UIRibbonTools
 
         #endregion
 
-        private System.Windows.Forms.PictureBox _imageSample;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel _labelHeader;
         private System.Windows.Forms.TableLayoutPanel _layoutPanel;

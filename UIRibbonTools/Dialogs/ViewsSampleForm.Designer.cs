@@ -33,12 +33,11 @@
             // ViewsSampleForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(640, 450);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.ClientSize = new System.Drawing.Size(579, 344);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ViewsSampleForm";
             this.ShowInTaskbar = false;
-            this.Text = "ViewsSample";
+            this.Text = "View Sample";
             this.ResumeLayout(false);
 
         }

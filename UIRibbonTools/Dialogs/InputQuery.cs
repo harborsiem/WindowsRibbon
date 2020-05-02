@@ -14,18 +14,12 @@ namespace UIRibbonTools
     {
         protected InputQuery()
         {
-#if Core
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
-#endif
+            //#if Core
+            // do not uncomment, because the Font of this Form is set to the default Font of .Net Core and later versions
+            // default Font is Segoe UI, 9f, Regular
+            //            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+            //#endif
             InitializeComponent();
-            //this.Font = SystemFonts.MessageBoxFont;
-            //if (!DesignMode)
-            //{
-            //    Graphics g = CreateGraphics();
-            //    int width = 640 * (int)g.DpiX / 96;
-            //    g.Dispose();
-            //    this.Size = new Size(width, this.Height);
-            //}
         }
 
         public static DialogResult Show(string caption, string label, out string text)

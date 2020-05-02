@@ -156,8 +156,8 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxSizeDefinition, "Specifies how the controls in this group are layed out and scaled");
-            new ToolTip(components).SetToolTip(ComboBoxCustomSizeDefinition,
+            viewsTip.SetToolTip(ComboBoxSizeDefinition, "Specifies how the controls in this group are layed out and scaled");
+            viewsTip.SetToolTip(ComboBoxCustomSizeDefinition,
                 "Specify a custom size definition that you have declared" + Environment.NewLine +
                 "under the \"Size Definitions\" node of the ribbon");
         }

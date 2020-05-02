@@ -179,10 +179,10 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(UpDownMinFontSize, "Minimum size of the font the user can select");
-            new ToolTip(components).SetToolTip(UpDownMaxFontSize, "Maximum size of the font the user can select");
-            new ToolTip(components).SetToolTip(CheckBoxTrueTypeOnly, "Whether only True Type fonts are shown in the font list");
-            new ToolTip(components).SetToolTip(CheckBoxVerticalFonts, "Whether vertical fonts are shown in the font list");
+            viewsTip.SetToolTip(UpDownMinFontSize, "Minimum size of the font the user can select");
+            viewsTip.SetToolTip(UpDownMaxFontSize, "Maximum size of the font the user can select");
+            viewsTip.SetToolTip(CheckBoxTrueTypeOnly, "Whether only True Type fonts are shown in the font list");
+            viewsTip.SetToolTip(CheckBoxVerticalFonts, "Whether vertical fonts are shown in the font list");
         }
 
         protected void CheckBoxTrueTypeOnlyClick(object sender, EventArgs e)

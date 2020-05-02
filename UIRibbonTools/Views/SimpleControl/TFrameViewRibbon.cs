@@ -131,8 +131,8 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(EditName, "Name of the ribbon.");
-            new ToolTip(components).SetToolTip(ComboBoxGroupSpacing, "Spacing of Groups");
+            viewsTip.SetToolTip(EditName, "Name of the ribbon.");
+            viewsTip.SetToolTip(ComboBoxGroupSpacing, "Spacing of Groups");
         }
 
         private void ComboBoxGroupSpacingChange(object sender, EventArgs e)

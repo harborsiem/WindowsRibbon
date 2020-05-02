@@ -121,7 +121,7 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            //new ToolTip(components).SetToolTip(UpDownSequence, "???Name of the context menu");
+            //viewsTip.SetToolTip(UpDownSequence, "???Name of the context menu");
         }
 
         private void EditSequenceChange(object sender, EventArgs e)

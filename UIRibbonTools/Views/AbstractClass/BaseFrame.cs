@@ -60,12 +60,12 @@ namespace UIRibbonTools
     {
         protected const float ThirdColumnWidth = 200f; //145f
         protected const float FourthColumnWidth = 24f; //24f
+        protected ToolTip viewsTip;
 
         private TRibbonObject _subject;
         private TreeNode _subjectNode;
         private bool _updating;
         protected ViewsFrame Owner;
-        protected PictureBox ImageSample { get => _imageSample; }
         protected TableLayoutPanel LayoutPanel { get => _layoutPanel; }
         protected ToolStripLabel LabelHeader { get => _labelHeader; }
 
@@ -97,7 +97,7 @@ namespace UIRibbonTools
         {
             if (components == null)
                 components = new Container();
-            this._imageSample = new System.Windows.Forms.PictureBox();
+            viewsTip = new ToolTip(components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this._blanks = new System.Windows.Forms.ToolStripLabel();
             this._labelHeader = new System.Windows.Forms.ToolStripLabel();
@@ -107,7 +107,6 @@ namespace UIRibbonTools
 
         protected virtual void InitSuspend()
         {
-            ((System.ComponentModel.ISupportInitialize)(this._imageSample)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this._layoutPanel.SuspendLayout();
             this._panel.SuspendLayout();
@@ -116,17 +115,6 @@ namespace UIRibbonTools
 
         protected virtual void InitComponentStep2()
         {
-            // 
-            // _imageSample
-            // 
-            //this._imageSample.BackColor = Color.Black;
-            //this._imageSample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._imageSample.Location = new System.Drawing.Point(382, 3);
-            //this._imageSample.Margin = new System.Windows.Forms.Padding(0);
-            this._imageSample.Name = "_imageSample";
-            this._imageSample.Size = new System.Drawing.Size(105, 105);
-            this._imageSample.TabIndex = 0;
-            this._imageSample.TabStop = false;
             // 
             // toolStrip1
             // 
@@ -214,7 +202,6 @@ namespace UIRibbonTools
 
         protected virtual void InitResume()
         {
-            ((System.ComponentModel.ISupportInitialize)(this._imageSample)).EndInit();
             this._layoutPanel.ResumeLayout(false);
             this._layoutPanel.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -238,11 +225,6 @@ namespace UIRibbonTools
         protected TreeNode SubjectNode { get { return _subjectNode; } }
 
         public TRibbonObject Subject { get { return _subject; } }
-
-        public void FrameResize(object sender, EventArgs e)
-        {
-            ImageSample.Left = Width - ImageSample.Width - 4;
-        }
 
         protected virtual void Initialize(TRibbonObject subject)
         {

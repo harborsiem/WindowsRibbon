@@ -99,7 +99,7 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxCategory,
+            viewsTip.SetToolTip(ComboBoxCategory,
                 "Whether this group contains Standard Items (small buttons," + Environment.NewLine +
                 "normal text) or Major Items (large buttons, bold text)");
         }

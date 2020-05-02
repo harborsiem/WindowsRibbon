@@ -28,7 +28,6 @@ namespace UIRibbonTools
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreviewForm));
             this.ribbon = new RibbonLib.Ribbon();
             this.tabSheetAppModes = new System.Windows.Forms.TabPage();
             this.checkedListBoxAppModes = new System.Windows.Forms.CheckedListBox();
@@ -41,7 +40,7 @@ namespace UIRibbonTools
             this.labelContextPopups = new System.Windows.Forms.Label();
             this.tabSheetColorize = new System.Windows.Forms.TabPage();
             this.setColorsButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.colorizeLayout = new System.Windows.Forms.TableLayoutPanel();
             this.backgroundGroupBox1 = new System.Windows.Forms.GroupBox();
             this.backgroundLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -78,7 +77,7 @@ namespace UIRibbonTools
             this.tabSheetContextTabs.SuspendLayout();
             this.tabSheetContextPopups.SuspendLayout();
             this.tabSheetColorize.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.colorizeLayout.SuspendLayout();
             this.backgroundGroupBox1.SuspendLayout();
             this.backgroundLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownB_R)).BeginInit();
@@ -211,7 +210,7 @@ namespace UIRibbonTools
             // tabSheetColorize
             // 
             this.tabSheetColorize.Controls.Add(this.setColorsButton);
-            this.tabSheetColorize.Controls.Add(this.tableLayoutPanel1);
+            this.tabSheetColorize.Controls.Add(this.colorizeLayout);
             this.tabSheetColorize.Controls.Add(this.getColorsButton);
             this.tabSheetColorize.Location = new System.Drawing.Point(4, 22);
             this.tabSheetColorize.Name = "tabSheetColorize";
@@ -229,30 +228,30 @@ namespace UIRibbonTools
             this.setColorsButton.Text = "Set Colors";
             this.setColorsButton.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // colorizeLayout
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.backgroundGroupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.backgroundColorPanel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.backgroundButton, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.highlightGroup, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.highlightColorPanel, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.highlightButton, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.textColorGroup, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textColorPanel, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textButton, 2, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(618, 171);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.colorizeLayout.AutoSize = true;
+            this.colorizeLayout.ColumnCount = 3;
+            this.colorizeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.colorizeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.colorizeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.colorizeLayout.Controls.Add(this.backgroundGroupBox1, 0, 0);
+            this.colorizeLayout.Controls.Add(this.backgroundColorPanel, 0, 1);
+            this.colorizeLayout.Controls.Add(this.backgroundButton, 0, 2);
+            this.colorizeLayout.Controls.Add(this.highlightGroup, 1, 0);
+            this.colorizeLayout.Controls.Add(this.highlightColorPanel, 1, 1);
+            this.colorizeLayout.Controls.Add(this.highlightButton, 1, 2);
+            this.colorizeLayout.Controls.Add(this.textColorGroup, 2, 0);
+            this.colorizeLayout.Controls.Add(this.textColorPanel, 2, 1);
+            this.colorizeLayout.Controls.Add(this.textButton, 2, 2);
+            this.colorizeLayout.Location = new System.Drawing.Point(8, 3);
+            this.colorizeLayout.Name = "colorizeLayout";
+            this.colorizeLayout.RowCount = 3;
+            this.colorizeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.colorizeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.colorizeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.colorizeLayout.Size = new System.Drawing.Size(618, 171);
+            this.colorizeLayout.TabIndex = 1;
             // 
             // backgroundGroupBox1
             // 
@@ -695,8 +694,8 @@ namespace UIRibbonTools
             this.tabSheetContextPopups.PerformLayout();
             this.tabSheetColorize.ResumeLayout(false);
             this.tabSheetColorize.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.colorizeLayout.ResumeLayout(false);
+            this.colorizeLayout.PerformLayout();
             this.backgroundGroupBox1.ResumeLayout(false);
             this.backgroundLayout.ResumeLayout(false);
             this.backgroundLayout.PerformLayout();
@@ -735,7 +734,7 @@ namespace UIRibbonTools
         private System.Windows.Forms.Label labelContextPopups;
         private System.Windows.Forms.ListBox listBoxContextPopups;
         private System.Windows.Forms.Button getColorsButton;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel colorizeLayout;
         private System.Windows.Forms.GroupBox textColorGroup;
         private System.Windows.Forms.TableLayoutPanel textLayout;
         private System.Windows.Forms.NumericUpDown numericUpDownT_B;

@@ -171,10 +171,10 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxControlName, "The name of the control to which this size definition applies.");
-            new ToolTip(components).SetToolTip(ComboBoxImageSize, "Size of the images for this definition");
-            new ToolTip(components).SetToolTip(CheckBoxIsLabelVisible, "Whether the control label is visible in this definition");
-            new ToolTip(components).SetToolTip(CheckBoxIsImageVisible, "Whether the control image is visible in this definition");
+            viewsTip.SetToolTip(ComboBoxControlName, "The name of the control to which this size definition applies.");
+            viewsTip.SetToolTip(ComboBoxImageSize, "Size of the images for this definition");
+            viewsTip.SetToolTip(CheckBoxIsLabelVisible, "Whether the control label is visible in this definition");
+            viewsTip.SetToolTip(CheckBoxIsImageVisible, "Whether the control image is visible in this definition");
         }
 
         private void CheckBoxIsImageVisibleClick(

@@ -18,6 +18,9 @@ namespace UIRibbonTools.Dialogs
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
 #endif
             InitializeComponent();
+#if SegoeFont
+            this.Font = SystemFonts.MessageBoxFont;
+#endif
         }
     }
 }

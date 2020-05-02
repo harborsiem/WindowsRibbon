@@ -92,7 +92,7 @@ namespace UIRibbonTools
 
         protected override void InitEvents()
         {
-            //base.InitEvents(); // don't do it, because of overide Command event
+            //base.InitEvents(); // don't do it, because of override Command event
             ComboBoxSize.SelectedIndexChanged += ComboBoxSizeChange;
             ComboBoxCommand.SelectedIndexChanged += ComboBoxCommandChange;
         }
@@ -100,7 +100,7 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             //base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxCommand,
+            viewsTip.SetToolTip(ComboBoxCommand,
                 "The command associated with the group of controls" + Environment.NewLine +
                 "to which this scale applies.");
         }

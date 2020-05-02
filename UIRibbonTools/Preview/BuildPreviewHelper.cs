@@ -9,7 +9,6 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml.Schema;
 using System.Xml.Linq;
-using RibbonGenerator;
 
 namespace UIRibbonTools
 {
@@ -225,6 +224,31 @@ namespace UIRibbonTools
             }
             sw.Close();
             sr.Close();
+        }
+
+        public static void ConsoleBuild(string path)
+        {
+            try
+            {
+                string fileName = path;
+                string content = File.ReadAllText(fileName);
+                Manager manager = new Manager(new ConsoleMessageOutput(), fileName, content);
+
+                var targets = manager.Targets;
+                foreach (var target in targets)
+                {
+                    var buffer = manager.CreateRibbon(target);
+                    File.WriteAllBytes(target.RibbonFilename, buffer);
+                }
+
+                // create the C# file RibbonItems.Designer.cs
+                new CSharpCodeBuilder().Execute(fileName, new RibbonParser(fileName));
+
+            }
+            catch (Exception ex)
+            {
+                System.Console.Error.WriteLine(ex.Message);
+            }
         }
     }
 }

@@ -130,10 +130,10 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(EditName,
+            viewsTip.SetToolTip(EditName,
                 "Name of the size definition. This name is later used when" + Environment.NewLine +
                 "you set custom size definitions for a group of controls.");
-            new ToolTip(components).SetToolTip(MemoControlNameMap,
+            viewsTip.SetToolTip(MemoControlNameMap,
                 "Specify some (arbitrary) control names that you use later in" + Environment.NewLine +
                 "the control size definitions. Use one control name per line.");
         }

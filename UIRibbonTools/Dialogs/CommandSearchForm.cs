@@ -22,7 +22,9 @@ namespace UIRibbonTools
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
 #endif
             InitializeComponent();
+#if SegoeFont
             this.Font = SystemFonts.MessageBoxFont;
+#endif
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             buttonCancel.Click += ButtonCancelClick;
             buttonOK.Click += ButtonOKClick;

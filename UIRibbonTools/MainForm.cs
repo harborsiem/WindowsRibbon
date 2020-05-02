@@ -69,8 +69,11 @@ namespace UIRibbonTools
             _commandsFrame.SetBoldFonts();
             _viewsFrame.SetBoldFonts();
 
+#if SegoeFont
             this.Font = SystemFonts.MessageBoxFont;
+#endif
 #if Core
+            //@ maybe this is a bug in Core because we have to set the Font to the UserControls
             _commandsFrame.SetFonts(this.Font);
             _viewsFrame.SetFonts(this.Font);
             _xmlSourceFrame.SetFonts(this.Font);
@@ -252,9 +255,10 @@ namespace UIRibbonTools
 
             _actionMSDN.Execute += ActionMSDNExecute;
             _actionMSDN.ImageIndex = 6;
-            _actionMSDN.Text = "MSDN WindowsRibbon Documentation";
+            _actionMSDN.Text = "MSDN WindowsRibbon";
             _actionMSDN.SetComponent(menuMSDN, true);
 
+            _actionSetResourceName.Visible = false; //@ not supported in .NET Ribbon
             _actionSetResourceName.Execute += ActionSetResourceNameExecute;
             _actionSetResourceName.Hint =
                 "Set a resource name for the markup. This is necessary " + Environment.NewLine +
@@ -285,7 +289,7 @@ namespace UIRibbonTools
         {
             this.ResizeBegin += MainForm_ResizeBegin;
             this.ResizeEnd += MainForm_ResizeEnd;
-            Load += FormActivate;
+            Load += FormLoad;
             Shown += CMShowingChanged;
             this.Closing += FormCloseQuery;
             this.FormClosed += FormClose;
@@ -497,11 +501,10 @@ namespace UIRibbonTools
 
         private void ActionSetResourceNameExecute(object sender, EventArgs e)
         {
-            //@ todo
             string userInput;
             userInput = InputBox.Show(this, "Enter resource name", "Please enter a resource name that is used for this ribbon markup", _document.Application.ResourceName);
-            //if (string.IsNullOrEmpty(userInput))
-            //    _document.Application.ResourceName = userInput;
+            if (!string.IsNullOrEmpty(userInput))
+                _document.Application.ResourceName = userInput;
         }
 
         private void ActionSettingsExecute(object sender, EventArgs e)
@@ -531,7 +534,7 @@ namespace UIRibbonTools
             _timerRestoreLog.Enabled = true;
         }
 
-        //@ todo
+        //@ => we have Tooltips
         //private void ApplicationEventsHint(object sender, EventArgs e)
         //{
         //    statusHints.Text = Application.Hint;
@@ -589,10 +592,10 @@ namespace UIRibbonTools
         //        memoMessages.ForeColor = Color.Red;
         //        //    memoMessages.Update();
         //        _timerRestoreLog.Enabled = true;
-        //        //    if (Result == crRibbonCompilerError) 
+        //        //    if (result == crRibbonCompilerError) 
         //        //    {
-        //        //      FFrameXmlSource.Activate_();
-        //        //      PageControl.ActivePage = TabSheetXmlSource;
+        //        //      _xmlSourceFrame.Activate_();
+        //        //      tabControl.SelectedTab = tabPageXmlSource;
         //        //    }
         //    }
         //}
@@ -650,7 +653,7 @@ namespace UIRibbonTools
             {
                 _initialized = true;
                 //MsgToDo();
-                //    if (!TSettings.Instance.ToolsAvailable())
+                //    if (!Settings.Instance.ToolsAvailable())
                 //        if (MessageBox.Show(RS_TOOLS_MESSAGE + Environment.NewLine + RS_TOOLS_SETUP, RS_TOOLS_HEADER, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
 
                 //            ShowSettingsDialog();
@@ -663,12 +666,14 @@ namespace UIRibbonTools
             _document.Dispose();
         }
 
-        private void FormActivate(object sender, EventArgs e)
+        private void FormLoad(object sender, EventArgs e)
         {
-            //@ ?
             memoMessages.SelectionLength = 0;
-            //if (ParamStr(1) != "")
-            //    OpenFile(ParamStr(1));
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1 && !string.IsNullOrEmpty(args[1]) && File.Exists(args[1]))
+            {
+                OpenFile(args[1]);
+            }
         }
 
         private void FormClose(object sender, FormClosedEventArgs e)

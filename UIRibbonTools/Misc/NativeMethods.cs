@@ -31,6 +31,28 @@ namespace UIRibbonTools
         [DllImport("user32.dll")]
         public static extern int PostMessage(HandleRef hwnd, int msg, IntPtr wparam, IntPtr lparam);
 
+        /// <summary>
+        /// allocates a new console for the calling process.
+        /// </summary>
+        /// <returns>If the function succeeds, the return value is nonzero.
+        /// If the function fails, the return value is zero. 
+        /// To get extended error information, call Marshal.GetLastWin32Error.</returns>
+        [DllImport("kernel32", SetLastError = true)]
+        public static extern bool AllocConsole();
+        /// <summary>
+        /// Detaches the calling process from its console
+        /// </summary>
+        /// <returns>If the function succeeds, the return value is nonzero.
+        /// If the function fails, the return value is zero. 
+        /// To get extended error information, call Marshal.GetLastWin32Error.</returns>
+        [DllImport("kernel32", SetLastError = true)]
+        public static extern bool FreeConsole();
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool AttachConsole(uint dwProcessId);
+
+        public const uint ATTACH_PARENT_PROCESS = 0x0ffffffff;  // default value if not specifing a process ID
+
         public static void SuspendPainting(IntPtr hWnd)
         {
             SendMessage(hWnd, WM_SETREDRAW, (IntPtr)0, IntPtr.Zero);

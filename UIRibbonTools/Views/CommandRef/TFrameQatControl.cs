@@ -76,7 +76,7 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(CheckBoxIsChecked,
+            viewsTip.SetToolTip(CheckBoxIsChecked,
                 "Whether this control is displayed by default" + Environment.NewLine +
                 "on the Quick Access Toolbar");
         }

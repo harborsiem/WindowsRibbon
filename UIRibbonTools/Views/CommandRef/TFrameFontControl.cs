@@ -140,10 +140,10 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
-            new ToolTip(components).SetToolTip(ComboBoxFontType, "The type of font control to show");
-            new ToolTip(components).SetToolTip(CheckBoxStrikethrough, "Whether the strikethrough button is shown in the font control");
-            new ToolTip(components).SetToolTip(CheckBoxUnderline, "Whether the underline button is shown in the font control");
-            new ToolTip(components).SetToolTip(CheckBoxHighlight, "Whether the highlight button is shown in the font control");
+            viewsTip.SetToolTip(ComboBoxFontType, "The type of font control to show");
+            viewsTip.SetToolTip(CheckBoxStrikethrough, "Whether the strikethrough button is shown in the font control");
+            viewsTip.SetToolTip(CheckBoxUnderline, "Whether the underline button is shown in the font control");
+            viewsTip.SetToolTip(CheckBoxHighlight, "Whether the highlight button is shown in the font control");
         }
 
         private void CheckBoxHighlightClick(object sender, EventArgs e)

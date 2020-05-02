@@ -26,7 +26,11 @@ namespace UIRibbonTools
 
         public SettingsForm()
         {
+#if Core
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
+            this.Font = SystemFonts.MessageBoxFont;
             _openDialog = new OpenFileDialog();
             this.Closing += FormClose;
         }
