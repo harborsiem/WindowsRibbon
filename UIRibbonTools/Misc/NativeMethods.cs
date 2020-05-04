@@ -31,6 +31,11 @@ namespace UIRibbonTools
         [DllImport("user32.dll")]
         public static extern int PostMessage(HandleRef hwnd, int msg, IntPtr wparam, IntPtr lparam);
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern uint GetConsoleProcessList(
+                uint[] processList,
+                uint processCount
+                );
         /// <summary>
         /// allocates a new console for the calling process.
         /// </summary>

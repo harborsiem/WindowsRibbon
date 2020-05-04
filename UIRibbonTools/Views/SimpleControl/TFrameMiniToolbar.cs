@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameMiniToolbar : BaseFrame
     {
+        private static Image sample = ImageManager.MiniToolBarSample();
+
         private Label Label1 { get => _label1; }
         private TextBox EditName { get => _editName; }
 
@@ -110,6 +112,11 @@ namespace UIRibbonTools
             base.Initialize(subject);
             _toolbar = subject as TRibbonMiniToolbar;
             EditName.Text = _toolbar.Name;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

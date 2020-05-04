@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UIRibbonTools.Dialogs
+namespace UIRibbonTools
 {
     partial class ViewsSampleForm : Form
     {

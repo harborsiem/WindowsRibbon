@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameControlGroup : BaseFrame
     {
+        private static Image sample = ImageManager.ControlGroupSample();
+
         private Label Label3 { get => _label3; }
         private NumericUpDown UpDownSequence { get => _upDownSequence; }
         private Label Label1 { get => _label1; }
@@ -138,6 +140,11 @@ namespace UIRibbonTools
             base.Initialize(subject);
             _group = subject as TRibbonControlGroup;
             UpDownSequence.Value = _group.SequenceNumber;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

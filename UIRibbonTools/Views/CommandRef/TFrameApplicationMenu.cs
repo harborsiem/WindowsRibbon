@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameApplicationMenu : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.ApplicationMenuSample();
+
         //private GroupBox GroupBoxRecentItems;
         private CheckBox CheckBoxEnableRecentItems { get => _checkBoxEnableRecentItems; }
         private Label LabelMaxCount { get => _labelMaxCount; }
@@ -311,6 +313,11 @@ namespace UIRibbonTools
                 UpDownMaxCount.Value = 0;
                 CheckBoxEnablePinning.Checked = false;
             }
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

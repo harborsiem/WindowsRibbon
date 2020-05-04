@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameQatControl : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.QATControlSample();
+
         private CheckBox CheckBoxIsChecked { get => _checkBoxIsChecked; }
 
         private TRibbonQatControl _qatControl;
@@ -95,6 +97,11 @@ namespace UIRibbonTools
             base.Initialize(subject);
             _qatControl = subject as TRibbonQatControl;
             CheckBoxIsChecked.Checked = _qatControl.IsChecked;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

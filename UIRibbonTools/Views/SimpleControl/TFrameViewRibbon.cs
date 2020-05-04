@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameViewRibbon : BaseFrame
     {
+        private static Image sample = ImageManager.ViewRibbonSample();
+
         private Label Label1 { get => _label1; }
         private TextBox EditName { get => _editName; }
         private Label Label2 { get => _label2; }
@@ -159,6 +161,11 @@ namespace UIRibbonTools
             _ribbon = subject as TRibbonViewRibbon;
             EditName.Text = _ribbon.Name;
             ComboBoxGroupSpacing.SelectedIndex = (int)(_ribbon.GroupSpacing);
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

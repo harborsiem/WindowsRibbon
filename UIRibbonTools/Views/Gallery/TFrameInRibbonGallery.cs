@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameInRibbonGallery : TFrameGallery
     {
+        private static Image sample = ImageManager.InRibbonGallerySample();
+
         private Label Label9 { get => _label9; }
         private NumericUpDown UpDownMinColumnsLarge { get => _upDownMinColumnsLarge; }
         private Label Label10 { get => _label10; }
@@ -426,6 +428,11 @@ namespace UIRibbonTools
             UpDownMaxColumnsMedium.Value = _inRibbonGallery.MaxColumnsMedium;
             UpDownMaxColumns.Value = _inRibbonGallery.MaxColumns;
             UpDownMaxRows.Value = _inRibbonGallery.MaxRows;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameHelpButton : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.HelpSample();
+
         //public TFrameHelpButton FrameHelpButton;
 
         public TFrameHelpButton()
@@ -64,6 +66,11 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

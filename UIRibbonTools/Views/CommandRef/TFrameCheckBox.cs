@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameCheckBox : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.CheckBoxSample();
+
         //public TFrameCheckBox FrameCheckBox;
 
         public TFrameCheckBox()
@@ -64,6 +66,11 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

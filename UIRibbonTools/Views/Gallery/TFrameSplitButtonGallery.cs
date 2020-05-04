@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameSplitButtonGallery : TFrameGallery
     {
+        private static Image sample = ImageManager.SplitButtonGallerySample();
+
         public TFrameSplitButtonGallery()
         {
             bool designtime = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
@@ -62,6 +64,11 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

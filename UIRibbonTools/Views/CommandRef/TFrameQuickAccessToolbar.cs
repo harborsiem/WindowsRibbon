@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameQuickAccessToolbar : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.QuickAccessToolBarSample();
+
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxCustomizeCommand { get => _comboBoxCustomizeCommand; }
 
@@ -155,6 +157,11 @@ namespace UIRibbonTools
                 ComboBoxCustomizeCommand.SelectedIndex = RibbonCommandItem.IndexOf(ComboBoxCustomizeCommand, _quickAccessToolbar.CustomizeCommandRef);
                 // ComboBoxCustomizeCommand.Items.IndexOf(FQuickAccessToolbar.CustomizeCommandRef);
             }
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

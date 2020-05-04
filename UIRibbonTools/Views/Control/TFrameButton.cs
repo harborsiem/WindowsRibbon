@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameButton : TFrameControl
     {
+        private static Image sample = ImageManager.ButtonSample();
+
         public TFrameButton()
         {
             bool designtime = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
@@ -62,6 +64,11 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameGroup : TFrameControl
     {
+        private static Image sample = ImageManager.GroupSample();
+
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxSizeDefinition { get => _comboBoxSizeDefinition; }
         private Label LabelCustomSizeDefinition { get => _labelCustomSizeDefinition; }
@@ -239,6 +241,11 @@ namespace UIRibbonTools
                     RemoveSizeDefNode();
                 }
             }
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

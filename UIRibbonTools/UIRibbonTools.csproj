@@ -601,6 +601,36 @@
     <EmbeddedResource Include="Images\ImageList_Settings.bmp" />
     <EmbeddedResource Include="Images\Images_Main.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ImageSample_Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ImageSample_ApplicationMenu.png" />
+    <EmbeddedResource Include="Images\ImageSample_CheckBox.png" />
+    <EmbeddedResource Include="Images\ImageSample_ComboBox.png" />
+    <EmbeddedResource Include="Images\ImageSample_ContextMap.png" />
+    <EmbeddedResource Include="Images\ImageSample_ContextMenu.png" />
+    <EmbeddedResource Include="Images\ImageSample_ControlGroup.png" />
+    <EmbeddedResource Include="Images\ImageSample_DropDownButton.png" />
+    <EmbeddedResource Include="Images\ImageSample_DropDownColorPicker.png" />
+    <EmbeddedResource Include="Images\ImageSample_DropDownGallery.png" />
+    <EmbeddedResource Include="Images\ImageSample_FloatyFontControl.png" />
+    <EmbeddedResource Include="Images\ImageSample_FontControl.png" />
+    <EmbeddedResource Include="Images\ImageSample_Group.png" />
+    <EmbeddedResource Include="Images\ImageSample_Help.png" />
+    <EmbeddedResource Include="Images\ImageSample_InRibbonGallery.png" />
+    <EmbeddedResource Include="Images\ImageSample_MenuGroup.png" />
+    <EmbeddedResource Include="Images\ImageSample_MenuGroup1.png" />
+    <EmbeddedResource Include="Images\ImageSample_MiniToolBar.png" />
+    <EmbeddedResource Include="Images\ImageSample_QATControl.png" />
+    <EmbeddedResource Include="Images\ImageSample_QuickAccessToolBar.png" />
+    <EmbeddedResource Include="Images\ImageSample_Spinner.png" />
+    <EmbeddedResource Include="Images\ImageSample_SplitButton.png" />
+    <EmbeddedResource Include="Images\ImageSample_SplitButtonGallery.png" />
+    <EmbeddedResource Include="Images\ImageSample_Tab.png" />
+    <EmbeddedResource Include="Images\ImageSample_TabGroup.png" />
+    <EmbeddedResource Include="Images\ImageSample_ToggleButton.png" />
+    <EmbeddedResource Include="Images\ImageSample_ViewRibbon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

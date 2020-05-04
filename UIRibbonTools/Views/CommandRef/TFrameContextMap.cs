@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameContextMap : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.ContextMapSample();
+
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxMiniToolbar { get => _comboBoxMiniToolbar; }
         private Label Label3 { get => _label3; }
@@ -203,6 +205,11 @@ namespace UIRibbonTools
                 ComboBoxContextMenu.SelectedIndex = ComboBoxContextMenu.Items.IndexOf(_contextMap.ContextMenuRef.Name);
             if (ComboBoxContextMenu.SelectedIndex < 0)
                 ComboBoxContextMenu.SelectedIndex = 0;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

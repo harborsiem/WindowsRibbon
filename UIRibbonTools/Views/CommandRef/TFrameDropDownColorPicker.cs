@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameDropDownColorPicker : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.DropDownColorPickerSample();
+
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxTemplate { get => _comboBoxTemplate; }
         private ComboBox ComboBoxChipSize { get => _comboBoxChipSize; }
@@ -414,6 +416,11 @@ namespace UIRibbonTools
             UpDownThemeRows.Value = _colorPicker.ThemeColorGridRows;
             CheckBoxAutoColor.Checked = _colorPicker.IsAutomaticColorButtonVisible;
             CheckBoxNoColor.Checked = _colorPicker.IsNoColorButtonVisible;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

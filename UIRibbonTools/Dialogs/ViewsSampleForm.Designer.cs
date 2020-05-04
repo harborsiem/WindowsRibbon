@@ -1,4 +1,4 @@
-﻿namespace UIRibbonTools.Dialogs
+namespace UIRibbonTools
 {
     partial class ViewsSampleForm
     {
@@ -28,20 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(418, 259);
+            this.pictureBox.TabIndex = 0;
+            this.pictureBox.TabStop = false;
             // 
             // ViewsSampleForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(579, 344);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.ClientSize = new System.Drawing.Size(418, 259);
+            this.Controls.Add(this.pictureBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ViewsSampleForm";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "View Sample";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        internal System.Windows.Forms.PictureBox pictureBox;
     }
 }

@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameAppMenuGroup : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.MenuGroupSample();
+
         public TRibbonAppMenuGroup _menuGroup;
 
         public TFrameAppMenuGroup()
@@ -70,6 +72,11 @@ namespace UIRibbonTools
         {
             base.Initialize(subject);
             _menuGroup = subject as TRibbonAppMenuGroup;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

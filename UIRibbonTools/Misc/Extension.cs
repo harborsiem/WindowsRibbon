@@ -7,15 +7,15 @@ using System.Windows.Forms;
 
 namespace System.Windows.Forms
 {
-    public enum NodeAction
+    public enum TreeNodeAction
     {
         Add,
         Insert,
     }
 
-    public static class Extensions
+    public static class TreeNodeEx
     {
-        public static void MoveTo(this TreeNode node, TreeNode treeNode, NodeAction action)
+        public static void MoveTo(this TreeNode node, TreeNode treeNode, TreeNodeAction action)
         {
 
         }

@@ -72,7 +72,7 @@ namespace UIRibbonTools
 #if SegoeFont
             this.Font = SystemFonts.MessageBoxFont;
 #endif
-#if Core
+#if Core && SegoeFont
             //@ maybe this is a bug in Core because we have to set the Font to the UserControls
             _commandsFrame.SetFonts(this.Font);
             _viewsFrame.SetFonts(this.Font);
@@ -169,10 +169,10 @@ namespace UIRibbonTools
 
             _actionPreview.Execute += ActionPreviewExecute;
             _actionPreview.Enabled = false; //@ added
-            _actionPreview.Hint = "Build & Preview the ribbon (F9)";
+            _actionPreview.Hint = "Preview the ribbon (F9)"; //@ "Build & Preview the ribbon (F9)"
             _actionPreview.ImageIndex = 3;
             _actionPreview.Text = "Preview";
-            _actionPreview.ShortcutKeys = Keys.F9; // (Shortcut)120;
+            _actionPreview.ShortcutKeys = Keys.F9;
             _actionPreview.SetComponent(toolButtonPreview, true);
             _actionPreview.SetComponent(menuPreview, true);
 
@@ -180,7 +180,7 @@ namespace UIRibbonTools
             _actionOpen.Hint = "Open an existing Ribbon document (Ctrl+O)";
             _actionOpen.ImageIndex = 1;
             _actionOpen.Text = "Open";
-            _actionOpen.ShortcutKeys = (Keys)(Keys.Control | Keys.O); // (Keys)16463;
+            _actionOpen.ShortcutKeys = (Keys)(Keys.Control | Keys.O);
             _actionOpen.SetComponent(toolButtonOpen, true);
             _actionOpen.SetComponent(menuOpen, true);
             //_actionAddCommand.ShowTextOnToolBar = false;
@@ -189,7 +189,7 @@ namespace UIRibbonTools
             _actionNew.Hint = "Create a new Ribbon document (Ctrl+N)";
             _actionNew.ImageIndex = 0;
             _actionNew.Text = "New";
-            _actionNew.ShortcutKeys = (Keys)(Keys.Control | Keys.N); //(Shortcut)16462;
+            _actionNew.ShortcutKeys = (Keys)(Keys.Control | Keys.N);
             _actionNew.SetComponent(menuNew, true);
 
             _actionGenerateCommandIDs.Execute += ActionGenerateCommandIDsExecute;
@@ -201,7 +201,7 @@ namespace UIRibbonTools
             _actionSaveAs.Enabled = false; //@ added
             _actionSaveAs.Hint = "Saves the Ribbon document under a new name (Shift+Ctrl+S)";
             _actionSaveAs.Text = "Save As";
-            _actionSaveAs.ShortcutKeys = (Keys)(Keys.Shift | Keys.Control | Keys.S); // (Shortcut)24659;
+            _actionSaveAs.ShortcutKeys = (Keys)(Keys.Shift | Keys.Control | Keys.S);
             _actionSaveAs.SetComponent(menuSaveAs, true);
 
             _actionSave.Execute += ActionSaveExecute;
@@ -209,7 +209,7 @@ namespace UIRibbonTools
             _actionSave.Hint = "Saves the Ribbon document (Ctrl+S)";
             _actionSave.ImageIndex = 2;
             _actionSave.Text = "Save";
-            _actionSave.ShortcutKeys = (Keys)(Keys.Control | Keys.S); //(Shortcut)16467;
+            _actionSave.ShortcutKeys = (Keys)(Keys.Control | Keys.S);
             _actionSave.SetComponent(toolButtonSave, true);
             _actionSave.SetComponent(menuSave, true);
 
@@ -233,7 +233,7 @@ namespace UIRibbonTools
             _actionBuild.Hint = "Build the ribbon (Ctrl+F9)";
             _actionBuild.ImageIndex = 5;
             _actionBuild.Text = "Build";
-            _actionBuild.ShortcutKeys = (Keys)(Keys.Control | Keys.F9); //(Shortcut)16504;
+            _actionBuild.ShortcutKeys = (Keys)(Keys.Control | Keys.F9);
             _actionBuild.SetComponent(toolButtonBuild, true);
             _actionBuild.SetComponent(menuBuild, true);
 
@@ -274,7 +274,7 @@ namespace UIRibbonTools
                 "it may be necessary to set IDs explicitly," + Environment.NewLine +
                 "so that there are no conflicting resource IDs)";
             _actionGenerateResourceIDs.Text = "Auto generate IDs for all resources";
-            _actionGenerateResourceIDs.ShortcutKeys = (Keys)(Keys.Control | Keys.G); //(Shortcut)16455;
+            _actionGenerateResourceIDs.ShortcutKeys = (Keys)(Keys.Control | Keys.G);
             _actionGenerateResourceIDs.SetComponent(autoGenerateIdsForAllResources, true);
 
             _actionList.ImageList = _imageListMain;

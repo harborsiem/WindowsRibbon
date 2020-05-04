@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameComboBox : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.ComboBoxSample();
+
         private CheckBox CheckBoxEditable { get => _checkBoxEditable; }
         private CheckBox CheckBoxResizeable { get => _checkBoxResizeable; }
         private CheckBox CheckBoxAutoComplete { get => _checkBoxAutoComplete; }
@@ -146,6 +148,11 @@ namespace UIRibbonTools
             CheckBoxEditable.Checked = _comboBox.IsEditable;
             CheckBoxResizeable.Checked = (_comboBox.ResizeType == RibbonComboBoxResizeType.VerticalResize);
             CheckBoxAutoComplete.Checked = _comboBox.IsAutoCompleteEnabled;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

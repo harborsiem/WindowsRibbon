@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameFloatieFontControl : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.FloatyFontControlSample();
+
         private Label Label3 { get => _label3; }
         private Label Label5 { get => _label5; }
         protected NumericUpDown UpDownMinFontSize { get => _upDownMinFontSize; }
@@ -229,6 +231,11 @@ namespace UIRibbonTools
             UpDownMaxFontSize.Value = _floatControl.MaximumFontSize;
             CheckBoxTrueTypeOnly.Checked = _floatControl.ShowTrueTypeOnly;
             CheckBoxVerticalFonts.Checked = _floatControl.ShowVerticalFonts;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

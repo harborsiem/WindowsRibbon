@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameContextMenu : BaseFrame
     {
+        private static Image sample = ImageManager.ContextMenuSample();
+
         private Label Label1 { get => _label1; }
         private TextBox EditName { get => _editName; }
 
@@ -110,6 +112,11 @@ namespace UIRibbonTools
             base.Initialize(subject);
             _contextMenu = subject as TRibbonContextMenu;
             EditName.Text = _contextMenu.Name;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

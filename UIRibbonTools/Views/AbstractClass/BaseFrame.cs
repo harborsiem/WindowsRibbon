@@ -58,6 +58,10 @@ namespace UIRibbonTools
 {
     partial class BaseFrame : UserControl
     {
+        static BaseFrame()
+        {
+            _viewsSample = new ViewsSampleForm();
+        }
         protected const float ThirdColumnWidth = 200f; //145f
         protected const float FourthColumnWidth = 24f; //24f
         protected ToolTip viewsTip;
@@ -65,6 +69,9 @@ namespace UIRibbonTools
         private TRibbonObject _subject;
         private TreeNode _subjectNode;
         private bool _updating;
+        private static ViewsSampleForm _viewsSample;
+        private ToolStripSeparator _sep1;
+        private ToolStripLabel _displaySample;
         protected ViewsFrame Owner;
         protected TableLayoutPanel LayoutPanel { get => _layoutPanel; }
         protected ToolStripLabel LabelHeader { get => _labelHeader; }
@@ -101,6 +108,8 @@ namespace UIRibbonTools
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this._blanks = new System.Windows.Forms.ToolStripLabel();
             this._labelHeader = new System.Windows.Forms.ToolStripLabel();
+            this._sep1 = new System.Windows.Forms.ToolStripSeparator();
+            this._displaySample = new System.Windows.Forms.ToolStripLabel();
             this._layoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this._panel = new System.Windows.Forms.Panel();
         }
@@ -122,7 +131,9 @@ namespace UIRibbonTools
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._blanks,
-            this._labelHeader});
+            this._labelHeader,
+            this._sep1,
+            this._displaySample});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(498, 25);
@@ -141,6 +152,13 @@ namespace UIRibbonTools
             this._labelHeader.Name = "_labelHeader";
             this._labelHeader.Size = new System.Drawing.Size(51, 22);
             this._labelHeader.Text = "  Header";
+            // 
+            // _displaySample
+            // 
+            this._displaySample.Font = new Font(_labelHeader.Font, FontStyle.Bold);
+            this._displaySample.Name = "_displaySample";
+            this._displaySample.Size = new System.Drawing.Size(51, 22);
+            this._displaySample.Text = "  Display Sample";
             // 
             // _layoutPanel
             // 
@@ -216,6 +234,19 @@ namespace UIRibbonTools
 
         protected virtual void InitEvents()
         {
+            _displaySample.MouseDown += DisplaySample_MouseDown;
+            _displaySample.MouseLeave += DisplaySample_MouseLeave;
+        }
+
+        private void DisplaySample_MouseLeave(object sender, EventArgs e)
+        {
+            _viewsSample.Hide();
+        }
+
+        private void DisplaySample_MouseDown(object sender, EventArgs e)
+        {
+            _viewsSample.Location = new Point(Cursor.Position.X + 20, Cursor.Position.Y);
+            _viewsSample.Show();
         }
 
         protected virtual void InitTooltips(IContainer components)
@@ -228,6 +259,7 @@ namespace UIRibbonTools
 
         protected virtual void Initialize(TRibbonObject subject)
         {
+            SetViewsSampleImage(SetImageSample());
             this._subject = subject;
         }
 
@@ -260,6 +292,18 @@ namespace UIRibbonTools
 
             FrameViews = Owner as ViewsFrame;
             FrameViews.UpdateCurrentNode();
+        }
+
+        protected virtual Image SetImageSample()
+        {
+            Image sample = new Bitmap(16, 16);
+            return sample;
+        }
+
+        private void SetViewsSampleImage(Image sample)
+        {
+            _viewsSample.Size = sample.Size;
+            _viewsSample.pictureBox.Image = sample;
         }
     }
 }

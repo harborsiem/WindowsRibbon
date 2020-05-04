@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameTabGroup : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.TabGroupSample();
+
         //public TFrameTabGroup FrameTabGroup;
 
         public TFrameTabGroup()
@@ -64,6 +66,11 @@ namespace UIRibbonTools
         protected override void InitTooltips(IContainer components)
         {
             base.InitTooltips(components);
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

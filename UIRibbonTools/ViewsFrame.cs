@@ -817,7 +817,7 @@ namespace UIRibbonTools
             else
             {
                 T obj1 = new T();
-#if Core
+#if Core && SegoeFont
                 obj1.Font = this.Font;
 #endif
                 _viewClasses[viewClazz] = obj1;

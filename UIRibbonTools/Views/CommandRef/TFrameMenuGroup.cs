@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameMenuGroup : TFrameCommandRefObject
     {
+        private static Image sample = ImageManager.MenuGroup1Sample();
+
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxCategory { get => _comboBoxCategory; }
 
@@ -118,6 +120,11 @@ namespace UIRibbonTools
             base.Initialize(subject);
             _menuGroup = subject as TRibbonMenuGroup;
             ComboBoxCategory.SelectedIndex = (int)(_menuGroup.CategoryClass);
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

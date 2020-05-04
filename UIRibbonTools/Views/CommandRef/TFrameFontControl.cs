@@ -13,6 +13,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameFontControl : TFrameFloatieFontControl
     {
+        private static Image sample = ImageManager.FontControlSample();
+
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxFontType { get => _comboBoxFontType; }
         private CheckBox CheckBoxStrikethrough { get => _checkBoxStrikethrough; }
@@ -211,6 +213,11 @@ namespace UIRibbonTools
                 CheckBoxUnderline.Checked = _fontControl.IsUnderlineButtonVisible;
                 CheckBoxHighlight.Checked = _fontControl.IsHighlightButtonVisible;
             }
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }

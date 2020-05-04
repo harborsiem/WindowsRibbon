@@ -14,6 +14,8 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameSplitButton : TFrameControl
     {
+        private static Image sample = ImageManager.SplitButtonSample();
+
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxButtonItemType { get => _comboBoxButtonItemType; }
 
@@ -177,6 +179,11 @@ namespace UIRibbonTools
                 ComboBoxButtonItemType.SelectedIndex = BI_BUTTON;
             else
                 ComboBoxButtonItemType.SelectedIndex = BI_TOGGLE_BUTTON;
+        }
+
+        protected override Image SetImageSample()
+        {
+            return sample;
         }
     }
 }
