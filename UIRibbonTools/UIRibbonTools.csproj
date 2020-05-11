@@ -7,7 +7,7 @@
     <ProjectGuid>{9B642095-6E14-4B82-A6E7-707F44865520}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>UIRibbonTools</RootNamespace>
-    <AssemblyName>UIRibbonTools</AssemblyName>
+    <AssemblyName>RibbonTools</AssemblyName>
     <ApplicationIcon>Images\Ribbon.ico</ApplicationIcon>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

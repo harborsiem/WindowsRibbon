@@ -90,7 +90,7 @@ namespace UIRibbonTools
         public static Bitmap BitmapFromFile(string fileName, bool highContrast = false)
         {
             Bitmap bitmap = null;
-            if (!highContrast && !Path.GetExtension(fileName).Equals("PNG", StringComparison.OrdinalIgnoreCase))
+            if (!highContrast && !Path.GetExtension(fileName).Equals(".PNG", StringComparison.OrdinalIgnoreCase))
             {
                 byte[] bytes = File.ReadAllBytes(fileName);
                 string headerMark = Encoding.ASCII.GetString(bytes, 0, 2);
@@ -102,8 +102,8 @@ namespace UIRibbonTools
                     int length = BitConverter.ToInt16(bytes, 2) - offBits;
                     NativeMethods.BitmapCompressionMode compression = (NativeMethods.BitmapCompressionMode)BitConverter.ToUInt32(bytes, 30);
                     short bitCount = BitConverter.ToInt16(bytes, 28);
-                    //@ Make some tests if it is a ARGB Bitmap
-                    if (bitCount == 32 && compression == NativeMethods.BitmapCompressionMode.BI_RGB) //width * Math.Abs(height) * 4 == length
+                    //Make some tests if it is a ARGB Bitmap
+                    if (bitCount == 32 && compression == NativeMethods.BitmapCompressionMode.BI_RGB)
                     {
                         GCHandle gcH = GCHandle.Alloc(bytes, GCHandleType.Pinned);
                         IntPtr scan0 = gcH.AddrOfPinnedObject() + offBits;
@@ -120,6 +120,13 @@ namespace UIRibbonTools
             if (!highContrast)
                 if (!(bitmap.PixelFormat == PixelFormat.Format32bppArgb || bitmap.PixelFormat == PixelFormat.Format32bppPArgb))
                     bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
+                else
+                {
+                    if ((int)bitmap.HorizontalResolution != 96)
+                    {
+                        bitmap.SetResolution(96.0f, 96.0f); //only png bitmaps can have other resolution
+                    }
+                }
             return bitmap;
         }
 

@@ -267,7 +267,7 @@ namespace UIRibbonTools
         {
             if (!_updating)
             {
-                ((MainForm)FindForm()).Modified();
+                MainForm.FormMain.Modified();
                 UpdateCurrentNode();
             }
         }

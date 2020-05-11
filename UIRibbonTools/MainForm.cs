@@ -20,7 +20,7 @@ namespace UIRibbonTools
     {
         private const string RS_CANNOT_LOAD_DLL = "Unable to load Ribbon Resource DLL";
         private const string RS_MODIFIED = "Modified";
-        private const string RS_RIBBON_DESIGNER = "UIRibbon Tools";
+        private const string RS_RIBBON_TOOLS = "Ribbon Tools";
         private const string RS_UNTITLED = "(untitled document)";
         private const string RS_CHANGED_HEADER = "Document has changed";
         private const string RS_CHANGED_MESSAGE = "The document has changed. Do you want to save the changes?";
@@ -80,6 +80,7 @@ namespace UIRibbonTools
 #endif
             if (components == null)
                 components = new Container();
+            this.Text = RS_RIBBON_TOOLS;
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             FormMain = this;
             CreateMainBitmaps();
@@ -89,19 +90,11 @@ namespace UIRibbonTools
             toolPreviewLanguageCombo.SelectedIndex = 0;
             InitEvents();
             InitActions();
-            //string localAppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "UIRibbonTools");
+            //string localAppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RibbonTools");
 
             //    constructor TFormMain.Create(AOwner: TComponent)
             //{
             //  inherited;
-            //// Write the path to the Ribbon Designer to the registry, so that the designtime package knows where to find it. Issue #22
-            //With TRegistry.Create do
-            //try
-            //  OpenKey(cRegistryPath, true);
-            //    WriteString(cRegistryKeyDesigner, ParamStr(0));
-            //finally
-            //  Free;
-            //}
 
             _document = new TRibbonDocument();
 
@@ -219,7 +212,7 @@ namespace UIRibbonTools
             _actionSettings.SetComponent(menuSettings, true);
 
             _actionExit.Execute += ActionExitExecute;
-            _actionExit.Hint = "Exits the UIRibbon Tools";
+            _actionExit.Hint = "Exits the " + RS_RIBBON_TOOLS;
             _actionExit.Text = "Exit";
             _actionExit.SetComponent(menuExit, true);
 
@@ -248,7 +241,7 @@ namespace UIRibbonTools
             _actionWebSite.SetComponent(menuWebSite, true);
 
             _actionDotnetWebSite.Execute += ActionDotnetWebSiteExecute;
-            _actionDotnetWebSite.Hint = "C#, VB UIRibbon Framework";
+            _actionDotnetWebSite.Hint = "C#, VB Ribbon Framework";
             _actionDotnetWebSite.ImageIndex = 7;
             _actionDotnetWebSite.Text = "Website for .NET WindowsRibbon";
             _actionDotnetWebSite.SetComponent(menuDotnetWebSite, true);
@@ -329,8 +322,7 @@ namespace UIRibbonTools
 
         private void ActionExitExecute(object sender, EventArgs e)
         {
-            //Close();
-            Application.Exit();
+            Close();
         }
 
         private void ActionGenerateCommandIDsExecute(object sender, EventArgs e)
@@ -678,11 +670,12 @@ namespace UIRibbonTools
 
         private void FormClose(object sender, FormClosedEventArgs e)
         {
+            Application.Exit();
             //@ todo
-            //if (FPreviewForm != null)
+            //if (_previewForm != null)
             //{
-            //    FPreviewForm.Close();
-            //    FPreviewForm = null;
+            //    _previewForm.Close();
+            //    _previewForm = null;
             //}
         }
 
@@ -847,7 +840,7 @@ namespace UIRibbonTools
             //@ todo
             //SettingsForm form;
 
-            //Form = new SettingsForm(Settings.Instance);
+            //form = new SettingsForm(Settings.Instance);
             //try
             //{
             //    form.ShowDialog();
@@ -867,9 +860,9 @@ namespace UIRibbonTools
         private void UpdateCaption()
         {
             if (string.IsNullOrEmpty(_document.Filename))
-                this.Text = RS_UNTITLED + " - " + RS_RIBBON_DESIGNER;
+                this.Text = RS_UNTITLED + " - " + RS_RIBBON_TOOLS;
             else
-                this.Text = Path.GetFileName(_document.Filename) + " - " + RS_RIBBON_DESIGNER;
+                this.Text = Path.GetFileName(_document.Filename) + " - " + RS_RIBBON_TOOLS;
         }
 
         private void UpdateControls()

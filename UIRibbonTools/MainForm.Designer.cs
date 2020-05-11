@@ -445,7 +445,6 @@ namespace UIRibbonTools
             this.MainMenuStrip = this.mainMenuStrip;
             this.MinimumSize = new System.Drawing.Size(921, 680);
             this.Name = "MainForm";
-            this.Text = "UIRibbon Tools";
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.toolStrip.ResumeLayout(false);

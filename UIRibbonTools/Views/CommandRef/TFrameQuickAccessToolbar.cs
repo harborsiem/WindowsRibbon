@@ -113,6 +113,7 @@ namespace UIRibbonTools
             }
             else
                 cmd = null;
+            ComboBoxCustomizeCommand.Items.Clear();
             ComboBoxCustomizeCommand.Items.AddRange(frameViews.Commands.ToArray());
             if (cmd == null)
                 ComboBoxCustomizeCommand.SelectedIndex = 0;

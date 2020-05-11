@@ -102,7 +102,7 @@ namespace UIRibbonTools
             {
                 if ((searchText.Length == 0) || (item.Text.ToUpper().Contains(searchText.ToUpper())))
                 {
-                    newItem = ListViewCommands.Items.Insert(ListViewCommands.Items.Count, (ListViewItem)item.Clone());
+                    newItem = ListViewCommands.Items.Insert(ListViewCommands.Items.Count, (ListViewItem)item.Clone()); //@ Count - 1 ?
                 }
             }
 

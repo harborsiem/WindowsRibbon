@@ -89,16 +89,12 @@ namespace UIRibbonTools
             "10 Buttons",
             "11 Button",
             "1 Font Control",
-            "Int Font Only",
-            "Int Rich Font",
-            "Int Font With Color",
             "1 In-Ribbon Gallery",
-            "Big Buttons and Small Buttons or Inputs",
             "In-Ribbon Gallery and Big Button",
             "In-Ribbon Gallery and Buttons, Gallery scales first",
-            "In-Ribbon Gallery and 3 Buttons",
+            "Button Groups",
             "Button Groups and Inputs",
-            "Button Groups"});
+            "Big Buttons and Small Buttons or Inputs"});
             this._comboBoxSizeDefinition.Location = new System.Drawing.Point(123, 57);
             this._comboBoxSizeDefinition.MaxDropDownItems = 30;
             this._comboBoxSizeDefinition.Name = "_comboBoxSizeDefinition";
@@ -209,7 +205,7 @@ namespace UIRibbonTools
 
             void RemoveSizeDefNode() //DeleteSizeDefNode
             {
-                for (int i = SubjectNode.Nodes.Count; i >= 0; i--)
+                for (int i = SubjectNode.Nodes.Count - 1; i >= 0; i--)
                     if (SubjectNode.Nodes[i].ImageIndex == ViewsFrame.II_SIZE_DEF)
                     {
                         SubjectNode.Nodes[i].Remove();

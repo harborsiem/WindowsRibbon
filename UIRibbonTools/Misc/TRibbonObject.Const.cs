@@ -40,6 +40,7 @@ namespace UIRibbonTools
         public const string RS_INVALID_GALLERY = "A Gallery must either have a <MenuGroups> element or one or more control elements.";
         public const string RS_CANNOT_ADD_MENU_GROUP_TO_SPLIT_BUTTON = "Cannot add a menu group to a split button that already contains controls. A split button must either contain menu groups or controls.";
         public const string RS_CANNOT_ADD_MENU_GROUP_TO_DROP_DOWN_BUTTON = "Cannot add a menu group to a drop-down button that already contains controls. A drop-down button must either contain menu groups or controls.";
+        public const string RS_CANNOT_ADD_MENU_GROUP_TO_GALLERY = "Cannot add a menu group to a gallery that already contains controls. A gallery must either contain menu groups or controls."; //@ added
         public const string RS_CANNOT_ADD_CONTROL_TO_SPLIT_BUTTON = "Cannot add a control to a split button that already contains menu groups. A split button must either contain menu groups or controls.";
         public const string RS_CANNOT_ADD_CONTROL_TO_DROP_DOWN_BUTTON = "Cannot add a control to a drop-down button that already contains menu groups. A drop-down button must either contain menu groups or controls.";
         public const string RS_MAX_GROUP_SIZE_DEF = "You can add at most 3 groups to a size definition.";
@@ -228,10 +229,9 @@ namespace UIRibbonTools
             "ThreeButtonsAndOneCheckBox", "FourButtons", "FiveButtons",
             "FiveOrSixButtons", "SixButtons", "SixButtons-TwoColumns", "SevenButtons",
             "EightButtons", "EightButtons-LastThreeSmall", "NineButtons", "TenButtons",
-            "ElevenButtons", "OneFontControl", "IntFontOnly", "IntRichFont",
-            "IntFontWithColor", "OneInRibbonGallery", "BigButtonsAndSmallButtonsOrInputs",
+            "ElevenButtons", "OneFontControl", "OneInRibbonGallery",
             "InRibbonGalleryAndBigButton", "InRibbonGalleryAndButtons-GalleryScalesFirst",
-            "InRibbonGalleryAndThreeButtons", "ButtonGroupsAndInputs", "ButtonGroups" };
+            "ButtonGroups", "ButtonGroupsAndInputs", "BigButtonsAndSmallButtonsOrInputs" };
 
         // TRibbonFontType
         public const string ES_FONT_ONLY = "FontOnly";

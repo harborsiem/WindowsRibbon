@@ -143,6 +143,7 @@ namespace UIRibbonTools
 
             frameViews = Owner as ViewsFrame;
             currentCmd = ComboBoxCommand.Text;
+            ComboBoxCommand.Items.Clear();
             ComboBoxCommand.Items.AddRange(frameViews.Commands.ToArray());
             if (string.IsNullOrEmpty(currentCmd))
                 ComboBoxCommand.SelectedIndex = 0;

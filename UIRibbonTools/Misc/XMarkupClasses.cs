@@ -997,10 +997,10 @@ namespace UIRibbonTools
     {
         #region Internal Declarations
 
-        private string _name;
-        private string _symbol;
+        private string _name = string.Empty;
+        private string _symbol = string.Empty;
         private int _id;
-        private string _comment;
+        private string _comment = string.Empty;
         private TRibbonString _labelTitle;
         private TRibbonString _labelDescription;
         private TRibbonString _tooltipTitle;
@@ -2594,7 +2594,7 @@ namespace UIRibbonTools
                 if (C.Name.LocalName == EN_CONTROL_GROUP)
                     _controls.Add(new TRibbonControlGroup(owner, C, null));
                 else if (C.Name.LocalName == EN_TOGGLE_BUTTON)
-                    _controls.Add(new TRibbonToggleButton(owner, null));
+                    _controls.Add(new TRibbonToggleButton(owner, C, null));
                 else if (C.Name.LocalName == EN_CHECK_BOX)
                     _controls.Add(new TRibbonCheckBox(owner, C, null));
                 else if (C.Name.LocalName == EN_BUTTON)
@@ -2985,6 +2985,22 @@ namespace UIRibbonTools
             }
             base.Dispose(disposing);
         }
+
+        public override TRibbonObject AddNew(RibbonObjectType objType) //@ added
+        {
+            TRibbonObject result;
+            if (objType == RibbonObjectType.MenuGroup)
+            {
+                if (_controls.Count > 0)
+                    Error(null, RS_CANNOT_ADD_MENU_GROUP_TO_DROP_DOWN_BUTTON); //??
+                result = new TRibbonMenuGroup(Owner, this);
+                _menuGroups.Add((TRibbonMenuGroup)(result));
+            }
+            else
+                result = base.AddNew(objType);
+            return result;
+        }
+
 
         [Obsolete]
         public void DeleteMenuLayout()
@@ -3860,7 +3876,7 @@ namespace UIRibbonTools
         private bool _isLabelVisible;
         private bool _isImageVisible;
         private bool _isPopup;
-        private string _controlName;
+        private string _controlName = string.Empty;
 
         public TRibbonControlSizeDefinition(TRibbonDocument owner,
            TRibbonSizeDefinition ownerDefinition) : base(owner, ownerDefinition)
@@ -4450,7 +4466,7 @@ namespace UIRibbonTools
     {
         #region Internal Declarations
 
-        private string _name;
+        private string _name = string.Empty;
 
         public TRibbonRibbonSizeDefinition(TRibbonDocument owner) : base(owner) { }
 
@@ -4487,7 +4503,7 @@ namespace UIRibbonTools
         #region Internal Declarations
 
         private RibbonBasicSizeDefinition _basicSizeDefinition;
-        private string _customSizeDefinition;
+        private string _customSizeDefinition = string.Empty;
         private TRibbonSizeDefinition _sizeDefinition;
         private TRibbonList<TRibbonControl> _controls;
         private void SetBasicSizeDefinition(RibbonBasicSizeDefinition value)
@@ -4876,7 +4892,7 @@ namespace UIRibbonTools
     {
         #region Internal Declarations
 
-        private string _name;
+        private string _name = string.Empty;
         private RibbonGroupSpacing _groupSpacing;
         private TRibbonApplicationMenu _applicationMenu;
         private TRibbonHelpButton _helpButton;
@@ -5137,7 +5153,7 @@ namespace UIRibbonTools
     {
         #region Internal Declarations
 
-        private string _name;
+        private string _name = string.Empty;
         private TRibbonList<TRibbonMiniToolbarMenuGroup> _menuGroups;
 
         public TRibbonMiniToolbar(TRibbonDocument owner) : base(owner)
@@ -5251,7 +5267,7 @@ namespace UIRibbonTools
     {
         #region Internal Declarations
 
-        private string _name;
+        private string _name = string.Empty;
         private TRibbonList<TRibbonMenuGroup> _menuGroups;
 
         public TRibbonContextMenu(TRibbonDocument owner) : base(owner)
@@ -5368,8 +5384,8 @@ namespace UIRibbonTools
         private TRibbonViewContextPopup _contextPopup;
         private TRibbonContextMenu _contextMenuRef;
         private TRibbonMiniToolbar _miniToolbarRef;
-        private string _contextMenuName;
-        private string _miniToolbarName;
+        private string _contextMenuName = string.Empty;
+        private string _miniToolbarName = string.Empty;
 
         public void SetContextMenuRef(TRibbonContextMenu value)
         {
@@ -5700,7 +5716,7 @@ namespace UIRibbonTools
         private TRibbonDictionary<string, TRibbonCommand> _commandsByName;
         private TRibbonDictionary<int, TRibbonCommand> _commandsById;
         private TRibbonList<TRibbonView> _views;
-        private string _resourceName;
+        private string _resourceName = ApplicationDefaultName; //@ ?
 
         private TRibbonViewRibbon GetRibbon()
         {

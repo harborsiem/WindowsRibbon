@@ -84,7 +84,7 @@ namespace UIRibbonTools
 
         public void SetBoldFonts()
         {
-
+            //nothing
         }
 
         public void SetFonts(Font font)
@@ -720,7 +720,8 @@ namespace UIRibbonTools
               RibbonObjectType.MiniToolbarMenuGroup || objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || objType == RibbonObjectType.DropDownButton);
             _actionAddDropDownColorPicker.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup || objType ==
               RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || objType == RibbonObjectType.DropDownButton);
-            _actionAddMenuGroup.Visible = (objType == RibbonObjectType.ApplicationMenu || objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.ContextMenu || objType == RibbonObjectType.DropDownButton);
+            _actionAddMenuGroup.Visible = (objType == RibbonObjectType.ApplicationMenu || objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.ContextMenu || objType == RibbonObjectType.DropDownButton
+                || objType == RibbonObjectType.DropDownGallery || objType == RibbonObjectType.SplitButtonGallery || objType == RibbonObjectType.InRibbonGallery); //@ added
             _actionAddQatButton.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
             _actionAddQatToggleButton.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
             _actionAddQatCheckBox.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
@@ -1262,7 +1263,7 @@ namespace UIRibbonTools
 
             if (parentObj.Remove(obj))
             {
-                node.Remove(); //.Free(); //@ todo: test
+                node.Remove();
                 Modified();
             }
         }

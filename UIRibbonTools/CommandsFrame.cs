@@ -14,7 +14,7 @@ namespace UIRibbonTools
     partial class CommandsFrame : UserControl
     {
         //enum TCommandSortType { Name, Caption, None };
-        const string DefaultCommandNameAtBeginning = "Command"; //@ added
+        const string DefaultCommandNameAtBeginning = "cmd_"; //"Command"; //@ added
 
         private const string RS_REMOVE_COMMAND_HEADER = "Remove command?";
         private static readonly string RS_REMOVE_COMMAND_MESSAGE = "There are {0:d} control(s) that reference this command." + Environment.NewLine +

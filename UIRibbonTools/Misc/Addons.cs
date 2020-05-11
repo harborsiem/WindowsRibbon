@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
@@ -63,7 +63,7 @@ namespace UIRibbonTools
         public static Bitmap BitmapFromFile(string fileName, bool highContrast = false)
         {
             Bitmap bitmap = null;
-            if (!highContrast && !Path.GetExtension(fileName).Equals("PNG", StringComparison.OrdinalIgnoreCase))
+            if (!highContrast && !Path.GetExtension(fileName).Equals(".PNG", StringComparison.OrdinalIgnoreCase))
             {
                 byte[] bytes = File.ReadAllBytes(fileName);
                 string headerMark = Encoding.ASCII.GetString(bytes, 0, 2);
@@ -75,8 +75,8 @@ namespace UIRibbonTools
                     int length = BitConverter.ToInt16(bytes, 2) - offBits;
                     NativeMethods.BitmapCompressionMode compression = (NativeMethods.BitmapCompressionMode)BitConverter.ToUInt32(bytes, 30);
                     short bitCount = BitConverter.ToInt16(bytes, 28);
-                    //@ Make some tests if it is a ARGB Bitmap
-                    if (bitCount == 32 && compression == NativeMethods.BitmapCompressionMode.BI_RGB) //width * Math.Abs(height) * 4 == length
+                    //Make some tests if it is a ARGB Bitmap
+                    if (bitCount == 32 && compression == NativeMethods.BitmapCompressionMode.BI_RGB)
                     {
                         GCHandle gcH = GCHandle.Alloc(bytes, GCHandleType.Pinned);
                         IntPtr scan0 = gcH.AddrOfPinnedObject() + offBits;
@@ -97,6 +97,13 @@ namespace UIRibbonTools
             if (!highContrast)
                 if (!(bitmap.PixelFormat == PixelFormat.Format32bppArgb || bitmap.PixelFormat == PixelFormat.Format32bppPArgb))
                     bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
+                else
+                {
+                    if ((int)bitmap.HorizontalResolution != 96)
+                    {
+                        bitmap.SetResolution(96.0f, 96.0f); //only png bitmaps can have other resolution
+                    }
+                }
             return bitmap;
         }
 
@@ -106,12 +113,29 @@ namespace UIRibbonTools
             NativeMethods.BITMAP bitmapStruct = new NativeMethods.BITMAP();
             NativeMethods.GetObjectBitmap(hBmp, Marshal.SizeOf(bitmapStruct), ref bitmapStruct);
 
-            // Create the managed bitmap using the pointer to the pixel data of the native HBitmap
-            Bitmap managedBitmap = new Bitmap(
-                bitmapStruct.bmWidth, bitmapStruct.bmHeight, bitmapStruct.bmWidthBytes, PixelFormat.Format32bppArgb, bitmapStruct.bmBits);
-            if (bitmapStruct.bmHeight > 0)
-                managedBitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            Bitmap managedBitmap;
+            if (bitmapStruct.bmBitsPixel == 32)
+            {
+                // Create the managed bitmap using the pointer to the pixel data of the native HBitmap
+                managedBitmap = new Bitmap(
+                    bitmapStruct.bmWidth, bitmapStruct.bmHeight, bitmapStruct.bmWidthBytes, PixelFormat.Format32bppArgb, bitmapStruct.bmBits);
+                if (bitmapStruct.bmHeight > 0)
+                    managedBitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            }
+            else
+            {
+                managedBitmap = Bitmap.FromHbitmap(hBmp);
+                managedBitmap.MakeTransparent();
+            }
             return managedBitmap;
+        }
+
+        public static Bitmap ImageFromFile(string path)
+        {
+            IntPtr handle = IntPtr.Zero;
+            handle = NativeMethods.LoadImage(IntPtr.Zero, path, (uint)NativeMethods.ImageType.IMAGE_BITMAP, 0, 0,
+                (uint)(NativeMethods.ImageLoad.LR_LOADFROMFILE | NativeMethods.ImageLoad.LR_CREATEDIBSECTION));
+            return GetManagedARGBBitmap(handle);
         }
     }
 }

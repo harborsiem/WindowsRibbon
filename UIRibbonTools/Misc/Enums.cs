@@ -39,6 +39,7 @@ namespace UIRibbonTools
         StandardItems, MajorItems
     };
 
+    //@ don't change sequence: see TRibbonObject.Const.cs ES_SIZE_DEFINITION and TFrameGroup.cs inside InitComponentStep2()
     public enum RibbonBasicSizeDefinition
     {
         Custom, Advanced, OneButton, TwoButtons,
@@ -46,10 +47,10 @@ namespace UIRibbonTools
         FourButtons, FiveButtons, FiveOrSixButtons, SixButtons,
         SixButtonsTwoColumns, SevenButtons, EightButtons,
         EightButtonsLastThreeSmall, NineButtons, TenButtons, ElevenButtons,
-        OneFontControl, IntFontOnly, IntRichFont, IntFontWithColor,
-        OneInRibbonGallery, BigButtonsAndSmallButtonsOrInputs,
+        OneFontControl,
+        OneInRibbonGallery,
         InRibbonGalleryAndBigButton, InRibbonGalleryAndButtonsGalleryScalesFirst,
-        InRibbonGalleryAndThreeButtons, ButtonGroupsAndInputs, ButtonGroups
+        ButtonGroups, ButtonGroupsAndInputs, BigButtonsAndSmallButtonsOrInputs
     };
 
     public enum RibbonFontType

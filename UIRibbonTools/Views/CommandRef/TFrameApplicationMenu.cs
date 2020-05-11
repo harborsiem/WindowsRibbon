@@ -221,6 +221,7 @@ namespace UIRibbonTools
             base.Activate_();
             frameViews = Owner as ViewsFrame;
             currentCmd = ComboBoxCaptionCommand.Text;
+            ComboBoxCaptionCommand.Items.Clear();
             ComboBoxCaptionCommand.Items.AddRange(frameViews.Commands.ToArray());
             if (string.IsNullOrEmpty(currentCmd))
                 ComboBoxCaptionCommand.SelectedIndex = 0;
