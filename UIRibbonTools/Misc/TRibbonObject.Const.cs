@@ -267,6 +267,6 @@ namespace UIRibbonTools
 
         public const string ApplicationDefaultName = "APPLICATION_RIBBON";
         public const string ResourceTagPrefix = "<!--ResourceName Value=\"";
-        public const string ResourceTagSuffix = "\"-->"; //@
+        public const string ResourceTagSuffix = "\"-->";
     }
 }

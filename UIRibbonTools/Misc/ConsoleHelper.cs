@@ -17,34 +17,51 @@ namespace UIRibbonTools
         public static bool Execute(string[] args)
         {
             //we can use it for a console build process
-            int errorCode = 0;
+            //int errorCode = 0;
             if (args.Length == 0 || (args.Length == 1 && File.Exists(args[0])))
                 return false;
-            //if (!NativeMethods.AttachConsole(NativeMethods.ATTACH_PARENT_PROCESS) && Marshal.GetLastWin32Error() == ERROR_ACCESS_DENIED)
+
+            if (!NativeMethods.AttachConsole(NativeMethods.ATTACH_PARENT_PROCESS) && Marshal.GetLastWin32Error() == ERROR_ACCESS_DENIED)
             {
                 if (NativeMethods.AllocConsole())
                 {
-                    try
-                    {
-                        ParseArgs(args);
-                        Console.WriteLine();
-                        ConsoleKey key = ConsoleKey.NoName;
-                        while (key == ConsoleKey.NoName)
-                            key = Console.ReadKey().Key;
-                    }
-                    finally
-                    {
-                        NativeMethods.FreeConsole();
-                        Environment.Exit(errorCode);
-                    }
-                    return true;
+                    return ExecuteConsole(args, false);
                 }
                 else
                 {
                     MessageBox.Show("No Console possible");
                 }
             }
+            else
+            {
+                return ExecuteConsole(args, true);
+            }
             return false;
+        }
+
+        private static bool ExecuteConsole(string[] args, bool attachedParent)
+        {
+            int errorCode = 0;
+            try
+            {
+                ParseArgs(args);
+                WriteLine();
+                ConsoleKey key = ConsoleKey.NoName;
+                if (!attachedParent)
+                {
+                    while (key == ConsoleKey.NoName)
+                        key = Console.ReadKey().Key;
+                }
+            }
+            finally
+            {
+                if (!attachedParent)
+                {
+                    NativeMethods.FreeConsole();
+                }
+                Environment.Exit(errorCode);
+            }
+            return true;
         }
 
         private static void ParseArgs(string[] args)
@@ -73,24 +90,35 @@ namespace UIRibbonTools
             }
             else
             {
-                Console.WriteLine("Markup file doesn't exist");
+                WriteLine("Markup file doesn't exist");
             }
         }
 
         private static void DisplayHelp()
         {
+            WriteLine();
+            WriteLine();
+            WriteLine("Build the ribbon files from the Markup file");
+            WriteLine();
+            WriteLine("Usage: RibbonTools [options]");
+            WriteLine("Usage: RibbonTools [path - to - markup][options]");
+            WriteLine();
+            WriteLine("Options:");
+            WriteLine("  /?|-h|--help Display help.");
+            WriteLine("  --build Build the ribbon files.");
+            WriteLine();
+            WriteLine("path-to-markup:");
+            WriteLine("  The path to a ribbon markup file.");
+        }
+
+        private static void WriteLine(string line)
+        {
+            Console.WriteLine(line);
+        }
+
+        private static void WriteLine()
+        {
             Console.WriteLine();
-            Console.WriteLine("Build the ribbon files from the Markup file");
-            Console.WriteLine();
-            Console.WriteLine("Usage: UIRibbonTools [options]");
-            Console.WriteLine("Usage: UIRibbonTools [path - to - markup][options]");
-            Console.WriteLine();
-            Console.WriteLine("Options:");
-            Console.WriteLine("  /?|-h|--help Display help.");
-            Console.WriteLine("  --build Build the ribbon files.");
-            Console.WriteLine();
-            Console.WriteLine("path-to-markup:");
-            Console.WriteLine("  The path to a ribbon markup file.");
         }
     }
 }

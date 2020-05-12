@@ -92,6 +92,7 @@ namespace UIRibbonTools
             string validateMsg = null;
             //bool buildEnabled = false;
             bool previewEnabled = false;
+            path = Path.GetFullPath(path);
             if (File.Exists(path))
             {
                 //validateMsg = Validation(path);

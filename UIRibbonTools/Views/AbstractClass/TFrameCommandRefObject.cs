@@ -64,6 +64,7 @@ namespace UIRibbonTools
             this._comboBoxCommand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboBoxCommand.FormattingEnabled = true;
             this._comboBoxCommand.Location = new System.Drawing.Point(103, 3);
+            this._comboBoxCommand.MaxDropDownItems = 50;
             this._comboBoxCommand.Name = "_comboBoxCommand";
             this._comboBoxCommand.Size = new System.Drawing.Size(250, 21);
             this._comboBoxCommand.TabIndex = 1;
