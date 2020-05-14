@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.8.6, RibbonGenerator V1.3.5, RibbonPreview V1.2.1, RibbonTools V1.0.0
+
+### Changed
+
+- new application: RibbonTools. This is a tool for design, build and preview the Ribbon. This tool is 
+
+  similar to the Delphi RibbonDesigner. One can call this tool also from commandline with option help (/h). RibbonGenerator and RibbonPreview functions are integrated in the new RibbonTools and therefore they are deprecated.
+
 ### Ribbon V2.8.6, RibbonGenerator V1.3.5, RibbonPreview V1.2.1
 
 ### Changed
