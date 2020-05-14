@@ -77,6 +77,7 @@ namespace UIRibbonTools
             this.memoMessages = new System.Windows.Forms.TextBox();
             this.splitterLog = new System.Windows.Forms.SplitContainer();
             this._timerRestoreLog = new System.Windows.Forms.Timer(this.components);
+            this.toolVersion = new System.Windows.Forms.ToolStripTextBox();
             this.mainMenuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -217,7 +218,8 @@ namespace UIRibbonTools
             this.menuWebSite,
             this.menuDotnetWebSite,
             this._nN4,
-            this.menuMSDN});
+            this.menuMSDN,
+            this.toolVersion});
             this.menuHelp.Name = "menuHelp";
             this.menuHelp.Size = new System.Drawing.Size(44, 20);
             this.menuHelp.Text = "Help";
@@ -433,6 +435,12 @@ namespace UIRibbonTools
             // 
             this._timerRestoreLog.Interval = 3000;
             // 
+            // toolVersion
+            // 
+            this.toolVersion.Name = "toolVersion";
+            this.toolVersion.ReadOnly = true;
+            this.toolVersion.Size = new System.Drawing.Size(100, 23);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,6 +518,7 @@ namespace UIRibbonTools
         private ViewsFrame _viewsFrame;
         private System.Windows.Forms.Timer _timerRestoreLog;
         private System.Windows.Forms.ToolStripComboBox toolPreviewLanguageCombo;
+        private System.Windows.Forms.ToolStripTextBox toolVersion;
     }
 }
 

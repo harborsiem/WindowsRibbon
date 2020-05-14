@@ -278,19 +278,19 @@ namespace UIRibbonTools
 
             _actionAddGroupSizeDefinition.Execute += ActionAddGroupSizeDefinitionExecute;
             _actionAddGroupSizeDefinition.ImageIndex = 30;
-            _actionAddGroupSizeDefinition.Text = "Add Group SizeDefinition";
+            _actionAddGroupSizeDefinition.Text = "Add GroupSizeDefinition";
             _actionAddGroupSizeDefinition.SetComponent(popupAddGroupSizeDefinition, true);
             _actionAddGroupSizeDefinition.SetComponent(menuAddGroupSizeDefinition, true);
 
             _actionAddControlSizeDefinition.Execute += ActionAddControlSizeDefinitionExecute;
             _actionAddControlSizeDefinition.ImageIndex = 31;
-            _actionAddControlSizeDefinition.Text = "Add Control SizeDefinition";
+            _actionAddControlSizeDefinition.Text = "Add ControlSizeDefinition";
             _actionAddControlSizeDefinition.SetComponent(popupAddControlSizeDefinition, true);
             _actionAddControlSizeDefinition.SetComponent(menuAddControlSizeDefinition, true);
 
             _actionAddControlSizeGroup.Execute += ActionAddControlSizeGroupExecute;
             _actionAddControlSizeGroup.ImageIndex = 31;
-            _actionAddControlSizeGroup.Text = "Add ControlSize Group";
+            _actionAddControlSizeGroup.Text = "Add ControlGroup";
             _actionAddControlSizeGroup.SetComponent(popupAddControlSizeGroup, true);
             _actionAddControlSizeGroup.SetComponent(menuAddControlSizeGroup, true);
 

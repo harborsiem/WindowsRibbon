@@ -90,6 +90,8 @@ namespace UIRibbonTools
             toolPreviewLanguageCombo.SelectedIndex = 0;
             InitEvents();
             InitActions();
+            toolVersion.Text = "Version: " + Application.ProductVersion;
+
             //string localAppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RibbonTools");
 
             //    constructor TFormMain.Create(AOwner: TComponent)

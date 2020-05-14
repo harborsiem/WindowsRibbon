@@ -94,7 +94,7 @@ namespace UIRibbonTools
             this._label1.Text = "(0 for automatic)";
             this._label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
-            LabelHeader.Text = "  Control Group Properties";
+            LabelHeader.Text = "  ControlGroup Properties";
             LabelHeader.ImageIndex = 14;
         }
 

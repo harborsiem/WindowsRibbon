@@ -247,6 +247,7 @@ namespace UIRibbonTools
         {
             _viewsSample.Location = new Point(Cursor.Position.X + 20, Cursor.Position.Y);
             _viewsSample.Show();
+            _viewsSample.Size = _viewsSample.pictureBox.Image.Size;
         }
 
         protected virtual void InitTooltips(IContainer components)

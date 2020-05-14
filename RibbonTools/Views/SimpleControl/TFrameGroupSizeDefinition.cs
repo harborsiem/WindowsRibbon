@@ -72,7 +72,7 @@ namespace UIRibbonTools
             this._comboBoxSize.Size = new System.Drawing.Size(250, 21);
             this._comboBoxSize.TabIndex = 1;
 
-            LabelHeader.Text = "  Group SizeDefinition Properties";
+            LabelHeader.Text = "  GroupSizeDefinition Properties";
             LabelHeader.ImageIndex = 30;
         }
 

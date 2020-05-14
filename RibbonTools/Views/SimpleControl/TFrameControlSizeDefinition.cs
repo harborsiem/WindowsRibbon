@@ -135,7 +135,7 @@ namespace UIRibbonTools
             this._checkBoxIsPopup.Text = "Is Popup";
             this._checkBoxIsPopup.UseVisualStyleBackColor = true;
 
-            LabelHeader.Text = "  Control SizeDefinition Properties";
+            LabelHeader.Text = "  ControlSizeDefinition Properties";
             LabelHeader.ImageIndex = 31;
         }
 
