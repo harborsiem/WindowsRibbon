@@ -1,9 +1,10 @@
-## windowsribbon
+## WindowsRibbon
 
 Windows Ribbon for WinForms
 
+Windows Ribbon for WinForms is a .NET wrapper for Windows 7 Ribbon control. It will allow WinForms developers to use Microsoft Windows 7 Ribbon control in their WinForms applications. Later versions of Windows (Windows 8, Windows 10) are welcome.
 
-Windows Ribbon for WinForms is a .NET wrapper for Windows 7 Ribbon control. It will allow WinForms developers to use Microsoft Windows 7 Ribbon control in their WinForms applications. 
+WindowsRibbon is sometimes called UIRibbon. The former development title is Scenic.
 
 # **Project Description**
 
@@ -47,11 +48,11 @@ Thanks to Arik Poznanski and Bernhard Elbl for the great work.
 
 
 
-Now the WindowsRibbon project is running also in the latest Visual Studio Versions 2017 and 2019. Have a look to the file "HowToUse.md" to see how to use the WindowsRibbon in a .NET WinForms application. In the Releases page are also zipped *.msi setup files for the components. The msi files are build with the WIX Toolset.
+Now the WindowsRibbon project is running also in the latest Visual Studio Versions 2017 and 2019. Have a look to the file "HowToUse.md" to see how to use the WindowsRibbon in a .NET WinForms application. In the Releases page there are also zipped *.msi setup files for the components. The msi files are build with the WIX Toolset.
 
 There is also a gui based build and preview tool called RibbonPreview. 
 
-The C# samples are added with are more complex Mainform application. Here you can see the Ribbon of Mainform in the RibbonPreview app.
+The C# samples are added with a more complex Mainform application. Here you can see the Ribbon of Mainform in the RibbonPreview app.
 
 
 
@@ -59,3 +60,6 @@ The C# samples are added with are more complex Mainform application. Here you ca
 
 
 
+An other C# Application with the Ribbon Control one can find at the following page:
+
+[ElementViewer](https://github.com/harborsiem/ELEMNTViewer)
