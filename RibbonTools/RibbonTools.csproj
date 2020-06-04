@@ -87,6 +87,7 @@
     <Compile Include="Build\Manager.cs" />
     <Compile Include="Build\MessageOutput.cs" />
     <Compile Include="Build\ResXReader.cs" />
+    <Compile Include="Build\RibbonCompiler.cs" />
     <Compile Include="Build\RibbonItem.cs" />
     <Compile Include="Build\RibbonParser.cs" />
     <Compile Include="Build\Target.cs" />
@@ -135,6 +136,12 @@
     <Compile Include="Dialogs\NewFileForm.Designer.cs">
       <DependentUpon>NewFileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ViewsSampleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +162,8 @@
     <Compile Include="Misc\Extension.cs" />
     <Compile Include="Misc\RibbonCommandItem.cs" />
     <Compile Include="Misc\RibbonSizeDef.cs" />
+    <Compile Include="Misc\Settings.cs" />
+    <Compile Include="Build\ToolsPathFinder.cs" />
     <Compile Include="Misc\TRibbonObject.Const.cs" />
     <Compile Include="Misc\UIImage.cs" />
     <Compile Include="Misc\XMarkupClasses.cs" />
@@ -438,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewFileForm.resx">
       <DependentUpon>NewFileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ViewsSampleForm.resx">
       <DependentUpon>ViewsSampleForm.cs</DependentUpon>

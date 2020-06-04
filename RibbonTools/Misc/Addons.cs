@@ -21,6 +21,20 @@ namespace UIRibbonTools
             return max;
         }
 
+        public static string GetExactFilenameWithPath(string path)
+        {
+            path = Path.GetFullPath(path);
+            string filename = Path.GetFileName(path);
+            if (File.Exists(path))
+            {
+                string dir = Path.GetDirectoryName(path);
+                string[] strArray = Directory.GetFileSystemEntries(dir, filename, SearchOption.TopDirectoryOnly);
+                if (strArray.Length > 0)
+                    return strArray[0];
+            }
+            return string.Empty;
+        }
+
         public static void ForceDirectories(string path)
         {
             if (string.IsNullOrEmpty(path))

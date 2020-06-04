@@ -84,6 +84,10 @@ namespace UIRibbonTools
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             FormMain = this;
             CreateMainBitmaps();
+
+            Settings.Instance.Read(this.MinimumSize);
+            this.Size = Settings.Instance.ApplicationSize;
+
             _buildPreviewHelper = BuildPreviewHelper.Instance;
             _buildPreviewHelper.SetActions(null, SetPreviewEnabled, Log, SetLanguages);
             toolPreviewLanguageCombo.Enabled = false;
@@ -91,8 +95,6 @@ namespace UIRibbonTools
             InitEvents();
             InitActions();
             toolVersion.Text = "Version: " + Application.ProductVersion;
-
-            //string localAppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RibbonTools");
 
             //    constructor TFormMain.Create(AOwner: TComponent)
             //{
@@ -253,12 +255,13 @@ namespace UIRibbonTools
             _actionMSDN.Text = "MSDN WindowsRibbon";
             _actionMSDN.SetComponent(menuMSDN, true);
 
-            _actionSetResourceName.Visible = false; //@ not supported in .NET Ribbon
+            _actionSetResourceName.Visible = Settings.Instance.AllowChangingResourceName; // false; //@ not supported in .NET Ribbon
             _actionSetResourceName.Execute += ActionSetResourceNameExecute;
             _actionSetResourceName.Hint =
                 "Set a resource name for the markup. This is necessary " + Environment.NewLine +
                 "if multiple markups are used in one application." + Environment.NewLine +
-                "The default is APPLICATION_RIBBON";
+                "The default is APPLICATION" + Environment.NewLine +
+                Environment.NewLine + "Changing of default is not supported in .NET Ribbon";
             _actionSetResourceName.Text = "Set ribbon resource name";
             _actionSetResourceName.SetComponent(setresourcename, true);
 
@@ -541,11 +544,19 @@ namespace UIRibbonTools
                 ActionSaveExecute(this, EventArgs.Empty);
             if (preview)
             {
-                _buildPreviewHelper.ShowDialog(this);
+                _buildPreviewHelper.ShowPreviewDialog(this);
             }
             else
             {
-                _buildPreviewHelper.BuildRibbonFile();
+                this.Cursor = Cursors.WaitCursor;
+                try
+                {
+                    _buildPreviewHelper.BuildRibbonFile(_document.Application.ResourceName);
+                }
+                finally
+                {
+                    this.Cursor = Cursors.Default;
+                }
             }
         }
         //private void BuildAndPreview(bool preview)
@@ -646,17 +657,15 @@ namespace UIRibbonTools
             if (!_initialized)
             {
                 _initialized = true;
-                //MsgToDo();
-                //    if (!Settings.Instance.ToolsAvailable())
-                //        if (MessageBox.Show(RS_TOOLS_MESSAGE + Environment.NewLine + RS_TOOLS_SETUP, RS_TOOLS_HEADER, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                if (!Settings.Instance.ToolsAvailable())
+                    if (MessageBox.Show(Settings.RS_TOOLS_MESSAGE + Environment.NewLine + Settings.RS_TOOLS_SETUP, Settings.RS_TOOLS_HEADER, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
 
-                //            ShowSettingsDialog();
+                        ShowSettingsDialog();
             }
         }
 
         private void Destroy()
         {
-            //FCompiler.Dispose();
             _document.Dispose();
         }
 
@@ -666,19 +675,14 @@ namespace UIRibbonTools
             string[] args = Environment.GetCommandLineArgs();
             if (args.Length > 1 && !string.IsNullOrEmpty(args[1]) && File.Exists(args[1]))
             {
-                OpenFile(args[1]);
+                OpenFile(Addons.GetExactFilenameWithPath(args[1]));
             }
         }
 
         private void FormClose(object sender, FormClosedEventArgs e)
         {
+            Settings.Instance.Write();
             Application.Exit();
-            //@ todo
-            //if (_previewForm != null)
-            //{
-            //    _previewForm.Close();
-            //    _previewForm = null;
-            //}
         }
 
         private void FormCloseQuery(object sender, CancelEventArgs e)
@@ -838,19 +842,21 @@ namespace UIRibbonTools
 
         private void ShowSettingsDialog()
         {
-            MsgToDo();
-            //@ todo
-            //SettingsForm form;
+            SettingsForm dialog;
 
-            //form = new SettingsForm(Settings.Instance);
-            //try
-            //{
-            //    form.ShowDialog();
-            //}
-            //finally
-            //{
-            //    form.Close();
-            //}
+            dialog = new SettingsForm();
+            try
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _actionSetResourceName.Visible = Settings.Instance.AllowChangingResourceName;
+                }
+
+            }
+            finally
+            {
+                //dialog.Close();
+            }
         }
 
         private void TimerRestoreLogTimer(object sender, EventArgs e)

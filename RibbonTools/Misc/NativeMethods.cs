@@ -509,7 +509,7 @@ namespace UIRibbonTools
             public IntPtr bmBits;
         }
 
-        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr LoadImage(IntPtr hinst, string lpszName, uint uType,
             int cxDesired, int cyDesired, uint fuLoad);
 

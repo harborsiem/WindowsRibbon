@@ -12,23 +12,23 @@ namespace UIRibbonTools
     /// </summary>
     class MessageOutput : IMessageOutput, IDisposable
     {
-        StringBuilder sb;
-        StringWriter sw;
+        private StringBuilder _sb;
+        private StringWriter _sw;
 
         public MessageOutput()
         {
-            sb = new StringBuilder();
-            sw = new StringWriter(sb);
+            _sb = new StringBuilder();
+            _sw = new StringWriter(_sb);
         }
 
         public void WriteLine(string value)
         {
-            sw.WriteLine(value);
+            _sw.WriteLine(value);
         }
 
         public string GetString()
         {
-            return sb.ToString();
+            return _sb.ToString();
         }
 
         public void Close()
@@ -38,7 +38,7 @@ namespace UIRibbonTools
 
         public void Dispose()
         {
-            sw.Dispose();
+            _sw.Dispose();
             GC.SuppressFinalize(this);
         }
     }

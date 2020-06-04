@@ -50,11 +50,6 @@ namespace UIRibbonTools
             InitActions(components);
         }
 
-        //public ImageListFrame(Control frameCommand) : this()
-        //{
-
-        //}
-
         private void InitEvents()
         {
             listView.DoubleClick += ListViewDblClick;
@@ -165,6 +160,7 @@ namespace UIRibbonTools
         private void ActionAddMultipleExecute(object sender, EventArgs e)
         {
             string filename;
+            bool usePngFile;
             Bitmap bitmap;
             Bitmap uIImage;
             TRibbonImage image;
@@ -194,7 +190,9 @@ namespace UIRibbonTools
                     else
                         image = _command.AddSmallImage();
 
-                    // TUIImage will automatically convert to 32 - bit alpha image
+                    usePngFile = Settings.Instance.AllowPngImages && Path.GetExtension(s).Equals(".png", StringComparison.OrdinalIgnoreCase);
+
+                    // UIImage will automatically convert to 32 - bit alpha image
                     bitmap = null;
                     uIImage = Addons.BitmapFromFile(filename, (ImageFlags.HighContrast & _flags) != 0);
                     try
@@ -203,12 +201,16 @@ namespace UIRibbonTools
 
                         if (!Addons.StartsText(image.Owner.Directory, filename))
                         {
-                            saveToBmp = true;
                             filename = Path.Combine(image.Owner.Directory, "Res");
                             Addons.ForceDirectories(filename);
                             filename = Path.Combine(filename, Path.GetFileName(s));
+
+                            if (usePngFile)
+                                File.Copy(s, filename, true);
+                            else
+                                saveToBmp = true;
                         }
-                        if (!Path.GetExtension(filename).Equals("bmp", StringComparison.OrdinalIgnoreCase)) {
+                        if (!usePngFile && !Path.GetExtension(filename).Equals("bmp", StringComparison.OrdinalIgnoreCase)) {
                             saveToBmp = true;
                             filename = Path.ChangeExtension(filename, ".bmp");
                         }

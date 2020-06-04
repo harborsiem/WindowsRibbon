@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using System.Resources;
 using System.Globalization;
-using System.Reflection;
 
 namespace UIRibbonTools
 {
@@ -14,7 +12,7 @@ namespace UIRibbonTools
         public const string RESXEXTENSION = ".resx";
         public const string RIBBONEXTENSION = ".ribbon";
 
-        IMessageOutput _output;
+        private IMessageOutput _output;
 
         public Manager(IMessageOutput output, string ribbonXmlFilename, string ribbonXmlContent)
         {
@@ -26,15 +24,15 @@ namespace UIRibbonTools
             Initialize();
         }
 
-        List<string> _cleanupFiles = new List<string>();
+        private List<string> _cleanupFiles = new List<string>();
 
         public List<string> CleanupFiles
         {
             get { return _cleanupFiles; }
-            set { _cleanupFiles = value; }
+            private set { _cleanupFiles = value; }
         }
 
-        string _ribbonXmlFilename;
+        private string _ribbonXmlFilename;
 
         public string RibbonXmlFilename
         {
@@ -44,7 +42,7 @@ namespace UIRibbonTools
             }
         }
 
-        string _ribbonXmlContent;
+        private string _ribbonXmlContent;
 
         public string RibbonXmlContent
         {
@@ -54,7 +52,7 @@ namespace UIRibbonTools
             }
         }
 
-        List<Target> _targets;
+        private List<Target> _targets;
 
         public List<Target> Targets
         {
@@ -69,7 +67,7 @@ namespace UIRibbonTools
         /// </summary>
         /// <param name="cultureName">the name of the culture</param>
         /// <returns>the localized ribbon file extension</returns>
-        string GetRibbonExtension(string cultureName)
+        private string GetRibbonExtension(string cultureName)
         {
             if (string.IsNullOrEmpty(cultureName))
                 return RIBBONEXTENSION;
@@ -78,7 +76,7 @@ namespace UIRibbonTools
             return result;
         }
 
-        void Initialize()
+        private void Initialize()
         {
             try
             {
@@ -135,28 +133,28 @@ namespace UIRibbonTools
             catch (Exception ex)
             {
                 Util.LogError(ex);
-                throw ex;
+                throw;
             }
         }
 
-        string GetCultureName(string file)
+        private string GetCultureName(string file)
         {
             var firstExtensionExcluded = Path.GetFileNameWithoutExtension(file);
             var cultureNameExtension = Path.GetExtension(firstExtensionExcluded);
-            if (!cultureNameExtension.StartsWith("."))
+            if (string.IsNullOrEmpty(cultureNameExtension) || !cultureNameExtension.StartsWith("."))
                 return null;
             var cultureName = cultureNameExtension.Substring(1);
             return cultureName;
         }
 
-        string AddFileExtension(string fullFilenameWithoutExtension, string extension)
+        private string AddFileExtension(string fullFilenameWithoutExtension, string extension)
         {
             return string.Format("{0}{1}", fullFilenameWithoutExtension, extension);
         }
 
-        ResXReader _resXReader;
+        private ResXReader _resXReader;
 
-        ResXReader ResXReader
+        private ResXReader ResXReader
         {
             get
             {
@@ -164,105 +162,83 @@ namespace UIRibbonTools
             }
         }
 
-        public byte[] CreateRibbon(Target element)
+        public byte[] CreateRibbon(Target element, string resourceName)
         {
+            string localizedRibbonXmlFilename = null;
             CleanupFiles.Clear();
 
+            RibbonCompiler compiler = new RibbonCompiler(this);
             try
             {
-                VerifyTemplateBat();
-
                 // use the following format to specify localization info {Resource:key}
-                string localizedRibbonXmlFilename = LocalizeRibbon(element);
+                localizedRibbonXmlFilename = LocalizeRibbon(element);
+                string ribbonDll = null;
+                byte[] result;
 
-                // create the ribbon dll
-                string ribbonDll = ConvertXmlToDll(localizedRibbonXmlFilename);
-
-                // return the content of the ribbon dll
-                var result = File.ReadAllBytes(ribbonDll);
-
+                RibbonCompileResult compileResult = compiler.Compile(localizedRibbonXmlFilename, resourceName);
+                if (compileResult == RibbonCompileResult.Ok)
+                {
+                    ribbonDll = compiler.RibbonDll;
+                    result = File.ReadAllBytes(ribbonDll);
+                }
+                else
+                {
+                    Util.LogMessage("Error: " + compileResult.ToString());
+                    result = new byte[0];
+                }
+                for (int i = 0; i < compiler.Messages.Count; i++)
+                {
+                    if (!string.IsNullOrEmpty(compiler.Messages[i]))
+                        _output.WriteLine(compiler.Messages[i]);
+                }
                 Util.LogMessage("Manager.CreateRibbon returns {0} bytes for file '{1}'", result.Length, ribbonDll);
                 return result;
             }
             catch (Exception ex)
             {
+                for (int i = 0; i < compiler.Messages.Count; i++)
+                {
+                    if (!string.IsNullOrEmpty(compiler.Messages[i]))
+                        _output.WriteLine(compiler.Messages[i]);
+                }
                 Util.LogError(ex);
-                throw ex;
+                throw;
             }
             finally
             {
                 Cleanup();
-            }
-        }
-
-        /// <summary>
-        /// Verifies that template.bat file exists, if not, it will be created here.
-        /// </summary>
-        void VerifyTemplateBat()
-        {
-            const string Msvc = "MSVC";
-            if (File.Exists(Util.TemplateBatFilename))
-            {
-                bool modified = false;
-                string bat = File.ReadAllText(Util.TemplateBatFilename);
-                int startIndex = bat.LastIndexOf(Msvc, StringComparison.OrdinalIgnoreCase);
-                if (startIndex >= 0)
+                if (localizedRibbonXmlFilename != null)
                 {
-                    startIndex += Msvc.Length + 1;
-                    int endIndex = bat.IndexOf(Path.DirectorySeparatorChar, startIndex);
-                    string msvcVersion = bat.Substring(startIndex, endIndex - startIndex);
-                    string actualVersion = null;
-                    string installRoot = null;
-                    string[] result = Util.DetectMSVCVersion();
-                    if (result.Length == 2)
+                    string firstExtensionExcluded = Path.GetFileNameWithoutExtension(localizedRibbonXmlFilename);
+                    string dotCulture = Path.GetExtension(firstExtensionExcluded);
+                    if (!string.IsNullOrEmpty(dotCulture) && dotCulture.Equals(".default", StringComparison.OrdinalIgnoreCase))
                     {
-                        actualVersion = result[0];
-                        installRoot = result[1];
-                    }
-                    if (!string.IsNullOrEmpty(installRoot) && bat.IndexOf(installRoot, StringComparison.OrdinalIgnoreCase) >= 0 && (actualVersion != msvcVersion))
-                    {
-                        bat = bat.Substring(0, startIndex) + actualVersion + bat.Substring(endIndex);
-                        File.WriteAllText(Util.TemplateBatFilename, bat);
-                        modified = true;
-                        this._output.WriteLine(string.Format("Verify Template.bat: Existing File modified '{0}'", Util.TemplateBatFilename));
+                        string defaultH = Path.ChangeExtension(localizedRibbonXmlFilename, ".h");
+                        if (File.Exists(defaultH))
+                        {
+                            string neutralHFile = Path.Combine(Path.GetDirectoryName(localizedRibbonXmlFilename), Path.ChangeExtension(firstExtensionExcluded, ".h"));
+                            File.Delete(neutralHFile);
+                            File.Move(defaultH, neutralHFile); // rename *.default.h to *.h
+                        }
+                        string defaultRes = Path.ChangeExtension(localizedRibbonXmlFilename, ".res");
+                        if (File.Exists(defaultRes))
+                        {
+                            string neutralResFile = Path.Combine(Path.GetDirectoryName(localizedRibbonXmlFilename), Path.ChangeExtension(firstExtensionExcluded, ".res"));
+                            File.Delete(neutralResFile);
+                            File.Move(defaultRes, neutralResFile); // rename *.default.res to *.res
+                        }
                     }
                 }
-                if (!modified)
-                {
-                    this._output.WriteLine(string.Format("Verify Template.bat: File already exists '{0}'", Util.TemplateBatFilename));
-                }
-                return;
             }
-            string tmp;
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("UIRibbonTools.Template.bat"))
-            {
-                StreamReader reader = new StreamReader(stream);
-                var content = reader.ReadToEnd();
-                tmp = Util.DetectAppropriateWindowsSdkPath();
-                if (!string.IsNullOrEmpty(tmp))
-                {
-                    content = content.Replace("{WindowsSDKToolsPath}", tmp);
-                }
-                else
-                    this._output.WriteLine("Verify Template.bat: Windows SDK not found");
-                tmp = Util.GetLinkerCommand();
-                if (!string.IsNullOrEmpty(tmp))
-                {
-                    content = content.Replace("{LinkerCommand}", tmp);
-                }
-                else
-                    this._output.WriteLine("Verify Template.bat: Link.exe in Visual Studio C++ Tools not found");
-
-                File.WriteAllText(Util.TemplateBatFilename, content);
-            }
-            this._output.WriteLine(string.Format("Verify Template.bat: File is created '{0}'", Util.TemplateBatFilename));
         }
 
         /// <summary>
         /// Delete all temporary files created during CreateRibbon
         /// </summary>
-        void Cleanup()
+        private void Cleanup()
         {
+            //if (!Settings.Instance.DeleteTempFiles) return;
+
             foreach (string cleanupFile in this.CleanupFiles)
             {
                 try
@@ -272,70 +248,12 @@ namespace UIRibbonTools
                 }
                 catch (Exception ex)
                 {
-                    Util.LogError(new Exception(string.Format("Cleanup fails for file '{0}'", cleanupFile), ex));
+                    Util.LogError(new ArgumentException(string.Format("Cleanup fails for file '{0}'", cleanupFile), ex));
                 }
             }
         }
 
-        /// <summary>
-        /// Create and execute the bat file to create a ribbon dll.
-        /// </summary>
-        /// <param name="localizedRibbonXmlFilename">the name of the ribbon xaml</param>
-        /// <returns>the name of the dll file</returns>
-        string ConvertXmlToDll(string localizedRibbonXmlFilename)
-        {
-            string batFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".bat");
-            string bmlFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".bml");
-            string rcFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".rc");
-            string resFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".res");
-            string dllFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".ribbondll");
-            string headerFilename = Path.ChangeExtension(localizedRibbonXmlFilename, ".h");
-
-            this.CleanupFiles.AddRange(new string[] { batFilename, bmlFilename, rcFilename, resFilename, dllFilename });
-
-            var bat = File.ReadAllText(Util.TemplateBatFilename);
-            bat = bat.Replace("{XmlFilename}", localizedRibbonXmlFilename);
-            bat = bat.Replace("{BmlFilename}", bmlFilename);
-            bat = bat.Replace("{RcFilename}", rcFilename);
-            bat = bat.Replace("{DllFilename}", dllFilename);
-            bat = bat.Replace("{ResFilename}", resFilename);
-            bat = bat.Replace("{HeaderFilename}", headerFilename);
-            File.WriteAllText(batFilename, bat);
-
-            System.Diagnostics.Process proc = new System.Diagnostics.Process();
-            proc.StartInfo.FileName = batFilename;
-            proc.StartInfo.RedirectStandardOutput = true;
-            proc.StartInfo.UseShellExecute = false;
-            proc.StartInfo.CreateNoWindow = true;
-            proc.OutputDataReceived += new System.Diagnostics.DataReceivedEventHandler(proc_OutputDataReceived);
-
-            proc.Start();
-            proc.BeginOutputReadLine();
-
-            proc.WaitForExit();
-
-            if (!File.Exists(bmlFilename) || !File.Exists(rcFilename))
-                throw new FaildException("uicc.exe failed to generate .bml or .rc file!");
-            if (!File.Exists(resFilename))
-                throw new FaildException("rc.exe failed to generate binary .res file!");
-            if (!File.Exists(dllFilename))
-                throw new FaildException("link.exe failed to generate binary resource .dll file!");
-
-            return dllFilename;
-        }
-
-        /// <summary>
-        /// Forward the sub console window output to the message output
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void proc_OutputDataReceived(object sender, System.Diagnostics.DataReceivedEventArgs e)
-        {
-            if (_output != null)
-                _output.WriteLine(e.Data);
-        }
-
-        string LocalizeRibbon(Target element)
+        private string LocalizeRibbon(Target element)
         {
             if (!element.Localize)
                 return this.RibbonXmlFilename;
@@ -378,9 +296,10 @@ namespace UIRibbonTools
             string cultureName = !string.IsNullOrEmpty(element.CultureName) ? element.CultureName : "default";
             string localizedFilename = Path.ChangeExtension(this.RibbonXmlFilename, string.Format(".{0}.xml", cultureName));
             File.WriteAllText(localizedFilename, localizedContent);
+            if (!cultureName.Equals("default", StringComparison.OrdinalIgnoreCase))
+                this.CleanupFiles.Add(Path.ChangeExtension(localizedFilename, ".h"));
             this.CleanupFiles.Add(localizedFilename);
             return localizedFilename;
-
         }
     }
 }

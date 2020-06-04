@@ -95,7 +95,7 @@ namespace UIRibbonTools
             this.topRightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.topRightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.topRightLayout.Size = new System.Drawing.Size(359, 105);
-            this.topRightLayout.TabIndex = 2;
+            this.topRightLayout.TabIndex = 1;
             // 
             // Label2
             // 
@@ -204,7 +204,7 @@ namespace UIRibbonTools
             this.Label1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(58, 13);
-            this.Label1.TabIndex = 3;
+            this.Label1.TabIndex = 2;
             this.Label1.Text = "Quick Tips";
             // 
             // MemoHelp
@@ -221,7 +221,7 @@ namespace UIRibbonTools
             this.MemoHelp.Name = "MemoHelp";
             this.MemoHelp.ReadOnly = true;
             this.MemoHelp.Size = new System.Drawing.Size(426, 203);
-            this.MemoHelp.TabIndex = 1;
+            this.MemoHelp.TabIndex = 3;
             this.MemoHelp.Text = resources.GetString("MemoHelp.Text");
             this.MemoHelp.WordWrap = false;
             // 

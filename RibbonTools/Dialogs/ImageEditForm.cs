@@ -116,7 +116,7 @@ namespace UIRibbonTools
             UpdateControls();
         }
 
-        private void Destroy() //@ called in Dispose
+        private void Destroy() //called in Dispose(bool disposing)
         {
             if (_bitmap != null)
                 _bitmap.Dispose();
@@ -131,6 +131,7 @@ namespace UIRibbonTools
         private void EditImageFileRightButtonClick(object sender, EventArgs e)
         {
             string newFilename;
+            bool usePngFile;
             Bitmap uIImage;
             Bitmap bitmap;
             int size;
@@ -147,7 +148,9 @@ namespace UIRibbonTools
                 bool saveToBmp = false;
                 newFilename = openDialog.FileName;
 
-                //TUIImage will automatically convert to 32 - bit alpha image
+                usePngFile = Settings.Instance.AllowPngImages && Path.GetExtension(openDialog.FileName).Equals(".png", StringComparison.OrdinalIgnoreCase);
+
+                //UIImage will automatically convert to 32 - bit alpha image
 
                 bitmap = null;
                 uIImage = Addons.BitmapFromFile(newFilename, (_flags & ImageFlags.HighContrast) != 0);
@@ -159,19 +162,24 @@ namespace UIRibbonTools
 
                     if (!Addons.StartsText(_image.Owner.Directory, newFilename))
                     {
-                        saveToBmp = true;
                         newFilename = Path.Combine(_image.Owner.Directory, "Res");
                         Addons.ForceDirectories(newFilename);
                         newFilename = Path.Combine(newFilename, Path.GetFileName(openDialog.FileName));
+
+                        if (usePngFile)
+                            File.Copy(openDialog.FileName, newFilename, true);
+                        else
+                            saveToBmp = true;
+
                         //newFilename = Path.ChangeExtension(newFilename, ".bmp");
                         //bitmap.Save(newFilename, ImageFormat.Bmp); //@ changed, don't override the same file
                         //It seems to be a better solution when we copy the file when it is a .bmp with BM Header than bitmap.Save
                         //If the file from openDialog is the same as newFilename we can delete the openDialog file first
                         //or jump around the bitmap.Save
                         //we have to do some checks if the choosen file has a BM Header
-                        //or is it possible for the UIRibbon, that we can use png files ?
+                        //or is it possible for the WindowsRibbon, that we can use png files ?
                     }
-                    if (!Path.GetExtension(newFilename).Equals("bmp", StringComparison.OrdinalIgnoreCase))
+                    if (!usePngFile && !Path.GetExtension(newFilename).Equals("bmp", StringComparison.OrdinalIgnoreCase))
                     {
                         saveToBmp = true;
                         newFilename = Path.ChangeExtension(newFilename, ".bmp");

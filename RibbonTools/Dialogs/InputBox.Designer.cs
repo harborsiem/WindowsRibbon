@@ -47,7 +47,7 @@ namespace UIRibbonTools
             this.label.Location = new System.Drawing.Point(3, 0);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(266, 29);
-            this.label.TabIndex = 0;
+            this.label.TabIndex = 1;
             this.label.Text = "Label_Label_Label_Label_Label_Label_Label_Label";
             this.label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label.UseMnemonic = false;
@@ -60,7 +60,7 @@ namespace UIRibbonTools
             this.textBox.MinimumSize = new System.Drawing.Size(139, 4);
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(328, 23);
-            this.textBox.TabIndex = 1;
+            this.textBox.TabIndex = 2;
             // 
             // buttonOK
             // 
@@ -98,7 +98,7 @@ namespace UIRibbonTools
             this.buttonLayoutPanel.RowCount = 1;
             this.buttonLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.buttonLayoutPanel.Size = new System.Drawing.Size(186, 33);
-            this.buttonLayoutPanel.TabIndex = 3;
+            this.buttonLayoutPanel.TabIndex = 0;
             // 
             // dialogLayout
             // 
@@ -119,7 +119,7 @@ namespace UIRibbonTools
             this.dialogLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.dialogLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.dialogLayout.Size = new System.Drawing.Size(606, 62);
-            this.dialogLayout.TabIndex = 2;
+            this.dialogLayout.TabIndex = 0;
             // 
             // InputBox
             // 

@@ -45,7 +45,7 @@ namespace UIRibbonTools
             //uiccXsdPath = Path.Combine(sdkPath, "UICC.xsd");
         }
 
-        public void ShowDialog(Form form)
+        public void ShowPreviewDialog(Form form)
         {
             if (Parser == null)
                 Parser = new RibbonParser(XmlRibbonFile);
@@ -100,6 +100,7 @@ namespace UIRibbonTools
                 if (validate)
                 {
                     XmlRibbonFile = path;
+                    HasValidParser = false;
                     //buildEnabled = true;
                     _setLanguages(FindLanguages(path));
                     _selectedCulture = BuildPreviewHelper.Neutral;
@@ -115,7 +116,7 @@ namespace UIRibbonTools
             _previewActionEnabled(previewEnabled);
         }
 
-        private IList<string> FindLanguages(string path)
+        private static IList<string> FindLanguages(string path)
         {
             string directory = Path.GetDirectoryName(path);
             string markup = Path.GetFileNameWithoutExtension(path);
@@ -175,7 +176,7 @@ namespace UIRibbonTools
             //Console.WriteLine(msg == "" ? "Document is valid" : "Document invalid: " + msg);
         }
 
-        public void BuildRibbonFile()
+        public void BuildRibbonFile(string resourceName)
         {
             MessageOutput message = null;
             try
@@ -187,15 +188,15 @@ namespace UIRibbonTools
                 var targets = manager.Targets;
                 foreach (var target in targets)
                 {
-                    var buffer = manager.CreateRibbon(target);
+                    var buffer = manager.CreateRibbon(target, resourceName);
                     File.WriteAllBytes(target.RibbonFilename, buffer);
                 }
-                bool previewEnabled = CheckRibbonResource(path);
-                _previewActionEnabled(previewEnabled);
+                bool validResource = CheckRibbonResource(path);
+                _previewActionEnabled(validResource);
 
-                // create the C# file RibbonItems.Designer.cs
-                if (previewEnabled)
-                    new CSharpCodeBuilder().Execute(path, Parser);
+                // create the C#, VB file RibbonItems.Designer.cs
+                if (validResource)
+                    CodeWrapperBuilder(path, Parser);
             }
             catch (Exception ex)
             {
@@ -207,15 +208,14 @@ namespace UIRibbonTools
                 {
                     string allMsg = message.GetString();
                     _log(MessageKind.Pipe, allMsg);
-                    BuildLogFile(allMsg);
+                    BuildLogFile(XmlRibbonFile, allMsg);
                     message.Close();
                 }
             }
         }
 
-        private void BuildLogFile(string logging)
+        private static void BuildLogFile(string fileName, string logging)
         {
-            string fileName = XmlRibbonFile;
             StringReader sr = new StringReader(logging);
             StreamWriter sw = File.CreateText(Path.ChangeExtension(fileName, "log"));
             string line;
@@ -227,28 +227,46 @@ namespace UIRibbonTools
             sr.Close();
         }
 
-        public static void ConsoleBuild(string path)
+        private static void CodeWrapperBuilder(string path, RibbonParser parser)
         {
+            if (Settings.Instance.BuildCSharpWrapper)
+                new CSharpCodeBuilder().Execute(path, parser);
+            if (Settings.Instance.BuildVBWrapper)
+                new VBCodeBuilder().Execute(path, parser);
+        }
+
+        public static void ConsoleBuild(string path, string resourceName)
+        {
+            ConsoleMessageOutput message = null;
             try
             {
                 string fileName = path;
                 string content = File.ReadAllText(fileName);
-                Manager manager = new Manager(new ConsoleMessageOutput(), fileName, content);
+
+                Manager manager = new Manager(message = new ConsoleMessageOutput(), fileName, content);
 
                 var targets = manager.Targets;
                 foreach (var target in targets)
                 {
-                    var buffer = manager.CreateRibbon(target);
+                    var buffer = manager.CreateRibbon(target, resourceName);
                     File.WriteAllBytes(target.RibbonFilename, buffer);
                 }
 
-                // create the C# file RibbonItems.Designer.cs
-                new CSharpCodeBuilder().Execute(fileName, new RibbonParser(fileName));
+                // create the C#, VB file RibbonItems.Designer.cs
+                CodeWrapperBuilder(fileName, new RibbonParser(fileName));
 
             }
             catch (Exception ex)
             {
                 System.Console.Error.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (message != null)
+                {
+                    BuildLogFile(path, message.GetString());
+                    message.Close();
+                }
             }
         }
     }

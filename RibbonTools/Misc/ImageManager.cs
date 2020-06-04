@@ -279,5 +279,17 @@ namespace UIRibbonTools
             s_views = imageList;
             return imageList;
         }
+
+        public static ImageList ImageList_Settings(IContainer components)
+        {
+            ImageList imageList = new ImageList(components);
+            Stream stream = s_ass.GetManifestResourceStream("UIRibbonTools.Images.ImageList_Settings.bmp");
+            Bitmap bitmap = new Bitmap(stream);
+            imageList.Images.AddStrip(bitmap);
+            imageList.ColorDepth = ColorDepth.Depth32Bit;
+            imageList.ImageSize = new Size(16, 16);
+            imageList.TransparentColor = Color.Black;
+            return imageList;
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace UIRibbonTools
             if (args.Length == 0 || (args.Length == 1 && File.Exists(args[0])))
                 return false;
 
-            if (!NativeMethods.AttachConsole(NativeMethods.ATTACH_PARENT_PROCESS) && Marshal.GetLastWin32Error() == ERROR_ACCESS_DENIED)
+            if (!NativeMethods.AttachConsole(NativeMethods.ATTACH_PARENT_PROCESS)) // && Marshal.GetLastWin32Error() == ERROR_ACCESS_DENIED)
             {
                 if (NativeMethods.AllocConsole())
                 {
@@ -42,12 +42,13 @@ namespace UIRibbonTools
         private static bool ExecuteConsole(string[] args, bool attachedParent)
         {
             int errorCode = 0;
+            bool withReadKey;
             try
             {
-                ParseArgs(args);
+                withReadKey = ParseArgs(args);
                 WriteLine();
                 ConsoleKey key = ConsoleKey.NoName;
-                if (!attachedParent)
+                if (!attachedParent && withReadKey)
                 {
                     while (key == ConsoleKey.NoName)
                         key = Console.ReadKey().Key;
@@ -64,29 +65,40 @@ namespace UIRibbonTools
             return true;
         }
 
-        private static void ParseArgs(string[] args)
+        private static bool ParseArgs(string[] args)
         {
             if (args[0].Equals("/?", StringComparison.OrdinalIgnoreCase) || args[0].Equals("-h", StringComparison.OrdinalIgnoreCase) || args[0].Equals("--help", StringComparison.OrdinalIgnoreCase))
             {
                 DisplayHelp();
-                return;
+                return true;
             }
-            if (args.Length == 2)
+            if (args.Length == 2) //@ parameter for resourcename ? or lastline comment with resourcename ?
             {
                 if (args[1].Equals("--build", StringComparison.OrdinalIgnoreCase))
                 {
                     BuildRibbon(args[0]);
-                    return;
+                    return false;
                 }
             }
+            if (args.Length == 3) //@ parameter for resourcename ? or lastline comment with resourcename ?
+            {
+                if (args[2].Equals("--build", StringComparison.OrdinalIgnoreCase))
+                {
+                    BuildRibbon(args[0], args[1]);
+                    return false;
+                }
+            }
+
             DisplayHelp();
+            return true;
         }
 
-        private static void BuildRibbon(string path)
+        private static void BuildRibbon(string path, string resourceName = TRibbonObject.ApplicationDefaultName)
         {
             if (File.Exists(path))
             {
-                BuildPreviewHelper.ConsoleBuild(path);
+                Settings.Instance.Read(new System.Drawing.Size()); //We need the external Tools paths
+                BuildPreviewHelper.ConsoleBuild(Addons.GetExactFilenameWithPath(path), resourceName);
             }
             else
             {
@@ -98,17 +110,19 @@ namespace UIRibbonTools
         {
             WriteLine();
             WriteLine();
-            WriteLine("Build the ribbon files from the Markup file");
+            WriteLine("Build the ribbon files from the Xml-Markup file");
             WriteLine();
             WriteLine("Usage: RibbonTools [options]");
-            WriteLine("Usage: RibbonTools [path - to - markup][options]");
+            WriteLine("Usage: RibbonTools [path - to - markup] [ResourceName] [options]");
             WriteLine();
-            WriteLine("Options:");
+            WriteLine("options:");
             WriteLine("  /?|-h|--help Display help.");
             WriteLine("  --build Build the ribbon files.");
             WriteLine();
             WriteLine("path-to-markup:");
             WriteLine("  The path to a ribbon markup file.");
+            WriteLine("ResourceName:");
+            WriteLine("  Optional parameter, don't use it with .NET");
         }
 
         private static void WriteLine(string line)

@@ -265,7 +265,7 @@ namespace UIRibbonTools
         public const string ES_VERTICAL_RESIZE = "VerticalResize";
 
 
-        public const string ApplicationDefaultName = "APPLICATION_RIBBON";
+        public const string ApplicationDefaultName = "APPLICATION";
         public const string ResourceTagPrefix = "<!--ResourceName Value=\"";
         public const string ResourceTagSuffix = "\"-->";
     }

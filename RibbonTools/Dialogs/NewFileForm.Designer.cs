@@ -125,7 +125,7 @@ namespace UIRibbonTools
             this.saveGroupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.saveGroupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.saveGroupLayout.Size = new System.Drawing.Size(334, 53);
-            this.saveGroupLayout.TabIndex = 4;
+            this.saveGroupLayout.TabIndex = 0;
             // 
             // directoryButton
             // 

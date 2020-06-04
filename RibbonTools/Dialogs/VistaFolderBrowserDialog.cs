@@ -191,7 +191,7 @@ namespace System.Windows.Forms
                         parent = _selectedPath;
                     }
                     else
-                        parent = string.Empty;    
+                        parent = string.Empty; //Drive name   
                 }
                 else
                 {
@@ -200,7 +200,7 @@ namespace System.Windows.Forms
             }
             else
             {
-                parent = string.Empty;
+                parent = string.Empty; //This PC
             }
             dialog.SetFolder(FileDialogNative.CreateItemFromParsingName(parent));
             dialog.SetFileName(folder);
