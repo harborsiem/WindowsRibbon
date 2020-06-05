@@ -96,6 +96,7 @@ namespace UIRibbonTools
             InitActions();
             toolVersion.Text = "Version: " + Application.ProductVersion;
 
+
             //    constructor TFormMain.Create(AOwner: TComponent)
             //{
             //  inherited;
@@ -481,6 +482,7 @@ namespace UIRibbonTools
                 UpdateCaption();
                 UpdateControls();
                 ClearModified();
+                ShowFilename(dialog.FileName);
                 _buildPreviewHelper.SetRibbonXmlFile(dialog.FileName);
             }
         }
@@ -711,6 +713,11 @@ namespace UIRibbonTools
             }
         }
 
+        private void ShowFilename(string value)
+        {
+            statusHints.Text = value;
+        }
+
         private void NewFile(bool emptyFile)
         {
             RibbonTemplate template;
@@ -774,6 +781,7 @@ namespace UIRibbonTools
             UpdateCaption();
             UpdateControls();
             ClearModified();
+            ShowFilename(fileName);
             _buildPreviewHelper.SetRibbonXmlFile(fileName);
         }
 
@@ -787,6 +795,7 @@ namespace UIRibbonTools
             UpdateCaption();
             UpdateControls();
             ClearModified();
+            ShowFilename(fileName);
             _buildPreviewHelper.SetRibbonXmlFile(fileName);
         }
 

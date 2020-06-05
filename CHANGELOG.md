@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.8.6, RibbonTools V1.1.0
+
+### Changed
+- RibbonTools: Settings added, faster Build
+### Todo 
+- Documentation for RibbonTools
+
 ### Ribbon V2.8.6, RibbonGenerator V1.3.5, RibbonPreview V1.2.1, RibbonTools V1.0.0
 
 ### Changed
