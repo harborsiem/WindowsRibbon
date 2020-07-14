@@ -1,4 +1,4 @@
-﻿//****************************************************************************
+//****************************************************************************
 //
 //  File:       RibbonProperties.cs
 //
@@ -13,6 +13,11 @@ using System.Runtime.InteropServices;
 
 namespace RibbonLib.Interop
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    /// <summary>
+    /// Properties related to the Windows Ribbon Framework, based on 
+    /// UIRibbon.idl from windows 7 SDK
+    /// </summary>
     public static class RibbonProperties
     {
         // Core command properties
@@ -101,7 +106,7 @@ namespace RibbonLib.Interop
         public static PropertyKey CreateRibbonPropertyKey(Int32 index, VarEnum id)
         {
             return new PropertyKey(
-                new Guid(index, 0x7363, 0x696e, new byte[] { 0x84, 0x41, 0x79, 0x8a, 0xcf, 0x5a, 0xeb, 0xb7 }), 
+                new Guid(index, 0x7363, 0x696e, new byte[] { 0x84, 0x41, 0x79, 0x8a, 0xcf, 0x5a, 0xeb, 0xb7 }),
                 (uint)id);
         }
 
@@ -129,5 +134,6 @@ namespace RibbonLib.Interop
 
             return string.Empty;
         }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

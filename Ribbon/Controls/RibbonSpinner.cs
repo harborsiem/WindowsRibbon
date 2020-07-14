@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       RibbonSpinner.cs
 //
@@ -13,6 +13,9 @@ using System;
 
 namespace RibbonLib.Controls
 {
+    /// <summary>
+    /// Helper class that wraps a ribbon spinner control.
+    /// </summary>
     public class RibbonSpinner : BaseRibbonControl,
         ISpinnerPropertiesProvider,
         IRepresentativeStringPropertiesProvider,
@@ -32,6 +35,11 @@ namespace RibbonLib.Controls
         private TooltipPropertiesProvider _tooltipPropertiesProvider;
         private ExecuteEventsProvider _executeEventsProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the Ribbon Spinner
+        /// </summary>
+        /// <param name="ribbon">Parent Ribbon control</param>
+        /// <param name="commandId">Command id attached to this control</param>
         public RibbonSpinner(Ribbon ribbon, uint commandId)
             : base(ribbon, commandId)
         {
@@ -49,6 +57,9 @@ namespace RibbonLib.Controls
 
         #region ISpinnerPropertiesProvider Members
 
+        /// <summary>
+        /// The actual decimal value of the spinner.
+        /// </summary>
         public decimal DecimalValue
         {
             get
@@ -61,6 +72,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The size of the step when pressing on increment / decrement buttons.
+        /// </summary>
         public decimal Increment
         {
             get
@@ -73,6 +87,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Maximum value that can be set using the spinner control.
+        /// </summary>
         public decimal MaxValue
         {
             get
@@ -85,6 +102,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Minimum value that can be set using the spinner control.
+        /// </summary>
         public decimal MinValue
         {
             get
@@ -97,6 +117,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The number of digits to show after the point.
+        /// </summary>
         public uint DecimalPlaces
         {
             get
@@ -109,6 +132,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The units of the value.
+        /// </summary>
         public string FormatString
         {
             get
@@ -125,6 +151,15 @@ namespace RibbonLib.Controls
 
         #region IRepresentativeStringPropertiesProvider Members
 
+        /// <summary>
+        /// A string that represents the common value for the Spinner.
+        /// This is used to calculate the width of the Spinner,
+        /// so you should set here the longest string you forecast.
+        /// Note that it doesn't have to be an actual value,
+        /// it can be also: "XXXXXXXX".
+        ///
+        /// Note: Set it before Ribbon is initialized.
+        /// </summary>
         public string RepresentativeString
         {
             get
@@ -141,6 +176,9 @@ namespace RibbonLib.Controls
 
         #region IEnabledPropertiesProvider Members
 
+        /// <summary>
+        /// Get or set the Enabled state.
+        /// </summary>
         public bool Enabled
         {
             get
@@ -157,6 +195,13 @@ namespace RibbonLib.Controls
 
         #region IKeytipPropertiesProvider Members
 
+        /// <summary>
+        /// The keytip or key sequence that is used to access the command using the Alt key.
+        /// This keytip appears when the user presses the Alt key to navigate the ribbon.
+        /// The Ribbon Framework will automatically apply keytips to every command.
+        /// However, if you want more control over the keytips used, you can specify them yourself.
+        /// A keytip is not limited to a single character.
+        /// </summary>
         public string Keytip
         {
             get
@@ -173,6 +218,9 @@ namespace RibbonLib.Controls
 
         #region ILabelPropertiesProvider Members
 
+        /// <summary>
+        /// This is the label of the command as it will appear on the ribbon or context popups.
+        /// </summary>
         public string Label
         {
             get
@@ -189,6 +237,10 @@ namespace RibbonLib.Controls
 
         #region IImagePropertiesProvider Members
 
+        /// <summary>
+        /// Large images
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage LargeImage
         {
             get
@@ -201,6 +253,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Small images
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage SmallImage
         {
             get
@@ -213,6 +269,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Large images for use with high-contrast system settings
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage LargeHighContrastImage
         {
             get
@@ -225,6 +285,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Small images for use with high-contrast system settings
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage SmallHighContrastImage
         {
             get
@@ -241,6 +305,10 @@ namespace RibbonLib.Controls
 
         #region ITooltipPropertiesProvider Members
 
+        /// <summary>
+        /// The title of the tooltip (hint) that appear when the user hovers the mouse over the command.
+        /// This title is displayed in bold at the top of the tooltip.
+        /// </summary>
         public string TooltipTitle
         {
             get
@@ -253,6 +321,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The description of the tooltip as it appears below the title.
+        /// </summary>
         public string TooltipDescription
         {
             get
@@ -269,6 +340,9 @@ namespace RibbonLib.Controls
 
         #region IExecuteEventsProvider Members
 
+        /// <summary>
+        /// Event provider similar to a "Value Changed" event.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> ExecuteEvent
         {
             add

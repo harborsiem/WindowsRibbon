@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       IPropertiesProvider.cs
 //
@@ -11,6 +11,9 @@ using RibbonLib.Interop;
 
 namespace RibbonLib.Controls.Properties
 {
+    /// <summary>
+    /// Interface for components that provides properties
+    /// </summary>
     public interface IPropertiesProvider
     {
         /// <summary>
@@ -22,7 +25,7 @@ namespace RibbonLib.Controls.Properties
         /// Handles IUICommandHandler.UpdateProperty function for the supported properties
         /// </summary>
         /// <param name="key">The Property Key to update</param>
-        /// <param name="currentValue">A pointer to the current value for key. This parameter can be NULL</param>
+        /// <param name="currentValue">A pointer to the current value for key. This parameter can be null</param>
         /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
         HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue);

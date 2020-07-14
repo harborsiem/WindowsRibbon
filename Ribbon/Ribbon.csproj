@@ -106,6 +106,8 @@
     <Compile Include="Controls\RibbonToggleButton.cs" />
     <Compile Include="Controls\RibbonDropDownGallery.cs" />
     <Compile Include="Controls\Events\ExecuteEventsProvider.cs" />
+    <Compile Include="EventLogger.cs" />
+    <Compile Include="EventLoggerEventArgs.cs" />
     <Compile Include="FontPropertyStore.cs" />
     <Compile Include="GalleryCommandPropertySet.cs" />
     <Compile Include="GalleryItemPropertySet.cs" />

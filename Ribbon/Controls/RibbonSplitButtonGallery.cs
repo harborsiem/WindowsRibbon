@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       RibbonSplitButtonGallery.cs
 //
@@ -13,6 +13,9 @@ using System;
 
 namespace RibbonLib.Controls
 {
+    /// <summary>
+    /// Helper class that wraps a ribbon split button gallery control.
+    /// </summary>
     public class RibbonSplitButtonGallery : BaseRibbonControl,
         IBooleanValuePropertyProvider,
         IGalleryPropertiesProvider,
@@ -34,6 +37,11 @@ namespace RibbonLib.Controls
         private ExecuteEventsProvider _executeEventsProvider;
         private PreviewEventsProvider _previewEventsProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the Ribbon SplitButtonGallery
+        /// </summary>
+        /// <param name="ribbon">Parent Ribbon control</param>
+        /// <param name="commandId">Command id attached to this control</param>
         public RibbonSplitButtonGallery(Ribbon ribbon, uint commandId)
             : base(ribbon, commandId)
         {
@@ -51,6 +59,9 @@ namespace RibbonLib.Controls
 
         #region IBooleanValuePropertyProvider Members
 
+        /// <summary>
+        /// Get or set the Checked state.
+        /// </summary>
         public bool BooleanValue
         {
             get
@@ -67,6 +78,10 @@ namespace RibbonLib.Controls
 
         #region IGalleryPropertiesProvider Members
 
+        /// <summary>
+        /// The list of categories. 
+        /// Also exposed as an IUICollection of IUISimplePropertySet elements
+        /// </summary>
         public IUICollection Categories
         {
             get
@@ -75,6 +90,11 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The list of SplitButtonGallery items.
+        /// It is exposed as an IUICollection where every element
+        /// in the collection is of type: IUISimplePropertySet
+        /// </summary>
         public IUICollection ItemsSource
         {
             get
@@ -83,6 +103,11 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The index of the selected item in the SplitButtonGallery.
+        /// If nothing is selected returns UI_Collection_InvalidIndex,
+        /// which is a fancy way to say -1
+        /// </summary>
         public uint SelectedItem
         {
             get
@@ -95,6 +120,11 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Event provider which only fired once.
+        /// Now one can work with the Categories.
+        /// After Ribbon.Initialize one can do this too.
+        /// </summary>
         public event EventHandler<EventArgs> CategoriesReady
         {
             add
@@ -107,6 +137,11 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Event provider which only fired once.
+        /// Now one can work with the ItemsSource.
+        /// After Ribbon.Initialize one can do this too.
+        /// </summary>
         public event EventHandler<EventArgs> ItemsSourceReady
         {
             add
@@ -123,6 +158,9 @@ namespace RibbonLib.Controls
 
         #region IEnabledPropertiesProvider Members
 
+        /// <summary>
+        /// Get or set the Enabled state.
+        /// </summary>
         public bool Enabled
         {
             get
@@ -139,6 +177,13 @@ namespace RibbonLib.Controls
 
         #region IKeytipPropertiesProvider Members
 
+        /// <summary>
+        /// The keytip or key sequence that is used to access the command using the Alt key.
+        /// This keytip appears when the user presses the Alt key to navigate the ribbon.
+        /// The Ribbon Framework will automatically apply keytips to every command.
+        /// However, if you want more control over the keytips used, you can specify them yourself.
+        /// A keytip is not limited to a single character.
+        /// </summary>
         public string Keytip
         {
             get
@@ -155,6 +200,9 @@ namespace RibbonLib.Controls
 
         #region ILabelPropertiesProvider Members
 
+        /// <summary>
+        /// This is the label of the command as it will appear on the ribbon or context popups.
+        /// </summary>
         public string Label
         {
             get
@@ -171,6 +219,10 @@ namespace RibbonLib.Controls
 
         #region IImagePropertiesProvider Members
 
+        /// <summary>
+        /// Large images
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage LargeImage
         {
             get
@@ -183,6 +235,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Small images
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage SmallImage
         {
             get
@@ -195,6 +251,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Large images for use with high-contrast system settings
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage LargeHighContrastImage
         {
             get
@@ -207,6 +267,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Small images for use with high-contrast system settings
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage SmallHighContrastImage
         {
             get
@@ -223,6 +287,10 @@ namespace RibbonLib.Controls
 
         #region ITooltipPropertiesProvider Members
 
+        /// <summary>
+        /// The title of the tooltip (hint) that appear when the user hovers the mouse over the command.
+        /// This title is displayed in bold at the top of the tooltip.
+        /// </summary>
         public string TooltipTitle
         {
             get
@@ -235,6 +303,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The description of the tooltip as it appears below the title.
+        /// </summary>
         public string TooltipDescription
         {
             get
@@ -251,6 +322,9 @@ namespace RibbonLib.Controls
 
         #region IExecuteEventsProvider Members
 
+        /// <summary>
+        /// Event provider similar to a "Selected Changed" event.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> ExecuteEvent
         {
             add
@@ -267,6 +341,10 @@ namespace RibbonLib.Controls
 
         #region IPreviewEventsProvider Members
 
+        /// <summary>
+        /// Event provider for a preview.
+        /// This is when the mouse enters the control.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> PreviewEvent
         {
             add
@@ -279,6 +357,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Event provider when the preview is cancelled.
+        /// This is when the mouse leaves the control.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> CancelPreviewEvent
         {
             add

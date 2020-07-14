@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       RibbonCheckBox.cs
 //
@@ -13,6 +13,9 @@ using System;
 
 namespace RibbonLib.Controls
 {
+    /// <summary>
+    /// Helper class that wraps a ribbon checkbox control.
+    /// </summary>
     public class RibbonCheckBox : BaseRibbonControl,
         IBooleanValuePropertyProvider, 
         IEnabledPropertiesProvider,
@@ -32,6 +35,11 @@ namespace RibbonLib.Controls
         private TooltipPropertiesProvider _tooltipPropertiesProvider;
         private ExecuteEventsProvider _executeEventsProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the Ribbon CheckBox
+        /// </summary>
+        /// <param name="ribbon">Parent Ribbon control</param>
+        /// <param name="commandId">Command id attached to this control</param>
         public RibbonCheckBox(Ribbon ribbon, uint commandId)
             : base(ribbon, commandId)
         {
@@ -48,6 +56,9 @@ namespace RibbonLib.Controls
 
         #region IBooleanValuePropertyProvider Members
 
+        /// <summary>
+        /// Get or set the Checked state.
+        /// </summary>
         public bool BooleanValue
         {
             get
@@ -64,6 +75,9 @@ namespace RibbonLib.Controls
 
         #region IEnabledPropertiesProvider Members
 
+        /// <summary>
+        /// Get or set the Enabled state.
+        /// </summary>
         public bool Enabled
         {
             get
@@ -80,6 +94,13 @@ namespace RibbonLib.Controls
 
         #region IKeytipPropertiesProvider Members
 
+        /// <summary>
+        /// The keytip or key sequence that is used to access the command using the Alt key.
+        /// This keytip appears when the user presses the Alt key to navigate the ribbon.
+        /// The Ribbon Framework will automatically apply keytips to every command.
+        /// However, if you want more control over the keytips used, you can specify them yourself.
+        /// A keytip is not limited to a single character.
+        /// </summary>
         public string Keytip
         {
             get
@@ -96,6 +117,9 @@ namespace RibbonLib.Controls
 
         #region ILabelPropertiesProvider Members
 
+        /// <summary>
+        /// This is the label of the command as it will appear on the ribbon or context popups.
+        /// </summary>
         public string Label
         {
             get
@@ -112,6 +136,9 @@ namespace RibbonLib.Controls
 
         #region ILabelDescriptionPropertiesProvider Members
 
+        /// <summary>
+        /// A longer description of the command. This description is only used when the command is used in the right side of the application menu
+        /// </summary>
         public string LabelDescription
         {
             get
@@ -128,6 +155,10 @@ namespace RibbonLib.Controls
 
         #region IImagePropertiesProvider Members
 
+        /// <summary>
+        /// Large images
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage LargeImage
         {
             get
@@ -140,6 +171,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Small images
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage SmallImage
         {
             get
@@ -152,6 +187,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Large images for use with high-contrast system settings
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage LargeHighContrastImage
         {
             get
@@ -164,6 +203,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Small images for use with high-contrast system settings
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage SmallHighContrastImage
         {
             get
@@ -180,6 +223,10 @@ namespace RibbonLib.Controls
 
         #region ITooltipPropertiesProvider Members
 
+        /// <summary>
+        /// The title of the tooltip (hint) that appear when the user hovers the mouse over the command.
+        /// This title is displayed in bold at the top of the tooltip.
+        /// </summary>
         public string TooltipTitle
         {
             get
@@ -192,6 +239,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The description of the tooltip as it appears below the title.
+        /// </summary>
         public string TooltipDescription
         {
             get
@@ -208,6 +258,9 @@ namespace RibbonLib.Controls
 
         #region IExecuteEventsProvider Members
 
+        /// <summary>
+        /// Event provider similar to a "Check Changed" event.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> ExecuteEvent
         {
             add

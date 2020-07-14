@@ -40,9 +40,21 @@ namespace RibbonLib
 
         private RibbonShortcutTable _ribbonShortcutTable;
 
+        /// <summary>
+        /// Get EventLogger object which implements IUIEventLogger.
+        /// Only available in Windows 8, 10. Can be null.
+        /// </summary>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public EventLogger EventLogger { get; private set; }
+
         private string _shortcutTableResourceName;
 
 
+        /// <summary>
+        /// is a reference to an embedded resource file
+        /// in the application assembly. The (xml)-file contains
+        /// shortcut keys.
+        /// </summary>
         public string ShortcutTableResourceName
         {
             get { return _shortcutTableResourceName; }
@@ -83,6 +95,9 @@ namespace RibbonLib
             e.Handled = true;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the Ribbon
+        /// </summary>
         public Ribbon()
         {
             base.Dock = DockStyle.Top;
@@ -164,6 +179,9 @@ namespace RibbonLib
             CheckInitialize();
         }
 
+        /// <summary>
+        /// only Dock.Top possible
+        /// </summary>
         [DefaultValue(typeof(DockStyle), "Top")]
         public override DockStyle Dock
         {
@@ -176,6 +194,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Don't use
+        /// </summary>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override string Text
         {
@@ -191,6 +212,10 @@ namespace RibbonLib
 
         string _resourceName;
 
+        /// <summary>
+        /// is a reference to an embedded resource file
+        /// in the application assembly. The RibbonMarkup.ribbon file.
+        /// </summary>
         public string ResourceName
         {
             get { return _resourceName; }
@@ -201,6 +226,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Don't use
+        /// </summary>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IntPtr WindowHandle
         {
@@ -249,6 +277,8 @@ namespace RibbonLib
         /// Check if ribbon framework has been initialized
         /// </summary>
         [Obsolete("Use Initialized")]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Initalized
         {
             get
@@ -260,6 +290,7 @@ namespace RibbonLib
         /// <summary>
         /// Check if ribbon framework has been initialized
         /// </summary>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Initialized
         {
             get
@@ -501,6 +532,15 @@ namespace RibbonLib
 
             // load ribbon ui
             hr = Framework.LoadUI(hInstance, resourceName);
+
+            if (!(Environment.OSVersion.Version.Major == 6 && Environment.OSVersion.Version.Minor <= 1 || Environment.OSVersion.Version.Major < 6))
+            {
+                IUIEventingManager eventingManager = Framework as IUIEventingManager;
+                if (eventingManager != null)
+                {
+                    EventLogger = new EventLogger(eventingManager);
+                }
+            }
 
             if (NativeMethods.Failed(hr))
             {
@@ -774,6 +814,7 @@ namespace RibbonLib
         /// <summary>
         /// Specifies whether the ribbon is in a collapsed or expanded state
         /// </summary>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Minimized
         {
             get
@@ -993,7 +1034,7 @@ namespace RibbonLib
         /// </summary>
         /// <param name="commandID">The ID for the Command, which is specified in the Markup resource file</param>
         /// <param name="key">The Property Key to update</param>
-        /// <param name="currentValue">A pointer to the current value for key. This parameter can be NULL</param>
+        /// <param name="currentValue">A pointer to the current value for key. This parameter can be null</param>
         /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
         /// <remarks>This method is used internally by the Ribbon class and should not be called by the user.</remarks>
@@ -1013,6 +1054,9 @@ namespace RibbonLib
 
         #endregion
 
+        /// <summary>
+        /// Event fires when the View is created
+        /// </summary>
         public event EventHandler ViewCreated;
 
         internal void RaiseViewCreated()

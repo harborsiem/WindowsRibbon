@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +7,23 @@ using System.Xml.Serialization;
 
 namespace RibbonLib
 {
+    /// <summary>
+    /// Ribbon Shortcut class (can't used by a user,
+    /// only used with the embedded xml resource file for shortcuts) 
+    /// </summary>
     public class RibbonShortcut
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlAttribute]
         public uint CommandId { get; set; }
 
         string _shortcut;
 
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlAttribute("Shortcut")]
         public string Shortcut
         {
@@ -28,6 +38,11 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public Keys ConvertToKeys(string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -59,6 +74,9 @@ namespace RibbonLib
         }
 
         Keys _shortcutKeys;
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlIgnore]
         public Keys ShortcutKeys
         {
@@ -66,8 +84,15 @@ namespace RibbonLib
         }
     }
 
+    /// <summary>
+    /// Ribbon ShortcutTable class (can't used by a user,
+    /// only used with the embedded xml resource file for shortcuts) 
+    /// </summary>
     public class RibbonShortcutTable
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public RibbonShortcut[] RibbonShortcutArray
         {
             get
@@ -87,6 +112,9 @@ namespace RibbonLib
 
         List<RibbonShortcut> _ribbonShortcuts = new List<RibbonShortcut>();
 
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlIgnore()]
         public List<RibbonShortcut> RibbonShortcuts
         {

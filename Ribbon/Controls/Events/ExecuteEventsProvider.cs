@@ -30,6 +30,10 @@ namespace RibbonLib.Controls.Events
     {
         private object _sender;
 
+        /// <summary>
+        /// Initializes a new instance of the ExecuteEventsProvider
+        /// </summary>
+        /// <param name="sender"></param>
         public ExecuteEventsProvider(object sender)
         {
             _sender = sender;

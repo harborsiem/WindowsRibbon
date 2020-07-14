@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       RibbonFontControl.cs
 //
@@ -14,6 +14,9 @@ using System;
 
 namespace RibbonLib.Controls
 {
+    /// <summary>
+    /// Helper class that wraps a ribbon font control.
+    /// </summary>
     public class RibbonFontControl : BaseRibbonControl, 
         IFontControlPropertiesProvider,
         IEnabledPropertiesProvider, 
@@ -27,6 +30,11 @@ namespace RibbonLib.Controls
         private ExecuteEventsProvider _executeEventsProvider;
         private PreviewEventsProvider _previewEventsProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the Ribbon FontControl
+        /// </summary>
+        /// <param name="ribbon">Parent Ribbon control</param>
+        /// <param name="commandId">Command id attached to this control</param>
         public RibbonFontControl(Ribbon ribbon, uint commandId)
             : base(ribbon, commandId)
         {
@@ -40,6 +48,9 @@ namespace RibbonLib.Controls
 
         #region IFontControlPropertiesProvider Members
 
+        /// <summary>
+        /// The selected font family name.
+        /// </summary>
         public string Family
         {
             get
@@ -52,6 +63,9 @@ namespace RibbonLib.Controls
             }
         }
         
+        /// <summary>
+        /// The size of the font.
+        /// </summary>
         public decimal Size
         {
             get
@@ -64,6 +78,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Flag that indicates whether bold is selected.
+        /// </summary>
         public FontProperties Bold
         {
             get
@@ -76,6 +93,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Flag that indicates whether italic is selected.
+        /// </summary>
         public FontProperties Italic
         {
             get
@@ -88,6 +108,9 @@ namespace RibbonLib.Controls
             }
         }
         
+        /// <summary>
+        /// Flag that indicates whether underline is selected.
+        /// </summary>
         public FontUnderline Underline
         {
             get
@@ -100,6 +123,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Flag that indicates whether strikethrough is selected
+        /// (sometimes called Strikeout).
+        /// </summary>
         public FontProperties Strikethrough
         {
             get
@@ -112,6 +139,11 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Contains the text color if ForegroundColorType is set to RGB.
+        /// The FontControl helper class expose this property as a .NET Color
+        /// and handles internally the conversion to and from COLORREF structure.
+        /// </summary>
         public Color ForegroundColor
         {
             get
@@ -124,6 +156,11 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Contains the background color if BackgroundColorType is set to RGB.
+        /// The FontControl helper class expose this property as a .NET Color
+        /// and handles internally the conversion to and from COLORREF structure.
+        /// </summary>
         public Color BackgroundColor
         {
             get
@@ -136,6 +173,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Flag that indicates which one of the Subscript
+        /// and Superscript buttons are selected, if any.
+        /// </summary>
         public FontVerticalPosition VerticalPositioning
         {
             get
@@ -152,6 +193,9 @@ namespace RibbonLib.Controls
         
         #region IEnabledPropertiesProvider Members
 
+        /// <summary>
+        /// Get or set the Enabled state.
+        /// </summary>
         public bool Enabled
         {
             get
@@ -168,6 +212,13 @@ namespace RibbonLib.Controls
 
         #region IKeytipPropertiesProvider Members
 
+        /// <summary>
+        /// The keytip or key sequence that is used to access the command using the Alt key.
+        /// This keytip appears when the user presses the Alt key to navigate the ribbon.
+        /// The Ribbon Framework will automatically apply keytips to every command.
+        /// However, if you want more control over the keytips used, you can specify them yourself.
+        /// A keytip is not limited to a single character.
+        /// </summary>
         public string Keytip
         {
             get
@@ -184,6 +235,9 @@ namespace RibbonLib.Controls
 
         #region IExecuteEventsProvider Members
 
+        /// <summary>
+        /// Event provider similar to a "Selected Changed" event.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> ExecuteEvent
         {
             add
@@ -200,6 +254,10 @@ namespace RibbonLib.Controls
 
         #region IPreviewEventsProvider Members
 
+        /// <summary>
+        /// Event provider for a preview.
+        /// This is when the mouse enters the control.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> PreviewEvent
         {
             add
@@ -212,6 +270,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Event provider when the preview is cancelled.
+        /// This is when the mouse leaves the control.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> CancelPreviewEvent
         {
             add

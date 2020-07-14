@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       IEventsProvider.cs
 //
@@ -11,6 +11,9 @@ using RibbonLib.Interop;
 
 namespace RibbonLib.Controls.Events
 {
+    /// <summary>
+    /// Interface for components that provides events
+    /// </summary>
     public interface IEventsProvider
     {
         /// <summary>

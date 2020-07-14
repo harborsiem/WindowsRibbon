@@ -9,20 +9,20 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Ribbon.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <FileVersion>2.8.6.0</FileVersion>
-    <Version>2.8.6</Version>
-    <Authors>RibbonLib</Authors>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <PackageProjectUrl>https://github.com/harborsiem/WindowsRibbon</PackageProjectUrl>
-    <Copyright>Copyright © 2009, 2020</Copyright>
-    <Description>Com based Microsoft UIRibbon for .NET Core</Description>
+    <Description>Microsoft Windows Ribbon for .NET Core</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <RepositoryType>Git</RepositoryType>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>RibbonLib</RootNamespace>
     <AssemblyName>Ribbon</AssemblyName>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>false</Deterministic>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

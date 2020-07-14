@@ -9,6 +9,11 @@
 
 namespace RibbonLib.Interop
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    /// <summary>
+    /// Guids of the interfaces and classes related to Windows Ribbon 
+    /// Framework, based on UIRibbon.idl from windows 7 SDK
+    /// </summary>
     public static class RibbonIIDGuid
     {
         // IID GUID strings for relevant Ribbon COM interfaces.
@@ -38,5 +43,5 @@ namespace RibbonLib.Interop
         //DEFINE_GUID(LIBID_UIRibbon,         0x942f35c2, 0xe83b, 0x45ef, 0xb0, 0x85, 0xac, 0x29, 0x5d, 0xd6, 0x3d, 0x5b);
         public const string UIRibbon = "942f35c2-e83b-45ef-b085-ac295dd63d5b";
     }
-
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

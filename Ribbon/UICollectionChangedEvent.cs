@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       UICollectionChangedEvent.cs
 //
@@ -13,7 +13,10 @@ using RibbonLib.Interop;
 
 namespace RibbonLib
 {
-   
+    /// <summary>
+    /// Helper class that exposes an OnChanged event for a given 
+    /// IUICollector instance.
+    /// </summary>
     public class UICollectionChangedEvent : IUICollectionChangedEvent
     {
         private IUICollection _collection;
@@ -49,6 +52,9 @@ namespace RibbonLib
             }
         }
         
+        /// <summary>
+        /// The Changed event
+        /// </summary>
         public event EventHandler<UICollectionChangedEventArgs> ChangedEvent;
 
         private IConnectionPoint GetConnectionPoint(IUICollection collection)

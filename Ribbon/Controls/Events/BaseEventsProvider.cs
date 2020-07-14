@@ -1,9 +1,9 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       BaseEventsProvider.cs
 //
 //  Contents:   Base class for all events provider classes.
-//              provides common members like: _supportedEvents.
+//              provides common members like: SupportedEvents.
 //
 //*****************************************************************************
 
@@ -12,6 +12,10 @@ using RibbonLib.Interop;
 
 namespace RibbonLib.Controls.Events
 {
+    /// <summary>
+    /// Base class for all events provider classes.
+    /// provides common members like: SupportedEvents.
+    /// </summary>
     public class BaseEventsProvider : IEventsProvider
     {
         /// <summary>
@@ -19,6 +23,9 @@ namespace RibbonLib.Controls.Events
         /// </summary>
         private List<ExecutionVerb> _supportedEvents = new List<ExecutionVerb>();
 
+        /// <summary>
+        /// Initializes a new instance of the BaseEventsProvider
+        /// </summary>
         protected BaseEventsProvider()
         {
         }
@@ -30,7 +37,7 @@ namespace RibbonLib.Controls.Events
         /// </summary>
         public IList<ExecutionVerb> SupportedEvents
         {
-            get 
+            get
             {
                 return _supportedEvents;
             }

@@ -12,6 +12,10 @@ using System.Drawing;
 
 namespace RibbonLib
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    /// <summary>
+    /// Helper struct for Hue, Saturation, Luminance
+    /// </summary>
     public struct HSL
     {
         public double H;
@@ -26,6 +30,9 @@ namespace RibbonLib
         }
     }
 
+    /// <summary>
+    /// Helper struct for Hue, Saturation, Brightness
+    /// </summary>
     public struct HSB
     {
         public byte H;
@@ -219,5 +226,6 @@ namespace RibbonLib
         {
             return (uint)(hsb.H | (hsb.S << 8) | (hsb.B << 16));
         }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }

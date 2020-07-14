@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       StreamAdapter.cs
 //
@@ -13,10 +13,17 @@ using System.Runtime.InteropServices.ComTypes;
 
 namespace RibbonLib.Interop
 {
+    /// <summary>
+    /// Helper class that wraps a .NET stream class as a COM IStream
+    /// </summary>
     public class StreamAdapter : IStream
     {
         private Stream _stream;
 
+        /// <summary>
+        /// Initializes a new instance of the StreamAdapter
+        /// </summary>
+        /// <param name="stream"></param>
         public StreamAdapter(Stream stream)
         {
             if (stream == null)
@@ -29,27 +36,54 @@ namespace RibbonLib.Interop
 
         #region IStream Members
 
+        /// <summary>
+        /// Not supported
+        /// </summary>
+        /// <param name="streamCopy"></param>
         public void Clone(out IStream streamCopy)
         {
             streamCopy = null;
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Not supported
+        /// </summary>
+        /// <param name="flags"></param>
         public void Commit(int flags)
         {
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Not supported
+        /// </summary>
+        /// <param name="targetStream"></param>
+        /// <param name="bufferSize"></param>
+        /// <param name="buffer"></param>
+        /// <param name="bytesWrittenPtr"></param>
         public void CopyTo(IStream targetStream, long bufferSize, IntPtr buffer, IntPtr bytesWrittenPtr)
         {
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Not supported
+        /// </summary>
+        /// <param name="offset"></param>
+        /// <param name="byteCount"></param>
+        /// <param name="lockType"></param>
         public void LockRegion(long offset, long byteCount, int lockType)
         {
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Write the Int32 value of the total number of bytes read into the buffer to bytesReadPtr
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="bufferSize"></param>
+        /// <param name="bytesReadPtr"></param>
         public void Read(byte[] buffer, int bufferSize, IntPtr bytesReadPtr)
         {
             int val = _stream.Read(buffer, 0, bufferSize);
@@ -59,11 +93,20 @@ namespace RibbonLib.Interop
             }
         }
 
+        /// <summary>
+        /// Not supported
+        /// </summary>
         public void Revert()
         {
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Write the new Int64 position of the stream to newPositionPtr
+        /// </summary>
+        /// <param name="offset"></param>
+        /// <param name="origin"></param>
+        /// <param name="newPositionPtr"></param>
         public void Seek(long offset, int origin, IntPtr newPositionPtr)
         {
             SeekOrigin begin;
@@ -91,11 +134,20 @@ namespace RibbonLib.Interop
             }
         }
 
+        /// <summary>
+        /// Set the length for the stream
+        /// </summary>
+        /// <param name="libNewSize"></param>
         public void SetSize(long libNewSize)
         {
             _stream.SetLength(libNewSize);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="streamStats"></param>
+        /// <param name="grfStatFlag"></param>
         public void Stat(out System.Runtime.InteropServices.ComTypes.STATSTG streamStats, int grfStatFlag)
         {
             streamStats = new System.Runtime.InteropServices.ComTypes.STATSTG();
@@ -120,11 +172,23 @@ namespace RibbonLib.Interop
             }
         }
 
+        /// <summary>
+        /// Not supported
+        /// </summary>
+        /// <param name="offset"></param>
+        /// <param name="byteCount"></param>
+        /// <param name="lockType"></param>
         public void UnlockRegion(long offset, long byteCount, int lockType)
         {
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// Write Int32 value bufferSize to bytesWrittenPtr
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="bufferSize"></param>
+        /// <param name="bytesWrittenPtr"></param>
         public void Write(byte[] buffer, int bufferSize, IntPtr bytesWrittenPtr)
         {
             _stream.Write(buffer, 0, bufferSize);

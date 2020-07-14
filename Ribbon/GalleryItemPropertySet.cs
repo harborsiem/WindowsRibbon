@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       GalleryItemPropertySet.cs
 //
@@ -11,12 +11,18 @@ using RibbonLib.Interop;
 
 namespace RibbonLib
 {
+    /// <summary>
+    /// Helper class that wraps a gallery item simple property set.
+    /// </summary>
     public class GalleryItemPropertySet : IUISimplePropertySet
     {
         private string _label;
         private uint? _categoryID;
         private IUIImage _itemImage;
 
+        /// <summary>
+        /// Get or set the label
+        /// </summary>
         public string Label
         {
             get
@@ -29,6 +35,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Get or set the Category ID
+        /// </summary>
         public uint CategoryID
         {
             get
@@ -41,6 +50,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Get or set the Item Image
+        /// </summary>
         public IUIImage ItemImage
         {
             get
@@ -55,6 +67,12 @@ namespace RibbonLib
 
         #region IUISimplePropertySet Members
 
+        /// <summary>
+        /// Retrieves the stored value of a given property
+        /// </summary>
+        /// <param name="key">The Property Key of interest.</param>
+        /// <param name="value">When this method returns, contains a pointer to the value for key.</param>
+        /// <returns></returns>
         public HRESULT GetValue(ref PropertyKey key, out PropVariant value)
         {
             if (key == RibbonProperties.Label)

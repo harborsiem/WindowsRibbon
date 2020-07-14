@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       UICollectionChangedEventArgs.cs
 //
@@ -11,6 +11,9 @@ using RibbonLib.Interop;
 
 namespace RibbonLib
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class UICollectionChangedEventArgs : EventArgs
     {
         private CollectionChange _action;
@@ -19,6 +22,14 @@ namespace RibbonLib
         private uint _newIndex;
         private object _newItem;
 
+        /// <summary>
+        /// EventArgs when UICollection changed
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="oldIndex"></param>
+        /// <param name="oldItem"></param>
+        /// <param name="newIndex"></param>
+        /// <param name="newItem"></param>
         public UICollectionChangedEventArgs(CollectionChange action, uint oldIndex, object oldItem, uint newIndex, object newItem)
         {
             _action = action;
@@ -28,6 +39,9 @@ namespace RibbonLib
             _newItem = newItem;
         }
 
+        /// <summary>
+        /// Collection change action
+        /// </summary>
         public CollectionChange Action
         {
             get
@@ -36,6 +50,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// The old index
+        /// </summary>
         public uint OldIndex
         {
             get
@@ -44,6 +61,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// The old item
+        /// </summary>
         public object OldItem
         {
             get
@@ -52,6 +72,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// The new Index
+        /// </summary>
         public uint NewIndex
         {
             get
@@ -60,6 +83,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// The new Item
+        /// </summary>
         public object NewItem
         {
             get

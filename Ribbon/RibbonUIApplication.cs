@@ -121,7 +121,7 @@ namespace RibbonLib
         /// </summary>
         /// <param name="commandId">The ID for the Command, which is specified in the markup resource file.</param>
         /// <param name="typeID">The Command type that is associated with a specific control.</param>
-        /// <param name="commandHandler">A pointer to an IUICommandHandler object. This value can be NULL.</param>
+        /// <param name="commandHandler">A pointer to an IUICommandHandler object. This value can be null.</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise.</returns>
         public HRESULT OnDestroyUICommand(uint commandId, CommandType typeID, IUICommandHandler commandHandler)
         {

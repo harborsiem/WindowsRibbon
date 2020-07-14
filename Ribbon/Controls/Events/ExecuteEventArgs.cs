@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       ExecuteEventsArgs.cs
 //
@@ -12,7 +12,7 @@ using RibbonLib.Interop;
 namespace RibbonLib.Controls.Events
 {
     /// <summary>
-    /// Execute event args
+    /// Definition for execute events arguments
     /// </summary>
     public class ExecuteEventArgs : EventArgs
     {
@@ -20,6 +20,12 @@ namespace RibbonLib.Controls.Events
         private PropVariantRef _currentValue;
         private IUISimplePropertySet _commandExecutionProperties;
 
+        /// <summary>
+        /// Initializes a new instance of the ExecuteEventArgs
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="currentValue"></param>
+        /// <param name="commandExecutionProperties"></param>
         public ExecuteEventArgs(PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
         {
             _key = key;
@@ -27,6 +33,9 @@ namespace RibbonLib.Controls.Events
             _commandExecutionProperties = commandExecutionProperties;
         }
 
+        /// <summary>
+        /// Get the key
+        /// </summary>
         public PropertyKeyRef Key
         {
             get
@@ -35,6 +44,9 @@ namespace RibbonLib.Controls.Events
             }
         }
 
+        /// <summary>
+        /// Get the current value
+        /// </summary>
         public PropVariantRef CurrentValue
         {
             get
@@ -43,6 +55,9 @@ namespace RibbonLib.Controls.Events
             }
         }
 
+        /// <summary>
+        /// Get the Command Execution Properties
+        /// </summary>
         public IUISimplePropertySet CommandExecutionProperties
         {
             get

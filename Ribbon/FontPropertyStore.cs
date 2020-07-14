@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       FontPropertyStore.cs
 //
@@ -13,10 +13,18 @@ using RibbonLib.Interop;
 
 namespace RibbonLib
 {
+    /// <summary>
+    /// Helper class that wraps an IPropertyStore interface that 
+    /// contains font properties
+    /// </summary>
     public class FontPropertyStore
     {
         private IPropertyStore _propertyStore;
 
+        /// <summary>
+        /// Initializes a new instance of the FontPropertyStore
+        /// </summary>
+        /// <param name="propertyStore"></param>
         public FontPropertyStore(IPropertyStore propertyStore)
         {
             if (propertyStore == null)
@@ -26,6 +34,9 @@ namespace RibbonLib
             _propertyStore = propertyStore;
         }
 
+        /// <summary>
+        /// The selected font family name.
+        /// </summary>
         public string Family
         {
             get
@@ -36,6 +47,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// The size of the font.
+        /// </summary>
         public decimal Size
         {
             get
@@ -46,6 +60,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Flag that indicates whether bold is selected.
+        /// </summary>
         public FontProperties Bold
         {
             get
@@ -56,6 +73,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Flag that indicates whether italic is selected.
+        /// </summary>
         public FontProperties Italic
         {
             get
@@ -66,7 +86,9 @@ namespace RibbonLib
             }
         }
 
-        
+        /// <summary>
+        /// Flag that indicates whether underline is selected.
+        /// </summary>
         public FontUnderline Underline
         {
             get
@@ -77,6 +99,10 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Flag that indicates whether strikethrough is selected
+        /// (sometimes called Strikeout).
+        /// </summary>
         public FontProperties Strikethrough
         {
             get
@@ -87,6 +113,11 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Contains the text color if ForegroundColorType is set to RGB.
+        /// The FontControl helper class expose this property as a .NET Color
+        /// and handles internally the conversion to and from COLORREF structure.
+        /// </summary>
         public Color ForegroundColor
         {
             get
@@ -97,6 +128,11 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// The text color type. Valid values are RGB and Automatic. 
+        /// If RGB is selected, the user should get the color from the ForegroundColor property. 
+        /// If Automatic is selected the user should use SystemColors.WindowText.
+        /// </summary>
         public SwatchColorType ForegroundColorType
         {
             get
@@ -107,6 +143,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Indicated whether the "Grow Font" or "Shrink Font" buttons were pressed.
+        /// </summary>
         public FontDeltaSize DeltaSize
         {
             get
@@ -117,6 +156,11 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Contains the background color if BackgroundColorType is set to RGB.
+        /// The FontControl helper class expose this property as a .NET Color
+        /// and handles internally the conversion to and from COLORREF structure.
+        /// </summary>
         public Color BackgroundColor
         {
             get
@@ -127,6 +171,11 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// The background color type. Valid values are RGB and NoColor. 
+        /// If RGB is selected, the user should get the color from the BackgroundColor property.
+        /// If NoColor is selected the user should use SystemColors.Window.
+        /// </summary>
         public SwatchColorType BackgroundColorType
         {
             get
@@ -137,6 +186,10 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Flag that indicates which one of the Subscript
+        /// and Superscript buttons are selected, if any.
+        /// </summary>
         public FontVerticalPosition VerticalPositioning
         {
             get

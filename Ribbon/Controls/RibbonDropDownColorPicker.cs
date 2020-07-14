@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       RibbonDropDownColorPicker.cs
 //
@@ -14,6 +14,9 @@ using System;
 
 namespace RibbonLib.Controls
 {
+    /// <summary>
+    /// Helper class that wraps a ribbon drop down color picker control.
+    /// </summary>
     public class RibbonDropDownColorPicker : BaseRibbonControl,
         IColorPickerPropertiesProvider,
         IEnabledPropertiesProvider,
@@ -33,6 +36,11 @@ namespace RibbonLib.Controls
         private ExecuteEventsProvider _executeEventsProvider;
         private PreviewEventsProvider _previewEventsProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the Ribbon DropDownColorPicker
+        /// </summary>
+        /// <param name="ribbon">Parent Ribbon control</param>
+        /// <param name="commandId">Command id attached to this control</param>
         public RibbonDropDownColorPicker(Ribbon ribbon, uint commandId)
             : base(ribbon, commandId)
         {
@@ -49,6 +57,9 @@ namespace RibbonLib.Controls
 
         #region IColorPickerPropertiesProvider Members
 
+        /// <summary>
+        /// Defines the label for the "Automatic" color button.
+        /// </summary>
         public string AutomaticColorLabel
         {
             get
@@ -61,6 +72,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The selected color.
+        /// </summary>
         public Color Color
         {
             get
@@ -73,6 +87,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The type of selected color.
+        /// Can be: NoColor, Automatic or RGB (meaning specific color).
+        /// </summary>
         public SwatchColorType ColorType
         {
             get
@@ -85,6 +103,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Defines the label for the "More colors..." button.
+        /// </summary>
         public string MoreColorsLabel
         {
             get
@@ -97,6 +118,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Defines the label for the "No color" button.
+        /// </summary>
         public string NoColorLabel
         {
             get
@@ -109,6 +133,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Defines the label for the "Recent colors" category.
+        /// </summary>
         public string RecentColorsCategoryLabel
         {
             get
@@ -121,6 +148,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Defines the colors for the "Standard colors".
+        /// </summary>
         public Color[] StandardColors
         {
             get
@@ -133,6 +163,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Defines the label for the "Standard colors" category.
+        /// </summary>
         public string StandardColorsCategoryLabel
         {
             get
@@ -145,6 +178,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Defines the tooltips for the "Standard colors".
+        /// </summary>
         public string[] StandardColorsTooltips
         {
             get
@@ -157,6 +193,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Defines the colors for the "Theme colors".
+        /// </summary>
         public Color[] ThemeColors
         {
             get
@@ -169,6 +208,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Defines the label for the "Theme colors" category.
+        /// </summary>
         public string ThemeColorsCategoryLabel
         {
             get
@@ -181,6 +223,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Defines the tooltips for the "Theme colors".
+        /// </summary>
         public string[] ThemeColorsTooltips
         {
             get
@@ -197,6 +242,9 @@ namespace RibbonLib.Controls
 
         #region IEnabledPropertiesProvider Members
 
+        /// <summary>
+        /// Get or set the Enabled state.
+        /// </summary>
         public bool Enabled
         {
             get
@@ -213,6 +261,13 @@ namespace RibbonLib.Controls
 
         #region IKeytipPropertiesProvider Members
 
+        /// <summary>
+        /// The keytip or key sequence that is used to access the command using the Alt key.
+        /// This keytip appears when the user presses the Alt key to navigate the ribbon.
+        /// The Ribbon Framework will automatically apply keytips to every command.
+        /// However, if you want more control over the keytips used, you can specify them yourself.
+        /// A keytip is not limited to a single character.
+        /// </summary>
         public string Keytip
         {
             get
@@ -229,6 +284,9 @@ namespace RibbonLib.Controls
 
         #region ILabelPropertiesProvider Members
 
+        /// <summary>
+        /// This is the label of the command as it will appear on the ribbon or context popups.
+        /// </summary>
         public string Label
         {
             get
@@ -245,6 +303,10 @@ namespace RibbonLib.Controls
 
         #region IImagePropertiesProvider Members
 
+        /// <summary>
+        /// Large images
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage LargeImage
         {
             get
@@ -257,6 +319,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Small images
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage SmallImage
         {
             get
@@ -269,6 +335,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Large images for use with high-contrast system settings
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage LargeHighContrastImage
         {
             get
@@ -281,6 +351,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Small images for use with high-contrast system settings
+        /// For setting the Image, use method Ribbon.ConvertToUIImage(Bitmap)
+        /// </summary>
         public IUIImage SmallHighContrastImage
         {
             get
@@ -297,6 +371,10 @@ namespace RibbonLib.Controls
 
         #region ITooltipPropertiesProvider Members
 
+        /// <summary>
+        /// The title of the tooltip (hint) that appear when the user hovers the mouse over the command.
+        /// This title is displayed in bold at the top of the tooltip.
+        /// </summary>
         public string TooltipTitle
         {
             get
@@ -309,6 +387,9 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The description of the tooltip as it appears below the title.
+        /// </summary>
         public string TooltipDescription
         {
             get
@@ -325,6 +406,9 @@ namespace RibbonLib.Controls
 
         #region IExecuteEventsProvider Members
 
+        /// <summary>
+        /// Event provider similar to a "Selected Changed" event.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> ExecuteEvent
         {
             add
@@ -341,6 +425,10 @@ namespace RibbonLib.Controls
 
         #region IPreviewEventsProvider Members
 
+        /// <summary>
+        /// Event provider for a preview.
+        /// This is when the mouse enters the control.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> PreviewEvent
         {
             add
@@ -353,6 +441,10 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// Event provider when the preview is cancelled.
+        /// This is when the mouse leaves the control.
+        /// </summary>
         public event EventHandler<ExecuteEventArgs> CancelPreviewEvent
         {
             add

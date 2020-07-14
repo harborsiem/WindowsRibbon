@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       RecentItemsPropertySet.cs
 //
@@ -11,12 +11,18 @@ using RibbonLib.Interop;
 
 namespace RibbonLib
 {
+    /// <summary>
+    /// Helper class that wraps a recent items simple property set.
+    /// </summary>
     public class RecentItemsPropertySet : IUISimplePropertySet
     {
         private string _label;
         private string _labelDescription;
         private bool? _pinned;
 
+        /// <summary>
+        /// This is the label as it will appear on the ribbon.
+        /// </summary>
         public string Label
         {
             get
@@ -29,6 +35,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// A longer description. This description is used right side of the application menu
+        /// </summary>
         public string LabelDescription
         {
             get
@@ -41,6 +50,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// The pinned status
+        /// </summary>
         public bool Pinned
         {
             get
@@ -55,6 +67,12 @@ namespace RibbonLib
 
         #region IUISimplePropertySet Members
 
+        /// <summary>
+        /// Retrieves the stored value of a given property
+        /// </summary>
+        /// <param name="key">The Property Key of interest.</param>
+        /// <param name="value">When this method returns, contains a pointer to the value for key.</param>
+        /// <returns></returns>
         public HRESULT GetValue(ref PropertyKey key, out PropVariant value)
         {
             if (key == RibbonProperties.Label)

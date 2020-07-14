@@ -1,4 +1,4 @@
-﻿//****************************************************************************
+//****************************************************************************
 //
 //  File:       RibbonCOMClasses.cs
 //
@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 
 namespace RibbonLib.Interop
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     // UIRibbonFramework class
     [ComImport]
     [ClassInterface(ClassInterfaceType.None)]
@@ -29,4 +30,5 @@ namespace RibbonLib.Interop
     {
         // implements IUIImageFromBitmap
     }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

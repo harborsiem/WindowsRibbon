@@ -15,6 +15,10 @@ using RibbonLib.Interop;
 
 namespace RibbonLib.Controls
 {
+    /// <summary>
+    /// Base class for all ribbon control helper classes, provides 
+    /// common functionality for ribbon controls.
+    /// </summary>
     public class BaseRibbonControl : IRibbonControl
     {
         /// <summary>
@@ -46,7 +50,7 @@ namespace RibbonLib.Controls
         {
             _ribbon = ribbon;
             _commandID = commandID;
-        
+
             ribbon.AddRibbonControl(this);
         }
 
@@ -76,6 +80,9 @@ namespace RibbonLib.Controls
 
         #region IRibbonControl Members
 
+        /// <summary>
+        /// The Command Id, member of IRibbonControl
+        /// </summary>
         public uint CommandID
         {
             get
@@ -112,7 +119,7 @@ namespace RibbonLib.Controls
         /// Handles IUICommandHandler.UpdateProperty function for this ribbon control
         /// </summary>
         /// <param name="key">The Property Key to update</param>
-        /// <param name="currentValue">A pointer to the current value for key. This parameter can be NULL</param>
+        /// <param name="currentValue">A pointer to the current value for key. This parameter can be null</param>
         /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
         public virtual HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
@@ -122,7 +129,7 @@ namespace RibbonLib.Controls
             {
                 // find property provider
                 IPropertiesProvider propertiesProvider = _mapProperties[key];
-                
+
                 // delegates execution to property provider
                 return propertiesProvider.UpdateProperty(ref key, currentValue, ref newValue);
             }

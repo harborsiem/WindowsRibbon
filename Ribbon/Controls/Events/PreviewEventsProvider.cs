@@ -13,7 +13,7 @@ using System.Threading;
 namespace RibbonLib.Controls.Events
 {
     /// <summary>
-    /// Definition for Execute events provider
+    /// Definition for Preview and CancelPreview events provider
     /// </summary>
     public interface IPreviewEventsProvider
     {

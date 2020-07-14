@@ -1,4 +1,4 @@
-﻿//****************************************************************************
+//****************************************************************************
 //
 //  File:       PropVariant.cs
 //
@@ -174,6 +174,9 @@ namespace RibbonLib.Interop
 
         #region Public methods
 
+        /// <summary>
+        /// An empty PropVariant
+        /// </summary>
         public static PropVariant Empty
         {
             get
@@ -349,6 +352,10 @@ namespace RibbonLib.Interop
             return propVar;
         }
 
+        /// <summary>
+        /// only internal use
+        /// </summary>
+        /// <returns></returns>
         public bool IsNull()
         {
             return (valueType == (ushort)VarEnum.VT_EMPTY || valueType == (ushort)VarEnum.VT_NULL);
@@ -375,6 +382,10 @@ namespace RibbonLib.Interop
             valueDataExt = 0;
         }
 
+        /// <summary>
+        /// Clone a PropVariant
+        /// </summary>
+        /// <returns>PropVariant</returns>
         public PropVariant Clone()
         {
             // Can't pass "this" by ref, so make a bitwise copy on the stack, to call API with
@@ -650,7 +661,7 @@ namespace RibbonLib.Interop
         /// <summary>
         /// Set a ulong vector
         /// </summary>
-        /// <param name="value">The new value to set.</param>
+        /// <param name="array">The new value to set.</param>
         public void SetULongVector(ulong[] array)
         {
             if (!this.IsNull()) this.Clear();
@@ -765,16 +776,32 @@ namespace RibbonLib.Interop
         }
 
 
+        /// <summary>
+        /// Not implemented
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
         public static bool operator ==(PropVariant left, PropVariant right)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Not implemented
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
         public static bool operator !=(PropVariant left, PropVariant right)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// override ToString()
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             if (IsNull()) return "(null)";
@@ -782,11 +809,20 @@ namespace RibbonLib.Interop
             return "PropVariant: " + (VarEnum)valueType + ":" + Value;
         }
 
+        /// <summary>
+        /// Not implemented
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Not implemented
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             throw new NotImplementedException();
@@ -796,11 +832,17 @@ namespace RibbonLib.Interop
 
         #region Public properties
 
+        /// <summary>
+        /// VarType
+        /// </summary>
         public VarEnum VarType
         {
             get { return (VarEnum)valueType; }
         }
 
+        /// <summary>
+        /// Value
+        /// </summary>
         public object Value
         {
             get
@@ -1218,11 +1260,22 @@ namespace RibbonLib.Interop
 
     // It is sometimes useful to represent the struct as a reference-type 
     // (eg, for methods that allow passing a null PropertyKey pointer).
+    /// <summary>
+    /// represent the struct PropVariant as a reference-type
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public class PropVariantRef
     {
+        /// <summary>
+        /// The struct PropVariant
+        /// </summary>
         public PropVariant PropVariant;
 
+        /// <summary>
+        /// Convert the struct PropVariant to a reference-type
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>The reference-type</returns>
         public static PropVariantRef From(PropVariant value)
         {
             PropVariantRef obj = new PropVariantRef();

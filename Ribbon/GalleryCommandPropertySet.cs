@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       GalleryCommandPropertySet.cs
 //
@@ -11,12 +11,18 @@ using RibbonLib.Interop;
 
 namespace RibbonLib
 {
+    /// <summary>
+    /// Helper class that wraps a gallery command simple property set.
+    /// </summary>
     public class GalleryCommandPropertySet : IUISimplePropertySet
     {
         private uint? _commandID;
         private CommandType? _commandType;
         private uint? _categoryID;
 
+        /// <summary>
+        /// Get or set the Command ID
+        /// </summary>
         public uint CommandID
         {
             get
@@ -29,6 +35,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Get or set the Command Type
+        /// </summary>
         public CommandType CommandType
         {
             get
@@ -41,6 +50,9 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Get or set the Category ID
+        /// </summary>
         public uint CategoryID
         {
             get
@@ -55,6 +67,12 @@ namespace RibbonLib
 
         #region IUISimplePropertySet Members
 
+        /// <summary>
+        /// Retrieves the stored value of a given property
+        /// </summary>
+        /// <param name="key">The Property Key of interest.</param>
+        /// <param name="value">When this method returns, contains a pointer to the value for key.</param>
+        /// <returns></returns>
         public HRESULT GetValue(ref PropertyKey key, out PropVariant value)
         {
             if (key == RibbonProperties.CommandID)

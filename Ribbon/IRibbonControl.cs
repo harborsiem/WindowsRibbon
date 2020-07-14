@@ -1,4 +1,4 @@
-﻿//*****************************************************************************
+//*****************************************************************************
 //
 //  File:       IRibbonControl.cs
 //
@@ -15,7 +15,7 @@ namespace RibbonLib
     internal interface IRibbonControl
     {
         /// <summary>
-        /// Ribbon control command id
+        /// Command id of the Ribbon control 
         /// </summary>
         uint CommandID { get; }
 
@@ -33,7 +33,7 @@ namespace RibbonLib
         /// Handles IUICommandHandler.UpdateProperty function for this ribbon control
         /// </summary>
         /// <param name="key">The Property Key to update</param>
-        /// <param name="currentValue">A pointer to the current value for key. This parameter can be NULL</param>
+        /// <param name="currentValue">A pointer to the current value for key. This parameter can be null</param>
         /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
         HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue);

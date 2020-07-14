@@ -2,19 +2,17 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-#if Core == false
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ribbon")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Windows Ribbon for .NET")]
+[assembly: AssemblyDescription("Windows Ribbon for .NET")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RibbonLib")]
 [assembly: AssemblyProduct("Ribbon")]
 [assembly: AssemblyCopyright("Copyright © 2009, 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-#endif
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -24,7 +22,6 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("232c88fb-29db-4650-82ea-ede96b00ebc4")]
 
-#if Core == false
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
@@ -36,5 +33,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("2.8.6.0")]
-#endif
+[assembly: AssemblyFileVersion("2.8.7.0")]
+
