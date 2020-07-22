@@ -43,6 +43,7 @@ namespace UIRibbonTools
         public const string RS_CANNOT_ADD_MENU_GROUP_TO_GALLERY = "Cannot add a menu group to a gallery that already contains controls. A gallery must either contain menu groups or controls."; //@ added
         public const string RS_CANNOT_ADD_CONTROL_TO_SPLIT_BUTTON = "Cannot add a control to a split button that already contains menu groups. A split button must either contain menu groups or controls.";
         public const string RS_CANNOT_ADD_CONTROL_TO_DROP_DOWN_BUTTON = "Cannot add a control to a drop-down button that already contains menu groups. A drop-down button must either contain menu groups or controls.";
+        public const string RS_CANNOT_ADD_CONTROL_TO_GALLERY = "Cannot add a control to a gallery that already contains menu groups. A gallery must either contain menu groups or controls."; //@ added
         public const string RS_MAX_GROUP_SIZE_DEF = "You can add at most 3 groups to a size definition.";
         public const string RS_MIN_GROUP_SIZE_DEF = "There must be at least 1 group in a size definition.";
         public const string RS_MIN_MINI_TOOLBAR = "There must be at least 1 menu group in a mini toolbar.";

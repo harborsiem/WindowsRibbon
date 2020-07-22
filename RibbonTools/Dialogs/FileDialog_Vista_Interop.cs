@@ -363,6 +363,7 @@ namespace System.Windows.Forms
         }
 
 
+        [Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
         [DllImport("Shell32.dll", CharSet = CharSet.Unicode)]
         private static extern int SHCreateItemFromParsingName([MarshalAs(UnmanagedType.LPWStr)] string pszPath, IntPtr pbc, ref Guid riid, [MarshalAs(UnmanagedType.Interface)] out object ppv);
 

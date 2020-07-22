@@ -76,6 +76,8 @@ namespace UIRibbonTools
         protected TableLayoutPanel LayoutPanel { get => _layoutPanel; }
         protected ToolStripLabel LabelHeader { get => _labelHeader; }
 
+        protected bool IsInInitialize { get; private set; }
+
         public BaseFrame()
         {
 #if Core
@@ -258,6 +260,17 @@ namespace UIRibbonTools
 
         public TRibbonObject Subject { get { return _subject; } }
 
+        private void BeginInitialize(TRibbonObject subject)
+        {
+            IsInInitialize = true;
+            Initialize(subject);
+        }
+
+        private void EndInitialize()
+        {
+            IsInInitialize = false;
+        }
+
         protected virtual void Initialize(TRibbonObject subject)
         {
             SetViewsSampleImage(SetImageSample());
@@ -279,10 +292,11 @@ namespace UIRibbonTools
             try
             {
                 _subjectNode = node;
-                Initialize(subject);
+                BeginInitialize(subject);
             }
             finally
             {
+                EndInitialize();
                 _updating = false;
             }
         }

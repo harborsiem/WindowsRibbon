@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 
 namespace UIRibbonTools
 {
-    class Addons
+    public class Addons
     {
         public static int EnsureRange(int value, int min, int max)
         {
@@ -59,6 +59,8 @@ namespace UIRibbonTools
 
         public static bool IsBmpFile(string fileName)
         {
+            if (string.IsNullOrEmpty(fileName))
+                throw new ArgumentNullException(nameof(fileName));
             if (File.Exists(fileName))
             {
                 byte[] bytes = File.ReadAllBytes(fileName);
@@ -146,6 +148,8 @@ namespace UIRibbonTools
 
         public static Bitmap ImageFromFile(string path)
         {
+            if (string.IsNullOrEmpty(path))
+                throw new ArgumentNullException(nameof(path));
             IntPtr handle = IntPtr.Zero;
             handle = NativeMethods.LoadImage(IntPtr.Zero, path, (uint)NativeMethods.ImageType.IMAGE_BITMAP, 0, 0,
                 (uint)(NativeMethods.ImageLoad.LR_LOADFROMFILE | NativeMethods.ImageLoad.LR_CREATEDIBSECTION));

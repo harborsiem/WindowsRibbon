@@ -97,14 +97,13 @@ namespace UIRibbonTools
             toolVersion.Text = "Version: " + Application.ProductVersion;
 
 
-            //    constructor TFormMain.Create(AOwner: TComponent)
+            //    constructor Create()
             //{
-            //  inherited;
 
             _document = new TRibbonDocument();
 
-            //FCompiler = new TRibbonCompiler();
-            //FCompiler.OnMessage = RibbonCompilerMessage;
+            //_compiler = new RibbonCompiler();
+            //_compiler.OnMessage = RibbonCompilerMessage;
 
             //// Handle command line options
             //if ((ParamCount > 0) && File.Exists(ParamStr(1)))  // File passed at the command line?
@@ -244,16 +243,17 @@ namespace UIRibbonTools
             _actionWebSite.ImageIndex = 7;
             _actionWebSite.Text = "Ribbon Framework for Delphi website";
             _actionWebSite.SetComponent(menuWebSite, true);
+            _actionWebSite.Visible = false;
 
             _actionDotnetWebSite.Execute += ActionDotnetWebSiteExecute;
             _actionDotnetWebSite.Hint = "C#, VB Ribbon Framework";
             _actionDotnetWebSite.ImageIndex = 7;
-            _actionDotnetWebSite.Text = "Website for .NET WindowsRibbon";
+            _actionDotnetWebSite.Text = "Website for .NET Windows Ribbon";
             _actionDotnetWebSite.SetComponent(menuDotnetWebSite, true);
 
             _actionMSDN.Execute += ActionMSDNExecute;
             _actionMSDN.ImageIndex = 6;
-            _actionMSDN.Text = "MSDN WindowsRibbon";
+            _actionMSDN.Text = "MSDN Windows Ribbon";
             _actionMSDN.SetComponent(menuMSDN, true);
 
             _actionSetResourceName.Visible = Settings.Instance.AllowChangingResourceName; // false; //@ not supported in .NET Ribbon
@@ -262,7 +262,9 @@ namespace UIRibbonTools
                 "Set a resource name for the markup. This is necessary " + Environment.NewLine +
                 "if multiple markups are used in one application." + Environment.NewLine +
                 "The default is APPLICATION" + Environment.NewLine +
-                Environment.NewLine + "Changing of default is not supported in .NET Ribbon";
+                Environment.NewLine + "Changing of default is not supported in .NET Ribbon" +
+                Environment.NewLine + "Changing of default is not supported for Preview";
+
             _actionSetResourceName.Text = "Set ribbon resource name";
             _actionSetResourceName.SetComponent(setresourcename, true);
 
@@ -277,11 +279,6 @@ namespace UIRibbonTools
             _actionGenerateResourceIDs.SetComponent(autoGenerateIdsForAllResources, true);
 
             _actionList.ImageList = _imageListMain;
-        }
-
-        public void MsgToDo() //@ todo
-        {
-            MessageBox.Show("Todo", "Todo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void InitEvents()
@@ -513,7 +510,8 @@ namespace UIRibbonTools
 
         private void ActionTutorialExecute(object sender, EventArgs e)
         {
-            OpenWebsite("https://www.bilsen.com/windowsribbon/tutorial.shtml");
+            OpenWebsite("https://github.com/harborsiem/WindowsRibbon/blob/master/Documentation/WindowsRibbon.pdf");
+            //OpenWebsite("https://www.bilsen.com/windowsribbon/tutorial.shtml");
         }
 
         private void ActionWebSiteExecute(object sender, EventArgs e)
@@ -563,20 +561,20 @@ namespace UIRibbonTools
         }
         //private void BuildAndPreview(bool preview)
         //{
-        //    THandle DllInstance;
-        //    TRibbonCompileResult result;
+        //    Handle DllInstance;
+        //    RibbonCompileResult result;
         //    ClearLog();
         //    if (_modified)
         //        ActionSaveExecute(this, EventArgs.Empty);
         //    FreeAndNil(_previewForm);
         //    // Create DLL only if a preview is requested
-        //    result = FCompiler.Compile(_document, _document.Application.ResourceName, preview);
+        //    result = _compiler.Compile(_document, _document.Application.ResourceName, preview);
 
-        //    if (result == crOk)
+        //    if (result == RibbonCompileResult.Ok)
         //    {
         //        if (preview)
         //        {
-        //            DllInstance = LoadLibraryEx(PChar(FCompiler.OutputDllPath), 0, LOAD_LIBRARY_AS_DATAFILE);
+        //            DllInstance = LoadLibraryEx(PChar(_compiler.OutputDllPath), 0, LOAD_LIBRARY_AS_DATAFILE);
         //            if (DllInstance == 0)
         //            {
         //                Log(MessageKind.Error, RS_CANNOT_LOAD_DLL);
@@ -599,7 +597,7 @@ namespace UIRibbonTools
         //        memoMessages.ForeColor = Color.Red;
         //        //    memoMessages.Update();
         //        _timerRestoreLog.Enabled = true;
-        //        //    if (result == crRibbonCompilerError) 
+        //        //    if (result == RibbonCompileResult.RibbonCompilerError) 
         //        //    {
         //        //      _xmlSourceFrame.Activate_();
         //        //      tabControl.SelectedTab = tabPageXmlSource;
@@ -653,7 +651,6 @@ namespace UIRibbonTools
             statusModified.Text = string.Empty;
         }
 
-        //@ todo
         private void CMShowingChanged(object sender, EventArgs e)
         {
             if (!_initialized)
@@ -830,13 +827,13 @@ namespace UIRibbonTools
         }
 
         //@ todo
-        //private void RibbonCompilerMessage(TRibbonCompiler Compiler,
-        //    MessageKind MsgType, string Msg)
+        //private void RibbonCompilerMessage(RibbonCompiler compiler,
+        //    MessageKind msgType, string msg)
         //{
-        //    if (MsgType == mkPipe)
-        //        memoMessages.Text = memoMessages.Text + Msg;
+        //    if (msgType == MessageKind.Pipe)
+        //        memoMessages.Text = memoMessages.Text + msg;
         //    else
-        //        Log(MsgType, Msg);
+        //        Log(msgType, msg);
         //}
 
         private void ShowDocument()

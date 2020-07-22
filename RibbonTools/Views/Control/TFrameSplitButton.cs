@@ -117,6 +117,8 @@ namespace UIRibbonTools
         {
             TreeNode itemNode;
             ViewsFrame frameViews;
+            if (IsInInitialize)
+                return;
             Debug.Assert(SubjectNode.Nodes.Count > 0);
             itemNode = SubjectNode.Nodes[0];
             frameViews = Owner as ViewsFrame;

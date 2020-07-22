@@ -87,12 +87,12 @@ namespace UIRibbonTools
             this._largeHCImagesPanel = new System.Windows.Forms.Panel();
             this.labelLargeHCImages = new System.Windows.Forms.Label();
             this.imagesPanel = new System.Windows.Forms.TableLayoutPanel();
+            this._panel2Layout = new System.Windows.Forms.TableLayoutPanel();
+            this.SplitterCommands = new System.Windows.Forms.SplitContainer();
             this._smallImagesFrame = new UIRibbonTools.ImageListFrame();
             this._largeImagesFrame = new UIRibbonTools.ImageListFrame();
             this._smallHCImagesFrame = new UIRibbonTools.ImageListFrame();
             this._largeHCImagesFrame = new UIRibbonTools.ImageListFrame();
-            this._panel2Layout = new System.Windows.Forms.TableLayoutPanel();
-            this.SplitterCommands = new System.Windows.Forms.SplitContainer();
             this.toolBarCommands.SuspendLayout();
             this.popupMenuList.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -453,7 +453,8 @@ namespace UIRibbonTools
             // 
             // EditId
             // 
-            this.EditId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.EditId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EditId.Location = new System.Drawing.Point(346, 22);
             this.EditId.Maximum = new decimal(new int[] {
@@ -774,6 +775,44 @@ namespace UIRibbonTools
             this.imagesPanel.Size = new System.Drawing.Size(597, 159);
             this.imagesPanel.TabIndex = 1;
             // 
+            // _panel2Layout
+            // 
+            this._panel2Layout.AutoScroll = true;
+            this._panel2Layout.ColumnCount = 1;
+            this._panel2Layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this._panel2Layout.Controls.Add(this._propertiesPanel, 0, 0);
+            this._panel2Layout.Controls.Add(this.imagesPanel, 0, 1);
+            this._panel2Layout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._panel2Layout.Location = new System.Drawing.Point(0, 25);
+            this._panel2Layout.Margin = new System.Windows.Forms.Padding(0);
+            this._panel2Layout.Name = "_panel2Layout";
+            this._panel2Layout.RowCount = 2;
+            this._panel2Layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this._panel2Layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this._panel2Layout.Size = new System.Drawing.Size(597, 360);
+            this._panel2Layout.TabIndex = 1;
+            // 
+            // SplitterCommands
+            // 
+            this.SplitterCommands.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SplitterCommands.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.SplitterCommands.Location = new System.Drawing.Point(0, 0);
+            this.SplitterCommands.Name = "SplitterCommands";
+            // 
+            // SplitterCommands.Panel1
+            // 
+            this.SplitterCommands.Panel1.Controls.Add(this.ListViewCommands);
+            this.SplitterCommands.Panel1.Controls.Add(this.toolBarCommands);
+            this.SplitterCommands.Panel1MinSize = 293;
+            // 
+            // SplitterCommands.Panel2
+            // 
+            this.SplitterCommands.Panel2.Controls.Add(this._panel2Layout);
+            this.SplitterCommands.Panel2.Controls.Add(this.toolStrip1);
+            this.SplitterCommands.Size = new System.Drawing.Size(894, 385);
+            this.SplitterCommands.SplitterDistance = 293;
+            this.SplitterCommands.TabIndex = 0;
+            // 
             // _smallImagesFrame
             // 
             this._smallImagesFrame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -817,44 +856,6 @@ namespace UIRibbonTools
             this._largeHCImagesFrame.Name = "_largeHCImagesFrame";
             this._largeHCImagesFrame.Size = new System.Drawing.Size(299, 59);
             this._largeHCImagesFrame.TabIndex = 7;
-            // 
-            // _panel2Layout
-            // 
-            this._panel2Layout.AutoScroll = true;
-            this._panel2Layout.ColumnCount = 1;
-            this._panel2Layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this._panel2Layout.Controls.Add(this._propertiesPanel, 0, 0);
-            this._panel2Layout.Controls.Add(this.imagesPanel, 0, 1);
-            this._panel2Layout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._panel2Layout.Location = new System.Drawing.Point(0, 25);
-            this._panel2Layout.Margin = new System.Windows.Forms.Padding(0);
-            this._panel2Layout.Name = "_panel2Layout";
-            this._panel2Layout.RowCount = 2;
-            this._panel2Layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this._panel2Layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this._panel2Layout.Size = new System.Drawing.Size(597, 360);
-            this._panel2Layout.TabIndex = 1;
-            // 
-            // SplitterCommands
-            // 
-            this.SplitterCommands.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SplitterCommands.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.SplitterCommands.Location = new System.Drawing.Point(0, 0);
-            this.SplitterCommands.Name = "SplitterCommands";
-            // 
-            // SplitterCommands.Panel1
-            // 
-            this.SplitterCommands.Panel1.Controls.Add(this.ListViewCommands);
-            this.SplitterCommands.Panel1.Controls.Add(this.toolBarCommands);
-            this.SplitterCommands.Panel1MinSize = 293;
-            // 
-            // SplitterCommands.Panel2
-            // 
-            this.SplitterCommands.Panel2.Controls.Add(this._panel2Layout);
-            this.SplitterCommands.Panel2.Controls.Add(this.toolStrip1);
-            this.SplitterCommands.Size = new System.Drawing.Size(894, 385);
-            this.SplitterCommands.SplitterDistance = 293;
-            this.SplitterCommands.TabIndex = 0;
             // 
             // CommandsFrame
             // 

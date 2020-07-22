@@ -44,6 +44,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>RibbonGenerator.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ribbon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4a850abcb1bad68b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -151,6 +154,7 @@
     <Compile Include="Dialogs\VistaFolderBrowserDialog.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Misc\Addons.cs" />
     <Compile Include="Misc\ConsoleHelper.cs" />
     <Compile Include="Build\ConsoleMessageOutput.cs" />
@@ -542,6 +546,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

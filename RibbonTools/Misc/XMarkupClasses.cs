@@ -1525,7 +1525,10 @@ namespace UIRibbonTools
         public TRibbonAppMenuGroup(TRibbonDocument owner, TRibbonCommandRefObject parent) : base(owner, parent)
         {
             _controls = new TRibbonList<TRibbonControl>(owner, true);
-            _categoryClass = RibbonMenuCategoryClass.StandardItems;
+            if (Parent is TRibbonApplicationMenu)
+                _categoryClass = RibbonMenuCategoryClass.MajorItems;
+            else
+                _categoryClass = RibbonMenuCategoryClass.StandardItems;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -1533,12 +1536,24 @@ namespace UIRibbonTools
         {
             _controls = new TRibbonList<TRibbonControl>(owner, true);
             string s = E.Attribute(AN_CLASS)?.Value;
-            if ((string.IsNullOrEmpty(s)) || (s == ES_STANDARD_ITEMS))
-                _categoryClass = RibbonMenuCategoryClass.StandardItems;
-            else if (s == ES_MAJOR_ITEMS)
-                _categoryClass = RibbonMenuCategoryClass.MajorItems;
-            else
-                Error(E, RS_INVALID_CATEGORY_CLASS);
+            if (Parent is TRibbonApplicationMenu)
+            {
+                if ((string.IsNullOrEmpty(s)) || (s == ES_MAJOR_ITEMS))
+                    _categoryClass = RibbonMenuCategoryClass.MajorItems;
+                else if (s == ES_STANDARD_ITEMS)
+                    _categoryClass = RibbonMenuCategoryClass.StandardItems;
+                else
+                    Error(E, RS_INVALID_CATEGORY_CLASS);
+
+            }
+            else {
+                if ((string.IsNullOrEmpty(s)) || (s == ES_STANDARD_ITEMS))
+                    _categoryClass = RibbonMenuCategoryClass.StandardItems;
+                else if (s == ES_MAJOR_ITEMS)
+                    _categoryClass = RibbonMenuCategoryClass.MajorItems;
+                else
+                    Error(E, RS_INVALID_CATEGORY_CLASS);
+            }
 
             foreach (XElement C in E.Elements())
             {
@@ -1553,7 +1568,12 @@ namespace UIRibbonTools
 
             base.Save(writer);
 
-            if (_categoryClass != RibbonMenuCategoryClass.StandardItems)
+            if (Parent is TRibbonApplicationMenu)
+            {
+                if (_categoryClass != RibbonMenuCategoryClass.MajorItems)
+                    writer.WriteAttributeString(AN_CLASS, CLASSES[(int)_categoryClass]);
+            }
+            else if (_categoryClass != RibbonMenuCategoryClass.StandardItems)
                 writer.WriteAttributeString(AN_CLASS, CLASSES[(int)_categoryClass]);
 
             foreach (TRibbonControl control in _controls)
@@ -2992,15 +3012,49 @@ namespace UIRibbonTools
             if (objType == RibbonObjectType.MenuGroup)
             {
                 if (_controls.Count > 0)
-                    Error(null, RS_CANNOT_ADD_MENU_GROUP_TO_DROP_DOWN_BUTTON); //??
+                    Error(null, RS_CANNOT_ADD_MENU_GROUP_TO_GALLERY);
                 result = new TRibbonMenuGroup(Owner, this);
                 _menuGroups.Add((TRibbonMenuGroup)(result));
+            }
+            else if (objType == RibbonObjectType.ToggleButton || objType == RibbonObjectType.CheckBox
+                           || objType == RibbonObjectType.Button || objType == RibbonObjectType.SplitButton
+                           || objType == RibbonObjectType.DropDownButton || objType == RibbonObjectType.DropDownGallery
+                           || objType == RibbonObjectType.SplitButtonGallery
+                           || objType == RibbonObjectType.DropDownColorPicker)
+            {
+                if (_menuGroups.Count > 0)
+                    Error(null, RS_CANNOT_ADD_CONTROL_TO_GALLERY);
+                result = Owner.CreateObject(objType, this);
+                _controls.Add(result as TRibbonControl);
             }
             else
                 result = base.AddNew(objType);
             return result;
         }
 
+        public override bool Remove(TRibbonObject obj) //@ added
+        {
+            bool result;
+            if (obj.ObjectType() == RibbonObjectType.MenuGroup)
+                result = _menuGroups.Remove(obj as TRibbonMenuGroup);
+            else if (obj is TRibbonControl)
+                result = _controls.Remove((TRibbonControl)(obj));
+            else
+                result = base.Remove(obj);
+            return result;
+        }
+
+        public override bool Reorder(TRibbonObject child, int direction) //@ added
+        {
+            bool result;
+            if (child is TRibbonMenuGroup)
+                result = _menuGroups.Reorder(child, direction);
+            else if (child is TRibbonControl)
+                result = _controls.Reorder(child, direction);
+            else
+                result = base.Reorder(child, direction);
+            return result;
+        }
 
         [Obsolete]
         public void DeleteMenuLayout()
@@ -5482,7 +5536,6 @@ namespace UIRibbonTools
                     _miniToolbarRef.RemoveFreeNotification(this);
             }
             base.Dispose(disposing);
-
         }
 
         public override string DisplayName()

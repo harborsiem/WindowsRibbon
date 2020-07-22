@@ -57,6 +57,7 @@ namespace UIRibbonTools
             this.menuDotnetWebSite = new System.Windows.Forms.ToolStripMenuItem();
             this._nN4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuMSDN = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolVersion = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolButtonOpen = new System.Windows.Forms.ToolStripButton();
             this.toolButtonSave = new System.Windows.Forms.ToolStripButton();
@@ -77,7 +78,6 @@ namespace UIRibbonTools
             this.memoMessages = new System.Windows.Forms.TextBox();
             this.splitterLog = new System.Windows.Forms.SplitContainer();
             this._timerRestoreLog = new System.Windows.Forms.Timer(this.components);
-            this.toolVersion = new System.Windows.Forms.ToolStripTextBox();
             this.mainMenuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -252,6 +252,13 @@ namespace UIRibbonTools
             this.menuMSDN.Name = "menuMSDN";
             this.menuMSDN.Size = new System.Drawing.Size(180, 22);
             this.menuMSDN.Text = "MSDN";
+            // 
+            // toolVersion
+            // 
+            this.toolVersion.Name = "toolVersion";
+            this.toolVersion.ReadOnly = true;
+            this.toolVersion.Size = new System.Drawing.Size(100, 23);
+            this.toolVersion.Text = "Version: 1.1.0.0";
             // 
             // toolStrip
             // 
@@ -434,12 +441,6 @@ namespace UIRibbonTools
             // _timerRestoreLog
             // 
             this._timerRestoreLog.Interval = 3000;
-            // 
-            // toolVersion
-            // 
-            this.toolVersion.Name = "toolVersion";
-            this.toolVersion.ReadOnly = true;
-            this.toolVersion.Size = new System.Drawing.Size(100, 23);
             // 
             // MainForm
             // 

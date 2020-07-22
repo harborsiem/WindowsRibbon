@@ -84,9 +84,12 @@ namespace UIRibbonTools
             resFilename = Path.ChangeExtension(filename, ".res");
             dllFilename = Path.ChangeExtension(filename, ".ribbondll");
 
-            _manager.CleanupFiles.AddRange(new string[] { bmlFilename, rcFilename, dllFilename });
+            _manager.CleanupFiles.AddRange(new string[] { bmlFilename, dllFilename });
             if (Settings.Instance.DeleteResFile)
+            {
+                _manager.CleanupFiles.Add(rcFilename);
                 _manager.CleanupFiles.Add(resFilename);
+            }
 
             // Run ribbon compiler UICC.exe to convert the markup XML to a header, a resource and a bml file.
             if (!Execute(_uiccPath, docDir, "\"/W0\"", QuotedString(filename), bmlFileParam, headerFileParam, rcFileParam, nameParam))

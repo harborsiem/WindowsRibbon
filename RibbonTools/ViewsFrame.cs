@@ -645,6 +645,9 @@ namespace UIRibbonTools
             TreeNode node;
             TRibbonObject obj;
             RibbonObjectType objType;
+            RibbonObjectType parentObjType = RibbonObjectType.ViewRibbon;
+            bool hasControls = false;
+            bool hasMenuGroups = false;
 
             node = treeViewRibbon.SelectedNode;
             if ((node == null) || (node.Tag == null))
@@ -653,6 +656,21 @@ namespace UIRibbonTools
             {
                 obj = (TRibbonObject)node.Tag;
                 objType = obj.ObjectType();
+                TRibbonCommandRefObject refObj = obj as TRibbonCommandRefObject;
+                if (refObj != null && refObj.Parent is TRibbonAppMenuGroup)
+                    parentObjType = RibbonObjectType.AppMenuGroup;
+                TRibbonGallery gallery = refObj as TRibbonGallery;
+                if (gallery != null)
+                {
+                    hasControls = gallery.Controls.Count > 0;
+                    hasMenuGroups = gallery.MenuGroups.Count > 0;
+                }
+                TRibbonDropDownButton dropDown = refObj as TRibbonDropDownButton;
+                if (dropDown != null)
+                {
+                    hasControls = dropDown.Controls.Count > 0;
+                    hasMenuGroups = dropDown.MenuGroups.Count > 0;
+                }
             }
 
             if (objType == RibbonObjectType.List)
@@ -663,6 +681,15 @@ namespace UIRibbonTools
                 {
                     obj = (TRibbonObject)node.Parent.Tag;
                     objType = obj.ObjectType();
+                    TRibbonCommandRefObject refObj = obj as TRibbonCommandRefObject;
+                    if (refObj != null && refObj.Parent is TRibbonAppMenuGroup)
+                        parentObjType = RibbonObjectType.AppMenuGroup;
+                    TRibbonSplitButton splitButton = refObj as TRibbonSplitButton;
+                    if (splitButton != null)
+                    {
+                        hasControls = splitButton.Controls.Count > 0;
+                        hasMenuGroups = splitButton.MenuGroups.Count > 0;
+                    }
                 }
 
                 switch (objType)
@@ -705,23 +732,38 @@ namespace UIRibbonTools
             //TreeViewRibbon.SelectedNode = TreeViewRibbon.SelectedNode;
 
             _actionAddButton.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.AppMenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup
-               || objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || objType == RibbonObjectType.DropDownButton);
-            _actionAddToggleButton.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup || objType ==
-              RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || objType == RibbonObjectType.DropDownButton);
-            _actionAddDropDownButton.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.AppMenuGroup || objType ==
-              RibbonObjectType.MiniToolbarMenuGroup || objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || objType == RibbonObjectType.DropDownButton);
-            _actionAddSplitButton.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.AppMenuGroup || objType ==
-              RibbonObjectType.MiniToolbarMenuGroup || objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || objType == RibbonObjectType.DropDownButton);
-            _actionAddCheckBox.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup || objType ==
-              RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || objType == RibbonObjectType.DropDownButton);
-            _actionAddDropDownGallery.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.AppMenuGroup || objType ==
-              RibbonObjectType.MiniToolbarMenuGroup || objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || objType == RibbonObjectType.DropDownButton);
-            _actionAddSplitButtonGallery.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.AppMenuGroup || objType ==
-              RibbonObjectType.MiniToolbarMenuGroup || objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || objType == RibbonObjectType.DropDownButton);
-            _actionAddDropDownColorPicker.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup || objType ==
-              RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || objType == RibbonObjectType.DropDownButton);
-            _actionAddMenuGroup.Visible = (objType == RibbonObjectType.ApplicationMenu || objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.ContextMenu || objType == RibbonObjectType.DropDownButton
-                || objType == RibbonObjectType.DropDownGallery || objType == RibbonObjectType.SplitButtonGallery || objType == RibbonObjectType.InRibbonGallery); //@ added
+                || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || ((objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.DropDownButton
+                || ((objType == RibbonObjectType.DropDownGallery || objType == RibbonObjectType.SplitButtonGallery) && parentObjType != RibbonObjectType.AppMenuGroup) || objType == RibbonObjectType.InRibbonGallery) && !hasMenuGroups)); //@ added
+
+            _actionAddToggleButton.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup || objType == RibbonObjectType.Group
+                || objType == RibbonObjectType.ControlGroup || ((objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.DropDownButton
+                || ((objType == RibbonObjectType.DropDownGallery || objType == RibbonObjectType.SplitButtonGallery) && parentObjType != RibbonObjectType.AppMenuGroup) || objType == RibbonObjectType.InRibbonGallery) && !hasMenuGroups)); //@ added
+
+            _actionAddDropDownButton.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.AppMenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup
+                || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || ((objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.DropDownButton) && !hasMenuGroups));
+
+            _actionAddSplitButton.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.AppMenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup
+                || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || ((objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.DropDownButton
+                || ((objType == RibbonObjectType.DropDownGallery || objType == RibbonObjectType.SplitButtonGallery) && parentObjType != RibbonObjectType.AppMenuGroup) || objType == RibbonObjectType.InRibbonGallery) && !hasMenuGroups)); //@ added
+
+            _actionAddCheckBox.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup || objType == RibbonObjectType.Group
+                || objType == RibbonObjectType.ControlGroup || ((objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.DropDownButton
+                || ((objType == RibbonObjectType.DropDownGallery || objType == RibbonObjectType.SplitButtonGallery) && parentObjType != RibbonObjectType.AppMenuGroup) || objType == RibbonObjectType.InRibbonGallery) && !hasMenuGroups)); //@ added
+
+            _actionAddDropDownGallery.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.AppMenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup
+                || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup
+                || ((objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.DropDownButton) && parentObjType != RibbonObjectType.AppMenuGroup && !hasMenuGroups));
+
+            _actionAddSplitButtonGallery.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.AppMenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup
+                || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup
+                || ((objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.DropDownButton) && parentObjType != RibbonObjectType.AppMenuGroup && !hasMenuGroups));
+
+            _actionAddDropDownColorPicker.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup || objType == RibbonObjectType.Group
+                || objType == RibbonObjectType.ControlGroup || ((objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.DropDownButton) && !hasMenuGroups));
+
+            _actionAddMenuGroup.Visible = (objType == RibbonObjectType.ApplicationMenu || objType == RibbonObjectType.ContextMenu || (objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.DropDownButton
+                || ((objType == RibbonObjectType.DropDownGallery || objType == RibbonObjectType.SplitButtonGallery) && parentObjType != RibbonObjectType.AppMenuGroup) || objType == RibbonObjectType.InRibbonGallery) && !hasControls); //@ added
+
             _actionAddQatButton.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
             _actionAddQatToggleButton.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
             _actionAddQatCheckBox.Visible = (objType == RibbonObjectType.QuickAccessToolbar);

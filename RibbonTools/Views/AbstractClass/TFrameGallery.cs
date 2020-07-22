@@ -53,6 +53,27 @@ namespace UIRibbonTools
                 InitializeComponent();
         }
 
+        private void DisableControlsInAppMenu()
+        {
+            if (_gallery.Parent.ObjectType() == RibbonObjectType.AppMenuGroup)
+            {
+                _label2.Enabled = false;
+                _comboBoxGalleryType.Enabled = false;
+                _label7.Enabled = false;
+                _comboBoxTextPosition.Enabled = false;
+                _label3.Enabled = false;
+                _label4.Enabled = false;
+                _upDownItemHeight.Enabled = false;
+                _label5.Enabled = false;
+                _label6.Enabled = false;
+                _upDownItemWidth.Enabled = false;
+                _checkBoxHasLargeItems.Enabled = false;
+                _label8.Enabled = false;
+                _comboBoxLayoutType.Enabled = false;
+                _groupBox1.Enabled = false;
+            }
+        }
+
         protected override void InitComponentStep1()
         {
             if (components == null)
@@ -673,6 +694,7 @@ namespace UIRibbonTools
             }
             else
                 ComboBoxLayoutType.SelectedIndex = LT_DEFAULT;
+            DisableControlsInAppMenu(); //added
             UpdateControls();
         }
 

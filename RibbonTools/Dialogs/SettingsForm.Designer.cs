@@ -148,9 +148,9 @@ namespace UIRibbonTools
             this.deleteResFile.AutoSize = true;
             this.deleteResFile.Location = new System.Drawing.Point(3, 26);
             this.deleteResFile.Name = "deleteResFile";
-            this.deleteResFile.Size = new System.Drawing.Size(100, 17);
+            this.deleteResFile.Size = new System.Drawing.Size(124, 17);
             this.deleteResFile.TabIndex = 1;
-            this.deleteResFile.Text = "Delete *.res File";
+            this.deleteResFile.Text = "Delete *.rc, *.res files";
             this.deleteResFile.UseVisualStyleBackColor = true;
             // 
             // allowPngImages
