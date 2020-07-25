@@ -2,17 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-### Ribbon V2.8.7, RibbonTools V1.1.0
+### Ribbon V2.8.7, RibbonTools V1.2.0
 
 ### Changed
 
 - Ribbon: more Intellisence comments for the codebehind.
 - Ribbon: new EventLogger classes (Windows 8 and later)
   usage: from the Ribbon class you can get an instance of the EventLogger class (Property EventLogger). If you want use the EventLogger, you have to call EventLogger.Attach() and connect to the EventLogger.LogEvent. If you don't want the Logging anymore, then you have to call EventLogger.Detach().
+- RibbonTools: Issues with xxGallery, DropDownButton, SplitButton, MenuGroups and Controls and other small fixes.
 
 ### Todo 
 
-- Documentation for RibbonTools
+- Documentation for RibbonTools, EventLogger
 
 ### Ribbon V2.8.6, RibbonTools V1.1.0
 
