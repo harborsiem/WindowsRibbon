@@ -13,6 +13,8 @@ namespace UIRibbonTools
 {
     partial class TFrameGallery : TFrameControl
     {
+        private CheckBox _checkBoxMultipleHighlighting;
+
         protected Label Label2 { get => _label2; }
         protected ComboBox ComboBoxGalleryType { get => _comboBoxGalleryType; }
         protected CheckBox CheckBoxHasLargeItems { get => _checkBoxHasLargeItems; }
@@ -34,6 +36,7 @@ namespace UIRibbonTools
         protected NumericUpDown UpDownColumns { get => _upDownColumns; }
         protected Label LabelGripper { get => _labelGripper; }
         protected ComboBox ComboBoxGripper { get => _comboBoxGripper; }
+        protected CheckBox CheckBoxMultipleHighlighting { get => _checkBoxMultipleHighlighting; }
 
         private TRibbonGallery _gallery;
 
@@ -99,6 +102,7 @@ namespace UIRibbonTools
             this._upDownColumns = new System.Windows.Forms.NumericUpDown();
             this._labelGripper = new System.Windows.Forms.Label();
             this._comboBoxGripper = new System.Windows.Forms.ComboBox();
+            this._checkBoxMultipleHighlighting = new System.Windows.Forms.CheckBox();
             this._groupBox1 = new System.Windows.Forms.GroupBox();
             base.InitComponentStep1();
         }
@@ -304,10 +308,12 @@ namespace UIRibbonTools
             this.groupLayout.Controls.Add(this._upDownColumns, 1, 2);
             this.groupLayout.Controls.Add(this._labelGripper, 0, 3);
             this.groupLayout.Controls.Add(this._comboBoxGripper, 1, 3);
+            this.groupLayout.Controls.Add(this._checkBoxMultipleHighlighting, 0, 4);
             this.groupLayout.Location = new System.Drawing.Point(3, 19);
             this.groupLayout.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.groupLayout.Name = "groupLayout";
-            this.groupLayout.RowCount = 4;
+            this.groupLayout.RowCount = 5;
+            this.groupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.groupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.groupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.groupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -454,6 +460,18 @@ namespace UIRibbonTools
             this._comboBoxGripper.Size = new System.Drawing.Size(244, 21);
             this._comboBoxGripper.TabIndex = 4;
             // 
+            // _checkBoxMultipleHighlighting
+            // 
+            this._checkBoxMultipleHighlighting.AutoSize = true;
+            this.LayoutPanel.SetColumnSpan(this._checkBoxMultipleHighlighting, 2);
+            this._checkBoxMultipleHighlighting.Enabled = false;
+            this._checkBoxMultipleHighlighting.Location = new System.Drawing.Point(3, 246);
+            this._checkBoxMultipleHighlighting.Name = "_checkBoxMultipleHighlighting";
+            this._checkBoxMultipleHighlighting.Size = new System.Drawing.Size(132, 17);
+            this._checkBoxMultipleHighlighting.TabIndex = 5;
+            this._checkBoxMultipleHighlighting.Text = "Multiple highlighting";
+
+            // 
             // _groupBox1
             // 
             this.LayoutPanel.SetColumnSpan(this._groupBox1, 4);
@@ -510,6 +528,7 @@ namespace UIRibbonTools
             UpDownRows.ValueChanged += EditRowsChange;
             UpDownColumns.ValueChanged += EditColumnsChange;
             ComboBoxGripper.SelectedIndexChanged += ComboBoxGripperChange;
+            CheckBoxMultipleHighlighting.Click += CheckBoxMultipleHighlightingClick;
         }
 
         protected override void InitTooltips(IContainer components)
@@ -524,6 +543,10 @@ namespace UIRibbonTools
             viewsTip.SetToolTip(UpDownRows, "Number of rows in the layout");
             viewsTip.SetToolTip(UpDownColumns, "Number of columns in the flow layout");
             viewsTip.SetToolTip(ComboBoxGripper, "How the items are layed out in the gallery");
+            viewsTip.SetToolTip(CheckBoxMultipleHighlighting, "Since Windows 8" + Environment.NewLine +
+                "Highlights all items in the list up to, and including," + Environment.NewLine +
+                "the current mouseover item (instead of the mouseover item only)." + Environment.NewLine +
+                "Typically used for multiple Undo and Redo functionality.");
         }
 
         private void InitializeBaseComponent()
@@ -535,6 +558,18 @@ namespace UIRibbonTools
             //LayoutPanel.Controls.Add(_editApplicationModes, 1, 1);
             //LayoutPanel.SetColumnSpan(_editApplicationModes, 2);
             LayoutPanel.ResumeLayout();
+        }
+
+        private void CheckBoxMultipleHighlightingClick(object sender, EventArgs e)
+        {
+            TRibbonVerticalMenuLayout menuLayout = _gallery.MenuLayout as TRibbonVerticalMenuLayout;
+            if (menuLayout == null)
+                return;
+            if (CheckBoxMultipleHighlighting.Checked != menuLayout.IsMultipleHighlightingEnabled)
+            {
+                menuLayout.IsMultipleHighlightingEnabled = CheckBoxMultipleHighlighting.Checked;
+                Modified();
+            }
         }
 
         private void CheckBoxHasLargeItemsClick(object sender, EventArgs e)
@@ -622,6 +657,7 @@ namespace UIRibbonTools
                     Debug.Assert(false);
                     break;
             }
+            CheckBoxMultipleHighlighting.Checked = false;
         }
 
         private void ComboBoxTextPositionChange(object sender, EventArgs e)
@@ -686,7 +722,10 @@ namespace UIRibbonTools
             if (_gallery.MenuLayout != null)
             {
                 if (_gallery.MenuLayout is TRibbonVerticalMenuLayout)
+                {
                     ComboBoxLayoutType.SelectedIndex = LT_VERTICAL;
+                    CheckBoxMultipleHighlighting.Checked = ((TRibbonVerticalMenuLayout)_gallery.MenuLayout).IsMultipleHighlightingEnabled;
+                }
                 else if (_gallery.MenuLayout is TRibbonFlowMenuLayout)
                     ComboBoxLayoutType.SelectedIndex = LT_FLOW;
                 else
@@ -700,6 +739,7 @@ namespace UIRibbonTools
 
         private void UpdateControls()
         {
+            CheckBoxMultipleHighlighting.Enabled = (_gallery.MenuLayout is TRibbonVerticalMenuLayout && !(_gallery is TRibbonInRibbonGallery));
             LabelRowCount.Enabled = (ComboBoxLayoutType.SelectedIndex != LT_DEFAULT);
             UpDownRows.Enabled = LabelRowCount.Enabled;
             UpDownRows.Enabled = LabelRowCount.Enabled;

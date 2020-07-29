@@ -103,7 +103,8 @@ namespace UIRibbonTools
         NoResize, VerticalResize
     };
 
-    public enum RibbonObjectType
+    //Don't change the sequence, because it is used also as an ImageIndex
+	public enum RibbonObjectType
     {
         Button, ToggleButton, SplitButton, DropDownButton,
         DropDownColorPicker, Spinner, CheckBox, ComboBox, QatButton,
@@ -118,7 +119,8 @@ namespace UIRibbonTools
         RibbonSizeDefinition, ViewRibbon, MiniToolbar, ContextMenu,
         ContextMap, ViewContextPopup, Application, SplitButton_Items,
         RibbonSizeDefinitions, ScalingPolicy_IdealSizes, ContextualTabs,
-        MiniToolbars, ContextMenus, ContextMaps
+        MiniToolbars, ContextMenus, ContextMaps, QatComboBox, QatDropDownGallery,
+        QatSplitButtonGallery, QatInRibbonGallery
     };
 
     //@ The names in this enum must be equal to the class names !

@@ -176,6 +176,7 @@ namespace UIRibbonTools
         public const string AN_IS_HIGHLIGHT_BUTTON_VISIBLE = "IsHighlightButtonVisible";
         public const string AN_SHOW_TRUE_TYPE_ONLY = "ShowTrueTypeOnly";
         public const string AN_SHOW_VERTICAL_FONTS = "ShowVerticalFonts";
+        public const string AN_IsGrowShrinkButtonGroupVisible = "IsGrowShrinkButtonGroupVisible";
         public const string AN_MINIMUM_FONT_SIZE = "MinimumFontSize";
         public const string AN_MAXIMUM_FONT_SIZE = "MaximumFontSize";
         public const string AN_SEQUENCE_NUMBER = "SequenceNumber";
@@ -201,6 +202,7 @@ namespace UIRibbonTools
         public const string AN_MAX_ROWS = "MaxRows";
         public const string AN_ROWS = "Rows";
         public const string AN_GRIPPER = "Gripper";
+        public const string AN_IsMultipleHighlightingEnabled = "IsMultipleHighlightingEnabled";
         public const string AN_IMAGE_SIZE = "ImageSize";
         public const string AN_IS_LABEL_VISIBLE = "IsLabelVisible";
         public const string AN_IS_IMAGE_VISIBLE = "IsImageVisible";

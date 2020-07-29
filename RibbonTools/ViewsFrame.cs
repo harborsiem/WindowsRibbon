@@ -58,6 +58,9 @@ namespace UIRibbonTools
         const int II_CONTEXT_MENU = 34;
         const int II_CONTEXT_MAP = 35;
 
+        private static readonly int[] ConvertQatImageIndex = { (int)RibbonObjectType.ComboBox, (int)RibbonObjectType.DropDownGallery,
+            (int)RibbonObjectType.SplitButtonGallery, (int)RibbonObjectType.InRibbonGallery };
+
         private TRibbonDocument _document;
         private TreeNode _currentNode;
         private BaseFrame _currentFrame;
@@ -196,7 +199,11 @@ namespace UIRibbonTools
             TreeNode node, child;
             bool originalSelectedAddedNode;
 
-            node = AddNode(parent, control.DisplayName(), (int)(control.ObjectType()), control);
+            int imageIndex = (int)control.ObjectType();
+            if (imageIndex >= (int)RibbonObjectType.QatComboBox) //hack
+                imageIndex = ConvertQatImageIndex[imageIndex - (int)RibbonObjectType.QatComboBox];
+
+            node = AddNode(parent, control.DisplayName(), imageIndex, control);
             originalSelectedAddedNode = _selectAddedNode;
             _selectAddedNode = false;
             try
@@ -767,6 +774,11 @@ namespace UIRibbonTools
             _actionAddQatButton.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
             _actionAddQatToggleButton.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
             _actionAddQatCheckBox.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
+            _actionAddQatComboBox.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
+            _actionAddQatDropDownGallery.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
+            _actionAddQatSplitButtonGallery.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
+            _actionAddQatInRibbonGallery.Visible = (objType == RibbonObjectType.QuickAccessToolbar);
+
             _actionAddRibbonSizeDefinition.Visible = (objType == RibbonObjectType.RibbonSizeDefinitions);
             _actionAddGroupSizeDefinition.Visible = (objType == RibbonObjectType.RibbonSizeDefinition || objType == RibbonObjectType.SizeDefinition);
             _actionAddControlSizeDefinition.Visible = (objType == RibbonObjectType.GroupSizeDefinition || objType == RibbonObjectType.Row || objType == RibbonObjectType.ControlSizeGroup);
@@ -949,6 +961,10 @@ namespace UIRibbonTools
                 case RibbonObjectType.QatButton:
                 case RibbonObjectType.QatToggleButton:
                 case RibbonObjectType.QatCheckBox:
+                case RibbonObjectType.QatComboBox:
+                case RibbonObjectType.QatDropDownGallery:
+                case RibbonObjectType.QatSplitButtonGallery:
+                case RibbonObjectType.QatInRibbonGallery:
                     _currentFrame = AddCurrentFrame<TFrameQatControl>();
                     break;
                 case RibbonObjectType.DropDownGallery:
@@ -1206,6 +1222,26 @@ namespace UIRibbonTools
         private void ActionAddQatCheckBoxExecute(object sender, EventArgs e)
         {
             AddNewObject(RibbonObjectType.QatCheckBox);
+        }
+
+        private void ActionAddQatComboBoxExecute(object sender, EventArgs e)
+        {
+            AddNewObject(RibbonObjectType.QatComboBox);
+        }
+
+        private void ActionAddQatDropDownGalleryExecute(object sender, EventArgs e)
+        {
+            AddNewObject(RibbonObjectType.QatDropDownGallery);
+        }
+
+        private void ActionAddQatSplitButtonGalleryExecute(object sender, EventArgs e)
+        {
+            AddNewObject(RibbonObjectType.QatSplitButtonGallery);
+        }
+
+        private void ActionAddQatInRibbonGalleryExecute(object sender, EventArgs e)
+        {
+            AddNewObject(RibbonObjectType.QatInRibbonGallery);
         }
 
         private void ActionAddQatToggleButtonExecute(object sender, EventArgs e)

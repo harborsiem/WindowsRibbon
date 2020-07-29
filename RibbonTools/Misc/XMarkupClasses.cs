@@ -754,6 +754,18 @@ namespace UIRibbonTools
                 case RibbonObjectType.QatCheckBox:
                     result = new TRibbonQatCheckBox(this, parent);
                     break;
+                case RibbonObjectType.QatComboBox:
+                    result = new TRibbonQatComboBox(this, parent);
+                    break;
+                case RibbonObjectType.QatDropDownGallery:
+                    result = new TRibbonQatDropDownGallery(this, parent);
+                    break;
+                case RibbonObjectType.QatSplitButtonGallery:
+                    result = new TRibbonQatSplitButtonGallery(this, parent);
+                    break;
+                case RibbonObjectType.QatInRibbonGallery:
+                    result = new TRibbonQatInRibbonGallery(this, parent);
+                    break;
                 case RibbonObjectType.RibbonSizeDefinition:
                     result = new TRibbonRibbonSizeDefinition(this);
                     break;
@@ -1546,7 +1558,8 @@ namespace UIRibbonTools
                     Error(E, RS_INVALID_CATEGORY_CLASS);
 
             }
-            else {
+            else
+            {
                 if ((string.IsNullOrEmpty(s)) || (s == ES_STANDARD_ITEMS))
                     _categoryClass = RibbonMenuCategoryClass.StandardItems;
                 else if (s == ES_MAJOR_ITEMS)
@@ -2430,6 +2443,86 @@ namespace UIRibbonTools
         public override RibbonObjectType ObjectType() { return RibbonObjectType.QatCheckBox; }
     }
 
+    class TRibbonQatComboBox : TRibbonQatControl
+    {
+        public TRibbonQatComboBox(TRibbonDocument owner, TRibbonCommandRefObject parent) : base(owner, parent) { }
+
+        public TRibbonQatComboBox(TRibbonDocument owner, XElement E, TRibbonCommandRefObject parent) : base(owner, E, parent) { }
+
+        #region Internal Declarations
+
+        internal override void Save(XmlWriter writer)
+        {
+            writer.WriteStartElement(EN_COMBO_BOX);
+            base.Save(writer);
+            writer.WriteEndElement();
+        }
+
+        #endregion Internal Declarations
+
+        public override RibbonObjectType ObjectType() { return RibbonObjectType.QatComboBox; }
+    }
+
+    class TRibbonQatDropDownGallery : TRibbonQatControl
+    {
+        public TRibbonQatDropDownGallery(TRibbonDocument owner, TRibbonCommandRefObject parent) : base(owner, parent) { }
+
+        public TRibbonQatDropDownGallery(TRibbonDocument owner, XElement E, TRibbonCommandRefObject parent) : base(owner, E, parent) { }
+
+        #region Internal Declarations
+
+        internal override void Save(XmlWriter writer)
+        {
+            writer.WriteStartElement(EN_DROP_DOWN_GALLERY);
+            base.Save(writer);
+            writer.WriteEndElement();
+        }
+
+        #endregion Internal Declarations
+
+        public override RibbonObjectType ObjectType() { return RibbonObjectType.QatDropDownGallery; }
+    }
+
+    class TRibbonQatSplitButtonGallery : TRibbonQatControl
+    {
+        public TRibbonQatSplitButtonGallery(TRibbonDocument owner, TRibbonCommandRefObject parent) : base(owner, parent) { }
+
+        public TRibbonQatSplitButtonGallery(TRibbonDocument owner, XElement E, TRibbonCommandRefObject parent) : base(owner, E, parent) { }
+
+        #region Internal Declarations
+
+        internal override void Save(XmlWriter writer)
+        {
+            writer.WriteStartElement(EN_SPLIT_BUTTON_GALLERY);
+            base.Save(writer);
+            writer.WriteEndElement();
+        }
+
+        #endregion Internal Declarations
+
+        public override RibbonObjectType ObjectType() { return RibbonObjectType.QatSplitButtonGallery; }
+    }
+
+    class TRibbonQatInRibbonGallery : TRibbonQatControl
+    {
+        public TRibbonQatInRibbonGallery(TRibbonDocument owner, TRibbonCommandRefObject parent) : base(owner, parent) { }
+
+        public TRibbonQatInRibbonGallery(TRibbonDocument owner, XElement E, TRibbonCommandRefObject parent) : base(owner, E, parent) { }
+
+        #region Internal Declarations
+
+        internal override void Save(XmlWriter writer)
+        {
+            writer.WriteStartElement(EN_IN_RIBBON_GALLERY);
+            base.Save(writer);
+            writer.WriteEndElement();
+        }
+
+        #endregion Internal Declarations
+
+        public override RibbonObjectType ObjectType() { return RibbonObjectType.QatInRibbonGallery; }
+    }
+
     class TRibbonHelpButton : TRibbonControl
     {
         public TRibbonHelpButton(TRibbonDocument owner, TRibbonCommandRefObject parent) : base(owner, parent) { }
@@ -2538,6 +2631,7 @@ namespace UIRibbonTools
         private bool _isStrikethroughButtonVisible;
         private bool _isUnderlineButtonVisible;
         private bool _isHighlightButtonVisible;
+        private bool _isGrowShrinkButtonGroupVisible;
 
         public TRibbonFontControl(TRibbonDocument owner, TRibbonCommandRefObject parent) : base(owner, parent)
         {
@@ -2561,12 +2655,17 @@ namespace UIRibbonTools
             _isStrikethroughButtonVisible = AttributeAsBooleanDef(E, AN_IS_STRIKETHROUGH_BUTTON_VISIBLE, true);
             _isUnderlineButtonVisible = AttributeAsBooleanDef(E, AN_IS_UNDERLINE_BUTTON_VISIBLE, true);
             _isHighlightButtonVisible = AttributeAsBooleanDef(E, AN_IS_HIGHLIGHT_BUTTON_VISIBLE, (_fontType != RibbonFontType.FontOnly));
+            _isGrowShrinkButtonGroupVisible = AttributeAsBooleanDef(E, AN_IsGrowShrinkButtonGroupVisible, (_fontType != RibbonFontType.FontOnly));
         }
 
         protected override void SaveAttributes(XmlWriter writer)
         {
             if (_fontType != RibbonFontType.FontOnly)
+            {
                 writer.WriteAttributeString(AN_FONT_TYPE, FONT_TYPES[(int)_fontType]);
+                if (!_isGrowShrinkButtonGroupVisible)
+                    writer.WriteAttributeString(AN_IsGrowShrinkButtonGroupVisible, XmlConvert.ToString(_isGrowShrinkButtonGroupVisible));
+            }
             if (_fontType != RibbonFontType.RichFont)
             {
                 if (!_isStrikethroughButtonVisible)
@@ -2587,6 +2686,7 @@ namespace UIRibbonTools
         public bool IsStrikethroughButtonVisible { get { return _isStrikethroughButtonVisible; } set { _isStrikethroughButtonVisible = value; } }
         public bool IsUnderlineButtonVisible { get { return _isUnderlineButtonVisible; } set { _isUnderlineButtonVisible = value; } }
         public bool IsHighlightButtonVisible { get { return _isHighlightButtonVisible; } set { _isHighlightButtonVisible = value; } }
+        public bool IsGrowShrinkButtonGroupVisible { get { return _isGrowShrinkButtonGroupVisible; } set { _isGrowShrinkButtonGroupVisible = value; } }
     }
 
     /* NOTE: This is not an actual control, since it doesn't have a CommandRef
@@ -2754,6 +2854,7 @@ namespace UIRibbonTools
         #region Internal Declarations
 
         private RibbonSingleColumnGripperType _gripper;
+        private bool _isMultipleHighlightingEnabled;
 
         public TRibbonVerticalMenuLayout(TRibbonDocument owner) : base(owner)
         {
@@ -2769,6 +2870,8 @@ namespace UIRibbonTools
                 _gripper = RibbonSingleColumnGripperType.None;
             else
                 Error(E, RS_INVALID_GRIPPER);
+
+            _isMultipleHighlightingEnabled = AttributeAsBooleanDef(E, AN_IsMultipleHighlightingEnabled, false);
         }
 
         internal override void Save(XmlWriter writer)
@@ -2778,6 +2881,8 @@ namespace UIRibbonTools
 
             if (_gripper != RibbonSingleColumnGripperType.Vertical)
                 writer.WriteAttributeString(AN_GRIPPER, GRIPPERS[(int)_gripper]);
+            if (_isMultipleHighlightingEnabled)
+                writer.WriteAttributeString(AN_IsMultipleHighlightingEnabled, XmlConvert.ToString(_isMultipleHighlightingEnabled));
 
             writer.WriteEndElement();
         }
@@ -2787,6 +2892,8 @@ namespace UIRibbonTools
         public override RibbonObjectType ObjectType() { return RibbonObjectType.VerticalMenuLayout; }
 
         public RibbonSingleColumnGripperType Gripper { get { return _gripper; } set { _gripper = value; } }
+
+        public bool IsMultipleHighlightingEnabled { get { return _isMultipleHighlightingEnabled; } set { _isMultipleHighlightingEnabled = value; } }
     }
 
     class TRibbonFlowMenuLayout : TRibbonGalleryMenuLayout
@@ -3476,6 +3583,14 @@ namespace UIRibbonTools
                         _controls.Add(new TRibbonQatToggleButton(owner, GC, this));
                     else if (GC.Name.LocalName == EN_CHECK_BOX)
                         _controls.Add(new TRibbonQatCheckBox(owner, GC, this));
+                    else if (GC.Name.LocalName == EN_COMBO_BOX)
+                        _controls.Add(new TRibbonQatComboBox(owner, GC, this));
+                    else if (GC.Name.LocalName == EN_DROP_DOWN_GALLERY)
+                        _controls.Add(new TRibbonQatDropDownGallery(owner, GC, this));
+                    else if (GC.Name.LocalName == EN_SPLIT_BUTTON_GALLERY)
+                        _controls.Add(new TRibbonQatSplitButtonGallery(owner, GC, this));
+                    else if (GC.Name.LocalName == EN_IN_RIBBON_GALLERY)
+                        _controls.Add(new TRibbonQatInRibbonGallery(owner, GC, this));
                     else
                         Error(GC, RS_UNSUPPORTED_CHILD_ELEMENT, GC.Name.LocalName, C.Name.LocalName);
                 }
@@ -3547,7 +3662,9 @@ namespace UIRibbonTools
         {
             TRibbonObject result;
             if (objType == RibbonObjectType.QatButton || objType == RibbonObjectType.QatCheckBox
-                || objType == RibbonObjectType.QatToggleButton)
+                || objType == RibbonObjectType.QatToggleButton || objType == RibbonObjectType.QatComboBox
+                || objType == RibbonObjectType.QatDropDownGallery || objType == RibbonObjectType.QatSplitButtonGallery
+                || objType == RibbonObjectType.QatInRibbonGallery)
             {
                 result = Owner.CreateObject(objType, this);
                 _controls.Add(result as TRibbonQatControl);

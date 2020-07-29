@@ -156,7 +156,7 @@ namespace UIRibbonTools
             else
             {
                 ComboBoxCustomizeCommand.SelectedIndex = RibbonCommandItem.IndexOf(ComboBoxCustomizeCommand, _quickAccessToolbar.CustomizeCommandRef);
-                // ComboBoxCustomizeCommand.Items.IndexOf(FQuickAccessToolbar.CustomizeCommandRef);
+                // ComboBoxCustomizeCommand.Items.IndexOf(_quickAccessToolbar.CustomizeCommandRef);
             }
         }
 

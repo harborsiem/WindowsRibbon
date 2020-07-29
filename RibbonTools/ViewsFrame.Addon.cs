@@ -31,6 +31,10 @@ namespace UIRibbonTools
         private System.Windows.Forms.ToolStripMenuItem menuAddQatButton;
         private System.Windows.Forms.ToolStripMenuItem menuAddQatToggleButton;
         private System.Windows.Forms.ToolStripMenuItem menuAddQatCheckBox;
+        private System.Windows.Forms.ToolStripMenuItem menuAddQatComboBox;
+        private System.Windows.Forms.ToolStripMenuItem menuAddQatDropDownGallery;
+        private System.Windows.Forms.ToolStripMenuItem menuAddQatSplitButtonGallery;
+        private System.Windows.Forms.ToolStripMenuItem menuAddQatInRibbonGallery;
         private System.Windows.Forms.ToolStripMenuItem menuAddRibbonSizeDefinition;
         private System.Windows.Forms.ToolStripMenuItem menuAddGroupSizeDefinition;
         private System.Windows.Forms.ToolStripMenuItem menuAddControlSizeDefinition;
@@ -64,6 +68,10 @@ namespace UIRibbonTools
         private TAction _actionAddQatButton;
         private TAction _actionAddQatToggleButton;
         private TAction _actionAddQatCheckBox;
+        private TAction _actionAddQatComboBox;
+        private TAction _actionAddQatDropDownGallery;
+        private TAction _actionAddQatSplitButtonGallery;
+        private TAction _actionAddQatInRibbonGallery;
         private TAction _actionAddRibbonSizeDefinition;
         private TAction _actionAddGroupSizeDefinition;
         private TAction _actionAddControlSizeDefinition;
@@ -106,6 +114,10 @@ namespace UIRibbonTools
             _actionAddQatButton = new TAction(components);
             _actionAddQatToggleButton = new TAction(components);
             _actionAddQatCheckBox = new TAction(components);
+            _actionAddQatComboBox = new TAction(components);
+            _actionAddQatDropDownGallery = new TAction(components);
+            _actionAddQatSplitButtonGallery = new TAction(components);
+            _actionAddQatInRibbonGallery = new TAction(components);
             _actionAddRibbonSizeDefinition = new TAction(components);
             _actionAddGroupSizeDefinition = new TAction(components);
             _actionAddControlSizeDefinition = new TAction(components);
@@ -145,6 +157,10 @@ namespace UIRibbonTools
                 _actionAddQatButton,
                 _actionAddQatToggleButton,
                 _actionAddQatCheckBox,
+                _actionAddQatComboBox,
+                _actionAddQatDropDownGallery,
+                _actionAddQatSplitButtonGallery,
+                _actionAddQatInRibbonGallery,
                 _actionAddRibbonSizeDefinition,
                 _actionAddGroupSizeDefinition,
                 _actionAddControlSizeDefinition,
@@ -269,6 +285,34 @@ namespace UIRibbonTools
             _actionAddQatCheckBox.Text = "Add Qat CheckBox";
             _actionAddQatCheckBox.SetComponent(popupAddQatCheckBox, true);
             _actionAddQatCheckBox.SetComponent(menuAddQatCheckBox, true);
+
+            _actionAddQatComboBox.Execute += ActionAddQatComboBoxExecute;
+            _actionAddQatComboBox.Hint = "Since Windows 8";
+            _actionAddQatComboBox.ImageIndex = 7;
+            _actionAddQatComboBox.Text = "Add Qat ComboBox";
+            _actionAddQatComboBox.SetComponent(popupAddQatComboBox, true);
+            _actionAddQatComboBox.SetComponent(menuAddQatComboBox, true);
+
+            _actionAddQatDropDownGallery.Execute += ActionAddQatDropDownGalleryExecute;
+            _actionAddQatDropDownGallery.Hint = "Since Windows 8";
+            _actionAddQatDropDownGallery.ImageIndex = 15;
+            _actionAddQatDropDownGallery.Text = "Add Qat DropDownGallery";
+            _actionAddQatDropDownGallery.SetComponent(popupAddQatDropDownGallery, true);
+            _actionAddQatDropDownGallery.SetComponent(menuAddQatDropDownGallery, true);
+
+            _actionAddQatSplitButtonGallery.Execute += ActionAddQatSplitButtonGalleryExecute;
+            _actionAddQatSplitButtonGallery.Hint = "Since Windows 8";
+            _actionAddQatSplitButtonGallery.ImageIndex = 16;
+            _actionAddQatSplitButtonGallery.Text = "Add Qat SplitButtonGallery";
+            _actionAddQatSplitButtonGallery.SetComponent(popupAddQatSplitButtonGallery, true);
+            _actionAddQatSplitButtonGallery.SetComponent(menuAddQatSplitButtonGallery, true);
+
+            _actionAddQatInRibbonGallery.Execute += ActionAddQatInRibbonGalleryExecute;
+            _actionAddQatInRibbonGallery.Hint = "Since Windows 8";
+            _actionAddQatInRibbonGallery.ImageIndex = 17;
+            _actionAddQatInRibbonGallery.Text = "Add Qat InRibbonGallery";
+            _actionAddQatInRibbonGallery.SetComponent(popupAddQatInRibbonGallery, true);
+            _actionAddQatInRibbonGallery.SetComponent(menuAddQatInRibbonGallery, true);
 
             _actionAddRibbonSizeDefinition.Execute += ActionAddRibbonSizeDefinitionExecute;
             _actionAddRibbonSizeDefinition.ImageIndex = 25;
@@ -421,6 +465,10 @@ namespace UIRibbonTools
             this.menuAddQatButton = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddQatToggleButton = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddQatCheckBox = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAddQatComboBox = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAddQatDropDownGallery = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAddQatSplitButtonGallery = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAddQatInRibbonGallery = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddRibbonSizeDefinition = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddGroupSizeDefinition = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddControlSizeDefinition = new System.Windows.Forms.ToolStripMenuItem();
@@ -467,6 +515,10 @@ namespace UIRibbonTools
             this.menuAddQatButton,
             this.menuAddQatToggleButton,
             this.menuAddQatCheckBox,
+            this.menuAddQatComboBox,
+            this.menuAddQatDropDownGallery,
+            this.menuAddQatSplitButtonGallery,
+            this.menuAddQatInRibbonGallery,
             this.menuAddRibbonSizeDefinition,
             this.menuAddGroupSizeDefinition,
             this.menuAddControlSizeDefinition,
@@ -589,6 +641,26 @@ namespace UIRibbonTools
             // 
             this.menuAddQatCheckBox.Name = "menuAddQatCheckBox";
             this.menuAddQatCheckBox.Size = new System.Drawing.Size(180, 22);
+            // 
+            // menuAddQatComboBox
+            // 
+            this.menuAddQatComboBox.Name = "menuAddQatComboBox";
+            this.menuAddQatComboBox.Size = new System.Drawing.Size(180, 22);
+            // 
+            // menuAddQatDropDownGallery
+            // 
+            this.menuAddQatDropDownGallery.Name = "menuAddQatDropDownGallery";
+            this.menuAddQatDropDownGallery.Size = new System.Drawing.Size(180, 22);
+            // 
+            // menuAddQatSplitButtonGallery
+            // 
+            this.menuAddQatSplitButtonGallery.Name = "menuAddQatSplitButtonGallery";
+            this.menuAddQatSplitButtonGallery.Size = new System.Drawing.Size(180, 22);
+            // 
+            // menuAddQatInRibbonGallery
+            // 
+            this.menuAddQatInRibbonGallery.Name = "menuAddQatInRibbonGallery";
+            this.menuAddQatInRibbonGallery.Size = new System.Drawing.Size(180, 22);
             // 
             // menuAddRibbonSizeDefinition
             // 

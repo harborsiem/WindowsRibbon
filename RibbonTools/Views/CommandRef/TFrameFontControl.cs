@@ -14,12 +14,14 @@ namespace UIRibbonTools
     partial class TFrameFontControl : TFrameFloatieFontControl
     {
         private static Image sample = ImageManager.FontControlSample();
+        private CheckBox _checkBoxGrowShrink;
 
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxFontType { get => _comboBoxFontType; }
         private CheckBox CheckBoxStrikethrough { get => _checkBoxStrikethrough; }
         private CheckBox CheckBoxUnderline { get => _checkBoxUnderline; }
         private CheckBox CheckBoxHighlight { get => _checkBoxHighlight; }
+        private CheckBox CheckBoxGrowShrink { get => _checkBoxGrowShrink; }
 
         private TRibbonFontControl _fontControl;
 
@@ -39,6 +41,7 @@ namespace UIRibbonTools
             this._checkBoxStrikethrough = new System.Windows.Forms.CheckBox();
             this._checkBoxUnderline = new System.Windows.Forms.CheckBox();
             this._checkBoxHighlight = new System.Windows.Forms.CheckBox();
+            this._checkBoxGrowShrink = new System.Windows.Forms.CheckBox();
             base.InitComponentStep1();
         }
 
@@ -109,6 +112,16 @@ namespace UIRibbonTools
             this._checkBoxHighlight.Size = new System.Drawing.Size(132, 17);
             this._checkBoxHighlight.TabIndex = 10;
             this._checkBoxHighlight.Text = "Highlight button visible";
+            // 
+            // _checkBoxGrowShrink
+            // 
+            this._checkBoxGrowShrink.AutoSize = true;
+            this.LayoutPanel.SetColumnSpan(this._checkBoxGrowShrink, 2);
+            this._checkBoxGrowShrink.Location = new System.Drawing.Point(3, 246);
+            this._checkBoxGrowShrink.Name = "_checkBoxGrowShrink";
+            this._checkBoxGrowShrink.Size = new System.Drawing.Size(132, 17);
+            this._checkBoxGrowShrink.TabIndex = 11;
+            this._checkBoxGrowShrink.Text = "Grow and shrink buttongroup visible";
             LabelHeader.Text = "  FontControl Properties";
             LabelHeader.ImageIndex = 13;
         }
@@ -120,6 +133,7 @@ namespace UIRibbonTools
             this.LayoutPanel.Controls.Add(this._checkBoxStrikethrough, 0, 6);
             this.LayoutPanel.Controls.Add(this._checkBoxUnderline, 0, 7);
             this.LayoutPanel.Controls.Add(this._checkBoxHighlight, 0, 8);
+            this.LayoutPanel.Controls.Add(this._checkBoxGrowShrink, 0, 9);
 
             base.InitComponentStep3();
         }
@@ -137,6 +151,7 @@ namespace UIRibbonTools
             CheckBoxStrikethrough.Click += CheckBoxStrikethroughClick;
             CheckBoxUnderline.Click += CheckBoxUnderlineClick;
             CheckBoxHighlight.Click += CheckBoxHighlightClick;
+            CheckBoxGrowShrink.Click += CheckBoxGrowShrinkClick;
         }
 
         protected override void InitTooltips(IContainer components)
@@ -146,6 +161,17 @@ namespace UIRibbonTools
             viewsTip.SetToolTip(CheckBoxStrikethrough, "Whether the strikethrough button is shown in the font control");
             viewsTip.SetToolTip(CheckBoxUnderline, "Whether the underline button is shown in the font control");
             viewsTip.SetToolTip(CheckBoxHighlight, "Whether the highlight button is shown in the font control");
+            viewsTip.SetToolTip(CheckBoxGrowShrink, "Since Windows 8" + Environment.NewLine +
+                "Whether the grow and shrink buttongroup is shown in the font control");
+        }
+
+        private void CheckBoxGrowShrinkClick(object sender, EventArgs e)
+        {
+            if (CheckBoxGrowShrink.Checked != _fontControl.IsGrowShrinkButtonGroupVisible)
+            {
+                _fontControl.IsGrowShrinkButtonGroupVisible = CheckBoxGrowShrink.Checked;
+                Modified();
+            }
         }
 
         private void CheckBoxHighlightClick(object sender, EventArgs e)
@@ -180,6 +206,10 @@ namespace UIRibbonTools
             if (ComboBoxFontType.SelectedIndex != (int)(_fontControl.FontType))
             {
                 _fontControl.FontType = (RibbonFontType)(ComboBoxFontType.SelectedIndex);
+                if (_fontControl.FontType != RibbonFontType.FontOnly)
+                    _fontControl.IsGrowShrinkButtonGroupVisible = true;
+                else
+                    _fontControl.IsGrowShrinkButtonGroupVisible = false;
                 UpdateControls();
                 Modified();
             }
@@ -212,6 +242,16 @@ namespace UIRibbonTools
                 CheckBoxStrikethrough.Checked = _fontControl.IsStrikethroughButtonVisible;
                 CheckBoxUnderline.Checked = _fontControl.IsUnderlineButtonVisible;
                 CheckBoxHighlight.Checked = _fontControl.IsHighlightButtonVisible;
+            }
+            if (_fontControl.FontType == RibbonFontType.FontOnly)
+            {
+                CheckBoxGrowShrink.Checked = false;
+                CheckBoxGrowShrink.Enabled = false;
+            }
+            else
+            {
+                CheckBoxGrowShrink.Enabled = true;
+                CheckBoxGrowShrink.Checked = _fontControl.IsGrowShrinkButtonGroupVisible;
             }
         }
 

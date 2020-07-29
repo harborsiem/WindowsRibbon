@@ -61,6 +61,10 @@ namespace UIRibbonTools
             this.popupAddQatButton = new System.Windows.Forms.ToolStripMenuItem();
             this.popupAddQatToggleButton = new System.Windows.Forms.ToolStripMenuItem();
             this.popupAddQatCheckBox = new System.Windows.Forms.ToolStripMenuItem();
+            this.popupAddQatComboBox = new System.Windows.Forms.ToolStripMenuItem();
+            this.popupAddQatDropDownGallery = new System.Windows.Forms.ToolStripMenuItem();
+            this.popupAddQatSplitButtonGallery = new System.Windows.Forms.ToolStripMenuItem();
+            this.popupAddQatInRibbonGallery = new System.Windows.Forms.ToolStripMenuItem();
             this.popupAddRibbonSizeDefinition = new System.Windows.Forms.ToolStripMenuItem();
             this.popupAddGroupSizeDefinition = new System.Windows.Forms.ToolStripMenuItem();
             this.popupAddControlSizeDefinition = new System.Windows.Forms.ToolStripMenuItem();
@@ -180,6 +184,10 @@ namespace UIRibbonTools
             this.popupAddQatButton,
             this.popupAddQatToggleButton,
             this.popupAddQatCheckBox,
+            this.popupAddQatComboBox,
+            this.popupAddQatDropDownGallery,
+            this.popupAddQatSplitButtonGallery,
+            this.popupAddQatInRibbonGallery,
             this.popupAddRibbonSizeDefinition,
             this.popupAddGroupSizeDefinition,
             this.popupAddControlSizeDefinition,
@@ -194,7 +202,7 @@ namespace UIRibbonTools
             this.popupAddContextMenu,
             this.popupAddContextMap,
             this.popupAddMiniToolbarMenuGroup});
-            this.popupMenuTree.Name = "PopupMenuTree";
+            this.popupMenuTree.Name = "popupMenuTree";
             this.popupMenuTree.Size = new System.Drawing.Size(153, 802);
             // 
             // popupRemove
@@ -312,6 +320,26 @@ namespace UIRibbonTools
             // 
             this.popupAddQatCheckBox.Name = "popupAddQatCheckBox";
             this.popupAddQatCheckBox.Size = new System.Drawing.Size(152, 22);
+            // 
+            // popupAddQatComboBox
+            // 
+            this.popupAddQatComboBox.Name = "popupAddQatComboBox";
+            this.popupAddQatComboBox.Size = new System.Drawing.Size(152, 22);
+            // 
+            // popupAddQatDropDownGallery
+            // 
+            this.popupAddQatDropDownGallery.Name = "popupAddQatDropDownGallery";
+            this.popupAddQatDropDownGallery.Size = new System.Drawing.Size(152, 22);
+            // 
+            // popupAddQatSplitButtonGallery
+            // 
+            this.popupAddQatSplitButtonGallery.Name = "popupAddQatSplitButtonGallery";
+            this.popupAddQatSplitButtonGallery.Size = new System.Drawing.Size(152, 22);
+            // 
+            // popupAddQatInRibbonGallery
+            // 
+            this.popupAddQatInRibbonGallery.Name = "popupAddQatInRibbonGallery";
+            this.popupAddQatInRibbonGallery.Size = new System.Drawing.Size(152, 22);
             // 
             // popupAddRibbonSizeDefinition
             // 
@@ -435,6 +463,10 @@ namespace UIRibbonTools
         private System.Windows.Forms.ToolStripMenuItem popupAddQatButton;
         private System.Windows.Forms.ToolStripMenuItem popupAddQatToggleButton;
         private System.Windows.Forms.ToolStripMenuItem popupAddQatCheckBox;
+        private System.Windows.Forms.ToolStripMenuItem popupAddQatComboBox;
+        private System.Windows.Forms.ToolStripMenuItem popupAddQatDropDownGallery;
+        private System.Windows.Forms.ToolStripMenuItem popupAddQatSplitButtonGallery;
+        private System.Windows.Forms.ToolStripMenuItem popupAddQatInRibbonGallery;
         private System.Windows.Forms.ToolStripMenuItem popupAddRibbonSizeDefinition;
         private System.Windows.Forms.ToolStripMenuItem popupAddGroupSizeDefinition;
         private System.Windows.Forms.ToolStripMenuItem popupAddControlSizeDefinition;
