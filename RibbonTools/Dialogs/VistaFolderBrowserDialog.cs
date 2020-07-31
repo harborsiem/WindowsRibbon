@@ -191,7 +191,7 @@ namespace System.Windows.Forms
                         parent = _selectedPath;
                     }
                     else
-                        parent = string.Empty; //Drive name   
+                        parent = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer); //not existing drive name   
                 }
                 else
                 {
@@ -200,7 +200,7 @@ namespace System.Windows.Forms
             }
             else
             {
-                parent = string.Empty; //This PC
+                parent = Environment.GetFolderPath(RootFolder);
             }
             dialog.SetFolder(FileDialogNative.CreateItemFromParsingName(parent));
             dialog.SetFileName(folder);
