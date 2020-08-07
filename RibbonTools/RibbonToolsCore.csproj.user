@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Actions\Action.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Actions\ActionList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="CommandsFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Commands\ImageListFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ApplicationModesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\CommandSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ImageEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\InputQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\NewFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\ViewsSampleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\VistaFolderBrowserDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Preview\PreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ViewsFrame.Addon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ViewsFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\AbstractClass\BaseFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\AbstractClass\TFrameCommandRefObject.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\AbstractClass\TFrameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\AbstractClass\TFrameGallery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameApplicationMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameAppMenuGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameCheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameContextMap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameDropDownColorPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameFloatieFontControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameFontControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameHelpButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameMenuGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameQatControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameQuickAccessToolbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameScale.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameSpinner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameTabGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\CommandRef\TFrameToggleButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Control\TFrameButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Control\TFrameDropDownButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Control\TFrameGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Control\TFrameSplitButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Control\TFrameTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Gallery\TFrameDropDownGallery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Gallery\TFrameInRibbonGallery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Gallery\TFrameSplitButtonGallery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\SimpleControl\TFrameColumnBreak.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\SimpleControl\TFrameContextMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\SimpleControl\TFrameControlGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\SimpleControl\TFrameControlSizeDefinition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\SimpleControl\TFrameGroupSizeDefinition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\SimpleControl\TFrameMiniToolbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\SimpleControl\TFrameSizeDefinition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\SimpleControl\TFrameViewRibbon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="XmlSourceFrame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

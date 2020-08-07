@@ -1,0 +1,118 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>Images\Ribbon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+<PropertyGroup>
+  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  <Deterministic>false</Deterministic>
+  <SignAssembly>true</SignAssembly>
+  <AssemblyOriginatorKeyFile>RibbonGenerator.snk</AssemblyOriginatorKeyFile>
+  <DelaySign>false</DelaySign>
+  <AssemblyName>RibbonTools</AssemblyName>
+  <RootNamespace>UIRibbonTools</RootNamespace>
+</PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;Core</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;Core</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Misc\MarkupClasses.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Images\ImageListAppModes_Shared.bmp" />
+    <None Remove="Images\ImageListToolbars_Commands.bmp" />
+    <None Remove="Images\ImageListToolbars_ImageList.bmp" />
+    <None Remove="Images\ImageListTreeView_Views.bmp" />
+    <None Remove="Images\ImageList_Edit.bmp" />
+    <None Remove="Images\ImageList_NewFile.bmp" />
+    <None Remove="Images\ImageList_Settings.bmp" />
+    <None Remove="Images\ImageSample_ApplicationMenu.png" />
+    <None Remove="Images\ImageSample_Button.png" />
+    <None Remove="Images\ImageSample_CheckBox.png" />
+    <None Remove="Images\ImageSample_ComboBox.png" />
+    <None Remove="Images\ImageSample_ContextMap.png" />
+    <None Remove="Images\ImageSample_ContextMenu.png" />
+    <None Remove="Images\ImageSample_ControlGroup.png" />
+    <None Remove="Images\ImageSample_DropDownButton.png" />
+    <None Remove="Images\ImageSample_DropDownColorPicker.png" />
+    <None Remove="Images\ImageSample_DropDownGallery.png" />
+    <None Remove="Images\ImageSample_FloatyFontControl.png" />
+    <None Remove="Images\ImageSample_FontControl.png" />
+    <None Remove="Images\ImageSample_Group.png" />
+    <None Remove="Images\ImageSample_Help.png" />
+    <None Remove="Images\ImageSample_InRibbonGallery.png" />
+    <None Remove="Images\ImageSample_MenuGroup.png" />
+    <None Remove="Images\ImageSample_MenuGroup1.png" />
+    <None Remove="Images\ImageSample_MiniToolBar.png" />
+    <None Remove="Images\ImageSample_QATControl.png" />
+    <None Remove="Images\ImageSample_QuickAccessToolBar.png" />
+    <None Remove="Images\ImageSample_Spinner.png" />
+    <None Remove="Images\ImageSample_SplitButton.png" />
+    <None Remove="Images\ImageSample_SplitButtonGallery.png" />
+    <None Remove="Images\ImageSample_Tab.png" />
+    <None Remove="Images\ImageSample_TabGroup.png" />
+    <None Remove="Images\ImageSample_ToggleButton.png" />
+    <None Remove="Images\ImageSample_ViewRibbon.png" />
+    <None Remove="Images\Images_Main.bmp" />
+    <None Remove="Template.bat" />
+    <None Remove="Wordpad.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ImageListAppModes_Shared.bmp" />
+    <EmbeddedResource Include="Images\ImageListToolbars_Commands.bmp" />
+    <EmbeddedResource Include="Images\ImageListToolbars_ImageList.bmp" />
+    <EmbeddedResource Include="Images\ImageListTreeView_Views.bmp" />
+    <EmbeddedResource Include="Images\ImageList_Edit.bmp" />
+    <EmbeddedResource Include="Images\ImageList_NewFile.bmp" />
+    <EmbeddedResource Include="Images\ImageList_Settings.bmp" />
+    <EmbeddedResource Include="Images\ImageSample_ApplicationMenu.png" />
+    <EmbeddedResource Include="Images\ImageSample_Button.png" />
+    <EmbeddedResource Include="Images\ImageSample_CheckBox.png" />
+    <EmbeddedResource Include="Images\ImageSample_ComboBox.png" />
+    <EmbeddedResource Include="Images\ImageSample_ContextMap.png" />
+    <EmbeddedResource Include="Images\ImageSample_ContextMenu.png" />
+    <EmbeddedResource Include="Images\ImageSample_ControlGroup.png" />
+    <EmbeddedResource Include="Images\ImageSample_DropDownButton.png" />
+    <EmbeddedResource Include="Images\ImageSample_DropDownColorPicker.png" />
+    <EmbeddedResource Include="Images\ImageSample_DropDownGallery.png" />
+    <EmbeddedResource Include="Images\ImageSample_FloatyFontControl.png" />
+    <EmbeddedResource Include="Images\ImageSample_FontControl.png" />
+    <EmbeddedResource Include="Images\ImageSample_Group.png" />
+    <EmbeddedResource Include="Images\ImageSample_Help.png" />
+    <EmbeddedResource Include="Images\ImageSample_InRibbonGallery.png" />
+    <EmbeddedResource Include="Images\ImageSample_MenuGroup.png" />
+    <EmbeddedResource Include="Images\ImageSample_MenuGroup1.png" />
+    <EmbeddedResource Include="Images\ImageSample_MiniToolBar.png" />
+    <EmbeddedResource Include="Images\ImageSample_QATControl.png" />
+    <EmbeddedResource Include="Images\ImageSample_QuickAccessToolBar.png" />
+    <EmbeddedResource Include="Images\ImageSample_Spinner.png" />
+    <EmbeddedResource Include="Images\ImageSample_SplitButton.png" />
+    <EmbeddedResource Include="Images\ImageSample_SplitButtonGallery.png" />
+    <EmbeddedResource Include="Images\ImageSample_Tab.png" />
+    <EmbeddedResource Include="Images\ImageSample_TabGroup.png" />
+    <EmbeddedResource Include="Images\ImageSample_ToggleButton.png" />
+    <EmbeddedResource Include="Images\ImageSample_ViewRibbon.png" />
+    <EmbeddedResource Include="Images\Images_Main.bmp" />
+    <EmbeddedResource Include="Template.bat" />
+    <EmbeddedResource Include="Wordpad.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ribbon">
+      <HintPath>..\Ribbon\bin\Release\netcoreapp3.1\Ribbon.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

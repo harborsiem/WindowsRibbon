@@ -64,23 +64,27 @@ namespace UIRibbonTools
             {
                 RibbonItem ribbonItem = ribbonItems[i];
                 if (ribbonItem.IsContextPopup)
-                    popupCommandNames.Add(ribbonItem.CommandName);
+                    popupRibbonItems.Add(ribbonItem);
                 sw.WriteLine(Indent(3) + "Public Const " + ribbonItem.CommandName + " As UInteger" + " = " + ribbonItem.CommandId.ToString(CultureInfo.InvariantCulture));
             }
 #endif
             sw.WriteLine(Indent(2) + "End Class");
-            //sw.WriteLine(Ident(2) + "}");
             sw.WriteLine();
         }
 
         protected override void WritePopupConst()
         {
             sw.WriteLine(Indent(2) + "' ContextPopup CommandName");
-            for (int i = 0; i < popupCommandNames.Count; i++)
+            for (int i = 0; i < popupRibbonItems.Count; i++)
             {
-                string name = popupCommandNames[i];
+                RibbonItem ribbonItem = popupRibbonItems[i];
+                string name = ribbonItem.CommandName;
                 if (!Char.IsNumber(name[0]))
+                {
+                    if (!string.IsNullOrEmpty(ribbonItem.Comment))
+                        IntelliSenseComment(ribbonItem.Comment);
                     sw.WriteLine(Indent(2) + "Public Const " + name + " As UInteger" + " = Cmd." + name);
+                }
                 else
                     sw.WriteLine(Indent(2) + "// CommandId = " + name);
             }
@@ -118,6 +122,8 @@ namespace UIRibbonTools
                 {
                     string name = GetPropertyName(ribbonItem.CommandName);
                     sw.WriteLine(Indent(2) + "Private " + "_" + name + " As " + ribbonItem.RibbonClassName);
+                    if (!string.IsNullOrEmpty(ribbonItem.Comment))
+                        IntelliSenseComment(ribbonItem.Comment);
                     sw.WriteLine(Indent(2) + "Public ReadOnly Property " + name + " As " + ribbonItem.RibbonClassName);
                     sw.WriteLine(Indent(3) + "Get");
                     sw.WriteLine(Indent(4) + "Return _" + name);
@@ -174,6 +180,13 @@ namespace UIRibbonTools
             sw.WriteLine(Indent(1) + "End Class");
             sw.WriteLine("End Namespace");
             sw.Close();
+        }
+
+        private void IntelliSenseComment(string comment)
+        {
+            sw.WriteLine(Indent(2) + "''' <summary>");
+            sw.WriteLine(Indent(2) + "''' " + comment);
+            sw.WriteLine(Indent(2) + "''' </summary>");
         }
     }
 }

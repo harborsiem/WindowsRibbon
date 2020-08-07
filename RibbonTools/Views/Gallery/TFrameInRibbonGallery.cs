@@ -82,7 +82,7 @@ namespace UIRibbonTools
             this._label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this._label9.AutoSize = true;
-            this._label9.Location = new System.Drawing.Point(3, 330);
+            this._label9.Location = new System.Drawing.Point(3, 353);
             this._label9.Name = "_label9";
             this._label9.Size = new System.Drawing.Size(97, 26);
             this._label9.TabIndex = 0;
@@ -91,7 +91,7 @@ namespace UIRibbonTools
             // 
             // _upDownMinColumnsLarge
             // 
-            this._upDownMinColumnsLarge.Location = new System.Drawing.Point(123, 333);
+            this._upDownMinColumnsLarge.Location = new System.Drawing.Point(123, 356);
             this._upDownMinColumnsLarge.Maximum = new decimal(new int[] {
             999,
             0,
@@ -117,7 +117,7 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Left)));
             this._label10.AutoSize = true;
             this.LayoutPanel.SetColumnSpan(this._label10, 2);
-            this._label10.Location = new System.Drawing.Point(210, 330);
+            this._label10.Location = new System.Drawing.Point(210, 353);
             this._label10.Name = "_label10";
             this._label10.Size = new System.Drawing.Size(77, 26);
             this._label10.TabIndex = 0;
@@ -129,7 +129,7 @@ namespace UIRibbonTools
             this._label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this._label11.AutoSize = true;
-            this._label11.Location = new System.Drawing.Point(3, 356);
+            this._label11.Location = new System.Drawing.Point(3, 379);
             this._label11.Name = "_label11";
             this._label11.Size = new System.Drawing.Size(107, 26);
             this._label11.TabIndex = 0;
@@ -138,7 +138,7 @@ namespace UIRibbonTools
             // 
             // _upDownMinColumnsMedium
             // 
-            this._upDownMinColumnsMedium.Location = new System.Drawing.Point(123, 359);
+            this._upDownMinColumnsMedium.Location = new System.Drawing.Point(123, 382);
             this._upDownMinColumnsMedium.Maximum = new decimal(new int[] {
             999,
             0,
@@ -164,7 +164,7 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Left)));
             this._label12.AutoSize = true;
             this.LayoutPanel.SetColumnSpan(this._label12, 2);
-            this._label12.Location = new System.Drawing.Point(210, 356);
+            this._label12.Location = new System.Drawing.Point(210, 379);
             this._label12.Name = "_label12";
             this._label12.Size = new System.Drawing.Size(146, 26);
             this._label12.TabIndex = 0;
@@ -176,7 +176,7 @@ namespace UIRibbonTools
             this._label13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this._label13.AutoSize = true;
-            this._label13.Location = new System.Drawing.Point(3, 382);
+            this._label13.Location = new System.Drawing.Point(3, 405);
             this._label13.Name = "_label13";
             this._label13.Size = new System.Drawing.Size(110, 26);
             this._label13.TabIndex = 0;
@@ -185,7 +185,7 @@ namespace UIRibbonTools
             // 
             // _upDownMaxColumnsMedium
             // 
-            this._upDownMaxColumnsMedium.Location = new System.Drawing.Point(123, 385);
+            this._upDownMaxColumnsMedium.Location = new System.Drawing.Point(123, 408);
             this._upDownMaxColumnsMedium.Maximum = new decimal(new int[] {
             999,
             0,
@@ -211,7 +211,7 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Left)));
             this._label14.AutoSize = true;
             this.LayoutPanel.SetColumnSpan(this._label14, 2);
-            this._label14.Location = new System.Drawing.Point(210, 382);
+            this._label14.Location = new System.Drawing.Point(210, 405);
             this._label14.Name = "_label14";
             this._label14.Size = new System.Drawing.Size(142, 26);
             this._label14.TabIndex = 0;
@@ -223,7 +223,7 @@ namespace UIRibbonTools
             this._label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this._label15.AutoSize = true;
-            this._label15.Location = new System.Drawing.Point(3, 408);
+            this._label15.Location = new System.Drawing.Point(3, 431);
             this._label15.Name = "_label15";
             this._label15.Size = new System.Drawing.Size(70, 26);
             this._label15.TabIndex = 0;
@@ -232,7 +232,7 @@ namespace UIRibbonTools
             // 
             // _upDownMaxColumns
             // 
-            this._upDownMaxColumns.Location = new System.Drawing.Point(123, 411);
+            this._upDownMaxColumns.Location = new System.Drawing.Point(123, 434);
             this._upDownMaxColumns.Maximum = new decimal(new int[] {
             999,
             0,
@@ -258,7 +258,7 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Left)));
             this._label16.AutoSize = true;
             this.LayoutPanel.SetColumnSpan(this._label16, 2);
-            this._label16.Location = new System.Drawing.Point(210, 408);
+            this._label16.Location = new System.Drawing.Point(210, 431);
             this._label16.Name = "_label16";
             this._label16.Size = new System.Drawing.Size(146, 26);
             this._label16.TabIndex = 0;
@@ -270,7 +270,7 @@ namespace UIRibbonTools
             this._label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this._label17.AutoSize = true;
-            this._label17.Location = new System.Drawing.Point(3, 434);
+            this._label17.Location = new System.Drawing.Point(3, 457);
             this._label17.Name = "_label17";
             this._label17.Size = new System.Drawing.Size(57, 26);
             this._label17.TabIndex = 0;
@@ -279,7 +279,7 @@ namespace UIRibbonTools
             // 
             // _upDownMaxRows
             // 
-            this._upDownMaxRows.Location = new System.Drawing.Point(123, 437);
+            this._upDownMaxRows.Location = new System.Drawing.Point(123, 460);
             this._upDownMaxRows.Maximum = new decimal(new int[] {
             999,
             0,
@@ -305,7 +305,7 @@ namespace UIRibbonTools
             | System.Windows.Forms.AnchorStyles.Left)));
             this._label18.AutoSize = true;
             this.LayoutPanel.SetColumnSpan(this._label18, 2);
-            this._label18.Location = new System.Drawing.Point(210, 434);
+            this._label18.Location = new System.Drawing.Point(210, 457);
             this._label18.Name = "_label18";
             this._label18.Size = new System.Drawing.Size(142, 26);
             this._label18.TabIndex = 0;

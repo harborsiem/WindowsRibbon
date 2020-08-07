@@ -13,6 +13,7 @@ namespace UIRibbonTools
         public uint CommandId { get; set; }
         public bool IsContextPopup { get { return (RibbonClassName == "ContextPopup"); } }
         //public uint ApplicationMode { get; set; }
+        public string Comment { get; set; }
 
         public RibbonItem(string commandName, string ribbonClassName, uint commandId)
         {

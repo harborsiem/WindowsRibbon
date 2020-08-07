@@ -14,7 +14,6 @@ namespace UIRibbonTools
     partial class TFrameFontControl : TFrameFloatieFontControl
     {
         private static Image sample = ImageManager.FontControlSample();
-        private CheckBox _checkBoxGrowShrink;
 
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxFontType { get => _comboBoxFontType; }
@@ -119,7 +118,7 @@ namespace UIRibbonTools
             this.LayoutPanel.SetColumnSpan(this._checkBoxGrowShrink, 2);
             this._checkBoxGrowShrink.Location = new System.Drawing.Point(3, 246);
             this._checkBoxGrowShrink.Name = "_checkBoxGrowShrink";
-            this._checkBoxGrowShrink.Size = new System.Drawing.Size(132, 17);
+            this._checkBoxGrowShrink.Size = new System.Drawing.Size(195, 17);
             this._checkBoxGrowShrink.TabIndex = 11;
             this._checkBoxGrowShrink.Text = "Grow and shrink buttongroup visible";
             LabelHeader.Text = "  FontControl Properties";

@@ -25,7 +25,7 @@ namespace UIRibbonTools
         //list build from .h file
         protected IList<KeyValuePair<string, string>> pair3List; //Command Name, Command Id
 #endif
-        protected IList<string> popupCommandNames; //
+        protected IList<RibbonItem> popupRibbonItems; //
 
         protected IList<RibbonItem> ribbonItems;
 
@@ -66,7 +66,7 @@ namespace UIRibbonTools
                 pair3List = (results.Pair3List);
                 popupCommandNames = (results.PopupCommandNames);
 #else
-                popupCommandNames = new List<string>();
+                popupRibbonItems = new List<RibbonItem>();
 #endif
                 ribbonItems = results.RibbonItems;
                 hasHFile = results.HasHFile;

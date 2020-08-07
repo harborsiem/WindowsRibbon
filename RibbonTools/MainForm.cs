@@ -526,7 +526,7 @@ namespace UIRibbonTools
 
         private void ApplicationEventsException(object sender, ThreadExceptionEventArgs e)
         {
-            memoMessages.ForeColor = Color.Red;
+            memoMessages.BackColor = Color.Red;
             Log(MessageKind.Error, e.Exception.Message);
             _timerRestoreLog.Enabled = true;
         }
@@ -868,7 +868,7 @@ namespace UIRibbonTools
         private void TimerRestoreLogTimer(object sender, EventArgs e)
         {
             _timerRestoreLog.Enabled = false;
-            memoMessages.ForeColor = SystemColors.Window;
+            memoMessages.BackColor = SystemColors.Window;
         }
 
         private void UpdateCaption()

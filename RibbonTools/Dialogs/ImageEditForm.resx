@@ -131,7 +131,7 @@ as transparent.
 (144 dpi) or 32x32 (192 dpi).
 6. For high-dpi support you can also add large images of size 40x40 (120 dpi), 48x48
 (144 dpi) or 64x64 (192 dpi).
-7. See https://docs.microsoft.com/en-us/windows/win32/windowsribbon/
-windowsribbon-imageformats     for more tips in specifying ribbon images.</value>
+7. See [https://docs.microsoft.com/en-us/windows/win32/windowsribbon/
+windowsribbon-imageformats] for more tips in specifying ribbon images.</value>
   </data>
 </root>

@@ -64,5 +64,7 @@ namespace UIRibbonTools
         private System.Windows.Forms.ComboBox _comboBoxGripper;
         private System.Windows.Forms.NumericUpDown _upDownRows;
         private System.Windows.Forms.NumericUpDown _upDownColumns;
+        private System.Windows.Forms.CheckBox _checkBoxMultipleHighlighting;
+
     }
 }

@@ -30,6 +30,7 @@ namespace UIRibbonTools
 
         //list build from .h file
         private List<KeyValuePair<string, string>> pair3List = new List<KeyValuePair<string, string>>(); //Command Name, Command Id
+        private Dictionary<string, string> _commentPairs = new Dictionary<string, string>(); //Key: Command Name, Value: Comment
 
         private Dictionary<string, uint> commandIdPairs;
 
@@ -87,28 +88,41 @@ namespace UIRibbonTools
         private void ParseHFile(string path)
         {
             pair3List.Clear();
+            _commentPairs.Clear();
             hasHFile = false;
             if (!File.Exists(path))
                 return;
             StreamReader sr = File.OpenText(path);
-            while (!sr.EndOfStream)
+            try
             {
-                string line = sr.ReadLine();
-                if (line.StartsWith("#define"))
+                while (!sr.EndOfStream)
                 {
-                    if (!line.Contains("_RESID "))
+                    string line = sr.ReadLine();
+                    if (line.StartsWith("#define"))
                     {
-                        line = line.Remove(0, "#define ".Length).TrimEnd();
-                        string[] lineSplit = line.Split(' ');
-                        if (lineSplit.Length != 2)
+                        if (!line.Contains("_RESID "))
                         {
-                            throw new ArgumentException("Error in .h file");
+                            line = line.Remove(0, "#define ".Length).TrimEnd();
+                            string[] lineSplit = line.Split(' ');
+                            if (lineSplit.Length < 2)
+                            {
+                                throw new ArgumentException("Error in .h file");
+                            }
+                            pair3List.Add(new KeyValuePair<string, string>(lineSplit[0], lineSplit[1]));
+                            if (lineSplit.Length > 2)
+                            {
+                                string comment = line.Substring(line.IndexOf("/*")).Remove(0, 3);
+                                comment = comment.Substring(0, comment.LastIndexOf(" */"));
+                                _commentPairs.Add(lineSplit[0], comment);
+                            }
                         }
-                        pair3List.Add(new KeyValuePair<string, string>(lineSplit[0], lineSplit[1]));
                     }
                 }
             }
-            sr.Close();
+            finally
+            {
+                sr.Close();
+            }
             hasHFile = true;
         }
 
@@ -122,6 +136,7 @@ namespace UIRibbonTools
             ParseContextPopup(applicationViewsContextPopup);
             uint id;
             RibbonItem item;
+            string comment;
             for (int i = 0; i < pair2List.Count; i++)
             {
                 string commandName = pair2List[i].Key;
@@ -131,6 +146,12 @@ namespace UIRibbonTools
                         throw new ArgumentException("Unresolved CommandName");
                     else commandName = "cmd" + ribbonClassName.Substring(RibbonString.Length) + commandName;
                 item = new RibbonItem(commandName, ribbonClassName, id);
+                if (_commentPairs.ContainsKey(commandName))
+                {
+                    if (_commentPairs.TryGetValue(commandName, out comment))
+                        item.Comment = comment;
+                }
+
                 ribbonItems.Add(item);
             }
             for (int i = 0; i < popupCommandNames.Count; i++)
@@ -142,6 +163,12 @@ namespace UIRibbonTools
                         throw new ArgumentException("Unresolved CommandName");
                     else commandName = "_" + commandName;
                 item = new RibbonItem(commandName, "ContextPopup", id);
+                if (_commentPairs.ContainsKey(commandName))
+                {
+                    if (_commentPairs.TryGetValue(commandName, out comment))
+                        item.Comment = comment;
+                }
+
                 ribbonItems.Add(item);
             }
         }

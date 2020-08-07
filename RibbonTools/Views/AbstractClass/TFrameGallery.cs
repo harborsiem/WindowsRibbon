@@ -13,8 +13,6 @@ namespace UIRibbonTools
 {
     partial class TFrameGallery : TFrameControl
     {
-        private CheckBox _checkBoxMultipleHighlighting;
-
         protected Label Label2 { get => _label2; }
         protected ComboBox ComboBoxGalleryType { get => _comboBoxGalleryType; }
         protected CheckBox CheckBoxHasLargeItems { get => _checkBoxHasLargeItems; }
@@ -318,7 +316,7 @@ namespace UIRibbonTools
             this.groupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.groupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.groupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.groupLayout.Size = new System.Drawing.Size(364, 106);
+            this.groupLayout.Size = new System.Drawing.Size(364, 129);
             this.groupLayout.TabIndex = 0;
             // 
             // _label8
@@ -465,23 +463,23 @@ namespace UIRibbonTools
             this._checkBoxMultipleHighlighting.AutoSize = true;
             this.LayoutPanel.SetColumnSpan(this._checkBoxMultipleHighlighting, 2);
             this._checkBoxMultipleHighlighting.Enabled = false;
-            this._checkBoxMultipleHighlighting.Location = new System.Drawing.Point(3, 246);
+            this._checkBoxMultipleHighlighting.Location = new System.Drawing.Point(3, 109);
             this._checkBoxMultipleHighlighting.Name = "_checkBoxMultipleHighlighting";
-            this._checkBoxMultipleHighlighting.Size = new System.Drawing.Size(132, 17);
+            this._checkBoxMultipleHighlighting.Size = new System.Drawing.Size(118, 17);
             this._checkBoxMultipleHighlighting.TabIndex = 5;
             this._checkBoxMultipleHighlighting.Text = "Multiple highlighting";
-
             // 
             // _groupBox1
             // 
-            this.LayoutPanel.SetColumnSpan(this._groupBox1, 4);
-            this._groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom)));
+            this._groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._groupBox1.AutoSize = true;
+            this.LayoutPanel.SetColumnSpan(this._groupBox1, 4);
             this._groupBox1.Controls.Add(this.groupLayout);
             this._groupBox1.Location = new System.Drawing.Point(3, 186);
             this._groupBox1.Name = "_groupBox1";
-            this._groupBox1.Size = new System.Drawing.Size(370, 141);
+            this._groupBox1.Size = new System.Drawing.Size(370, 164);
             this._groupBox1.TabIndex = 10;
             this._groupBox1.TabStop = false;
             this._groupBox1.Text = "Menu Layout";

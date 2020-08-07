@@ -46,6 +46,7 @@ namespace UIRibbonTools
         private System.Windows.Forms.CheckBox _checkBoxStrikethrough;
         private System.Windows.Forms.CheckBox _checkBoxUnderline;
         private System.Windows.Forms.CheckBox _checkBoxHighlight;
+        private System.Windows.Forms.CheckBox _checkBoxGrowShrink;
 
     }
 }

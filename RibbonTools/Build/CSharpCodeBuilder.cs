@@ -64,7 +64,7 @@ namespace UIRibbonTools
             {
                 RibbonItem ribbonItem = ribbonItems[i];
                 if (ribbonItem.IsContextPopup)
-                    popupCommandNames.Add(ribbonItem.CommandName);
+                    popupRibbonItems.Add(ribbonItem);
                 sw.WriteLine(Indent(3) + "public const uint " + ribbonItem.CommandName + " = " + ribbonItem.CommandId.ToString(CultureInfo.InvariantCulture) + ";");
             }
 #endif
@@ -75,11 +75,16 @@ namespace UIRibbonTools
         protected override void WritePopupConst()
         {
             sw.WriteLine(Indent(2) + "// ContextPopup CommandName");
-            for (int i = 0; i < popupCommandNames.Count; i++)
+            for (int i = 0; i < popupRibbonItems.Count; i++)
             {
-                string name = popupCommandNames[i];
+                RibbonItem ribbonItem = popupRibbonItems[i];
+                string name = ribbonItem.CommandName;
                 if (!Char.IsNumber(name[0]))
+                {
+                    if (!string.IsNullOrEmpty(ribbonItem.Comment))
+                        IntelliSenseComment(ribbonItem.Comment);
                     sw.WriteLine(Indent(2) + "public const uint " + name + " = Cmd." + name + ";");
+                }
                 else
                     sw.WriteLine(Indent(2) + "// CommandId = " + name);
             }
@@ -110,6 +115,8 @@ namespace UIRibbonTools
                 if (!(ribbonItem.IsContextPopup))
                 {
                     string name = GetPropertyName(ribbonItem.CommandName);
+                    if (!string.IsNullOrEmpty(ribbonItem.Comment))
+                        IntelliSenseComment(ribbonItem.Comment);
                     sw.WriteLine(Indent(2) + "public " + ribbonItem.RibbonClassName + " " + name + " { get; private set; }");
                 }
             }
@@ -159,6 +166,13 @@ namespace UIRibbonTools
             sw.WriteLine(Indent(1) + "}");
             sw.WriteLine("}");
             sw.Close();
+        }
+
+        private void IntelliSenseComment(string comment)
+        {
+            sw.WriteLine(Indent(2) + "/// <summary>");
+            sw.WriteLine(Indent(2) + "/// " + comment);
+            sw.WriteLine(Indent(2) + "/// </summary>");
         }
     }
 }
