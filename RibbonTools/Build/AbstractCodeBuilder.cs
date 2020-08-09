@@ -30,6 +30,7 @@ namespace UIRibbonTools
         protected IList<RibbonItem> ribbonItems;
 
         protected string ribbonItemsClass;
+        protected KeyValuePair<string, uint>? _qatCustomizeCommand;
         protected bool hasHFile;
 
         protected StreamWriter sw;
@@ -68,6 +69,7 @@ namespace UIRibbonTools
 #else
                 popupRibbonItems = new List<RibbonItem>();
 #endif
+                _qatCustomizeCommand = results.QatCustomizeCommand;
                 ribbonItems = results.RibbonItems;
                 hasHFile = results.HasHFile;
 

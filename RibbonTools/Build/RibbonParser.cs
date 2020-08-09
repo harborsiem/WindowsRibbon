@@ -13,6 +13,7 @@ namespace UIRibbonTools
     public class RibbonParser
     {
         private const string CommandNameAttribute = "CommandName";
+        private const string CustomizeCommandNameAttribute = "CustomizeCommandName";
         private const string NameAttribute = "Name";
         private const string IdAttribute = "Id";
         private const string SymbolAttribute = "Symbol";
@@ -35,6 +36,8 @@ namespace UIRibbonTools
         private Dictionary<string, uint> commandIdPairs;
 
         private List<string> popupCommandNames = new List<string>(); //
+        private KeyValuePair<string, uint>? _qatCustomizeCommand;
+
         private uint allApplicationModes;
         private bool hasHFile;
 
@@ -43,6 +46,7 @@ namespace UIRibbonTools
 
         public RibbonParser(string path)
         {
+            _qatCustomizeCommand = null;
             ribbonItems = new List<RibbonItem>();
             ParseHFile(Path.ChangeExtension(path, "h"));
             PreParseXmlFile(path);
@@ -252,6 +256,17 @@ namespace UIRibbonTools
                         pair2List.Add(new KeyValuePair<string, string>(name, RibbonString + nodeName));
                     }
                 }
+                if (child.Name.Equals("QuickAccessToolbar", StringComparison.Ordinal))
+                {
+                    attr = parms.GetNamedItem(CustomizeCommandNameAttribute);
+                    if (attr != null)
+                    {
+                        string customizeCommandName = GetCommandName(attr.Value);
+                        uint id = GetCommandId(pair3List, customizeCommandName);
+                        _qatCustomizeCommand = new KeyValuePair<string, uint>(customizeCommandName, id);
+                    }
+                }
+
             }
             return name;
         }
@@ -402,6 +417,7 @@ namespace UIRibbonTools
                 HasHFile = parser.hasHFile;
                 AllApplicationModes = parser.allApplicationModes;
                 RibbonItems = parser.ribbonItems.AsReadOnly();
+                QatCustomizeCommand = parser._qatCustomizeCommand;
             }
 
             //lists build from .xml file
@@ -417,6 +433,7 @@ namespace UIRibbonTools
 
             public bool HasHFile { get; private set; }
             public uint AllApplicationModes { get; private set; }
+            public KeyValuePair<string, uint>? QatCustomizeCommand { get; private set; }
         }
     }
 }

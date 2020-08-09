@@ -68,6 +68,8 @@ namespace UIRibbonTools
                 sw.WriteLine(Indent(3) + "Public Const " + ribbonItem.CommandName + " As UInteger" + " = " + ribbonItem.CommandId.ToString(CultureInfo.InvariantCulture));
             }
 #endif
+            if (_qatCustomizeCommand != null)
+                sw.WriteLine(Indent(3) + "Public Const " + _qatCustomizeCommand.Value.Key + " As UInteger" + " = " + _qatCustomizeCommand.Value.Value.ToString(CultureInfo.InvariantCulture));
             sw.WriteLine(Indent(2) + "End Class");
             sw.WriteLine();
         }
@@ -166,7 +168,11 @@ namespace UIRibbonTools
                 if (!(ribbonItem.IsContextPopup))
                 {
                     string name = GetPropertyName(ribbonItem.CommandName);
-                    sw.WriteLine(Indent(3) + "_" + name + " = New " + ribbonItem.RibbonClassName + "(_ribbon, " + "Cmd." + ribbonItem.CommandName + ")");
+
+                    if (ribbonItem.RibbonClassName.Equals("RibbonQuickAccessToolbar") && _qatCustomizeCommand != null)
+                        sw.WriteLine(Indent(3) + "_" + name + " = New " + ribbonItem.RibbonClassName + "(_ribbon, " + "Cmd." + ribbonItem.CommandName + ", " + "Cmd." + _qatCustomizeCommand.Value.Key + ")");
+                    else
+                        sw.WriteLine(Indent(3) + "_" + name + " = New " + ribbonItem.RibbonClassName + "(_ribbon, " + "Cmd." + ribbonItem.CommandName + ")");
                 }
             }
 #endif
