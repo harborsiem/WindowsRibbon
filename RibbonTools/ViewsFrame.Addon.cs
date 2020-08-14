@@ -184,13 +184,10 @@ namespace UIRibbonTools
                 _actionAddMiniToolbarMenuGroup,
             });
 
-            _actionAdd.Execute += ActionAddButtonExecute;
-            _actionAdd.Update += TreeActionUpdate;
             _actionAdd.Hint = "Adds a subitem to the selected node";
             _actionAdd.ImageIndex = 36;
             _actionAdd.Text = "Add";
             _actionAdd.SetComponent(toolButtonAdd, true);
-            //ActionAdd.SetComponent(popupAdd, true);
 
             _actionRemove.Execute += ActionRemoveExecute;
             _actionRemove.Update += TreeActionUpdate;

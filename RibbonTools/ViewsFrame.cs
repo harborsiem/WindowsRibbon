@@ -644,7 +644,7 @@ namespace UIRibbonTools
             }
         }
 
-        private void PopupMenuPopup(object sender, EventArgs e)
+        private void PopupMenuPopup(object sender, CancelEventArgs e)
         {
             TreeNode node;
             TRibbonObject obj;
@@ -733,7 +733,7 @@ namespace UIRibbonTools
 
             // Make sure Selected item stays selected when popup menu pops up
 
-            //TreeViewRibbon.SelectedNode = TreeViewRibbon.SelectedNode;
+            //treeViewRibbon.SelectedNode = treeViewRibbon.SelectedNode;
 
             _actionAddButton.Visible = (objType == RibbonObjectType.MenuGroup || objType == RibbonObjectType.AppMenuGroup || objType == RibbonObjectType.MiniToolbarMenuGroup
                 || objType == RibbonObjectType.Group || objType == RibbonObjectType.ControlGroup || ((objType == RibbonObjectType.SplitButton_Items || objType == RibbonObjectType.DropDownButton
@@ -798,7 +798,9 @@ namespace UIRibbonTools
             _actionAddContextMenu.Visible = (objType == RibbonObjectType.ContextMenus);
             _actionAddContextMap.Visible = (objType == RibbonObjectType.ContextMaps);
             _actionAddMiniToolbarMenuGroup.Visible = (objType == RibbonObjectType.MiniToolbar);
-        }
+
+            //I think there is a bug in .NET when we have no visible items. After selecting an other node we have to click Add twice
+       }
 
         public void ShowDocument(TRibbonDocument document)
         {
