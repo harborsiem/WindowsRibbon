@@ -142,7 +142,7 @@ namespace UIRibbonTools
                             _button.CreateButtonItem();
                             RemoveChildren(itemNode);
                             frameViews.AddControl(itemNode, _button.ButtonItem);
-                            SubjectNode.TreeView.SelectedNode = SubjectNode; //.Selected = true;
+                            SubjectNode.TreeView.SelectedNode = SubjectNode;
                             Modified();
                         }
                     }
@@ -154,7 +154,7 @@ namespace UIRibbonTools
                             _button.CreateToggleButtonItem();
                             RemoveChildren(itemNode);
                             frameViews.AddControl(itemNode, _button.ButtonItem);
-                            SubjectNode.TreeView.SelectedNode = SubjectNode; //.Selected = true;
+                            SubjectNode.TreeView.SelectedNode = SubjectNode;
                             Modified();
                         }
                     }

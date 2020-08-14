@@ -97,7 +97,6 @@ namespace UIRibbonTools
                 dialog.SelectedPath = directory;
             dialog.ShowNewFolderButton = true;
 
-            //if (SelectDirectory(RS_SELECT_DIR_CAPTION, Path.GetDirectoryName(Directory), Directory, [sdNewFolder, sdNewUI]))
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 directory = dialog.SelectedPath;

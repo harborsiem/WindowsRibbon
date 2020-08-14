@@ -17,7 +17,7 @@ namespace UIRibbonTools
         private ImageList _imageList;
 
         protected Label LabelApplicationModes { get => _labelApplicationModes; }
-        protected TextBox EditApplicationModes { get => _editApplicationModes; } //: TButtonedEdit;
+        protected TextBox EditApplicationModes { get => _editApplicationModes; }
         protected Button RightButton { get => _rightButton; }
 
         private TRibbonControl _control;
@@ -226,7 +226,6 @@ namespace UIRibbonTools
         {
             base.Initialize(subject);
             _control = subject as TRibbonControl;
-            //RightButton.Click += EditApplicationModesRightButtonClick;
             LabelApplicationModes.Enabled = _control.SupportApplicationModes();
             EditApplicationModes.Enabled = _control.SupportApplicationModes();
             RightButton.Enabled = _control.SupportApplicationModes();

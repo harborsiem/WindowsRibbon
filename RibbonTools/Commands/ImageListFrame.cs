@@ -426,7 +426,7 @@ namespace UIRibbonTools
                 }
 
                 if (listView.Items.Count > 0)
-                    listView.Items[0].Selected = true; // ItemIndex = 0;
+                    listView.Items[0].Selected = true;
             }
             finally
             {

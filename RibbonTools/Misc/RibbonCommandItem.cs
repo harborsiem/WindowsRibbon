@@ -33,13 +33,30 @@ namespace UIRibbonTools
 
         public static int IndexOf(ComboBox combo, string command)
         {
+            string c;
+            int j = command.IndexOf('(');
+            if (j > 0)
+                c = command.Substring(0, j - 1);
+            else
+                c = command;
             List<string> list = new List<string>();
             ComboBox.ObjectCollection items = combo.Items;
             for (int i = 0; i < items.Count; i++)
             {
-                list.Add(((RibbonCommandItem)items[i]).Name);
+                list.Add(OnlyCommandName(((RibbonCommandItem)items[i]).Name));
             }
-            return list.IndexOf(command);
+            return list.IndexOf(OnlyCommandName(command));
+        }
+
+        private static string OnlyCommandName(string command) //@ added, View reference lost if labelTitle changed
+        {
+            string result;
+            int j = command.IndexOf('(');
+            if (j > 0)
+                result = command.Substring(0, j - 1);
+            else
+                result = command;
+            return result;
         }
 
         public static int IndexOf(ComboBox combo, TRibbonCommand command)

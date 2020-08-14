@@ -13,7 +13,6 @@ namespace UIRibbonTools
 {
     partial class CommandsFrame : UserControl
     {
-        //enum TCommandSortType { Name, Caption, None };
         const string DefaultCommandNameAtBeginning = "cmd_"; //"Command"; //@ added
 
         private const string RS_REMOVE_COMMAND_HEADER = "Remove command?";
@@ -29,8 +28,6 @@ namespace UIRibbonTools
         //private ImageListFrame _smallHCImagesFrame;
         //private ImageListFrame _largeHCImagesFrame;
         private int _newCommandIndex;
-        //private TCommandSortType FSortBy;
-        //private bool FSortDescending;
         private TActionList _actionList;
         private TAction _actionAddCommand;
         private TAction _actionRemoveCommand;
@@ -277,8 +274,8 @@ namespace UIRibbonTools
             ListViewItem item = AddCommand(command);
             ListViewCommands.Items[item.Index].Selected = true;
             ListViewCommands.Items[item.Index].Focused = true;
-            ListViewCommands.Items[item.Index].EnsureVisible(); //false
-            EditName.Select(); // Focus();
+            ListViewCommands.Items[item.Index].EnsureVisible();
+            EditName.Select();
             BtnGenerateIDClick(sender, EventArgs.Empty);
             Modified();
         }
@@ -354,7 +351,7 @@ namespace UIRibbonTools
                     {
                         if (item.Tag == commandSearchForm.ListViewCommands.SelectedItems[0].Tag)
                             this.ListViewCommands.Items[item.Index].Selected = true;
-                        this.ListViewCommands.SelectedItems[0].EnsureVisible(); //false
+                        this.ListViewCommands.SelectedItems[0].EnsureVisible();
                     }
                 }
             }
@@ -743,21 +740,6 @@ namespace UIRibbonTools
 
             List<TRibbonCommand> commands;
 
-            //((ListView)sender).Sorting = SortOrder.None;
-
-            //if (FSortBy == (TCommandSortType)(e.Column))
-            //    FSortDescending = !FSortDescending;
-            //else
-            //{
-            //    FSortBy = (TCommandSortType)(e.Column);
-            //    FSortDescending = false;
-            //}
-
-            //if (FSortDescending)
-            //    ListViewCommands.Sorting = SortOrder.Descending;
-            //else
-            //    ListViewCommands.Sorting = SortOrder.Ascending; //Text
-
             commands = new List<TRibbonCommand>();
             try
             {
@@ -772,24 +754,7 @@ namespace UIRibbonTools
             }
         }
 
-        //Implementation in class ListViewColumnSorter
-        //private void ListViewCommandsCompare(object sender, EventArgs e, ListViewItem Item1, ListViewItem Item2, int Data, ref int Compare)
-        //{
-        //    switch (FSortBy)
-        //    {
-        //        case TCommandSortType.None:
-        //            Compare = 0;
-        //            break;
-        //        case TCommandSortType.Name:
-        //            Compare = string.Compare(Item1.Text, Item2.Text);
-        //            break;
-        //        default:
-        //            Compare = string.Compare(Item1.SubItems[0].Text, Item2.SubItems[0].Text);
-        //            break;
-        //    }
-        //    if (FSortDescending)
-        //        Compare = -Compare;
-        //}
+        //ListViewCommandsCompare: Implementation in class ListViewColumnSorter
 
         private void ListViewTimer_Tick(object sender, EventArgs e) //@ added
         {
@@ -837,7 +802,7 @@ namespace UIRibbonTools
                 //item.Free;
                 ListViewCommands.Items[newItem.Index].Selected = true;
                 newItem.Focused = true;
-                newItem.EnsureVisible(); //false
+                newItem.EnsureVisible();
                 Modified();
             }
         }
@@ -882,7 +847,6 @@ namespace UIRibbonTools
                     {
                         if (!int.TryParse(command.Name.Substring(commandNameMinLength), out index))
                             index = -1;
-                        //index = StrToIntDef(string.Copy(Command.Name, 8, int.MaxValue), -1);
                         if (index > _newCommandIndex)
                             _newCommandIndex = index;
                     }
@@ -1007,23 +971,5 @@ namespace UIRibbonTools
                     upDown.Value = 0;
             }
         }
-
-        //@ different
-        //private void UpDownChangingEx(object sender, EventArgs e,
-        //ref bool AllowChange, int NewValue, TUpDownDirection Direction)
-        //{
-
-        //    NumericUpDown UpDown;
-        //    UpDown = sender as NumericUpDown;
-        //    //{ Skip value 1 }
-        //    AllowChange = (NewValue != 1);
-        //    if (!AllowChange)
-        //    {
-        //        if (Direction == updUp)
-        //            UpDown.Value = 2;
-        //        else
-        //            UpDown.Value = 0;
-        //    }
-        //}
     }
 }

@@ -15,8 +15,6 @@ namespace UIRibbonTools
     {
         private static Image sample = ImageManager.TabGroupSample();
 
-        //public TFrameTabGroup FrameTabGroup;
-
         public TFrameTabGroup()
         {
             bool designtime = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);

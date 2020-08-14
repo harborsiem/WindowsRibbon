@@ -533,9 +533,6 @@ namespace UIRibbonTools
 
         //@ => we have Tooltips
         //private void ApplicationEventsHint(object sender, EventArgs e)
-        //{
-        //    statusHints.Text = Application.Hint;
-        //}
 
         private void BuildAndPreview(bool preview)
         {

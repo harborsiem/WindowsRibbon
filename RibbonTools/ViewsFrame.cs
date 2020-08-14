@@ -175,7 +175,7 @@ namespace UIRibbonTools
                 AddMiniToolbars(root, popup.MiniToolbars);
                 AddContextMenus(root, popup.ContextMenus);
                 AddContextMaps(root, popup.ContextMaps);
-                root.Expand(); // false);
+                root.Expand();
             }
             finally
             {
@@ -407,7 +407,7 @@ namespace UIRibbonTools
                     treeViewRibbon.Nodes.Add(result);
                 }
                 else
-                    result = parent.Nodes.Insert(0, caption); // TreeViewRibbon.Nodes.AddChildFirst(parent, caption);
+                    result = parent.Nodes.Insert(0, caption);
             }
             else
             {
@@ -417,7 +417,7 @@ namespace UIRibbonTools
                     treeViewRibbon.Nodes.Add(result);
                 }
                 else
-                    result = parent.Nodes.Add(caption); // TreeViewRibbon.Nodes.Add(parent, Caption);
+                    result = parent.Nodes.Add(caption);
             }
             result.ImageIndex = imageIndex;
             result.SelectedImageIndex = imageIndex;
@@ -551,9 +551,6 @@ namespace UIRibbonTools
         private void AddTabs(TreeNode parent,
             TRibbonList<TRibbonTab> tabs)
         {
-            //  TreeNode node;
-
-            //  node = AddNode(parent, RS_TABS, II_TAB, FRibbon.Tabs);
             foreach (TRibbonTab tab in tabs)
                 AddTab(parent, tab);
         }
@@ -831,7 +828,7 @@ namespace UIRibbonTools
                         AddNode(root, RS_HELP_BUTTON, II_HELP_BUTTON, ribbon.HelpButton);
                         AddContextualTabs(root, ribbon.ContextualTabs);
                         AddTabs(root, ribbon.Tabs);
-                        root.Expand(); // false);
+                        root.Expand();
                     }
                     else if (view is TRibbonViewContextPopup)
                         AddContextPopup((TRibbonViewContextPopup)(view));

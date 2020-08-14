@@ -133,7 +133,6 @@ namespace UIRibbonTools
                     {
                         endNode = new TreeNode(text);
                         _treeNodes.Add(endNode);
-                        //treeViewXmlSource.Nodes.Add(endNode);
                     }
                     endNode.ImageIndex = lineNum;
                     lineNum++;
@@ -188,7 +187,6 @@ namespace UIRibbonTools
                     {
                         endNode = new TreeNode(text);
                         _treeNodes.Add(endNode);
-                        //treeViewXmlSource.Nodes.Add(endNode);
                     }
                     endNode.Tag = element.Name;
                     endNode.ImageIndex = lineNum;
@@ -245,7 +243,6 @@ namespace UIRibbonTools
                     root = AddNodeT(null, _xmlDoc.Root, ref lineNum);
 #endif
                     treeViewXmlSource.Nodes.AddRange(_treeNodes.ToArray());
-                    //treeViewXmlSource.Nodes.Insert(0, root);
                     _lineCount = lineNum - 1;
                     _allowExpandCollapse = true;
                     treeViewXmlSource.SelectedNode = root;
@@ -266,7 +263,7 @@ namespace UIRibbonTools
 
         public void Deactivate_()
         {
-            //Nothing yet ;
+            //Nothing yet
         }
 
         private void TreeViewXmlSourceCollapsing(object sender,
@@ -359,7 +356,7 @@ namespace UIRibbonTools
 
             RM = new NativeMethods.RECT();
             RN = new NativeMethods.RECT(e.Bounds); //Node.DisplayRect(false);
-            RT = new NativeMethods.RECT(Rectangle.Inflate(e.Bounds, -e.Node.Bounds.X + 19, 0)); // Node.DisplayRect(true); onlyText
+            RT = new NativeMethods.RECT(Rectangle.Inflate(e.Bounds, -e.Node.Bounds.X + 19, 0)); // onlyText
             RT.Right = RN.Right;
 
             if (_marginWidth < 0)
@@ -386,7 +383,7 @@ namespace UIRibbonTools
             e.Graphics.ReleaseHdc(DC);
 
             // Focus rect
-            if ((e.State & TreeNodeStates.Focused) != 0) //cdsFocused in
+            if ((e.State & TreeNodeStates.Focused) != 0)
             {
                 e.Graphics.FillRectangle(_focusBrush, RN.ToRectangle());
             }
@@ -426,7 +423,6 @@ namespace UIRibbonTools
                 RN.Left = RN.Right + 10;
                 e.Graphics.DrawLine(_marginTextPen, RN.Left, RN.Top, RN.Left, RN.Bottom);
             }
-            //return;
 
             // Draw element
             DC = e.Graphics.GetHdc();
@@ -445,9 +441,6 @@ namespace UIRibbonTools
             }
             NativeMethods.DrawText(DC, s, s.Length, ref RT, TEXT_FLAGS);
             RT.Left += width;
-
-            //NativeMethods.DrawText(DC, S, S.Length, ref RM, TEXT_FLAGS | NativeMethods.DT_CALCRECT);
-            //RT.Left += RM.Right - RM.Left;
 
             NativeMethods.SetTextColor(DC, COLOR_ELEMENT);
             if (element != null)
@@ -506,9 +499,6 @@ namespace UIRibbonTools
                 NativeMethods.DrawText(DC, ">", 1, ref RT, TEXT_FLAGS);
                 RT.Left += _greaterThanWidth;
 
-                //NativeMethods.DrawText(DC, ">", 1, ref RM, TEXT_FLAGS | NativeMethods.DT_CALCRECT);
-                //RT.Left += RM.Right - RM.Left;
-
                 NativeMethods.SetTextColor(DC, COLOR_CONTENT);
                 NativeMethods.DrawText(DC, s, s.Length, ref RT, TEXT_FLAGS);
 
@@ -518,9 +508,6 @@ namespace UIRibbonTools
                 NativeMethods.SetTextColor(DC, COLOR_SYMBOL);
                 NativeMethods.DrawText(DC, "</", 2, ref RT, TEXT_FLAGS);
                 RT.Left += _lessThanSlashWidth;
-
-                //NativeMethods.DrawText(DC, "</", 2, ref RM, TEXT_FLAGS | NativeMethods.DT_CALCRECT);
-                //RT.Left += RM.Right - RM.Left;
 
                 s = element.Name.LocalName;
                 NativeMethods.SetTextColor(DC, COLOR_ELEMENT);

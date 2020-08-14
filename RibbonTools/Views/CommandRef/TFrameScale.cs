@@ -13,8 +13,6 @@ namespace UIRibbonTools
     [DesignTimeVisible(false)]
     partial class TFrameScale : TFrameCommandRefObject
     {
-        //private static Image sample = ImageManager.ScaleSample();
-
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxSize { get => _comboBoxSize; }
 
@@ -140,7 +138,6 @@ namespace UIRibbonTools
         protected override void Initialize(TRibbonObject subject)
         {
             base.Initialize(subject);
-            //ComboBoxCommand.SelectedIndexChanged += ComboBoxCommandChange; //not here, but in InitEvents
             _scale = subject as TRibbonScale;
             if (_scale.GroupRef == null)
                 ComboBoxCommand.SelectedIndex = 0;
@@ -149,10 +146,5 @@ namespace UIRibbonTools
             //ComboBoxCommand.Items.IndexOf(_scale.GroupRef);
             ComboBoxSize.SelectedIndex = (int)(_scale.Size);
         }
-
-        //protected override Image SetImageSample()
-        //{
-        //    return sample;
-        //}
     }
 }

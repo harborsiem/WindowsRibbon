@@ -15,8 +15,6 @@ namespace UIRibbonTools
     {
         private static Image sample = ImageManager.CheckBoxSample();
 
-        //public TFrameCheckBox FrameCheckBox;
-
         public TFrameCheckBox()
         {
             bool designtime = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);

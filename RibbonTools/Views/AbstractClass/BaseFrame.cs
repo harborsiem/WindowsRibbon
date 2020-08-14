@@ -62,8 +62,8 @@ namespace UIRibbonTools
         {
             _viewsSample = new ViewsSampleForm();
         }
-        protected const float ThirdColumnWidth = 200f; //145f
-        protected const float FourthColumnWidth = 24f; //24f
+        protected const float ThirdColumnWidth = 200f;
+        protected const float FourthColumnWidth = 24f;
         protected ToolTip viewsTip;
 
         private TRibbonObject _subject;
@@ -172,7 +172,7 @@ namespace UIRibbonTools
             this._layoutPanel.ColumnCount = 4;
             this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, ThirdColumnWidth)); // 145F)); //@ ?
+            this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, ThirdColumnWidth));
             this._layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, FourthColumnWidth));
             this._layoutPanel.Location = new System.Drawing.Point(3, 3);
             this._layoutPanel.Name = "_layoutPanel";
@@ -197,9 +197,7 @@ namespace UIRibbonTools
             // _panel
             // 
             this._panel.AutoScroll = true;
-            //this._panel.BackColor = Color.Bisque;
             this._panel.Controls.Add(this._layoutPanel);
-            //this._panel.Controls.Add(this._imageSample);
             this._panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._panel.Location = new System.Drawing.Point(0, 25);
             this._panel.Name = "_panel";

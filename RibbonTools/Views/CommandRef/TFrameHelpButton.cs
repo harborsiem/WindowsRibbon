@@ -15,8 +15,6 @@ namespace UIRibbonTools
     {
         private static Image sample = ImageManager.HelpSample();
 
-        //public TFrameHelpButton FrameHelpButton;
-
         public TFrameHelpButton()
         {
             bool designtime = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);

@@ -31,7 +31,6 @@ namespace UIRibbonTools
             LabeledEditSearchInput.KeyDown += LabeledEditSearchInputKeyDown;
             LabeledEditSearchInput.TextChanged += LabeledEditSearchInputChange;
             ListViewCommands.DoubleClick += ListViewCommandsDblClick;
-            //ListViewCommands.ListViewItemSorter
             this.Shown += FormShow;
         }
 
@@ -102,7 +101,7 @@ namespace UIRibbonTools
             {
                 if ((searchText.Length == 0) || (item.Text.ToUpper().Contains(searchText.ToUpper())))
                 {
-                    newItem = ListViewCommands.Items.Insert(ListViewCommands.Items.Count, (ListViewItem)item.Clone()); //@ Count - 1 ?
+                    newItem = ListViewCommands.Items.Insert(ListViewCommands.Items.Count, (ListViewItem)item.Clone());
                 }
             }
 

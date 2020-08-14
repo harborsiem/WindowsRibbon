@@ -54,7 +54,7 @@ namespace UIRibbonTools
 
     partial class TRibbonObject
     {
-        public static int AttributeAsIntegerDef(XElement sender, string attrName, int @default)
+        public static int AttributeAsInt32OrDefault(XElement sender, string attrName, int @default)
         {
             string tmp = sender.Attribute(attrName)?.Value;
             if (string.IsNullOrEmpty(tmp))
@@ -62,7 +62,7 @@ namespace UIRibbonTools
             return XmlConvert.ToInt32(tmp);
         }
 
-        public static bool AttributeAsBooleanDef(XElement sender, string attrName, bool @default)
+        public static bool AttributeAsBooleanOrDefault(XElement sender, string attrName, bool @default)
         {
             string tmp = sender.Attribute(attrName)?.Value;
             if (string.IsNullOrEmpty(tmp))
@@ -1401,8 +1401,8 @@ namespace UIRibbonTools
             //    Error(E, RS_SINGLE_ELEMENT, E.Name.LocalName, EN_RECENT_ITEMS);
             //inherited Create(Owner, E[0]);
             XElement C = E;
-            _maxCount = AttributeAsIntegerDef(C, AN_MAX_COUNT, 10);
-            _enablePinning = AttributeAsBooleanDef(C, AN_ENABLE_PINNING, true);
+            _maxCount = AttributeAsInt32OrDefault(C, AN_MAX_COUNT, 10);
+            _enablePinning = AttributeAsBooleanOrDefault(C, AN_ENABLE_PINNING, true);
         }
 
         internal override void Save(XmlWriter writer)
@@ -2200,8 +2200,8 @@ namespace UIRibbonTools
             _standardColorGridRows = string.IsNullOrEmpty(tmp) ? 0 : XmlConvert.ToInt32(tmp);
             tmp = E.Attribute(AN_RECENT_COLOR_GRID_ROWS)?.Value;
             _recentColorGridRows = string.IsNullOrEmpty(tmp) ? 0 : XmlConvert.ToInt32(tmp);
-            _isAutomaticColorButtonVisible = AttributeAsBooleanDef(E, AN_IS_AUTOMATIC_COLOR_BUTTON_VISIBLE, true);
-            _isNoColorButtonVisible = AttributeAsBooleanDef(E, AN_IS_NO_COLOR_BUTTON_VISIBLE, true);
+            _isAutomaticColorButtonVisible = AttributeAsBooleanOrDefault(E, AN_IS_AUTOMATIC_COLOR_BUTTON_VISIBLE, true);
+            _isNoColorButtonVisible = AttributeAsBooleanOrDefault(E, AN_IS_NO_COLOR_BUTTON_VISIBLE, true);
         }
 
         internal override void Save(XmlWriter writer)
@@ -2322,8 +2322,8 @@ namespace UIRibbonTools
                 _resizeType = RibbonComboBoxResizeType.VerticalResize;
             else
                 Error(E, RS_INVALID_RESIZE_TYPE);
-            _isEditable = AttributeAsBooleanDef(E, AN_IS_EDITABLE, true);
-            _isAutoCompleteEnabled = AttributeAsBooleanDef(E, AN_IS_AUTO_COMPLETE_ENABLED, true);
+            _isEditable = AttributeAsBooleanOrDefault(E, AN_IS_EDITABLE, true);
+            _isAutoCompleteEnabled = AttributeAsBooleanOrDefault(E, AN_IS_AUTO_COMPLETE_ENABLED, true);
         }
 
         internal override void Save(XmlWriter writer)
@@ -2367,7 +2367,7 @@ namespace UIRibbonTools
 
         public TRibbonQatControl(TRibbonDocument owner, XElement E, TRibbonCommandRefObject parent) : base(owner, E, parent)
         {
-            _isChecked = AttributeAsBooleanDef(E, AN_APPLICATION_DEFAULTS_IS_CHECKED, true);
+            _isChecked = AttributeAsBooleanOrDefault(E, AN_APPLICATION_DEFAULTS_IS_CHECKED, true);
         }
 
         internal override void Save(XmlWriter writer)
@@ -2582,10 +2582,10 @@ namespace UIRibbonTools
 
         public TRibbonFloatieFontControl(TRibbonDocument owner, XElement E, TRibbonCommandRefObject parent) : base(owner, E, parent)
         {
-            _showTrueTypeOnly = AttributeAsBooleanDef(E, AN_SHOW_TRUE_TYPE_ONLY, false);
-            _showVerticalFonts = AttributeAsBooleanDef(E, AN_SHOW_VERTICAL_FONTS, true);
-            _minimumFontSize = AttributeAsIntegerDef(E, AN_MINIMUM_FONT_SIZE, 1);
-            _maximumFontSize = AttributeAsIntegerDef(E, AN_MAXIMUM_FONT_SIZE, 9999);
+            _showTrueTypeOnly = AttributeAsBooleanOrDefault(E, AN_SHOW_TRUE_TYPE_ONLY, false);
+            _showVerticalFonts = AttributeAsBooleanOrDefault(E, AN_SHOW_VERTICAL_FONTS, true);
+            _minimumFontSize = AttributeAsInt32OrDefault(E, AN_MINIMUM_FONT_SIZE, 1);
+            _maximumFontSize = AttributeAsInt32OrDefault(E, AN_MAXIMUM_FONT_SIZE, 9999);
             _minimumFontSize = Addons.EnsureRange(_minimumFontSize, 1, 9999);
             _maximumFontSize = Addons.EnsureRange(_maximumFontSize, 1, 9999);
         }
@@ -2652,10 +2652,10 @@ namespace UIRibbonTools
             else
                 Error(E, RS_INVALID_FONT_TYPE);
 
-            _isStrikethroughButtonVisible = AttributeAsBooleanDef(E, AN_IS_STRIKETHROUGH_BUTTON_VISIBLE, true);
-            _isUnderlineButtonVisible = AttributeAsBooleanDef(E, AN_IS_UNDERLINE_BUTTON_VISIBLE, true);
-            _isHighlightButtonVisible = AttributeAsBooleanDef(E, AN_IS_HIGHLIGHT_BUTTON_VISIBLE, (_fontType != RibbonFontType.FontOnly));
-            _isGrowShrinkButtonGroupVisible = AttributeAsBooleanDef(E, AN_IsGrowShrinkButtonGroupVisible, (_fontType != RibbonFontType.FontOnly));
+            _isStrikethroughButtonVisible = AttributeAsBooleanOrDefault(E, AN_IS_STRIKETHROUGH_BUTTON_VISIBLE, true);
+            _isUnderlineButtonVisible = AttributeAsBooleanOrDefault(E, AN_IS_UNDERLINE_BUTTON_VISIBLE, true);
+            _isHighlightButtonVisible = AttributeAsBooleanOrDefault(E, AN_IS_HIGHLIGHT_BUTTON_VISIBLE, (_fontType != RibbonFontType.FontOnly));
+            _isGrowShrinkButtonGroupVisible = AttributeAsBooleanOrDefault(E, AN_IsGrowShrinkButtonGroupVisible, (_fontType != RibbonFontType.FontOnly));
         }
 
         protected override void SaveAttributes(XmlWriter writer)
@@ -2833,7 +2833,7 @@ namespace UIRibbonTools
 
         protected TRibbonGalleryMenuLayout(TRibbonDocument owner, XElement E) : base(owner)
         {
-            _rows = AttributeAsIntegerDef(E, AN_ROWS, -1);
+            _rows = AttributeAsInt32OrDefault(E, AN_ROWS, -1);
         }
 
 
@@ -2871,7 +2871,7 @@ namespace UIRibbonTools
             else
                 Error(E, RS_INVALID_GRIPPER);
 
-            _isMultipleHighlightingEnabled = AttributeAsBooleanDef(E, AN_IsMultipleHighlightingEnabled, false);
+            _isMultipleHighlightingEnabled = AttributeAsBooleanOrDefault(E, AN_IsMultipleHighlightingEnabled, false);
         }
 
         internal override void Save(XmlWriter writer)
@@ -2922,7 +2922,7 @@ namespace UIRibbonTools
             else
                 Error(E, RS_INVALID_GRIPPER);
 
-            _columns = AttributeAsIntegerDef(E, AN_COLUMNS, 2);
+            _columns = AttributeAsInt32OrDefault(E, AN_COLUMNS, 2);
         }
 
         internal override void Save(XmlWriter writer)
@@ -2987,9 +2987,9 @@ namespace UIRibbonTools
             else
                 Error(E, RS_INVALID_TYPE);
 
-            _hasLargeItems = AttributeAsBooleanDef(E, AN_HAS_LARGE_ITEMS, true);
-            _itemHeight = AttributeAsIntegerDef(E, AN_ITEM_HEIGHT, -1);
-            _itemWidth = AttributeAsIntegerDef(E, AN_ITEM_WIDTH, -1);
+            _hasLargeItems = AttributeAsBooleanOrDefault(E, AN_HAS_LARGE_ITEMS, true);
+            _itemHeight = AttributeAsInt32OrDefault(E, AN_ITEM_HEIGHT, -1);
+            _itemWidth = AttributeAsInt32OrDefault(E, AN_ITEM_WIDTH, -1);
 
             s = E.Attribute(AN_TEXT_POSITION)?.Value;
             if ((string.IsNullOrEmpty(s)) || (s == ES_BOTTOM))
@@ -3339,11 +3339,11 @@ namespace UIRibbonTools
 
         public TRibbonInRibbonGallery(TRibbonDocument owner, XElement E, TRibbonCommandRefObject parent) : base(owner, E, parent)
         {
-            _minColumnsLarge = AttributeAsIntegerDef(E, AN_MIN_COLUMNS_LARGE, -1);
-            _maxColumnsMedium = AttributeAsIntegerDef(E, AN_MAX_COLUMNS_MEDIUM, -1);
-            _minColumnsMedium = AttributeAsIntegerDef(E, AN_MIN_COLUMNS_MEDIUM, -1);
-            _maxColumns = AttributeAsIntegerDef(E, AN_MAX_COLUMNS, -1);
-            _maxRows = AttributeAsIntegerDef(E, AN_MAX_ROWS, -1);
+            _minColumnsLarge = AttributeAsInt32OrDefault(E, AN_MIN_COLUMNS_LARGE, -1);
+            _maxColumnsMedium = AttributeAsInt32OrDefault(E, AN_MAX_COLUMNS_MEDIUM, -1);
+            _minColumnsMedium = AttributeAsInt32OrDefault(E, AN_MIN_COLUMNS_MEDIUM, -1);
+            _maxColumns = AttributeAsInt32OrDefault(E, AN_MAX_COLUMNS, -1);
+            _maxRows = AttributeAsInt32OrDefault(E, AN_MAX_ROWS, -1);
         }
 
         internal override void Save(XmlWriter writer)
@@ -4068,9 +4068,9 @@ namespace UIRibbonTools
             else
                 Error(E, RS_INVALID_IMAGE_SIZE);
 
-            _isLabelVisible = AttributeAsBooleanDef(E, AN_IS_LABEL_VISIBLE, true);
-            _isImageVisible = AttributeAsBooleanDef(E, AN_IS_IMAGE_VISIBLE, true);
-            _isPopup = AttributeAsBooleanDef(E, AN_IS_POPUP, false);
+            _isLabelVisible = AttributeAsBooleanOrDefault(E, AN_IS_LABEL_VISIBLE, true);
+            _isImageVisible = AttributeAsBooleanOrDefault(E, AN_IS_IMAGE_VISIBLE, true);
+            _isPopup = AttributeAsBooleanOrDefault(E, AN_IS_POPUP, false);
             _controlName = E.Attribute(AN_CONTROL_NAME)?.Value;
             if (!IsValidCommandNameString(_controlName))
                 Error(E, RS_INVALID_COMMAND_NAME, _controlName);
@@ -4336,7 +4336,7 @@ namespace UIRibbonTools
         public TRibbonColumnBreak(TRibbonDocument owner,
             TRibbonSizeDefinition ownerDefinition, XElement E) : base(owner, ownerDefinition)
         {
-            _showSeparator = AttributeAsBooleanDef(E, AN_SHOW_SEPARATOR, true);
+            _showSeparator = AttributeAsBooleanOrDefault(E, AN_SHOW_SEPARATOR, true);
         }
 
         internal override void Save(XmlWriter writer)
