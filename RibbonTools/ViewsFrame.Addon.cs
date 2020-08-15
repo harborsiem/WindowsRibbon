@@ -184,6 +184,7 @@ namespace UIRibbonTools
                 _actionAddMiniToolbarMenuGroup,
             });
 
+            _actionAdd.Update += TreeActionUpdate;
             _actionAdd.Hint = "Adds a subitem to the selected node";
             _actionAdd.ImageIndex = 36;
             _actionAdd.Text = "Add";

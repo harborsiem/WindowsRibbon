@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.8.7, RibbonTools V1.3.1
+
+### Changed (RibbonTools)
+
+- .net core 3.1 project files
+- Intellisense for ribbonitems.designer.cs(vb) props
+- fix for comment in .h file
+- fix color for log
+- BugFix for QAT CustomizeCommandName
+- Command in View lost when LabelTitle changed
+- Issue with Add in View page
+- other fixes and cleanups
+
 ### Ribbon V2.8.7, RibbonTools V1.3.0
 
 ### Changed
@@ -19,8 +32,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Ribbon: more IntelliSence comments for the codebehind.
-- Ribbon: new EventLogger classes (Windows 8 and later)
+- Ribbon: more IntelliSense comments for the code behind.
+- Ribbon: new EventLogger classes (since Windows 8)
   usage: from the Ribbon class you can get an instance of the EventLogger class (Property EventLogger). If you want use the EventLogger, you have to call EventLogger.Attach() and connect to the EventLogger.LogEvent. If you don't want the Logging anymore, then you have to call EventLogger.Detach().
 - RibbonTools: Issues with xxGallery, DropDownButton, SplitButton, MenuGroups and Controls and other small fixes.
 
@@ -61,7 +74,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Detection of latest Visual Studio Linker in RibbonGenerator for the Template.bat in LocalAppData folder RibbonGenerator.
-- In Ribbon events with unhandled Exceptions the application exits now with Environment.FailFast(Stacktrace). Environment.FailFast write the informations to the Windows application event logger.  You can prevent this hard exit by using the new Ribbon event "RibbonEventException".
+- In Ribbon events with unhandled Exceptions the application exits now with Environment.FailFast(Stacktrace). Environment.FailFast write the information to the Windows application event logger.  You can prevent this hard exit by using the new Ribbon event "RibbonEventException".
 
 ## [2.8.3] - [2019-11-08]
 
@@ -87,7 +100,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Ribbon V2.8.1 and RibbonGenerator V1.3.1
 
 ### Changed
-- Deinstall older RibbonGenerator first !
+- Uninstall older RibbonGenerator first !
 - some Bugfixes
 - Refactoring the CodeGenerator in RibbonGenerator.
 - The Template.bat is now set to Visual Studio 2019 Community Edition
