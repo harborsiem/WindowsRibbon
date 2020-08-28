@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.8.8, RibbonTools V1.3.1
+
+### Changed (Ribbon)
+
+- bugfix spinner DecimalValue
+- Ribbon: comments for designtime properties
+- new Ribbon property: ResourceIdentifier  (normally leave it empty) Only neccessary if you use a not default (APPLICATION) ***name*** parameter with uicc.exe.
+
 ### Ribbon V2.8.7, RibbonTools V1.3.1
 
 ### Changed (RibbonTools)

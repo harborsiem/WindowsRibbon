@@ -68,6 +68,7 @@ namespace RibbonLib.Controls.Properties
             _supportedProperties.Add(RibbonProperties.FormatString);
         }
 
+        private decimal? _decimalValue;
         private decimal? _increment;
         private decimal? _maxValue;
         private decimal? _minValue;
@@ -85,6 +86,10 @@ namespace RibbonLib.Controls.Properties
         {
             if (key == RibbonProperties.DecimalValue)
             {
+                if (_decimalValue.HasValue)
+                {
+                    newValue.SetDecimal(_decimalValue.Value);
+                }
             }
             else if (key == RibbonProperties.Increment)
             {
@@ -144,10 +149,11 @@ namespace RibbonLib.Controls.Properties
                     }
                 }
 
-                return 0;
+                return _decimalValue.GetValueOrDefault();
             }
             set
             {
+                _decimalValue = value;
                 if (_ribbon.Initialized)
                 {
                     PropVariant decimalValue = PropVariant.FromObject(value);

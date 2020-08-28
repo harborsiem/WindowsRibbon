@@ -37,6 +37,7 @@ namespace RibbonLib
         private IntPtr _loadedDllHandle = IntPtr.Zero;
 
         private const string DefaultResourceName = "APPLICATION_RIBBON";
+        private const string ResNameExtension = "_RIBBON";
 
         private RibbonShortcutTable _ribbonShortcutTable;
 
@@ -55,6 +56,7 @@ namespace RibbonLib
         /// in the application assembly. The (xml)-file contains
         /// shortcut keys.
         /// </summary>
+        [Description("The embedded resource (xml)-file contains shortcut keys.")]
         public string ShortcutTableResourceName
         {
             get { return _shortcutTableResourceName; }
@@ -210,12 +212,24 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// This is the Name parameter used for the UICC Compiler
+        /// Default value is APPLICATION or leave it empty.
+        /// </summary>
+        [Description("This is the Name parameter used for the UICC Compiler. Default value is APPLICATION or leave it empty.")]
+        public string ResourceIdentifier
+        {
+            get;
+            set;
+        }
+
         string _resourceName;
 
         /// <summary>
         /// is a reference to an embedded resource file
         /// in the application assembly. The RibbonMarkup.ribbon file.
         /// </summary>
+        [Description("Is a reference to an embedded resource file in the application assembly. The RibbonMarkup.ribbon file.")]
         public string ResourceName
         {
             get { return _resourceName; }
@@ -482,8 +496,13 @@ namespace RibbonLib
             // if ribbon dll exists, use it
             if (File.Exists(_tempDllFilename))
             {
+                string resourceIdentifier;
+                if (string.IsNullOrEmpty(ResourceIdentifier))
+                    resourceIdentifier = DefaultResourceName;
+                else
+                    resourceIdentifier = ResourceIdentifier + ResNameExtension;
                 // load ribbon from ribbon dll resource
-                InitFramework(DefaultResourceName, _tempDllFilename);
+                InitFramework(resourceIdentifier, _tempDllFilename);
             }
         }
 
