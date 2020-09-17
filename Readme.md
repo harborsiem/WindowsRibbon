@@ -4,7 +4,7 @@ Windows Ribbon for WinForms
 
 Windows Ribbon for WinForms is a .NET wrapper for Windows 7 Ribbon control. It will allow WinForms developers to use Microsoft Windows 7 Ribbon control in their WinForms applications. Later versions of Windows (Windows 8, Windows 10) are welcome.
 
-WindowsRibbon is sometimes called UIRibbon. The former development title is Scenic.
+WindowsRibbon is sometimes called UIRibbon. The former development title is Scenic Ribbon.
 
 # **Project Description**
 
@@ -13,8 +13,8 @@ WindowsRibbon is sometimes called UIRibbon. The former development title is Scen
 
 The project includes the library RibbonLib, which adds support for Windows Ribbon to WinForms application and sample applications, written both in C# and VB.NET, that demonstrates the use of the library and the different Ribbon features available.
 
-Check Arik Poznanski's blog for more details on how to use the windows ribbon at 
-[http://blogs.microsoft.co.il/blogs/arik/](http://blogs.microsoft.co.il/arik/2009/09/) Also have a look at this  [Quick Start Tutorial](https://bernhardelbl.wordpress.com/2010/11/17/quickstart-tutorial-windows-ribbon-for-winforms/)
+Read the Wiki Pages for more details on how to use the windows ribbon.
+
 Note: you must have the Windows 7 SDK (or later) installed in order to compile the project. 
 
 Following is the list of sample application and their description: 
@@ -44,7 +44,7 @@ see also:
 
 [Documentation archive](https://www.codeproject.com/Articles/55599/Windows-Ribbon-for-WinForms-Part-Table-of-Conten)
 
-[Current Documentation](https://github.com/harborsiem/WindowsRibbon/blob/master/Documentation/WindowsRibbon.pdf)
+[Current Documentation](https://github.com/harborsiem/WindowsRibbon/wiki)
 
 Thanks to Arik Poznanski and Bernhard Elbl for the great work.
 
