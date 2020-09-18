@@ -63,7 +63,7 @@ namespace RibbonLib
                         {
                             UIRibbon = view as IUIRibbon;
                         }
-                        _ribbonControl.BeginInvoke(new MethodInvoker(_ribbonControl.RaiseViewCreated));
+                        _ribbonControl.BeginInvoke(new MethodInvoker(_ribbonControl.OnViewCreated));
                         hr = HRESULT.S_OK;
                         break;
 
@@ -81,6 +81,7 @@ namespace RibbonLib
                         else
                         {
                             _ribbonControl.Height = (int)uRibbonHeight;
+                            _ribbonControl.BeginInvoke(new MethodInvoker(_ribbonControl.OnRibbonHeightChanged));
                         }
                         break;
 

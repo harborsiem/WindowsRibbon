@@ -41,6 +41,10 @@ namespace RibbonLib
 
         private RibbonShortcutTable _ribbonShortcutTable;
 
+        private static readonly object EventRibbonEventException = new object();
+        private static readonly object EventViewCreated = new object();
+        private static readonly object EventRibbonHeight = new object();
+
         /// <summary>
         /// Get EventLogger object which implements IUIEventLogger.
         /// Only available in Windows 8, 10. Can be null.
@@ -1007,9 +1011,10 @@ namespace RibbonLib
 
         internal bool OnRibbonEventException(object sender, ThreadExceptionEventArgs args)
         {
-            if (RibbonEventException != null)
+            EventHandler<ThreadExceptionEventArgs> eh = Events[EventRibbonEventException] as EventHandler<ThreadExceptionEventArgs>;
+            if (eh != null)
             {
-                RibbonEventException(sender, args);
+                eh(sender, args);
                 return true;
             }
             return false;
@@ -1018,7 +1023,16 @@ namespace RibbonLib
         /// <summary>
         /// User can handle untrapped Exceptions in the other events of the Ribbon
         /// </summary>
-        public event EventHandler<ThreadExceptionEventArgs> RibbonEventException;
+        public event EventHandler<ThreadExceptionEventArgs> RibbonEventException {
+            add
+            {
+                Events.AddHandler(EventRibbonEventException, value);
+            }
+            remove
+            {
+                Events.RemoveHandler(EventRibbonEventException, value);
+            }
+        }
 
         #region Implementation of IUICommandHandler
 
@@ -1076,12 +1090,43 @@ namespace RibbonLib
         /// <summary>
         /// Event fires when the View is created
         /// </summary>
-        public event EventHandler ViewCreated;
+        public event EventHandler ViewCreated {
+            add
+            {
+                Events.AddHandler(EventViewCreated, value);
+            }
+            remove
+            {
+                Events.RemoveHandler(EventViewCreated, value);
+            }
+        }
 
-        internal void RaiseViewCreated()
+        internal void OnViewCreated()
         {
-            if (ViewCreated != null)
-                ViewCreated(this, EventArgs.Empty);
+            EventHandler eh = Events[EventViewCreated] as EventHandler;
+            if (eh != null)
+                eh(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Event fires when the Ribbon height changed
+        /// </summary>
+        public event EventHandler RibbonHeightChanged {
+            add
+            {
+                Events.AddHandler(EventRibbonHeight, value);
+            }
+            remove
+            {
+                Events.RemoveHandler(EventRibbonHeight, value);
+            }
+        }
+
+        internal void OnRibbonHeightChanged()
+        {
+            EventHandler eh = Events[EventRibbonHeight] as EventHandler;
+            if (eh != null)
+                eh(this, EventArgs.Empty);
         }
     }
 }
