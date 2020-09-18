@@ -2,9 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.9.0, RibbonTools V1.3.2
+
+#### Changed (Ribbon)
+
+- new Ribbon event: RibbonHeightChanged
+
+#### Changed (RibbonTools)
+
+- Help Tutorial is linked to the wiki
+- using Ribbon.ResourceIdentifier for preview
+
 ### Ribbon V2.8.8, RibbonTools V1.3.1
 
-### Changed (Ribbon)
+#### Changed (Ribbon)
 
 - bugfix spinner DecimalValue
 - Ribbon: comments for designtime properties
@@ -12,7 +23,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.8.7, RibbonTools V1.3.1
 
-### Changed (RibbonTools)
+#### Changed (RibbonTools)
 
 - .net core 3.1 project files
 - Intellisense for ribbonitems.designer.cs(vb) props
@@ -25,20 +36,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.8.7, RibbonTools V1.3.0
 
-### Changed
+#### Changed
 
 - RibbonTools: Integration of Ribbon features they are available since Windows 8.
   More Qat Controls like ComboBox
   FontControl: IsGrowShrinkButtonGroupVisible
   DropDownGallery, SplitButtonGallery: IsMultipleHighlightingEnabled
 
-### Todo 
+#### Todo (=> done in the wiki)
 
 - Documentation for RibbonTools, EventLogger
 
 ### Ribbon V2.8.7, RibbonTools V1.2.0
 
-### Changed
+#### Changed
 
 - Ribbon: more IntelliSense comments for the code behind.
 - Ribbon: new EventLogger classes (since Windows 8)
@@ -47,11 +58,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.8.6, RibbonTools V1.1.0
 
-### Changed
+#### Changed
 - RibbonTools: Settings added, faster Build
 ### Ribbon V2.8.6, RibbonGenerator V1.3.5, RibbonPreview V1.2.1, RibbonTools V1.0.0
 
-### Changed
+#### Changed
 
 - new application: RibbonTools. This is a tool for design, build and preview the Ribbon. This tool is 
 
@@ -59,7 +70,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.8.6, RibbonGenerator V1.3.5, RibbonPreview V1.2.1
 
-### Changed
+#### Changed
 
 - Ribbon.dll: Calculation of Ribbon colors to / from HSB values as W3C describe. Calculation is not lossless. In Windows 10 Background and Highlight setting is a bit of strange.
 - Ribbon.dll: new methods in Ribbon Control. SetBackgroundColor, SetHighlightColor, SetTextColor.
@@ -67,7 +78,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.8.4, RibbonGenerator V1.3.5, RibbonPreview V1.2
 
-### Changed
+#### Changed
 
 - CommandName can also have a Id which is not defined in the Commands.
 - Update function for the Template.bat (Linker path)
@@ -80,7 +91,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.8.4, RibbonGenerator V1.3.4, RibbonPreview V1.1
 
-### Changed
+#### Changed
 - Detection of latest Visual Studio Linker in RibbonGenerator for the Template.bat in LocalAppData folder RibbonGenerator.
 - In Ribbon events with unhandled Exceptions the application exits now with Environment.FailFast(Stacktrace). Environment.FailFast write the information to the Windows application event logger.  You can prevent this hard exit by using the new Ribbon event "RibbonEventException".
 
@@ -88,7 +99,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.8.3, RibbonGenerator V1.3.3, RibbonPreview V1.1
 
-### Changed
+#### Changed
 - Refactoring CodeBuilder, Parser, ... (RibbonGenerator, RibbonPreview)
 - some Bugfixes
 - ItemsSourceReady and CategoriesReady events now fires only once (Ribbon.dll)
@@ -98,7 +109,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.8.1, RibbonGenerator V1.3.2, RibbonPreview V1.0
 
-### Changed
+#### Changed
 - new RibbonPreview (Build the Ribbon and Preview).
 - some refactoring and bugfixes
 - In the file msi.zip are the Setups for Ribbon.msi, RibbonGenerator.msi, RibbonPreview.msi
@@ -107,7 +118,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.8.1 and RibbonGenerator V1.3.1
 
-### Changed
+#### Changed
 - Uninstall older RibbonGenerator first !
 - some Bugfixes
 - Refactoring the CodeGenerator in RibbonGenerator.
@@ -118,7 +129,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.8 and RibbonGenerator V1.3
 
-### Changed
+#### Changed
 - see HowToUse.md
 - file based RibbonMarkup.ribbon including localization
 - C# Wrapper Code generated (RibbonItems.Designer.cs)
@@ -128,7 +139,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Ribbon V2.7 and RibbonGenerator V1.2
 
-### Changed
+#### Changed
 - Ribbon and RibbonGenerator work also in newer Visual Studio versions.
 - We got a Setup for the components.
 - HowToUse.md

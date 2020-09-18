@@ -76,6 +76,11 @@ namespace UIRibbonTools
 
         public RibbonParser Parser { get; private set; }
 
+        /// <summary>
+        /// Name parameter used by UICC.exe
+        /// </summary>
+        public string ResourceIdentifier { get; set; }
+
         public void SetActions(Action<bool> buildActionEnabled, Action<bool> previewActionEnabled, Action<MessageKind, string> log
             , Action<IList<string>> setLanguages)
         {

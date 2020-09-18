@@ -106,8 +106,8 @@ namespace RibbonLib.Controls
 
         /// <summary>
         /// Event provider which only fired once.
+        /// In this event you can initialize the Categories
         /// Now one can work with the Categories.
-        /// After Ribbon.Initialize one can do this too.
         /// </summary>
         public event EventHandler<EventArgs> CategoriesReady
         {
@@ -123,8 +123,8 @@ namespace RibbonLib.Controls
 
         /// <summary>
         /// Event provider which only fired once.
+        /// In this event you can initialize the ItemsSource
         /// Now one can work with the ItemsSource.
-        /// After Ribbon.Initialize one can do this too.
         /// </summary>
         public event EventHandler<EventArgs> ItemsSourceReady
         {

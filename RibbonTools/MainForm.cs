@@ -262,8 +262,7 @@ namespace UIRibbonTools
                 "Set a resource name for the markup. This is necessary " + Environment.NewLine +
                 "if multiple markups are used in one application." + Environment.NewLine +
                 "The default is APPLICATION" + Environment.NewLine +
-                Environment.NewLine + "Changing of default is not supported in .NET Ribbon" +
-                Environment.NewLine + "Changing of default is not supported for Preview";
+                Environment.NewLine + "Changing of default is not supported in .NET Ribbon";
 
             _actionSetResourceName.Text = "Set ribbon resource name";
             _actionSetResourceName.SetComponent(setresourcename, true);
@@ -510,7 +509,7 @@ namespace UIRibbonTools
 
         private void ActionTutorialExecute(object sender, EventArgs e)
         {
-            OpenWebsite("https://github.com/harborsiem/WindowsRibbon/blob/master/Documentation/WindowsRibbon.pdf");
+            OpenWebsite("https://github.com/harborsiem/WindowsRibbon/wiki");
             //OpenWebsite("https://www.bilsen.com/windowsribbon/tutorial.shtml");
         }
 
@@ -539,6 +538,7 @@ namespace UIRibbonTools
             ClearLog();
             if (_modified)
                 ActionSaveExecute(this, EventArgs.Empty);
+            _buildPreviewHelper.ResourceIdentifier = _document.Application.ResourceName;
             if (preview)
             {
                 _buildPreviewHelper.ShowPreviewDialog(this);

@@ -31,6 +31,7 @@ namespace UIRibbonTools
             this.Font = SystemFonts.MessageBoxFont;
 #endif
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
+            ribbon.ResourceIdentifier = _buildPreviewHelper.ResourceIdentifier;
             ribbon.ResourceName = _buildPreviewHelper.RibbonResourceName;
             _classBuilder = new RibbonClassBuilder(ribbon);
 
