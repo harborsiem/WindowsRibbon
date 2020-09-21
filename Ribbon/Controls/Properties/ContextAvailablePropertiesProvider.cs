@@ -75,7 +75,7 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ContextAvailable, out uintValue);
                     if (NativeMethods.Succeeded(hr))
                     {
-                        return (ContextAvailability)(uint)uintValue.Value;
+                        return (ContextAvailability)uintValue.Value;
                     }
                 }
 

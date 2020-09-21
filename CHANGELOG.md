@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.9.1, RibbonTools V1.3.2
+
+#### Changed (Ribbon)
+
+- Bugfix: reading RibbonTabGroup.ContextAvailable throws Exception
+- Update sample 14-ContextualTabs
+
 ### Ribbon V2.9.0, RibbonTools V1.3.2
 
 #### Changed (Ribbon)

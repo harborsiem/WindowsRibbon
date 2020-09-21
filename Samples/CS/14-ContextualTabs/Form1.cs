@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using RibbonLib;
 using RibbonLib.Controls;
@@ -67,12 +67,14 @@ namespace _14_ContextualTabs
 
         void _buttonSelect_ExecuteEvent(object sender, ExecuteEventArgs e)
         {
-            _tabGroupTableTools.ContextAvailable = ContextAvailability.Active;
+            if (_tabGroupTableTools.ContextAvailable != ContextAvailability.Active)
+                _tabGroupTableTools.ContextAvailable = ContextAvailability.Active;
         }
 
         void _buttonUnselect_ExecuteEvent(object sender, ExecuteEventArgs e)
         {
-            _tabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable;
+            if (_tabGroupTableTools.ContextAvailable != ContextAvailability.NotAvailable)
+                _tabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable;
         }
     }
 }
