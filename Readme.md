@@ -1,12 +1,12 @@
-## WindowsRibbon
+# WindowsRibbon
 
 Windows Ribbon for WinForms
 
-Windows Ribbon for WinForms is a .NET wrapper for Windows 7 Ribbon control. It will allow WinForms developers to use Microsoft Windows 7 Ribbon control in their WinForms applications. Later versions of Windows (Windows 8, Windows 10) are welcome.
+Windows Ribbon for WinForms is a .NET wrapper for Windows 7 Ribbon control. It will allow WinForms developers to use Microsoft Windows 7 Ribbon control in their WinForms applications. Newer versions of Windows (Windows 8, Windows 10) are welcome.
 
 WindowsRibbon is sometimes called UIRibbon. The former development title is Scenic Ribbon.
 
-# **Project Description**
+## **Project Description**
 
  Windows Ribbon for WinForms is a .NET wrapper for Windows 7 Ribbon control.
  It will allow WinForms developers to use Microsoft Windows 7 Ribbon control in their WinForms applications.
@@ -52,16 +52,20 @@ Thanks to Arik Poznanski and Bernhard Elbl for the great work.
 
 Now the WindowsRibbon project is running also in the latest Visual Studio Versions 2017 and 2019. Have a look to the file "HowToUse.md" to see how to use the WindowsRibbon in a .NET WinForms application. In the Releases page of this Github repository there are also zipped *.msi setup files for the components. The msi files are build with the WIX Toolset.
 
-There is also a gui and console based design, build and preview tool called RibbonTools. 
+There is also a gui and console based designing, building and previewing tool called RibbonTools. 
 
 The C# samples are added with a more complex Mainform application. Here you can see the Ribbon of Mainform in the RibbonTools app.
-
 
 
 ![PrintPreview](./Images/PrintPreview.png)
 
 
-
 An other C# Application with the Ribbon Control one can find at the following page:
 
 [ElementViewer](https://github.com/harborsiem/ELEMNTViewer)
+
+## Installation:
+
+Requirement for installation is the Microsoft .NET Framework 4.6.2 or any higher version. If it is not installed on your computer then you can download it from a Microsoft page. Install this first.
+
+You also need Microsoft .NET Framework 3.5. In Windows 10 you have to go to the Control Panel > Programs > Programs and Features. On the left side click to "Turn Windows features on or off". You get a new dialog. Here you have to select ".NET Framework 3.5 (includes ...)".
