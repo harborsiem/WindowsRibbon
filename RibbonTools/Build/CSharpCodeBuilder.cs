@@ -95,8 +95,8 @@ namespace UIRibbonTools
 
         protected override void WriteProperties()
         {
-            sw.WriteLine(Indent(2) + "private static bool initialized;");
-            sw.WriteLine();
+            //sw.WriteLine(Indent(2) + "private static bool initialized;");
+            //sw.WriteLine();
             sw.WriteLine(Indent(2) + "public " + "Ribbon" + " " + "Ribbon" + " { get; private set; }");
 #if OldCode
             for (int i = 0; i < pair2List.Count; i++)
@@ -132,8 +132,8 @@ namespace UIRibbonTools
             sw.WriteLine(Indent(2) + "{");
             sw.WriteLine(Indent(3) + "if (ribbon == null)");
             sw.WriteLine(Indent(4) + "throw new ArgumentNullException(nameof(ribbon), \"Parameter is null\");");
-            sw.WriteLine(Indent(3) + "if (initialized)");
-            sw.WriteLine(Indent(4) + "return;");
+            //sw.WriteLine(Indent(3) + "if (initialized)");
+            //sw.WriteLine(Indent(4) + "return;");
             sw.WriteLine(Indent(3) + "this.Ribbon = ribbon;");
 #if OldCode
             for (int i = 0; i < pair2List.Count; i++)
@@ -161,7 +161,7 @@ namespace UIRibbonTools
                 }
             }
 #endif
-            sw.WriteLine(Indent(3) + "initialized = true;");
+            //sw.WriteLine(Indent(3) + "initialized = true;");
             sw.WriteLine(Indent(2) + "}");
             sw.WriteLine();
         }

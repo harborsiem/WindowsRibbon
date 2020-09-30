@@ -95,8 +95,8 @@ namespace UIRibbonTools
 
         protected override void WriteProperties()
         {
-            sw.WriteLine(Indent(2) + "Private Shared initialized As Boolean");
-            sw.WriteLine();
+            //sw.WriteLine(Indent(2) + "Private Shared initialized As Boolean");
+            //sw.WriteLine();
             sw.WriteLine(Indent(2) + "Private " + "_ribbon" + " As Ribbon");
             sw.WriteLine(Indent(2) + "Public ReadOnly Property " + "Ribbon" + " As Ribbon");
             sw.WriteLine(Indent(3) + "Get");
@@ -145,9 +145,9 @@ namespace UIRibbonTools
             sw.WriteLine(Indent(3) + "If ribbon Is Nothing Then");
             sw.WriteLine(Indent(4) + "Throw New ArgumentNullException(NameOf(ribbon), \"Parameter is Nothing\")");
             sw.WriteLine(Indent(3) + "End If");
-            sw.WriteLine(Indent(3) + "If initialized Then");
-            sw.WriteLine(Indent(4) + "Return");
-            sw.WriteLine(Indent(3) + "End If");
+            //sw.WriteLine(Indent(3) + "If initialized Then");
+            //sw.WriteLine(Indent(4) + "Return");
+            //sw.WriteLine(Indent(3) + "End If");
             sw.WriteLine(Indent(3) + "_ribbon = ribbon");
 #if OldCode
             for (int i = 0; i < pair2List.Count; i++)
@@ -176,7 +176,7 @@ namespace UIRibbonTools
                 }
             }
 #endif
-            sw.WriteLine(Indent(3) + "initialized = True");
+            //sw.WriteLine(Indent(3) + "initialized = True");
             sw.WriteLine(Indent(2) + "End Sub");
             sw.WriteLine();
         }
