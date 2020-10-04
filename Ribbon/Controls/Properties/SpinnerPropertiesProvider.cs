@@ -89,6 +89,7 @@ namespace RibbonLib.Controls.Properties
                 if (_decimalValue.HasValue)
                 {
                     newValue.SetDecimal(_decimalValue.Value);
+                    _decimalValue = null;
                 }
             }
             else if (key == RibbonProperties.Increment)

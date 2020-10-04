@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.9.2, RibbonTools V1.3.3
+
+#### Changed (Ribbon)
+
+- Bugfix: RibbonSpinner with DecimalValue set by application
+#### Changed (RibbonTools)
+- Generating RibbonItems.Designer file: isInitialized removed.
+
 ### Ribbon V2.9.1, RibbonTools V1.3.2
 
 #### Changed (Ribbon)

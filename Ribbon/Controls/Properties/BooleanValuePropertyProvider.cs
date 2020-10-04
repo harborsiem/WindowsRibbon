@@ -54,6 +54,7 @@ namespace RibbonLib.Controls.Properties
                 if (_booleanValue.HasValue)
                 {
                     newValue.SetBool(_booleanValue.Value);
+                    _booleanValue = null;
                 }
             }
             

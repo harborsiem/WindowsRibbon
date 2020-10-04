@@ -123,6 +123,7 @@ namespace RibbonLib.Controls.Properties
                 if (_selectedItem.HasValue)
                 {
                     newValue.SetUInt(_selectedItem.Value);
+                    _selectedItem = null;
                 }
             }
 
