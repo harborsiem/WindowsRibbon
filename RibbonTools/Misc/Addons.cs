@@ -12,15 +12,6 @@ namespace UIRibbonTools
 {
     public class Addons
     {
-        public static int EnsureRange(int value, int min, int max)
-        {
-            if (value >= min && value <= max)
-                return value;
-            if (value < min)
-                return min;
-            return max;
-        }
-
         public static string GetExactFilenameWithPath(string path)
         {
             path = Path.GetFullPath(path);

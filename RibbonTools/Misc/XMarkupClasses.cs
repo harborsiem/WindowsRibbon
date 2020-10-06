@@ -102,7 +102,7 @@ namespace UIRibbonTools
 
         public static bool IsValidCommandValue(int value)
         {
-            bool result = (value == 0) || ((value >= 2) && (value <= 59999)); //@ bugfix
+            bool result = (value == 0) || ((value >= 2) && (value <= 59999));
             return result;
         }
 
@@ -125,7 +125,7 @@ namespace UIRibbonTools
         {
             TRibbonCommandName result = new TRibbonCommandName();
             result.Id = StringToCommandValue(s);
-            if (result.Id < 0) //@ bugfix
+            if (result.Id < 0)
             {
                 result.Id = -1;
                 result.Name = s;
@@ -330,7 +330,7 @@ namespace UIRibbonTools
 
         public override bool Reorder(TRibbonObject child, int direction)
         {
-            //@ Test for index + direction ?
+            //@ Test for index + direction ? direction is only 1 or -1
             bool result = false;
             T item = (T)(child);
             int index = _items.IndexOf(item);
@@ -514,9 +514,9 @@ namespace UIRibbonTools
                     if (GC.Name.LocalName == EN_STRING_CONTENT)
                         _content = GC.Value;
                     else if (GC.Name.LocalName == EN_STRING_ID)
-                        SetId(StringToCommandValue(GC.Value)); //@ bugfix
+                        SetId(StringToCommandValue(GC.Value));
                     else if (GC.Name.LocalName == EN_STRING_SYMBOL)
-                        SetSymbol(GC.Value); //@ bugfix
+                        SetSymbol(GC.Value);
                     else
                         Error(GC, RS_UNSUPPORTED_CHILD_ELEMENT, GC.Name.LocalName, C.Name.LocalName);
                 }
@@ -535,7 +535,7 @@ namespace UIRibbonTools
                 if (!string.IsNullOrEmpty(_symbol))
                     writer.WriteAttributeString(AN_SYMBOL, _symbol);
                 if (!string.IsNullOrEmpty(_content))
-                    writer.WriteString(_content); //WriteContent
+                    writer.WriteString(_content);
                 writer.WriteEndElement();
 
                 writer.WriteEndElement();
@@ -800,7 +800,7 @@ namespace UIRibbonTools
         {
             _filename = string.Empty;
             _directory = string.Empty;
-            if (_application != null) //FreeAndNil
+            if (_application != null)
             {
                 _application.Dispose();
                 _application = null;
@@ -843,7 +843,7 @@ namespace UIRibbonTools
             }
         }
 
-        public void LoadFromXml(string xml) //RawByteString
+        public void LoadFromXml(string xml)
         {
             _filename = string.Empty;
             XDocument doc;
@@ -860,7 +860,7 @@ namespace UIRibbonTools
 
         public void LoadFromXmlDocument(XDocument xmlDoc)
         {
-            if (_application != null)  //FreeAndNil
+            if (_application != null)
             {
                 _application.Dispose();
                 _application = null;
@@ -915,7 +915,7 @@ namespace UIRibbonTools
             finally
             {
                 writer.Close();
-                //stream.Close(); stream is closed with writer.Close()
+                //stream is closed with writer.Close()
             }
             xml = stream.ToArray();
         }
@@ -1396,10 +1396,6 @@ namespace UIRibbonTools
 
         public TRibbonApplicationMenuRecentItems(TRibbonDocument owner, XElement E, TRibbonCommandRefObject parent) : base(owner, E, parent)
         {
-            //@ changed at caller
-            //if ((E.Elements().Count() == 0) || (E[0].Name != EN_RECENT_ITEMS))
-            //    Error(E, RS_SINGLE_ELEMENT, E.Name.LocalName, EN_RECENT_ITEMS);
-            //inherited Create(Owner, E[0]);
             XElement C = E;
             _maxCount = AttributeAsInt32OrDefault(C, AN_MAX_COUNT, 10);
             _enablePinning = AttributeAsBooleanOrDefault(C, AN_ENABLE_PINNING, true);
@@ -1742,7 +1738,7 @@ namespace UIRibbonTools
             }
             else
                 result = base.AddNew(objType);
-            return null;
+            return result;
         }
     }
 
@@ -1862,8 +1858,6 @@ namespace UIRibbonTools
             // There must be either 1 || more controls, || a menu group
             if ((_controls.Count > 0) && (_menuGroups.Count > 0))
                 Error(E, RS_INVALID_SPLITBUTTON);
-            //  else if ((_controls.Count == 0) && (_menuGroups.Count == 0))
-            //    Error(E, RS_INVALID_SPLITBUTTON);
         }
 
         internal override void Save(XmlWriter writer)
@@ -1975,7 +1969,7 @@ namespace UIRibbonTools
 
         public void RemoveButtonItem()
         {
-            if (_buttonItem != null)  //FreeAndNil
+            if (_buttonItem != null)
             {
                 _buttonItem.Dispose();
                 _buttonItem = null;
@@ -1984,7 +1978,7 @@ namespace UIRibbonTools
 
         public void CreateButtonItem()
         {
-            if (_buttonItem != null)  //FreeAndNil
+            if (_buttonItem != null)
             {
                 _buttonItem.Dispose();
                 _buttonItem = null;
@@ -1994,7 +1988,7 @@ namespace UIRibbonTools
 
         public void CreateToggleButtonItem()
         {
-            if (_buttonItem != null) //FreeAndNil
+            if (_buttonItem != null)
             {
                 _buttonItem.Dispose();
                 _buttonItem = null;
@@ -2557,20 +2551,30 @@ namespace UIRibbonTools
 
     class TRibbonFloatieFontControl : TRibbonControl
     {
+        private static int EnsureRange(int value, int min, int max)
+        {
+            if (value >= min && value <= max)
+                return value;
+            if (value < min)
+                return min;
+            return max;
+        }
+
         #region Internal Declarations
 
         private bool _showTrueTypeOnly;
         private bool _showVerticalFonts;
         private int _minimumFontSize;
         private int _maximumFontSize;
+
         private void SetMaximumFontSize(int value)
         {
-            _maximumFontSize = Addons.EnsureRange(value, 1, 9999);
+            _maximumFontSize = EnsureRange(value, 1, 9999);
         }
 
         private void SetMinimumFontSize(int value)
         {
-            _minimumFontSize = Addons.EnsureRange(value, 1, 9999);
+            _minimumFontSize = EnsureRange(value, 1, 9999);
         }
 
         public TRibbonFloatieFontControl(TRibbonDocument owner, TRibbonCommandRefObject parent) : base(owner, parent)
@@ -2586,8 +2590,8 @@ namespace UIRibbonTools
             _showVerticalFonts = AttributeAsBooleanOrDefault(E, AN_SHOW_VERTICAL_FONTS, true);
             _minimumFontSize = AttributeAsInt32OrDefault(E, AN_MINIMUM_FONT_SIZE, 1);
             _maximumFontSize = AttributeAsInt32OrDefault(E, AN_MAXIMUM_FONT_SIZE, 9999);
-            _minimumFontSize = Addons.EnsureRange(_minimumFontSize, 1, 9999);
-            _maximumFontSize = Addons.EnsureRange(_maximumFontSize, 1, 9999);
+            _minimumFontSize = EnsureRange(_minimumFontSize, 1, 9999);
+            _maximumFontSize = EnsureRange(_maximumFontSize, 1, 9999);
         }
 
         internal override void Save(XmlWriter writer)
@@ -3014,8 +3018,6 @@ namespace UIRibbonTools
             // There must be either 1 || more controls, || a menu group
             if ((_controls.Count > 0) && (_menuGroups.Count > 0))
                 Error(E, RS_INVALID_GALLERY);
-            //  else if (_controls.Count == 0) && (_menuGroups.Count == 0)
-            //    Error(E, RS_INVALID_GALLERY);
         }
 
         internal override void Save(XmlWriter writer)
@@ -3113,7 +3115,7 @@ namespace UIRibbonTools
             base.Dispose(disposing);
         }
 
-        public override TRibbonObject AddNew(RibbonObjectType objType) //@ added
+        public override TRibbonObject AddNew(RibbonObjectType objType)
         {
             TRibbonObject result;
             if (objType == RibbonObjectType.MenuGroup)
@@ -3139,7 +3141,7 @@ namespace UIRibbonTools
             return result;
         }
 
-        public override bool Remove(TRibbonObject obj) //@ added
+        public override bool Remove(TRibbonObject obj)
         {
             bool result;
             if (obj.ObjectType() == RibbonObjectType.MenuGroup)
@@ -3151,7 +3153,7 @@ namespace UIRibbonTools
             return result;
         }
 
-        public override bool Reorder(TRibbonObject child, int direction) //@ added
+        public override bool Reorder(TRibbonObject child, int direction)
         {
             bool result;
             if (child is TRibbonMenuGroup)
@@ -3425,7 +3427,6 @@ namespace UIRibbonTools
 
         public TRibbonApplicationMenu(TRibbonDocument owner, XElement E, XElement E1, TRibbonCommandRefObject parent) : base(owner, E1, parent)
         {
-            //@ changed at caller
             _menuGroups = new TRibbonList<TRibbonAppMenuGroup>(owner, true);
             if (E.Elements().Count() > 0)
             {
@@ -3442,10 +3443,8 @@ namespace UIRibbonTools
                     {
                         if (null != _recentItems)
                             Error(GC, RS_MULTIPLE_ELEMENTS, C.Name.LocalName, GC.Name.LocalName);
-                        //@@ changed
                         if ((GC.Elements().Count() == 0) || (GC.Elements().ElementAt(0).Name.LocalName != EN_RECENT_ITEMS))
                             Error(GC, RS_SINGLE_ELEMENT, GC.Name.LocalName, EN_RECENT_ITEMS);
-                        //@@
                         _recentItems = new TRibbonApplicationMenuRecentItems(owner, GC.Elements().ElementAt(0), this);
                     }
                     else if (GC.Name.LocalName == EN_MENU_GROUP)
@@ -4705,7 +4704,7 @@ namespace UIRibbonTools
         {
             _controls = new TRibbonList<TRibbonControl>(owner, true);
             string s = E.Attribute(AN_SIZE_DEFINITION)?.Value;
-            Array sizeDefValues = Enum.GetValues(typeof(RibbonBasicSizeDefinition)); //@ ?
+            Array sizeDefValues = Enum.GetValues(typeof(RibbonBasicSizeDefinition));
             foreach (RibbonBasicSizeDefinition sizeDef in sizeDefValues)
                 if (s == ES_SIZE_DEFINITION[(int)sizeDef])
                 {
@@ -5164,14 +5163,12 @@ namespace UIRibbonTools
                 {
                     if ((null != _applicationMenu))
                         Error(C, RS_MULTIPLE_ELEMENTS, E.Name.LocalName, C.Name.LocalName);
-                    //@@ changed
                     XElement C1;
                     if (C.Elements().Count() > 0)
                         C1 = (XElement)C.Elements().ElementAt(0);
                     else
                         C1 = C;
                     _applicationMenu = new TRibbonApplicationMenu(owner, C, C1, null);
-                    //@@ changed
                 }
                 else if (C.Name.LocalName == EN_RIBBON_HELP_BUTTON)
                 {
@@ -5929,9 +5926,6 @@ namespace UIRibbonTools
                     _commandsById = new TRibbonDictionary<Int32, TRibbonCommand>(Owner);
                     foreach (XElement GC in C.Elements())
                     {
-                        //XElement GC = GCNode as XElement;
-                        //if (GC == null)
-                        //    continue;
                         TRibbonCommand command = new TRibbonCommand(Owner, GC);
                         _commands.Add(command);
                         if (!string.IsNullOrEmpty(command.Name))
@@ -5993,7 +5987,6 @@ namespace UIRibbonTools
         {
             writer.WriteStartDocument();
             writer.WriteStartElement(EN_APPLICATION, RIBBON_NAMESPACE);
-            //writer.WriteAttributeString(AN_XMLNS, RIBBON_NAMESPACE);
 
             if (_commands.Count > 0)
             {
