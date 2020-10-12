@@ -309,9 +309,9 @@ namespace UIRibbonTools
             this.allowChangingResourceName.AutoSize = true;
             this.allowChangingResourceName.Location = new System.Drawing.Point(3, 72);
             this.allowChangingResourceName.Name = "allowChangingResourceName";
-            this.allowChangingResourceName.Size = new System.Drawing.Size(175, 17);
+            this.allowChangingResourceName.Size = new System.Drawing.Size(270, 17);
             this.allowChangingResourceName.TabIndex = 3;
-            this.allowChangingResourceName.Text = "Allow changing ResourceName";
+            this.allowChangingResourceName.Text = "Allow changing ResourceName (ResourceIdentifier)";
             this.allowChangingResourceName.UseVisualStyleBackColor = true;
             // 
             // sizeButton
@@ -319,9 +319,9 @@ namespace UIRibbonTools
             this.sizeButton.AutoSize = true;
             this.sizeButton.Location = new System.Drawing.Point(3, 95);
             this.sizeButton.Name = "sizeButton";
-            this.sizeButton.Size = new System.Drawing.Size(189, 23);
+            this.sizeButton.Size = new System.Drawing.Size(193, 23);
             this.sizeButton.TabIndex = 4;
-            this.sizeButton.Text = "Set actual application size as default";
+            this.sizeButton.Text = "Set current application size as default";
             this.sizeButton.UseVisualStyleBackColor = true;
             // 
             // extrasGroup

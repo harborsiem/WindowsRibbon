@@ -54,7 +54,7 @@ namespace UIRibbonTools
             _openDialog.Multiselect = false;
             UpdateControls();
             _settingsTip = new ToolTip(components);
-            _settingsTip.SetToolTip(allowChangingResourceName, "Changing of default ResourceName is not supported in .NET Ribbon");
+            _settingsTip.SetToolTip(allowChangingResourceName, "Changing of default ResourceName is not recommended in .NET WindowsRibbon");
             _settingsTip.SetToolTip(allowPngImages, "*.png images are only allowed in Windows 8 and later versions");
             InitEvents();
         }

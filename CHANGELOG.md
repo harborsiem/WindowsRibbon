@@ -2,13 +2,19 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.9.2, RibbonTools V1.3.4
+
+#### Changed (RibbonTools)
+- Some Setting dialog text and tooltips modified.
+- Bugfix: MiniToolbar add of controls not possible
+
 ### Ribbon V2.9.2, RibbonTools V1.3.3
 
 #### Changed (Ribbon)
 
 - Bugfix: RibbonSpinner with DecimalValue set by application
 #### Changed (RibbonTools)
-- Generating RibbonItems.Designer file: isInitialized removed.
+- Generating RibbonItems.Designer file: initialized removed.
 
 ### Ribbon V2.9.1, RibbonTools V1.3.2
 
