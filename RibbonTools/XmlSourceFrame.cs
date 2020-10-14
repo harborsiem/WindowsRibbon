@@ -475,7 +475,7 @@ namespace UIRibbonTools
                     RT.Left += _quoteWidth;
 
                     NativeMethods.SetTextColor(DC, COLOR_SYMBOL);
-                    s = attr.Value;
+                    s = attr.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
                     NativeMethods.DrawText(DC, s, s.Length, ref RT, TEXT_FLAGS);
 
                     NativeMethods.DrawText(DC, s, s.Length, ref RM, TEXT_FLAGS | NativeMethods.DT_CALCRECT);
@@ -489,7 +489,7 @@ namespace UIRibbonTools
             }
 
             if (element != null && element.Nodes().Count() == 1 && element.FirstNode is XText)
-                s = element.Value;
+                s = element.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
             else
                 s = string.Empty;
 

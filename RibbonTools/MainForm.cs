@@ -748,12 +748,13 @@ namespace UIRibbonTools
                     fs.Close();
                     try
                     {
-                        if (Directory.Exists(@".\Res"))
+                        string resFolder = Path.Combine(filePath, "Res");
+                        if (Directory.Exists(resFolder))
                         {
-                            Directory.Delete(@".\Res", true);
-                            File.Delete(@".\RibbonMarkup.xml");
+                            Directory.Delete(resFolder, true);
+                            File.Delete(Path.Combine(filePath, "RibbonMarkup.xml"));
                         }
-                        ZipFile.ExtractToDirectory(tmpFile, @".\");
+                        ZipFile.ExtractToDirectory(tmpFile, filePath);
                     }
                     finally
                     {

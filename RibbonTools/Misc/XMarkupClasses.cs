@@ -488,7 +488,7 @@ namespace UIRibbonTools
         internal void Initialize(XElement E)
         {
             XElement C;
-            _content = E.Value;
+            _content = E.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
             _id = 0;
             _symbol = string.Empty;
 
@@ -503,16 +503,16 @@ namespace UIRibbonTools
                 if (C.Name.LocalName != EN_STRING)
                     Error(C, RS_ELEMENT_EXPECTED, EN_STRING, C.Name.LocalName);
 
-                _content = C.Attribute(AN_CONTENT)?.Value;
+                _content = C.Attribute(AN_CONTENT)?.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
                 if (string.IsNullOrEmpty(_content))
-                    _content = C.Value;
+                    _content = C.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
                 SetId(StringToCommandValue(C.Attribute(AN_ID)?.Value));
                 SetSymbol(C.Attribute(AN_SYMBOL)?.Value);
 
                 foreach (XElement GC in C.Elements())
                 {
                     if (GC.Name.LocalName == EN_STRING_CONTENT)
-                        _content = GC.Value;
+                        _content = GC.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
                     else if (GC.Name.LocalName == EN_STRING_ID)
                         SetId(StringToCommandValue(GC.Value));
                     else if (GC.Name.LocalName == EN_STRING_SYMBOL)
@@ -535,7 +535,8 @@ namespace UIRibbonTools
                 if (!string.IsNullOrEmpty(_symbol))
                     writer.WriteAttributeString(AN_SYMBOL, _symbol);
                 if (!string.IsNullOrEmpty(_content))
-                    writer.WriteString(_content);
+                    writer.WriteValue(_content); //.Replace("&#xA;", ((char)0xA).ToString())); this replace does not work
+                //WriteRow is a better solution than WriteValue if we have line breaks, but we have to replace a & to &amp; in the _content;
                 writer.WriteEndElement();
 
                 writer.WriteEndElement();
@@ -1101,10 +1102,10 @@ namespace UIRibbonTools
             SetId(StringToCommandValue(E.Attribute(AN_ID)?.Value));
             _constructing = false;
             _comment = E.Attribute(AN_COMMENT)?.Value;
-            _labelTitle.Content = E.Attribute(AN_LABEL_TITLE)?.Value;
-            _labelDescription.Content = E.Attribute(AN_LABEL_DESCRIPTION)?.Value;
-            _tooltipTitle.Content = E.Attribute(AN_TOOLTIP_TITLE)?.Value;
-            _tooltipDescription.Content = E.Attribute(AN_TOOLTIP_DESCRIPTION)?.Value;
+            _labelTitle.Content = E.Attribute(AN_LABEL_TITLE)?.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
+            _labelDescription.Content = E.Attribute(AN_LABEL_DESCRIPTION)?.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
+            _tooltipTitle.Content = E.Attribute(AN_TOOLTIP_TITLE)?.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
+            _tooltipDescription.Content = E.Attribute(AN_TOOLTIP_DESCRIPTION)?.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
             _keytip.Content = E.Attribute(AN_KEYTIP)?.Value;
 
             foreach (XElement C in E.Elements())
@@ -1153,13 +1154,13 @@ namespace UIRibbonTools
             if (_id != 0)
                 writer.WriteAttributeString(AN_ID, XmlConvert.ToString(_id));
             if (_labelTitle.HasSimpleString())
-                writer.WriteAttributeString(AN_LABEL_TITLE, _labelTitle.Content);
+                writer.WriteAttributeString(AN_LABEL_TITLE, _labelTitle.Content); //.Replace("&#xA;", ((char)0xA).ToString()));
             if (_labelDescription.HasSimpleString())
-                writer.WriteAttributeString(AN_LABEL_DESCRIPTION, _labelDescription.Content);
+                writer.WriteAttributeString(AN_LABEL_DESCRIPTION, _labelDescription.Content); //.Replace("&#xA;", ((char)0xA).ToString()));
             if (_tooltipTitle.HasSimpleString())
-                writer.WriteAttributeString(AN_TOOLTIP_TITLE, _tooltipTitle.Content);
+                writer.WriteAttributeString(AN_TOOLTIP_TITLE, _tooltipTitle.Content); //.Replace("&#xA;", ((char)0xA).ToString()));
             if (_tooltipDescription.HasSimpleString())
-                writer.WriteAttributeString(AN_TOOLTIP_DESCRIPTION, _tooltipDescription.Content);
+                writer.WriteAttributeString(AN_TOOLTIP_DESCRIPTION, _tooltipDescription.Content); //.Replace("&#xA;", ((char)0xA).ToString()));
             if (_keytip.HasSimpleString())
                 writer.WriteAttributeString(AN_KEYTIP, _keytip.Content);
 

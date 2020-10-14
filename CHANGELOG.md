@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 #### Changed (RibbonTools)
 - Some Setting dialog text and tooltips modified.
 - Bugfix: MiniToolbar add of controls not possible
+- Bugfix: Issue with the WordPad template
 
 ### Ribbon V2.9.2, RibbonTools V1.3.3
 
