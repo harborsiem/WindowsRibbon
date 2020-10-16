@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Compile Remove="Misc\MarkupClasses.cs" />
+    <Compile Remove="Misc\UIImage.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -156,6 +156,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Misc\Addons.cs" />
+    <Compile Include="Misc\AlphaBitmap.cs" />
     <Compile Include="Misc\ConsoleHelper.cs" />
     <Compile Include="Build\ConsoleMessageOutput.cs" />
     <Compile Include="Misc\IActivate.cs" />
@@ -169,7 +170,6 @@
     <Compile Include="Misc\Settings.cs" />
     <Compile Include="Build\ToolsPathFinder.cs" />
     <Compile Include="Misc\TRibbonObject.Const.cs" />
-    <Compile Include="Misc\UIImage.cs" />
     <Compile Include="Misc\XMarkupClasses.cs" />
     <Compile Include="Preview\PreviewForm.cs">
       <SubType>Form</SubType>

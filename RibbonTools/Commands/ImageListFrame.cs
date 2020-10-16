@@ -194,7 +194,7 @@ namespace UIRibbonTools
 
                     // UIImage will automatically convert to 32 - bit alpha image
                     bitmap = null;
-                    uIImage = Addons.BitmapFromFile(filename, (ImageFlags.HighContrast & _flags) != 0);
+                    uIImage = AlphaBitmap.BitmapFromFile(filename, (ImageFlags.HighContrast & _flags) != 0);
                     try
                     {
                         bitmap = uIImage.Clone(new Rectangle(new Point(), uIImage.Size), uIImage.PixelFormat);
@@ -332,7 +332,7 @@ namespace UIRibbonTools
             filename = image.Owner.BuildAbsoluteFilename(image.Source);
             if (File.Exists(filename))
             {
-                uIImage = Addons.BitmapFromFile(filename);
+                uIImage = AlphaBitmap.BitmapFromFile(filename);
                 try
                 {
                     if ((uIImage.Width == _imageList.ImageSize.Width) && (uIImage.Height == _imageList.ImageSize.Height))

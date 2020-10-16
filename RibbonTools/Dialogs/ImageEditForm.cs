@@ -86,7 +86,7 @@ namespace UIRibbonTools
             _filename = image.Owner.BuildAbsoluteFilename(image.Source);
             if (File.Exists(_filename))
             {
-                uIImage = Addons.BitmapFromFile(_filename);
+                uIImage = AlphaBitmap.BitmapFromFile(_filename);
                 try
                 {
                     Graphics canvas = Graphics.FromImage(_bitmap);
@@ -153,7 +153,7 @@ namespace UIRibbonTools
                 //UIImage will automatically convert to 32 - bit alpha image
 
                 bitmap = null;
-                uIImage = Addons.BitmapFromFile(newFilename, (_flags & ImageFlags.HighContrast) != 0);
+                uIImage = AlphaBitmap.BitmapFromFile(newFilename, (_flags & ImageFlags.HighContrast) != 0);
 
                 try
                 {
