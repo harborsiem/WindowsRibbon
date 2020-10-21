@@ -34,6 +34,7 @@ namespace RibbonLib
         private IUIImageFromBitmap _imageFromBitmap;
         private RibbonUIApplication _application;
         private Dictionary<uint, IRibbonControl> _mapRibbonControls = new Dictionary<uint, IRibbonControl>();
+        internal Dictionary<uint, IRibbonControl> MapRibbonControls { get { return _mapRibbonControls; } }
         private IntPtr _loadedDllHandle = IntPtr.Zero;
 
         private const string DefaultResourceName = "APPLICATION_RIBBON";
@@ -43,6 +44,7 @@ namespace RibbonLib
 
         private static readonly object EventRibbonEventException = new object();
         private static readonly object EventViewCreated = new object();
+        private static readonly object EventViewDestroy = new object();
         private static readonly object EventRibbonHeight = new object();
 
         /// <summary>
@@ -83,10 +85,10 @@ namespace RibbonLib
 
             var form = this.FindForm();
             form.KeyPreview = true;
-            form.KeyUp += new KeyEventHandler(form_KeyUp);
+            form.KeyUp += new KeyEventHandler(Form_KeyUp);
         }
 
-        void form_KeyUp(object sender, KeyEventArgs e)
+        void Form_KeyUp(object sender, KeyEventArgs e)
         {
             if (_ribbonShortcutTable == null)
                 return;
@@ -338,18 +340,24 @@ namespace RibbonLib
             Assembly satelliteAssembly = null;
             TryGetSatelliteAssembly(culture, ribbonAssembly, ref satelliteAssembly);
 
-            found = TryGetRibbon(ribbonResource, satelliteAssembly, ref data);
-            if (found)
-                return data;
+            if (satelliteAssembly != null)
+            {
+                found = TryGetRibbon(ribbonResource, satelliteAssembly, ref data);
+                if (found)
+                    return data;
+            }
 
             // try to get from current current culture fallback satellite assembly
             Assembly fallbackAssembly = null;
             if (culture.Parent != null)
                 TryGetSatelliteAssembly(culture.Parent, ribbonAssembly, ref fallbackAssembly);
 
-            found = TryGetRibbon(ribbonResource, fallbackAssembly, ref data);
-            if (found)
-                return data;
+            if (fallbackAssembly != null)
+            {
+                found = TryGetRibbon(ribbonResource, fallbackAssembly, ref data);
+                if (found)
+                    return data;
+            }
 
             // try to get from current current culture fallback satellite assembly
             found = TryGetRibbon(ribbonResource, ribbonAssembly, ref data);
@@ -1023,7 +1031,8 @@ namespace RibbonLib
         /// <summary>
         /// User can handle untrapped Exceptions in the other events of the Ribbon
         /// </summary>
-        public event EventHandler<ThreadExceptionEventArgs> RibbonEventException {
+        public event EventHandler<ThreadExceptionEventArgs> RibbonEventException
+        {
             add
             {
                 Events.AddHandler(EventRibbonEventException, value);
@@ -1090,7 +1099,8 @@ namespace RibbonLib
         /// <summary>
         /// Event fires when the View is created
         /// </summary>
-        public event EventHandler ViewCreated {
+        public event EventHandler ViewCreated
+        {
             add
             {
                 Events.AddHandler(EventViewCreated, value);
@@ -1109,9 +1119,32 @@ namespace RibbonLib
         }
 
         /// <summary>
+        /// Event fires when the View is in destroy
+        /// </summary>
+        public event EventHandler ViewDestroy
+        {
+            add
+            {
+                Events.AddHandler(EventViewDestroy, value);
+            }
+            remove
+            {
+                Events.RemoveHandler(EventViewDestroy, value);
+            }
+        }
+
+        internal void OnViewDestroy()
+        {
+            EventHandler eh = Events[EventViewDestroy] as EventHandler;
+            if (eh != null)
+                eh(this, EventArgs.Empty);
+        }
+
+        /// <summary>
         /// Event fires when the Ribbon height changed
         /// </summary>
-        public event EventHandler RibbonHeightChanged {
+        public event EventHandler RibbonHeightChanged
+        {
             add
             {
                 Events.AddHandler(EventRibbonHeight, value);

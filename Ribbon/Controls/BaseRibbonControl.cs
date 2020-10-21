@@ -139,5 +139,16 @@ namespace RibbonLib.Controls
         }
 
         #endregion
+
+        /// <summary>
+        /// Gets or sets the object that contains data about the control
+        /// </summary>
+        public object Tag { get; set; }
+
+        /// <summary>
+        /// The CommandType of the Control
+        /// If the CommandType is CommandType.Unknown then the Control is not initialized by the Framework
+        /// </summary>
+        public CommandType CommandType { get; internal set; }
     }
 }

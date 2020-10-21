@@ -8,8 +8,9 @@
 //*****************************************************************************
 
 using System.Runtime.InteropServices;
-using RibbonLib.Interop;
 using System.Windows.Forms;
+using RibbonLib.Interop;
+using RibbonLib.Controls;
 
 namespace RibbonLib
 {
@@ -88,6 +89,7 @@ namespace RibbonLib
                     // The view was destroyed.
                     case ViewVerb.Destroy:
 
+                        _ribbonControl.Invoke(new MethodInvoker(_ribbonControl.OnViewDestroy));
                         UIRibbon = null;
                         hr = HRESULT.S_OK;
                         break;
@@ -112,6 +114,12 @@ namespace RibbonLib
         /// <returns>Returns S_OK if successful, or an error value otherwise.</returns>
         public HRESULT OnCreateUICommand(uint commandId, CommandType typeID, out IUICommandHandler commandHandler)
         {
+            if (_ribbonControl.MapRibbonControls.ContainsKey(commandId))
+            {
+                BaseRibbonControl control = _ribbonControl.MapRibbonControls[commandId] as BaseRibbonControl;
+                if (control != null)
+                    control.CommandType = typeID;
+            }
             commandHandler = _ribbon;
             return HRESULT.S_OK;
         }

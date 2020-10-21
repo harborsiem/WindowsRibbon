@@ -12,7 +12,11 @@ using RibbonLib.Interop;
 
 namespace RibbonLib
 {
-    internal interface IRibbonControl
+    /// <summary>
+    /// Each ribbon control helper class should implement this
+    /// interface according to the control's actions and properties.
+    /// </summary>
+    public interface IRibbonControl
     {
         /// <summary>
         /// Command id of the Ribbon control 

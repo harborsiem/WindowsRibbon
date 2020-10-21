@@ -15,18 +15,18 @@ namespace RibbonLib.Controls
     /// <summary>
     /// Helper class that wraps the ribbon quick access toolbar.
     /// </summary>
-    public class RibbonQuickAccessToolbar : IRibbonControl, 
+    public class RibbonQuickAccessToolbar : BaseRibbonControl, 
         IExecuteEventsProvider
     {
-        /// <summary>
-        /// reference for parent ribbon class
-        /// </summary>
-        protected Ribbon _ribbon;
+        ///// <summary>
+        ///// reference for parent ribbon class
+        ///// </summary>
+        //protected Ribbon _ribbon;
 
-        /// <summary>
-        /// QAT command id
-        /// </summary>
-        protected uint _commandID;
+        ///// <summary>
+        ///// QAT command id
+        ///// </summary>
+        //protected uint _commandID;
 
         /// <summary>
         /// handler for the customize button
@@ -40,7 +40,7 @@ namespace RibbonLib.Controls
         /// </summary>
         /// <param name="ribbon">Parent Ribbon control</param>
         /// <param name="commandId">Command id attached to this control</param>
-        public RibbonQuickAccessToolbar(Ribbon ribbon, uint commandId)
+        public RibbonQuickAccessToolbar(Ribbon ribbon, uint commandId) :base(ribbon, commandId)
         {
             _ribbon = ribbon;
             _commandID = commandId;
@@ -59,21 +59,21 @@ namespace RibbonLib.Controls
 
         #region IRibbonControl Members
 
-        /// <summary>
-        /// The command Id.
-        /// </summary>
-        public uint CommandID
-        {
-            get 
-            {
-                return _commandID;
-            }
-        }
+        ///// <summary>
+        ///// The command Id.
+        ///// </summary>
+        //public uint CommandID
+        //{
+        //    get 
+        //    {
+        //        return _commandID;
+        //    }
+        //}
 
         /// <summary>
         /// 
         /// </summary>
-        public HRESULT Execute(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
+        public override HRESULT Execute(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
         {
             return HRESULT.S_OK;
         }
@@ -81,25 +81,25 @@ namespace RibbonLib.Controls
         /// <summary>
         /// 
         /// </summary>
-        public HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
+        public override HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
         {
-            if (key == RibbonProperties.ItemsSource)
-            {
-                if (_itemsSource != null)
-                {
-                    IUICollection itemsSource = (IUICollection)currentValue.PropVariant.Value;
+            //if (key == RibbonProperties.ItemsSource)
+            //{
+            //    if (_itemsSource != null)
+            //    {
+            //        IUICollection itemsSource = (IUICollection)currentValue.PropVariant.Value;
 
-                    itemsSource.Clear();
-                    uint count;
-                    _itemsSource.GetCount(out count);
-                    for (uint i = 0; i < count; ++i)
-                    {
-                        object item;
-                        _itemsSource.GetItem(i, out item);
-                        itemsSource.Add(item);
-                    }
-                }
-            }
+            //        itemsSource.Clear();
+            //        uint count;
+            //        _itemsSource.GetCount(out count);
+            //        for (uint i = 0; i < count; ++i)
+            //        {
+            //            object item;
+            //            _itemsSource.GetItem(i, out item);
+            //            itemsSource.Add(item);
+            //        }
+            //    }
+            //}
             return HRESULT.S_OK;
         }
 
