@@ -168,7 +168,7 @@ namespace UIRibbonTools
             ListViewItem item;
 
             OpenFileDialog openDialog = new OpenFileDialog();
-            openDialog.Filter = "BMP and PNG files| *.bmp; *.png | BMP files | *.bmp | PNG files | *.png";
+            openDialog.Filter = "BMP and PNG files|*.bmp;*.png|BMP files|*.bmp|PNG files|*.png";
             openDialog.Title = "Open Image File";
             openDialog.CheckFileExists = true;
             openDialog.ReadOnlyChecked = false;

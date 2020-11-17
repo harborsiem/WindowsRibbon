@@ -363,7 +363,7 @@ namespace WinForms.Actions
 
         internal void FinishInit()
         {
-#if !Core
+#if HasToolBar
             IDictionaryEnumerator i = _components.GetEnumerator();
             while (i.MoveNext())
             {
@@ -415,7 +415,7 @@ namespace WinForms.Actions
             }
             Enabled = _owner.Enabled;
             // Checked
-#if !Core
+#if HasToolBar
             // special case of a toolbarButton
             if (_component is ToolBarButton)
             {
@@ -459,7 +459,7 @@ namespace WinForms.Actions
             ShortcutKeys = _owner.ShortcutKeys;
             // ImageList
             // don't handle toolbarButtons here
-#if !Core
+#if HasToolBar
             if (!(_component is ToolBarButton))
 #endif
             {
@@ -484,7 +484,7 @@ namespace WinForms.Actions
             // click
             if (!designMode)
             {
-#if !Core
+#if HasToolBar
                 // special case of a toolbarButton
                 if (_component is ToolBarButton)
                 {
@@ -518,7 +518,7 @@ namespace WinForms.Actions
             _shortcut = null;
             if (_component != null && _click)
             {
-#if !Core
+#if HasToolBar
                 if (_component is ToolBarButton)
                 {
                     ToolBar tb = ((ToolBarButton)_component).Parent;
@@ -543,7 +543,7 @@ namespace WinForms.Actions
             {
                 if (_text != null)
                 {
-#if !Core
+#if HasToolBar
                     if ((_component is ToolBarButton) && !_owner.Parent.ShowTextOnToolBar)
                     {
                         _text.SetValue(_component, null, null);
@@ -611,7 +611,7 @@ namespace WinForms.Actions
         {
             set
             {
-#if !Core
+#if HasToolBar
                 if (_component is ToolBarButton)
                 {
                     ToolBarButton tb = (ToolBarButton)_component;
@@ -639,7 +639,7 @@ namespace WinForms.Actions
                 }
             }
         }
-#if !Core
+#if HasToolBar
         private void OnToolbarClick(Object sender, ToolBarButtonClickEventArgs e)
         {
             if (e.Button == _component)
@@ -652,7 +652,7 @@ namespace WinForms.Actions
         {
             Detach();
         }
-#if !Core
+#if HasToolBar
         internal void FinishInit()
         {
             if (_component is ToolBarButton && !_click)
@@ -674,7 +674,7 @@ namespace WinForms.Actions
                 {
                     Text = value;
                 }
-#if !Core
+#if HasToolBar
                 else if (_component is ToolBarButton)
                 {
                     Text = value;
@@ -694,7 +694,7 @@ namespace WinForms.Actions
                         item.ToolTipText = value;
                     }
                 }
-#if !Core
+#if HasToolBar
                 else if (_component is ToolBarButton)
                 {
                     ToolBarButton button = (ToolBarButton)_component;

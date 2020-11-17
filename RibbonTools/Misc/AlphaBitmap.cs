@@ -99,10 +99,25 @@ namespace UIRibbonTools
                 throw new ArgumentNullException(nameof(path));
             if (!File.Exists(path))
                 throw new ArgumentException("File does not exist", nameof(path));
-            IntPtr handle = IntPtr.Zero;
-            handle = NativeMethods.LoadImage(IntPtr.Zero, path, (uint)NativeMethods.ImageType.IMAGE_BITMAP, 0, 0,
-                (uint)(NativeMethods.ImageLoad.LR_LOADFROMFILE | NativeMethods.ImageLoad.LR_CREATEDIBSECTION));
-            return GetManagedARGBBitmap(handle);
+            char[] buffer = new char[2];
+            StreamReader sr = File.OpenText(path);
+            int length = sr.ReadBlock(buffer, 0, 2);
+            long baseLength = sr.BaseStream.Length;
+            sr.Close();
+            if (baseLength > 54 && length == 2 && buffer[0] == 'B' && buffer[1] == 'M')
+            {
+                IntPtr handle = IntPtr.Zero;
+                handle = NativeMethods.LoadImage(IntPtr.Zero, path, (uint)NativeMethods.ImageType.IMAGE_BITMAP, 0, 0,
+                    (uint)(NativeMethods.ImageLoad.LR_LOADFROMFILE | NativeMethods.ImageLoad.LR_CREATEDIBSECTION));
+                return GetManagedARGBBitmap(handle);
+            }
+
+            Bitmap bitmap = new Bitmap(path);
+            if ((int)bitmap.HorizontalResolution != 96)
+            {
+                bitmap.SetResolution(96.0f, 96.0f); //only png bitmaps can have other resolution
+            }
+            return bitmap;
         }
 
         class NativeMethods

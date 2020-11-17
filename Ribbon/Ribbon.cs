@@ -999,14 +999,14 @@ namespace RibbonLib
             return new UIRibbonImageFromBitmapFactory() as IUIImageFromBitmap;
         }
 
-        /// <summary>
-        /// Generates a default ribbon dll name
-        /// </summary>
-        /// <returns>name of the dll</returns>
-        private string GenerateDefaultRibbonDllName()
-        {
-            return Path.ChangeExtension(new Uri(Assembly.GetEntryAssembly().CodeBase).LocalPath, ".ribbon.dll");
-        }
+        ///// <summary>
+        ///// Generates a default ribbon dll name
+        ///// </summary>
+        ///// <returns>name of the dll</returns>
+        //private string GenerateDefaultRibbonDllName()
+        //{
+        //    return Path.ChangeExtension(new Uri(Assembly.GetEntryAssembly().CodeBase).LocalPath, ".ribbon.dll");
+        //}
 
         /// <summary>
         /// Adds a ribbon control to the internal map
