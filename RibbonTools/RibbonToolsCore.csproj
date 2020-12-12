@@ -2,27 +2,29 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>net5.0-windows;netcoreapp3.1</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>Images\Ribbon.ico</ApplicationIcon>
   </PropertyGroup>
 
-<PropertyGroup>
-  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  <Deterministic>false</Deterministic>
-  <SignAssembly>true</SignAssembly>
-  <AssemblyOriginatorKeyFile>RibbonGenerator.snk</AssemblyOriginatorKeyFile>
-  <DelaySign>false</DelaySign>
-  <AssemblyName>RibbonTools</AssemblyName>
-  <RootNamespace>UIRibbonTools</RootNamespace>
-</PropertyGroup>
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>false</Deterministic>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>RibbonGenerator.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <AssemblyName>RibbonTools</AssemblyName>
+    <RootNamespace>UIRibbonTools</RootNamespace>
+  </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;Core</DefineConstants>
+    <NoWarn>1701;1702;CA1416</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;Core</DefineConstants>
+    <NoWarn>1701;1702;CA1416</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -106,11 +108,16 @@
     <EmbeddedResource Include="Images\ImageSample_ToggleButton.png" />
     <EmbeddedResource Include="Images\ImageSample_ViewRibbon.png" />
     <EmbeddedResource Include="Images\Images_Main.bmp" />
-    <EmbeddedResource Include="Template.bat" />
     <EmbeddedResource Include="Wordpad.zip" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0-windows'">
+    <Reference Include="Ribbon">
+      <HintPath>..\Ribbon\bin\Release\net5.0-windows\Ribbon.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
     <Reference Include="Ribbon">
       <HintPath>..\Ribbon\bin\Release\netcoreapp3.1\Ribbon.dll</HintPath>
     </Reference>

@@ -194,6 +194,7 @@ namespace UIRibbonTools
             _actionRemove.Update += TreeActionUpdate;
             _actionRemove.Hint = "Removes the selected item";
             _actionRemove.ImageIndex = 37;
+            _actionRemove.ShortcutKeys = Keys.Control | Keys.Delete;
             _actionRemove.Text = "Remove";
             _actionRemove.SetComponent(toolButtonRemove, true);
             _actionRemove.SetComponent(popupRemove, true);
@@ -201,6 +202,7 @@ namespace UIRibbonTools
             _actionMoveUp.Execute += ActionMoveUpExecute;
             _actionMoveUp.Update += TreeActionUpdate;
             _actionMoveUp.ImageIndex = 38;
+            _actionMoveUp.ShortcutKeys = Keys.Control | Keys.Up;
             _actionMoveUp.Text = "Up";
             _actionMoveUp.SetComponent(toolButtonMoveUp, true);
             _actionMoveUp.SetComponent(popupMoveUp, true);
@@ -208,6 +210,7 @@ namespace UIRibbonTools
             _actionMoveDown.Execute += ActionMoveDownExecute;
             _actionMoveDown.Update += TreeActionUpdate;
             _actionMoveDown.ImageIndex = 39;
+            _actionMoveDown.ShortcutKeys = Keys.Control | Keys.Down;
             _actionMoveDown.Text = "Down";
             _actionMoveDown.SetComponent(toolButtonMoveDown, true);
             _actionMoveDown.SetComponent(popupMoveDown, true);

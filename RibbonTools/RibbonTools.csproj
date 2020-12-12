@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="Actions\Design.cs" />
     <Compile Include="Actions\ImageIndexEditor.cs" />
+    <Compile Include="Actions\ShortCutKeysHandler.cs" />
     <Compile Include="Build\AbstractCodeBuilder.cs" />
     <Compile Include="Build\CSharpCodeBuilder.cs" />
     <Compile Include="Build\FaildException.cs" />

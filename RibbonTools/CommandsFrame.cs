@@ -110,6 +110,7 @@ namespace UIRibbonTools
             _actionRemoveCommand.Update += ActionUpdate;
             _actionRemoveCommand.Hint = "Removes the selected command";
             _actionRemoveCommand.ImageIndex = 1;
+            _actionRemoveCommand.ShortcutKeys = Keys.Control | Keys.Delete;
             _actionRemoveCommand.Text = "Remove";
             _actionRemoveCommand.SetComponent(toolButtonRemoveCommand, true);
             _actionRemoveCommand.SetComponent(menuRemoveCommand, true);
@@ -118,6 +119,7 @@ namespace UIRibbonTools
             _actionMoveUp.Update += ActionUpdateUp;
             _actionMoveUp.Hint = "Moves the selected command up in the list";
             _actionMoveUp.ImageIndex = 2;
+            _actionMoveUp.ShortcutKeys = Keys.Control | Keys.Up;
             _actionMoveUp.Text = "Up";
             _actionMoveUp.SetComponent(toolButtonMoveUp, true);
             _actionMoveUp.SetComponent(menuMoveUp, true);
@@ -126,6 +128,7 @@ namespace UIRibbonTools
             _actionMoveDown.Update += ActionUpdateDown;
             _actionMoveDown.Hint = "Moves the selected command down in the list";
             _actionMoveDown.ImageIndex = 3;
+            _actionMoveDown.ShortcutKeys = Keys.Control | Keys.Down;
             _actionMoveDown.Text = "Down";
             _actionMoveDown.SetComponent(toolButtonMoveDown, true);
             _actionMoveDown.SetComponent(menuMoveDown, true);
@@ -134,7 +137,7 @@ namespace UIRibbonTools
             _actionSearchCommand.Update += ActionUpdate;
             _actionSearchCommand.Hint = string.Empty;
             _actionSearchCommand.ImageIndex = 4;
-            _actionSearchCommand.ShortcutKeys = Keys.Shift | Keys.F;
+            _actionSearchCommand.ShortcutKeys = Keys.Control | Keys.F;
             _actionSearchCommand.Text = "Search";
             _actionSearchCommand.SetComponent(toolButtonSearchCommand, true);
 
@@ -361,62 +364,9 @@ namespace UIRibbonTools
             }
         }
 
-        private bool ShortCutKeys(ref Message msg, Keys keyData) //@ added
-        {
-            bool result = false;
-            if (msg.Msg == NativeMethods.WM_KEYDOWN)
-            {
-                switch (keyData)
-                {
-                    //ShortcutKeys for ToolStripButton
-                    case (Keys.Shift | Keys.Control | Keys.Insert):
-                        if (_actionAddCommand.Enabled)
-                        {
-                            _actionAddCommand.DoExecute();
-                            result = true;
-                        }
-                        break;
-                    case (Keys.Control | Keys.F):
-                        if (_actionSearchCommand.Enabled)
-                        {
-                            _actionSearchCommand.DoExecute();
-                            result = true;
-                        }
-                        break;
-                    //Remove
-                    case (Keys.Control | Keys.Delete):
-                        if (_actionRemoveCommand.Enabled)
-                        {
-                            _actionRemoveCommand.DoExecute();
-                            result = true;
-                        }
-                        break;
-
-                    //Arrow Up
-                    case (Keys.Control | Keys.Up):
-                        if (_actionMoveUp.Enabled)
-                        {
-                            _actionMoveUp.DoExecute();
-                            result = true;
-                        }
-                        break;
-
-                    //Arrow Down
-                    case (Keys.Control | Keys.Down):
-                        if (_actionMoveDown.Enabled)
-                        {
-                            _actionMoveDown.DoExecute();
-                            result = true;
-                        }
-                        break;
-                }
-            }
-            return result;
-        }
-
         public void Activate_()
         {
-            ((MainForm)FindForm()).ShortCutKeys = ShortCutKeys;
+            ((MainForm)FindForm()).ShortCutKeysHandler.Add(_actionList);
             //@ changed
             //_actionRemoveCommand.Shortcut = Shortcut.CtrlDel;
             //_actionMoveUp.Shortcut = Shortcut.AltUpArrow;
@@ -489,7 +439,7 @@ namespace UIRibbonTools
 
         public void Deactivate_()
         {
-            ((MainForm)FindForm()).ShortCutKeys = null;
+            ((MainForm)FindForm()).ShortCutKeysHandler.Remove(_actionList);
             //@ changed
             //_actionRemoveCommand.Shortcut = 0;
             //_actionMoveUp.Shortcut = 0;

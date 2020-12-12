@@ -26,6 +26,10 @@
     <UIRef Id="WixUI_ErrorProgressText" />
     <Icon Id="MainIcon.ico" SourceFile=".\Ribbon.ico" />
     <Property Id="ARPPRODUCTICON" Value="MainIcon.ico" />
+    <Property Id="ARPHELPLINK" Value="https://github.com/harborsiem/WindowsRibbon/wiki" />
+    <Property Id="ARPCOMMENTS" Value="Windows Ribbon Library for .NET" />
+    <Property Id="ARPURLUPDATEINFO" Value="https://github.com/harborsiem/WindowsRibbon/releases" />
+    <Property Id="ARPNOREPAIR" Value="yes" />
     <WixVariable Id="WixUILicenseRtf" Value="Ms-PL_License.rtf" />
   </Product>
 
@@ -44,9 +48,9 @@
         <!--
           .NET2.0, 3.5 GAC Assembly
           -->
-          <RegistryKey Root="HKLM" Key="Software\Microsoft\.NETFramework\AssemblyFolders\[ProductName]" ForceCreateOnInstall="yes" ForceDeleteOnUninstall="yes" Id="R.AssemblyRef">
-              <RegistryValue Type="string" Value="[ProgramFilesFolder]RibbonLib\" />
-          </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Microsoft\.NETFramework\AssemblyFolders\[ProductName]" ForceCreateOnInstall="yes" ForceDeleteOnUninstall="yes" Id="R.AssemblyRef">
+          <RegistryValue Type="string" Value="[ProgramFilesFolder]RibbonLib\" />
+        </RegistryKey>
         <!--
           .NET4.x GAC Assembly
         <RegistryKey Root="HKLM" Key="Software\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\[ProductName]" ForceCreateOnInstall="yes" ForceDeleteOnUninstall="yes" Id="R.AssemblyRef4">

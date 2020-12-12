@@ -26,6 +26,10 @@
     <UIRef Id="WixUI_ErrorProgressText" />
     <Icon Id="MainIcon.ico" SourceFile="Ribbon.ico" />
     <Property Id="ARPPRODUCTICON" Value="MainIcon.ico" />
+    <Property Id="ARPHELPLINK" Value="https://github.com/harborsiem/WindowsRibbon/wiki" />
+    <Property Id="ARPCOMMENTS" Value="Design, Build and Preview Windows Ribbon" />
+    <Property Id="ARPURLUPDATEINFO" Value="https://github.com/harborsiem/WindowsRibbon/releases" />
+    <Property Id="ARPNOREPAIR" Value="yes" />
     <WixVariable Id="WixUILicenseRtf" Value="MIT_License.rtf" />
   </Product>
 

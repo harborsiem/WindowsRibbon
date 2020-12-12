@@ -562,7 +562,7 @@ namespace UIRibbonTools
 
         public void Deactivate_()
         {
-            ((MainForm)FindForm()).ShortCutKeys = null;
+            ((MainForm)FindForm()).ShortCutKeysHandler.Remove(_actionList);
             //@ different
             //_actionRemove.Shortcut = 0;
             //_actionMoveUp.Shortcut = 0;
@@ -800,7 +800,7 @@ namespace UIRibbonTools
             _actionAddMiniToolbarMenuGroup.Visible = (objType == RibbonObjectType.MiniToolbar);
 
             //I think there is a bug in .NET when we have no visible items. After selecting an other node we have to click Add twice
-       }
+        }
 
         public void ShowDocument(TRibbonDocument document)
         {
@@ -1360,51 +1360,12 @@ namespace UIRibbonTools
             (sender as TAction).Enabled = (treeViewRibbon.SelectedNode != null);
         }
 
-        private bool ShortCutKeys(ref Message msg, Keys keyData) //@ added
-        {
-            bool result = false;
-            if (msg.Msg == NativeMethods.WM_KEYDOWN)
-            {
-                switch (keyData)
-                {
-                    //ShortcutKeys for ToolStripButton
-                    //Remove
-                    case (Keys.Control | Keys.Delete):
-                        if (_actionRemove.Enabled)
-                        {
-                            _actionRemove.DoExecute();
-                            result = true;
-                        }
-                        break;
-
-                    //Arrow Up
-                    case (Keys.Control | Keys.Up):
-                        if (_actionMoveUp.Enabled)
-                        {
-                            _actionMoveUp.DoExecute();
-                            result = true;
-                        }
-                        break;
-
-                    //Arrow Down
-                    case (Keys.Control | Keys.Down):
-                        if (_actionMoveDown.Enabled)
-                        {
-                            _actionMoveDown.DoExecute();
-                            result = true;
-                        }
-                        break;
-                }
-            }
-            return result;
-        }
-
         public void Activate_()
         {
             if (treeViewRibbon.Nodes.Count == 0)
                 return; // Nothing to do here
 
-            ((MainForm)FindForm()).ShortCutKeys = ShortCutKeys;
+            ((MainForm)FindForm()).ShortCutKeysHandler.Add(_actionList);
             //@ changed
             //_actionRemove.ShortCut = ShortCut(VK_DELETE, [ssCtrl]);
             //_actionMoveUp.ShortCut = ShortCut(VK_UP, [ssCtrl]);

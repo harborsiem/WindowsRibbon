@@ -123,7 +123,7 @@ namespace UIRibbonTools
                     == DialogResult.No)
                     return;
 
-                MainForm.FormMain._actionSaveAs.DoExecute();
+                MainForm.FormMain._actionSaveAs.PerformClick();
                 if (string.IsNullOrEmpty(_command.Owner.Filename))
                     return;
             }
@@ -312,7 +312,7 @@ namespace UIRibbonTools
         private void ListViewDblClick(object sender, EventArgs e)
         {
             if (_actionEditImage.Enabled)
-                _actionEditImage.DoExecute();
+                _actionEditImage.PerformClick();
         }
 
         private void ListViewSelectItem(object sender, ListViewItemSelectionChangedEventArgs e)

@@ -301,7 +301,10 @@ namespace WinForms.Actions
                 }
             }
         }
-        public void DoExecute()
+        /// <summary>
+        /// Raise the Click event
+        /// </summary>
+        public void PerformClick()
         {
             OnExecute(this, EventArgs.Empty);
         }

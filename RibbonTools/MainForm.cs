@@ -58,7 +58,7 @@ namespace UIRibbonTools
         private BuildPreviewHelper _buildPreviewHelper;
         private ImageList _imageListMain;
         public static MainForm FormMain;
-        public ShortCutKeysDelegate ShortCutKeys;
+        public ShortCutKeysHandler ShortCutKeysHandler { get; private set; }
 
         public MainForm()
         {
@@ -121,6 +121,8 @@ namespace UIRibbonTools
 
             //UpdateControls(); //@ added why?
             _commandsFrame.RefreshSelection(); //@ added
+
+            ShortCutKeysHandler = new ShortCutKeysHandler(base.ProcessCmdKey);
         }
 
         private void InitActions()
@@ -888,12 +890,7 @@ namespace UIRibbonTools
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) //@ added
         {
-            bool result = false;
-            if (ShortCutKeys != null)
-                result = ShortCutKeys(ref msg, keyData);
-            if (result)
-                return true;
-            return base.ProcessCmdKey(ref msg, keyData);
+            return ShortCutKeysHandler.ProcessCmdKey(ref msg, keyData);
         }
 
         private void LanguageComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -929,6 +926,4 @@ namespace UIRibbonTools
             _actionPreview.Enabled = enabled;
         }
     }
-
-    public delegate bool ShortCutKeysDelegate(ref Message msg, Keys keys); //@ added, Should we put it to the Actions ?
 }
