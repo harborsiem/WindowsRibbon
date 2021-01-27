@@ -48,4 +48,9 @@
     <DocumentationFile>.\bin\Release\net40\Ribbon.xml</DocumentationFile>
   </PropertyGroup>
 
+  <Target Name="DeleteSomeObj" AfterTargets="AfterBuild">
+	<Delete Files=".\obj\project.assets.json">
+    </Delete>
+  </Target>
+
 </Project>
