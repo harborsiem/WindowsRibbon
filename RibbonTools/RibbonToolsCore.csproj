@@ -122,10 +122,5 @@
       <HintPath>..\Ribbon\bin\Release\netcoreapp3.1\Ribbon.dll</HintPath>
     </Reference>
   </ItemGroup>
-  
-  <Target Name="DeleteSomeObj" AfterTargets="AfterBuild">
-	<Delete Files=".\obj\project.assets.json">
-    </Delete>
-  </Target>
 
 </Project>

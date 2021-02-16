@@ -27,6 +27,7 @@ namespace MainForm
             Load += Form1_Load;
             Shown += Form1_Shown;
             r = new RibbonItems(ribbon1);
+            r.BelowRibbon = tableLayoutPanel1;
             r.AfterInit();
         }
 

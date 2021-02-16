@@ -19,47 +19,59 @@ namespace RibbonLib.Controls
     {
         private static class Cmd
         {
-            public const uint cmdQAT = 2000;
-            public const uint cmdCustomizeQAT = 2001;
             public const uint cmdApplicationMenu = 2100;
-            public const uint cmdTabHome = 2200;
-            public const uint cmdTabMedia = 2201;
-            public const uint cmdTabInsert = 2202;
-            public const uint cmdGroupPages = 2332;
-            public const uint cmdGroupTables = 2333;
-            public const uint cmdGroupIllustrations = 2334;
-            public const uint cmdTabOptions = 2203;
-            public const uint cmdTabPageLayout = 2204;
-            public const uint cmdGroupFileActions = 2300;
-            public const uint cmdGroupClipBoard1 = 2301;
-            public const uint cmdGroupSettings = 2302;
-            public const uint cmdGroupMediaSettings = 2303;
-            public const uint cmdGroupClipboard = 2304;
-            public const uint cmdGroupFont = 2305;
-            public const uint cmdGroupParagraph = 2306;
-            public const uint cmdGroupStyles = 2307;
-            public const uint cmdGroupEditing = 2308;
-            public const uint cmdGroupExit = 2310;
-            public const uint cmdFontControl = 1051;
+            public const uint cmdRecentItems = 2400;
+            public const uint cmdButtonNew = 1001;
+            public const uint cmdButtonOpen = 1002;
+            public const uint cmdButtonSave = 1003;
             public const uint cmdButtonExitMenu = 1050;
             public const uint cmdHelpButton = 1016;
-            public const uint cmdButtonNew = 1001;
-            public const uint cmdButtonUndo = 1020;
+            public const uint cmdQAT = 2000;
             public const uint cmdButtonPrint = 1021;
-            public const uint cmdButtonChangeStyles = 1031;
-            public const uint cmdButtonDummy1 = 1030;
-            public const uint cmdButtonCut = 1023;
-            public const uint cmdComboBoxPaste = 1024;
-            public const uint cmdButtonCopy = 1025;
+            public const uint cmdButtonUndo = 1020;
+            public const uint cmdTabHome = 2200;
+            public const uint cmdGroupClipboard = 2304;
             public const uint cmdButtonPaste = 1033;
             public const uint cmdButtonPaste2 = 1035;
+            public const uint cmdMenu1 = 3000;
             public const uint cmdButtonMenuPaste = 1036;
             public const uint cmdButtonMenuPasteSpecial = 1037;
             public const uint cmdButtonMenuPasteLink = 1038;
+            public const uint cmdButtonCut = 1023;
+            public const uint cmdButtonCopy = 1025;
+            public const uint cmdButtonCopyFormat = 1034;
+            public const uint cmdGroupFont = 2305;
+            public const uint cmdFontControl = 1051;
+            public const uint cmdGroupParagraph = 2306;
+            public const uint cmdButtonP101 = 5014;
+            public const uint cmdButtonP1 = 5000;
+            public const uint cmdButtonP102 = 5015;
+            public const uint cmdButtonP2 = 5001;
+            public const uint cmdButtonP3 = 5002;
+            public const uint cmdButtonP4 = 5003;
+            public const uint cmdButtonP5 = 5004;
+            public const uint cmdButtonP6 = 5005;
+            public const uint cmdButtonP7 = 5006;
+            public const uint cmdButtonP108 = 5016;
+            public const uint cmdButtonP8 = 5007;
+            public const uint cmdButtonP109 = 5017;
+            public const uint cmdButtonP9 = 5008;
+            public const uint cmdButtonP10 = 5009;
+            public const uint cmdButtonP11 = 5010;
+            public const uint cmdButtonP12 = 5011;
+            public const uint cmdButtonP13 = 5012;
+            public const uint cmdButtonP14 = 5013;
+            public const uint cmdGroupStyles = 2307;
+            public const uint cmdInRibbonGallery = 4000;
+            public const uint cmdButtonStyles1 = 5020;
+            public const uint cmdButtonStyles2 = 5021;
+            public const uint cmdButtonStyles3 = 5022;
+            public const uint cmdButtonChangeStyles = 1031;
             public const uint cmdButtonMenuStyleSet = 1039;
             public const uint cmdButtonMenuColors = 1040;
             public const uint cmdButtonMenuFont = 1041;
             public const uint cmdButtonMenuSetAsDefault = 1042;
+            public const uint cmdGroupEditing = 2308;
             public const uint cmdButtonFind = 1043;
             public const uint cmdButtonReplace = 1044;
             public const uint cmdButtonGoto = 1045;
@@ -67,49 +79,40 @@ namespace RibbonLib.Controls
             public const uint cmdButtonMenuSelect1 = 1047;
             public const uint cmdButtonMenuSelect2 = 1048;
             public const uint cmdButtonMenuSelect3 = 1049;
-            public const uint cmdButtonCopyFormat = 1034;
-            public const uint cmdButtonOpen = 1002;
-            public const uint cmdButtonSave = 1003;
-            public const uint cmdButtonExit = 1004;
-            public const uint cmdRecentItems = 2400;
-            public const uint cmdMenu1 = 3000;
-            public const uint cmdInRibbonGallery = 4000;
-            public const uint cmdButtonP1 = 5000;
-            public const uint cmdButtonP2 = 5001;
-            public const uint cmdButtonP3 = 5002;
-            public const uint cmdButtonP4 = 5003;
-            public const uint cmdButtonP5 = 5004;
-            public const uint cmdButtonP6 = 5005;
-            public const uint cmdButtonP7 = 5006;
-            public const uint cmdButtonP8 = 5007;
-            public const uint cmdButtonP9 = 5008;
-            public const uint cmdButtonP10 = 5009;
-            public const uint cmdButtonP11 = 5010;
-            public const uint cmdButtonP12 = 5011;
-            public const uint cmdButtonP13 = 5012;
-            public const uint cmdButtonP14 = 5013;
-            public const uint cmdButtonStyles1 = 5020;
-            public const uint cmdButtonStyles2 = 5021;
-            public const uint cmdButtonStyles3 = 5022;
-            public const uint cmdButtonP101 = 5014;
-            public const uint cmdButtonP102 = 5015;
-            public const uint cmdButtonP108 = 5016;
-            public const uint cmdButtonP109 = 5017;
+            public const uint cmdTabInsert = 2202;
+            public const uint cmdGroupPages = 2332;
+            public const uint cmdGroupTables = 2333;
+            public const uint cmdGroupIllustrations = 2334;
+            public const uint cmdTabPageLayout = 2204;
+            public const uint cmdGroup1 = 84;
+            public const uint cmdCombo1 = 78;
+            public const uint cmdButton1 = 80;
+            public const uint cmdCombo2 = 79;
+            public const uint cmdButton2 = 81;
+            public const uint cmdHidden1 = 82;
+            public const uint cmdGroup2 = 85;
+            public const uint cmdHidden2 = 83;
+            public const uint cmdGroup3 = 86;
+            public const uint cmdButtonLabel = 87;
+            public const uint cmdGroup4 = 88;
+            public const uint cmdGroup5 = 89;
+            public const uint cmdButtonDate = 90;
+            public const uint cmdCustomizeQAT = 2001;
         }
 
-        private static bool initialized;
+        // ContextPopup CommandName
 
         public Ribbon Ribbon { get; private set; }
-        public RibbonHelpButton HelpButton { get; private set; }
-        public RibbonQuickAccessToolbar QAT { get; private set; }
-        public RibbonButton ButtonSave { get; private set; }
-        public RibbonButton ButtonPrint { get; private set; }
-        public RibbonButton ButtonUndo { get; private set; }
-        public RibbonButton ButtonOpen { get; private set; }
         public RibbonApplicationMenu ApplicationMenu { get; private set; }
         public RibbonRecentItems RecentItems { get; private set; }
         public RibbonButton ButtonNew { get; private set; }
+        public RibbonButton ButtonOpen { get; private set; }
+        public RibbonButton ButtonSave { get; private set; }
         public RibbonButton ButtonExitMenu { get; private set; }
+        public RibbonHelpButton HelpButton { get; private set; }
+        public RibbonQuickAccessToolbar QAT { get; private set; }
+        public RibbonButton ButtonPrint { get; private set; }
+        public RibbonButton ButtonUndo { get; private set; }
         public RibbonTab TabHome { get; private set; }
         public RibbonGroup GroupClipboard { get; private set; }
         public RibbonSplitButton ButtonPaste { get; private set; }
@@ -165,24 +168,35 @@ namespace RibbonLib.Controls
         public RibbonGroup GroupTables { get; private set; }
         public RibbonGroup GroupIllustrations { get; private set; }
         public RibbonTab TabPageLayout { get; private set; }
+        public RibbonGroup Group1 { get; private set; }
+        public RibbonComboBox Combo1 { get; private set; }
+        public RibbonButton Button1 { get; private set; }
+        public RibbonComboBox Combo2 { get; private set; }
+        public RibbonButton Button2 { get; private set; }
+        public RibbonButton Hidden1 { get; private set; }
+        public RibbonGroup Group2 { get; private set; }
+        public RibbonButton Hidden2 { get; private set; }
+        public RibbonGroup Group3 { get; private set; }
+        public RibbonButton ButtonLabel { get; private set; }
+        public RibbonGroup Group4 { get; private set; }
+        public RibbonGroup Group5 { get; private set; }
+        public RibbonButton ButtonDate { get; private set; }
 
         public RibbonItems(Ribbon ribbon)
         {
             if (ribbon == null)
                 throw new ArgumentNullException(nameof(ribbon), "Parameter is null");
-            if (initialized)
-                return;
             this.Ribbon = ribbon;
-            HelpButton = new RibbonHelpButton(ribbon, Cmd.cmdHelpButton);
-            QAT = new RibbonQuickAccessToolbar(ribbon, Cmd.cmdQAT);
-            ButtonSave = new RibbonButton(ribbon, Cmd.cmdButtonSave);
-            ButtonPrint = new RibbonButton(ribbon, Cmd.cmdButtonPrint);
-            ButtonUndo = new RibbonButton(ribbon, Cmd.cmdButtonUndo);
-            ButtonOpen = new RibbonButton(ribbon, Cmd.cmdButtonOpen);
             ApplicationMenu = new RibbonApplicationMenu(ribbon, Cmd.cmdApplicationMenu);
             RecentItems = new RibbonRecentItems(ribbon, Cmd.cmdRecentItems);
             ButtonNew = new RibbonButton(ribbon, Cmd.cmdButtonNew);
+            ButtonOpen = new RibbonButton(ribbon, Cmd.cmdButtonOpen);
+            ButtonSave = new RibbonButton(ribbon, Cmd.cmdButtonSave);
             ButtonExitMenu = new RibbonButton(ribbon, Cmd.cmdButtonExitMenu);
+            HelpButton = new RibbonHelpButton(ribbon, Cmd.cmdHelpButton);
+            QAT = new RibbonQuickAccessToolbar(ribbon, Cmd.cmdQAT, Cmd.cmdCustomizeQAT);
+            ButtonPrint = new RibbonButton(ribbon, Cmd.cmdButtonPrint);
+            ButtonUndo = new RibbonButton(ribbon, Cmd.cmdButtonUndo);
             TabHome = new RibbonTab(ribbon, Cmd.cmdTabHome);
             GroupClipboard = new RibbonGroup(ribbon, Cmd.cmdGroupClipboard);
             ButtonPaste = new RibbonSplitButton(ribbon, Cmd.cmdButtonPaste);
@@ -238,7 +252,19 @@ namespace RibbonLib.Controls
             GroupTables = new RibbonGroup(ribbon, Cmd.cmdGroupTables);
             GroupIllustrations = new RibbonGroup(ribbon, Cmd.cmdGroupIllustrations);
             TabPageLayout = new RibbonTab(ribbon, Cmd.cmdTabPageLayout);
-            initialized = true;
+            Group1 = new RibbonGroup(ribbon, Cmd.cmdGroup1);
+            Combo1 = new RibbonComboBox(ribbon, Cmd.cmdCombo1);
+            Button1 = new RibbonButton(ribbon, Cmd.cmdButton1);
+            Combo2 = new RibbonComboBox(ribbon, Cmd.cmdCombo2);
+            Button2 = new RibbonButton(ribbon, Cmd.cmdButton2);
+            Hidden1 = new RibbonButton(ribbon, Cmd.cmdHidden1);
+            Group2 = new RibbonGroup(ribbon, Cmd.cmdGroup2);
+            Hidden2 = new RibbonButton(ribbon, Cmd.cmdHidden2);
+            Group3 = new RibbonGroup(ribbon, Cmd.cmdGroup3);
+            ButtonLabel = new RibbonButton(ribbon, Cmd.cmdButtonLabel);
+            Group4 = new RibbonGroup(ribbon, Cmd.cmdGroup4);
+            Group5 = new RibbonGroup(ribbon, Cmd.cmdGroup5);
+            ButtonDate = new RibbonButton(ribbon, Cmd.cmdButtonDate);
         }
 
     }

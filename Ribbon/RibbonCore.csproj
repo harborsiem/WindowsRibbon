@@ -10,14 +10,25 @@
     <AssemblyOriginatorKeyFile>Ribbon.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <PackageProjectUrl>https://github.com/harborsiem/WindowsRibbon</PackageProjectUrl>
-    <Description>Microsoft Windows Ribbon for .NET Core</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <RepositoryType>Git</RepositoryType>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>RibbonLib</RootNamespace>
     <AssemblyName>Ribbon</AssemblyName>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+
+    <PackageId>WindowsRibbon</PackageId>
+    <Product>Windows Ribbon Control</Product>
+    <Version>2.10.0</Version>
+    <Authors>Hartmut Borkenhagen</Authors>
+    <Company>RibbonLib</Company>
+    <PackageIcon>Ribbon64.png</PackageIcon>
+    <Title>Windows Ribbon Library for WinForms</Title>
+    <Description>Windows Ribbon for WinForms is a .NET wrapper for Windows Ribbon control. It will allow WinForms developers to use Microsoft Windows Ribbon control in their WinForms applications.
+	Former developers: Arik Poznanski, Bernhard Elbl
+	</Description>
+    <PackageTags>ribbon;winforms;windows-forms;RibbonTools</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   
   <PropertyGroup>
@@ -48,9 +59,19 @@
     <DocumentationFile>.\bin\Release\net40\Ribbon.xml</DocumentationFile>
   </PropertyGroup>
 
-  <Target Name="DeleteSomeObj" AfterTargets="AfterBuild">
-	<Delete Files=".\obj\project.assets.json">
-    </Delete>
-  </Target>
+  <ItemGroup>
+    <None Include="Ribbon64.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="..\Setup\msi\Ribbon.msi">
+      <Pack>true</Pack>
+      <PackagePath>Setup\</PackagePath>
+    </Content>
+    <Content Include="..\Setup\msi\RibbonTools.msi">
+      <Pack>true</Pack>
+      <PackagePath>Setup\</PackagePath>
+    </Content>
+  </ItemGroup>
 
 </Project>

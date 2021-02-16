@@ -1,798 +1,283 @@
-<?xml version='1.0' encoding='utf-8'?>
-<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://schemas.microsoft.com/windows/2009/Ribbon">
   <Application.Commands>
-
-    <Command Name="cmdQAT"
-             Id="2000">
-    </Command>
-
-    <Command Name="cmdCustomizeQAT"
-             Id="2001">
-    </Command>
-
-    <Command Name="cmdApplicationMenu"
-             Id="2100">
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdTabHome"
-             Id="2200"
-             LabelTitle="">
-    </Command>
-
-    <Command Name="cmdTabMedia"
-         Id="2201"
-         LabelTitle="Media">
-    </Command>
-
-    <Command Name="cmdTabInsert"
-         Id="2202"
-         LabelTitle="Insert">
-    </Command>
-
-    <Command Name="cmdGroupPages"
-         Id="2332"
-         LabelTitle="Pages">
-    </Command>
-
-    <Command Name="cmdGroupTables"
-         Id="2333"
-         LabelTitle="Tables">
-    </Command>
-
-    <Command Name="cmdGroupIllustrations"
-         Id="2334"
-         LabelTitle="Illustrations">
-    </Command>
-
-    <Command Name="cmdTabOptions"
-         Id="2203"
-         LabelTitle="Options">
-    </Command>
-
-    <Command Name="cmdTabPageLayout"
-         Id="2204"
-         LabelTitle="Page Layout">
-    </Command>
-
-    <Command Name="cmdGroupFileActions"
-             Id="2300"
-             LabelTitle="Allgemein">
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdGroupClipBoard1"
-             Id="2301"
-             LabelTitle="Clipboard">
-    </Command>
-
-    <Command Name="cmdGroupSettings"
-             Id="2302"
-             LabelTitle="Settings">
-    </Command>
-
-    <Command Name="cmdGroupMediaSettings"
-             Id="2303"
-             LabelTitle="Einstellungen">
-    </Command>
-
-    <Command Name="cmdGroupClipboard"
-             Id="2304"
-             LabelTitle="Clipboard">
+    <Command Name="cmdQAT" Id="2000" />
+    <Command Name="cmdCustomizeQAT" Id="2001" />
+    <Command Name="cmdApplicationMenu" Id="2100" />
+    <Command Name="cmdTabHome" Id="2200" LabelTitle="Home" />
+    <Command Name="cmdTabMedia" Id="2201" LabelTitle="Media" />
+    <Command Name="cmdTabInsert" Id="2202" LabelTitle="Insert" />
+    <Command Name="cmdGroupPages" Id="2332" LabelTitle="Pages" />
+    <Command Name="cmdGroupTables" Id="2333" LabelTitle="Tables" />
+    <Command Name="cmdGroupIllustrations" Id="2334" LabelTitle="Illustrations" />
+    <Command Name="cmdTabOptions" Id="2203" LabelTitle="Options" />
+    <Command Name="cmdTabPageLayout" Id="2204" LabelTitle="Page Layout" />
+    <Command Name="cmdGroupFileActions" Id="2300" LabelTitle="Allgemein" />
+    <Command Name="cmdGroupClipBoard1" Id="2301" LabelTitle="Clipboard" />
+    <Command Name="cmdGroupSettings" Id="2302" LabelTitle="Settings" />
+    <Command Name="cmdGroupMediaSettings" Id="2303" LabelTitle="Einstellungen" />
+    <Command Name="cmdGroupClipboard" Id="2304" LabelTitle="Clipboard">
       <Command.SmallImages>
         <Image>Resources/paste16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdGroupFont"
-             Id="2305"
-             LabelTitle="Font">
+    <Command Name="cmdGroupFont" Id="2305" LabelTitle="Font">
       <Command.SmallImages>
         <Image>Resources/fontcolor16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdGroupParagraph"
-             Id="2306"
-             LabelTitle="Paragraph">
+    <Command Name="cmdGroupParagraph" Id="2306" LabelTitle="Paragraph">
       <Command.SmallImages>
         <Image>Resources/textaligncenter16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdGroupStyles"
-             Id="2307"
-             LabelTitle="Styles">
+    <Command Name="cmdGroupStyles" Id="2307" LabelTitle="Styles">
       <Command.SmallImages>
         <Image>Resources/style16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdGroupEditing"
-             Id="2308"
-             LabelTitle="Editing">
-    </Command>
-
-    <Command Name="cmdGroupExit"
-             Id="2310"
-             LabelTitle="">
-    </Command>
-
-    <Command Name="cmdFontControl"
-             Id="1051"
-             LabelTitle="Font"
-             LabelDescription="Font Description"
-             TooltipTitle="Font"
-             TooltipDescription="Font Control.">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonExitMenu"
-             Id="1050"
-             LabelTitle="Exit"
-             LabelDescription="Exit Description"
-             TooltipTitle="Exit (Ctrl+X)"
-             TooltipDescription="Exit application.">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdGroupEditing" Id="2308" LabelTitle="Editing" />
+    <Command Name="cmdGroupExit" Id="2310" />
+    <Command Name="cmdFontControl" Id="1051" LabelTitle="Font" LabelDescription="Font Description" TooltipTitle="Font" TooltipDescription="Font Control." />
+    <Command Name="cmdButtonExitMenu" Id="1050" LabelTitle="Exit" LabelDescription="Exit Description" TooltipTitle="Exit (Ctrl+X)" TooltipDescription="Exit application.">
       <Command.SmallImages>
         <Image>Resources/exit16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdHelpButton"
-             Id="1016">
-    </Command>
-
-    <Command Name="cmdButtonNew"
-             Id="1001"
-             LabelTitle="&amp;New"
-             LabelDescription="New Description"
-             TooltipTitle="New (Ctrl+N)"
-             TooltipDescription="Create a new image.">
+    <Command Name="cmdHelpButton" Id="1016" />
+    <Command Name="cmdButtonNew" Id="1001" LabelTitle="&amp;New" LabelDescription="New Description" TooltipTitle="New (Ctrl+N)" TooltipDescription="Create a new image.">
       <Command.LargeImages>
         <Image>Resources/NewDocument32.png</Image>
       </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonUndo"
-             Id="1020"
-             LabelTitle="&amp;Undo"
-             LabelDescription="Undo Description"
-             TooltipTitle="Undo (Ctrl+Z)"
-             TooltipDescription="Undo">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonUndo" Id="1020" LabelTitle="&amp;Undo" LabelDescription="Undo Description" TooltipTitle="Undo (Ctrl+Z)" TooltipDescription="Undo">
       <Command.SmallImages>
         <Image>Resources/undo16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonPrint"
-             Id="1021"
-             LabelTitle="&amp;Print"
-             LabelDescription="Print Description"
-             TooltipTitle="Print (Ctrl+P)"
-             TooltipDescription="Print">
-      <Command.LargeImages>
-        <Image>Resources/printquick32.png</Image>
-      </Command.LargeImages>
+    <Command Name="cmdButtonPrint" Id="1021" LabelTitle="&amp;Print" LabelDescription="Print Description" TooltipTitle="Print (Ctrl+P)" TooltipDescription="Print">
       <Command.SmallImages>
         <Image>Resources/printquick16.png</Image>
       </Command.SmallImages>
+      <Command.LargeImages>
+        <Image>Resources/printquick32.png</Image>
+      </Command.LargeImages>
     </Command>
-
-    <Command Name="cmdButtonChangeStyles"
-             Id="1031"
-             LabelTitle="Change Styles"
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="">
+    <Command Name="cmdButtonChangeStyles" Id="1031" LabelTitle="Change Styles">
       <Command.LargeImages>
         <Image>Resources/stylechange32.png</Image>
       </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonDummy1"
-             Id="1030"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonCut"
-             Id="1023"
-             LabelTitle="&amp;Cut"
-             LabelDescription="Cut Description"
-             TooltipTitle="Cut (Ctrl+X)"
-             TooltipDescription="Cut">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonDummy1" Id="1030" />
+    <Command Name="cmdButtonCut" Id="1023" LabelTitle="&amp;Cut" LabelDescription="Cut Description" TooltipTitle="Cut (Ctrl+X)" TooltipDescription="Cut">
       <Command.SmallImages>
         <Image>Resources/Cut16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdComboBoxPaste"
-             Id="1024"
-             LabelTitle=""
-             LabelDescription="Paste Description"
-             TooltipTitle="Paste (Ctrl+V)"
-             TooltipDescription="Paste">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdComboBoxPaste" Id="1024" LabelDescription="Paste Description" TooltipTitle="Paste (Ctrl+V)" TooltipDescription="Paste">
       <Command.SmallImages>
         <Image>Resources/Paste16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonCopy"
-             Id="1025"
-             LabelTitle="&amp;Copy"
-             LabelDescription="Copy Description"
-             TooltipTitle="Copy (Ctrl+C)"
-             TooltipDescription="Copy">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonCopy" Id="1025" LabelTitle="&amp;Copy" LabelDescription="Copy Description" TooltipTitle="Copy (Ctrl+C)" TooltipDescription="Copy">
       <Command.SmallImages>
         <Image>Resources/Copy16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonPaste"
-             Id="1033"
-             LabelTitle="&amp;Paste"
-             LabelDescription="Paste Description"
-             TooltipTitle="Paste (Ctrl+V)"
-             TooltipDescription="Paste">
+    <Command Name="cmdButtonPaste" Id="1033" LabelTitle="&amp;Paste" LabelDescription="Paste Description" TooltipTitle="Paste (Ctrl+V)" TooltipDescription="Paste">
+      <Command.SmallImages>
+        <Image>Resources/paste16.png</Image>
+      </Command.SmallImages>
       <Command.LargeImages>
         <Image>Resources/paste32.png</Image>
       </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonPaste2" Id="1035" LabelTitle="&amp;Paste" LabelDescription="Paste Description" TooltipTitle="Paste (Ctrl+V)" TooltipDescription="Paste">
       <Command.SmallImages>
         <Image>Resources/paste16.png</Image>
       </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonPaste2"
-             Id="1035"
-             LabelTitle="&amp;Paste"
-             LabelDescription="Paste Description"
-             TooltipTitle="Paste (Ctrl+V)"
-             TooltipDescription="Paste">
       <Command.LargeImages>
         <Image>Resources/paste32.png</Image>
       </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMenuPaste" Id="1036" LabelTitle="&amp;Paste" LabelDescription="Paste Description" TooltipTitle="Paste" TooltipDescription="Paste">
       <Command.SmallImages>
         <Image>Resources/paste16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonMenuPaste"
-             Id="1036"
-             LabelTitle="&amp;Paste"
-             LabelDescription="Paste Description"
-             TooltipTitle="Paste"
-             TooltipDescription="Paste">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-        <Image>Resources/paste16.png</Image>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonMenuPasteSpecial"
-             Id="1037"
-             LabelTitle="&amp;Paste special..."
-             LabelDescription="Paste Description"
-             TooltipTitle="Paste"
-             TooltipDescription="Paste special...">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonMenuPasteSpecial" Id="1037" LabelTitle="&amp;Paste special..." LabelDescription="Paste Description" TooltipTitle="Paste" TooltipDescription="Paste special...">
       <Command.SmallImages>
         <Image>Resources/pastespecial16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonMenuPasteLink"
-             Id="1038"
-             LabelTitle="&amp;Paste as link"
-             LabelDescription="Paste Description"
-             TooltipTitle="Paste"
-             TooltipDescription="Paste as link">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonMenuPasteLink" Id="1038" LabelTitle="&amp;Paste as link" LabelDescription="Paste Description" TooltipTitle="Paste" TooltipDescription="Paste as link">
       <Command.SmallImages>
         <Image>Resources/pastelink16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonMenuStyleSet"
-             Id="1039"
-             LabelTitle="&amp;Style set"
-             LabelDescription="Style Description"
-             TooltipTitle="Style (Ctrl+C)"
-             TooltipDescription="Style set">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonMenuStyleSet" Id="1039" LabelTitle="&amp;Style set" LabelDescription="Style Description" TooltipTitle="Style (Ctrl+C)" TooltipDescription="Style set">
       <Command.SmallImages>
         <Image>Resources/styleset16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonMenuColors"
-             Id="1040"
-             LabelTitle="&amp;Colors"
-             LabelDescription="Colors Description"
-             TooltipTitle="Colors"
-             TooltipDescription="Colors">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonMenuFont"
-             Id="1041"
-             LabelTitle="&amp;Font"
-             LabelDescription="Font Description"
-             TooltipTitle="Font"
-             TooltipDescription="Font">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonMenuColors" Id="1040" LabelTitle="&amp;Colors" LabelDescription="Colors Description" TooltipTitle="Colors" TooltipDescription="Colors" />
+    <Command Name="cmdButtonMenuFont" Id="1041" LabelTitle="&amp;Font" LabelDescription="Font Description" TooltipTitle="Font" TooltipDescription="Font">
       <Command.SmallImages>
         <Image>Resources/themefont.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonMenuSetAsDefault"
-             Id="1042"
-             LabelTitle="&amp;Set as default value"
-             LabelDescription="Description"
-             TooltipTitle=""
-             TooltipDescription="Set as default value">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonFind"
-             Id="1043"
-             LabelTitle="&amp;Find"
-             LabelDescription="Find Description"
-             TooltipTitle="Find"
-             TooltipDescription="Find">
+    <Command Name="cmdButtonMenuSetAsDefault" Id="1042" LabelTitle="&amp;Set as default value" LabelDescription="Description" TooltipDescription="Set as default value" />
+    <Command Name="cmdButtonFind" Id="1043" LabelTitle="&amp;Find" LabelDescription="Find Description" TooltipTitle="Find" TooltipDescription="Find">
       <Command.LargeImages>
         <Image>Resources/find32.png</Image>
       </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonReplace"
-             Id="1044"
-             LabelTitle="&amp;Replace"
-             LabelDescription="Replace Description"
-             TooltipTitle="Replace"
-             TooltipDescription="Replace">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonReplace" Id="1044" LabelTitle="&amp;Replace" LabelDescription="Replace Description" TooltipTitle="Replace" TooltipDescription="Replace">
       <Command.SmallImages>
         <Image>Resources/replace16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonGoto"
-             Id="1045"
-             LabelTitle="&amp;Go To"
-             LabelDescription="Go To Description"
-             TooltipTitle="Go To"
-             TooltipDescription="Go To">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonGoto" Id="1045" LabelTitle="&amp;Go To" LabelDescription="Go To Description" TooltipTitle="Go To" TooltipDescription="Go To">
       <Command.SmallImages>
         <Image>Resources/goto16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonSelect"
-             Id="1046"
-             LabelTitle="&amp;Select"
-             LabelDescription="Select Description"
-             TooltipTitle="Select"
-             TooltipDescription="Select">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonSelect" Id="1046" LabelTitle="&amp;Select" LabelDescription="Select Description" TooltipTitle="Select" TooltipDescription="Select">
       <Command.SmallImages>
         <Image>Resources/select16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonMenuSelect1"
-             Id="1047"
-             LabelTitle="&amp;Select everything"
-             LabelDescription="Select Description"
-             TooltipTitle="Select"
-             TooltipDescription="Select everything">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonMenuSelect1" Id="1047" LabelTitle="&amp;Select everything" LabelDescription="Select Description" TooltipTitle="Select" TooltipDescription="Select everything">
       <Command.SmallImages>
         <Image>Resources/pageblank16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonMenuSelect2"
-             Id="1048"
-             LabelTitle="&amp;Select Text"
-             LabelDescription="Select Description"
-             TooltipTitle="Select (Ctrl+C)"
-             TooltipDescription="Select Text">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonMenuSelect2" Id="1048" LabelTitle="&amp;Select Text" LabelDescription="Select Description" TooltipTitle="Select (Ctrl+C)" TooltipDescription="Select Text">
       <Command.SmallImages>
         <Image>Resources/select16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonMenuSelect3"
-             Id="1049"
-             LabelTitle="&amp;Select text with similar format"
-             LabelDescription="Select Description"
-             TooltipTitle="Select"
-             TooltipDescription="Select text with similar format">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonCopyFormat"
-             Id="1034"
-             LabelTitle="&amp;Copy Format"
-             LabelDescription="Copy Format Description"
-             TooltipTitle="Copy Format"
-             TooltipDescription="Copy Format">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonMenuSelect3" Id="1049" LabelTitle="&amp;Select text with similar format" LabelDescription="Select Description" TooltipTitle="Select" TooltipDescription="Select text with similar format" />
+    <Command Name="cmdButtonCopyFormat" Id="1034" LabelTitle="&amp;Copy Format" LabelDescription="Copy Format Description" TooltipTitle="Copy Format" TooltipDescription="Copy Format">
       <Command.SmallImages>
         <Image>Resources/copyformat16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonOpen"
-             Id="1002"
-             LabelTitle="Open"
-             LabelDescription="Open Description"
-             TooltipTitle="Open (Ctrl+O)"
-             TooltipDescription="Open an existing image.">
-      <Command.LargeImages>
-        <Image>Resources/open32.png</Image>
-      </Command.LargeImages>
+    <Command Name="cmdButtonOpen" Id="1002" LabelTitle="Open" LabelDescription="Open Description" TooltipTitle="Open (Ctrl+O)" TooltipDescription="Open an existing image.">
       <Command.SmallImages>
         <Image>Resources/open16.png</Image>
       </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonSave"
-             Id="1003"
-             LabelTitle="Save"
-             LabelDescription="Save Description"
-             TooltipTitle="Save (Ctrl+S)"
-             TooltipDescription="Save the current image.">
       <Command.LargeImages>
-        <Image>Resources/save32.png</Image>
+        <Image>Resources/open32.png</Image>
       </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonSave" Id="1003" LabelTitle="Save" LabelDescription="Save Description" TooltipTitle="Save (Ctrl+S)" TooltipDescription="Save the current image.">
       <Command.SmallImages>
         <Image>Resources/save16.png</Image>
       </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonExit"
-             Id="1004"
-             LabelTitle="Exit"
-             LabelDescription="Exit Description"
-             TooltipTitle="Exit (Ctrl+X)"
-             TooltipDescription="Exit application.">
       <Command.LargeImages>
+        <Image>Resources/save32.png</Image>
       </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonExit" Id="1004" LabelTitle="Exit" LabelDescription="Exit Description" TooltipTitle="Exit (Ctrl+X)" TooltipDescription="Exit application.">
       <Command.SmallImages>
         <Image>Resources/exit16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdRecentItems" Id="2400" LabelTitle="" />
-
+    <Command Name="cmdRecentItems" Id="2400" />
     <Command Name="cmdMenu1" Id="3000" />
-
-    <Command Name='cmdInRibbonGallery'
-         Id='4000'>
-    </Command>
-
-    <Command Name="cmdButtonP1"
-             Id="5000"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="unorderedlist">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdInRibbonGallery" Id="4000" />
+    <Command Name="cmdButtonP1" Id="5000" TooltipTitle="Unordered list" TooltipDescription="Unordered list">
       <Command.SmallImages>
         <Image>Resources/unorderedlist16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP2"
-             Id="5001"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="orderedlist">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP2" Id="5001" TooltipTitle="Ordered list" TooltipDescription="Ordered list">
       <Command.SmallImages>
         <Image>Resources/orderedlist16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP3"
-             Id="5002"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="multilevellist">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP3" Id="5002" TooltipTitle="Multilevel list" TooltipDescription="Multilevel list">
       <Command.SmallImages>
         <Image>Resources/multilevellist16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP4"
-             Id="5003"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="textalignleft">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP4" Id="5003" TooltipTitle="Text align left" TooltipDescription="Text align left">
       <Command.SmallImages>
         <Image>Resources/textalignleft16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP5"
-             Id="5004"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="textaligncenter">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP5" Id="5004" TooltipTitle="Text align center" TooltipDescription="Text align center">
       <Command.SmallImages>
         <Image>Resources/textaligncenter16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP6"
-             Id="5005"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="textalignright">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP6" Id="5005" TooltipTitle="Text align right" TooltipDescription="Text align right">
       <Command.SmallImages>
         <Image>Resources/textalignright16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP7"
-             Id="5006"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="textalignjustify">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP7" Id="5006" TooltipTitle="Text align justify" TooltipDescription="Text align justify">
       <Command.SmallImages>
         <Image>Resources/textalignjustify16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP8"
-             Id="5007"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="fill">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP8" Id="5007" TooltipTitle="Fill" TooltipDescription="Fill">
       <Command.SmallImages>
         <Image>Resources/fill16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP9"
-             Id="5008"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="borderbottom">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP9" Id="5008" TooltipTitle="Border bottom" TooltipDescription="Border bottom">
       <Command.SmallImages>
         <Image>Resources/borderbottom16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP10"
-             Id="5009"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="indentdecrease">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP10" Id="5009" TooltipTitle="Indent decrease" TooltipDescription="Indent decrease">
       <Command.SmallImages>
         <Image>Resources/indentdecrease16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP11"
-             Id="5010"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="indentincrease">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP11" Id="5010" TooltipTitle="Indent increase" TooltipDescription="Indent increase">
       <Command.SmallImages>
         <Image>Resources/indentincrease16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP12"
-             Id="5011"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="sort">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP12" Id="5011" TooltipTitle="Sort" TooltipDescription="Sort">
       <Command.SmallImages>
         <Image>Resources/sort16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP13"
-             Id="5012"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="paragraphspacing">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP13" Id="5012" TooltipTitle="Paragraph spacing" TooltipDescription="Paragraph spacing">
       <Command.SmallImages>
         <Image>Resources/paragraphspacing16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonP14"
-             Id="5013"
-             LabelTitle=""
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="invisiblechars">
-      <Command.LargeImages>
-      </Command.LargeImages>
+    <Command Name="cmdButtonP14" Id="5013" TooltipTitle="Invisible chars" TooltipDescription="Invisible chars">
       <Command.SmallImages>
         <Image>Resources/invisiblechars16.png</Image>
       </Command.SmallImages>
     </Command>
-
-    <Command Name="cmdButtonStyles1"
-             Id="5020"
-             LabelTitle="Save selection as a quick new style..."
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonStyles2"
-             Id="5021"
-             LabelTitle="Erase format"
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonStyles3"
-             Id="5022"
-             LabelTitle="Apply style..."
-             LabelDescription=""
-             TooltipTitle=""
-             TooltipDescription="">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonP101"
-             Id="5014"
-             LabelTitle="Exit"
-             LabelDescription="Exit Description"
-             TooltipTitle="Exit (Ctrl+X)"
-             TooltipDescription="Exit application.">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonP102"
-             Id="5015"
-             LabelTitle="Exit"
-             LabelDescription="Exit Description"
-             TooltipTitle="Exit (Ctrl+X)"
-             TooltipDescription="Exit application.">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonP108"
-             Id="5016"
-             LabelTitle="Exit"
-             LabelDescription="Exit Description"
-             TooltipTitle="Exit (Ctrl+X)"
-             TooltipDescription="Exit application.">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-    <Command Name="cmdButtonP109"
-             Id="5017"
-             LabelTitle="Exit"
-             LabelDescription="Exit Description"
-             TooltipTitle="Exit (Ctrl+X)"
-             TooltipDescription="Exit application.">
-      <Command.LargeImages>
-      </Command.LargeImages>
-      <Command.SmallImages>
-      </Command.SmallImages>
-    </Command>
-
-
+    <Command Name="cmdButtonStyles1" Id="5020" LabelTitle="Save selection as a quick new style..." />
+    <Command Name="cmdButtonStyles2" Id="5021" LabelTitle="Erase format" />
+    <Command Name="cmdButtonStyles3" Id="5022" LabelTitle="Apply style..." />
+    <Command Name="cmdButtonP101" Id="5014" />
+    <Command Name="cmdButtonP102" Id="5015" />
+    <Command Name="cmdButtonP108" Id="5016" />
+    <Command Name="cmdButtonP109" Id="5017" />
+    <Command Name="cmdCombo1" Id="78" />
+    <Command Name="cmdCombo2" Id="79" />
+    <Command Name="cmdButton1" Id="80" LabelTitle="Button1" />
+    <Command Name="cmdButton2" Id="81" LabelTitle="Button2" />
+    <Command Name="cmdHidden1" Id="82" />
+    <Command Name="cmdHidden2" Id="83" />
+    <Command Name="cmdGroup1" Id="84" LabelTitle="Group1" />
+    <Command Name="cmdGroup2" Id="85" LabelTitle="Group2" />
+    <Command Name="cmdGroup3" Id="86" LabelTitle="Group3" />
+    <Command Name="cmdButtonLabel" Id="87" LabelTitle="Extra Label" />
+    <Command Name="cmdGroup4" Id="88" LabelTitle="Group4" />
+    <Command Name="cmdGroup5" Id="89" LabelTitle="DatePicker" />
+    <Command Name="cmdButtonDate" Id="90" />
   </Application.Commands>
-  <!--
-
--->
   <Application.Views>
     <Ribbon>
       <Ribbon.SizeDefinitions>
@@ -816,112 +301,127 @@
           <GroupSizeDefinition Size="Large">
             <Row>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button1" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button1" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button2" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button2" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button3" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button3" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button4" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button5" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button6" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button7" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button4" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button5" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button6" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button7" />
               </ControlGroup>
             </Row>
             <Row>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button8" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button8" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button9" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button9" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button10" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button11" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button12" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button13" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button14" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button10" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button11" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button12" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button13" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button14" />
               </ControlGroup>
             </Row>
           </GroupSizeDefinition>
           <GroupSizeDefinition Size="Medium">
             <Row>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button1" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button1" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button2" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button2" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button3" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button3" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button4" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button5" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button6" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button7" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button4" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button5" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button6" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button7" />
               </ControlGroup>
             </Row>
             <Row>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button8" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button8" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button9" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button9" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button10" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button11" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button12" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button13" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button14" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button10" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button11" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button12" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button13" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button14" />
               </ControlGroup>
             </Row>
           </GroupSizeDefinition>
           <GroupSizeDefinition Size="Small">
             <Row>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button1" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button1" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button2" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button2" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button3" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button3" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button4" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button5" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button6" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button7" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button4" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button5" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button6" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button7" />
               </ControlGroup>
             </Row>
             <Row>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button8" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button8" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button9" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button9" />
               </ControlGroup>
               <ControlGroup>
-                <ControlSizeDefinition ControlName="button10" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button11" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button12" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button13" IsLabelVisible="false" />
-                <ControlSizeDefinition ControlName="button14" IsLabelVisible="false" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button10" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button11" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button12" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button13" />
+                <ControlSizeDefinition IsLabelVisible="false" ControlName="button14" />
               </ControlGroup>
             </Row>
           </GroupSizeDefinition>
         </SizeDefinition>
       </Ribbon.SizeDefinitions>
+      <Ribbon.ApplicationMenu>
+        <ApplicationMenu CommandName="cmdApplicationMenu">
+          <ApplicationMenu.RecentItems>
+            <RecentItems CommandName="cmdRecentItems" EnablePinning="false" />
+          </ApplicationMenu.RecentItems>
+          <MenuGroup>
+            <Button CommandName="cmdButtonNew" />
+            <Button CommandName="cmdButtonOpen" />
+            <Button CommandName="cmdButtonSave" />
+          </MenuGroup>
+          <MenuGroup>
+            <Button CommandName="cmdButtonExitMenu" />
+          </MenuGroup>
+        </ApplicationMenu>
+      </Ribbon.ApplicationMenu>
       <Ribbon.HelpButton>
         <HelpButton CommandName="cmdHelpButton" />
       </Ribbon.HelpButton>
       <Ribbon.QuickAccessToolbar>
-        <QuickAccessToolbar CommandName='cmdQAT' CustomizeCommandName='cmdCustomizeQAT'>
+        <QuickAccessToolbar CommandName="cmdQAT" CustomizeCommandName="cmdCustomizeQAT">
           <QuickAccessToolbar.ApplicationDefaults>
             <Button CommandName="cmdButtonSave" ApplicationDefaults.IsChecked="true" />
             <Button CommandName="cmdButtonPrint" ApplicationDefaults.IsChecked="true" />
@@ -930,24 +430,8 @@
           </QuickAccessToolbar.ApplicationDefaults>
         </QuickAccessToolbar>
       </Ribbon.QuickAccessToolbar>
-      <Ribbon.ApplicationMenu>
-        <ApplicationMenu CommandName="cmdApplicationMenu">
-          <ApplicationMenu.RecentItems>
-            <RecentItems CommandName="cmdRecentItems" EnablePinning="false" MaxCount="10" />
-          </ApplicationMenu.RecentItems>
-          <MenuGroup>
-            <Button CommandName='cmdButtonNew' />
-            <Button CommandName='cmdButtonOpen' />
-            <Button CommandName='cmdButtonSave' />
-          </MenuGroup>
-          <MenuGroup>
-            <Button CommandName='cmdButtonExitMenu' />
-          </MenuGroup>
-        </ApplicationMenu>
-      </Ribbon.ApplicationMenu>
       <Ribbon.Tabs>
         <Tab CommandName="cmdTabHome">
-          <!-- scary part -->
           <Tab.ScalingPolicy>
             <ScalingPolicy>
               <ScalingPolicy.IdealSizes>
@@ -956,7 +440,6 @@
                 <Scale Group="cmdGroupParagraph" Size="Large" />
                 <Scale Group="cmdGroupStyles" Size="Large" />
                 <Scale Group="cmdGroupEditing" Size="Medium" />
-
               </ScalingPolicy.IdealSizes>
               <Scale Group="cmdGroupClipboard" Size="Popup" />
               <Scale Group="cmdGroupFont" Size="Popup" />
@@ -966,66 +449,54 @@
               <Scale Group="cmdGroupEditing" Size="Popup" />
             </ScalingPolicy>
           </Tab.ScalingPolicy>
-
-          <!-- useful part -->
           <Group CommandName="cmdGroupClipboard">
             <SizeDefinition>
               <ControlNameMap>
-                <ControlNameDefinition Name="button1"/>
-                <ControlNameDefinition Name="button2"/>
-                <ControlNameDefinition Name="button3"/>
-                <ControlNameDefinition Name="button4"/>
+                <ControlNameDefinition Name="button1" />
+                <ControlNameDefinition Name="button2" />
+                <ControlNameDefinition Name="button3" />
+                <ControlNameDefinition Name="button4" />
               </ControlNameMap>
               <GroupSizeDefinition Size="Large">
                 <ControlGroup>
-                  <ControlSizeDefinition ControlName="button1"
-                                         ImageSize="Large"
-                                         IsLabelVisible="true" />
+                  <ControlSizeDefinition ImageSize="Large" ControlName="button1" />
                 </ControlGroup>
-                <ColumnBreak ShowSeparator="true"/>
+                <ColumnBreak />
                 <Row>
-                  <ControlSizeDefinition ControlName="button2"
-                                         ImageSize="Small"
-                                         IsLabelVisible="true" />
+                  <ControlSizeDefinition ControlName="button2" />
                 </Row>
                 <Row>
-                  <ControlSizeDefinition ControlName="button3"
-                                         ImageSize="Small"
-                                         IsLabelVisible="true" />
+                  <ControlSizeDefinition ControlName="button3" />
                 </Row>
                 <Row>
-                  <ControlSizeDefinition ControlName="button4"
-                                         ImageSize="Small"
-                                         IsLabelVisible="true" />
+                  <ControlSizeDefinition ControlName="button4" />
                 </Row>
-
               </GroupSizeDefinition>
             </SizeDefinition>
-            <SplitButton CommandName="cmdButtonPaste" >
+            <SplitButton CommandName="cmdButtonPaste">
               <SplitButton.ButtonItem>
-                <Button CommandName="cmdButtonPaste2"/>
+                <Button CommandName="cmdButtonPaste2" />
               </SplitButton.ButtonItem>
               <SplitButton.MenuGroups>
-                <MenuGroup CommandName="cmdMenu1" >
-                  <Button CommandName="cmdButtonMenuPaste"/>
-                  <Button CommandName="cmdButtonMenuPasteSpecial"/>
-                  <Button CommandName="cmdButtonMenuPasteLink"/>
+                <MenuGroup CommandName="cmdMenu1">
+                  <Button CommandName="cmdButtonMenuPaste" />
+                  <Button CommandName="cmdButtonMenuPasteSpecial" />
+                  <Button CommandName="cmdButtonMenuPasteLink" />
                 </MenuGroup>
               </SplitButton.MenuGroups>
             </SplitButton>
             <Button CommandName="cmdButtonCut" />
             <Button CommandName="cmdButtonCopy" />
             <Button CommandName="cmdButtonCopyFormat" />
-
           </Group>
           <Group CommandName="cmdGroupFont">
             <FontControl CommandName="cmdFontControl" FontType="RichFont" />
           </Group>
-          <Group CommandName="cmdGroupParagraph" SizeDefinition="ParagraphLayout" >
+          <Group CommandName="cmdGroupParagraph" SizeDefinition="ParagraphLayout">
             <SplitButton CommandName="cmdButtonP101">
               <Button CommandName="cmdButtonP1" />
             </SplitButton>
-            <SplitButton CommandName="cmdButtonP102" >
+            <SplitButton CommandName="cmdButtonP102">
               <Button CommandName="cmdButtonP2" />
             </SplitButton>
             <DropDownButton CommandName="cmdButtonP3" />
@@ -1046,10 +517,9 @@
             <Button CommandName="cmdButtonP14" />
           </Group>
           <Group CommandName="cmdGroupStyles" SizeDefinition="InRibbonGalleryAndBigButton">
-            <InRibbonGallery CommandName="cmdInRibbonGallery" Type="Items" MaxRows="1" MaxColumns="6" MinColumnsMedium="2" MinColumnsLarge="6" ItemHeight="32" ItemWidth="32">
+            <InRibbonGallery CommandName="cmdInRibbonGallery" ItemHeight="32" ItemWidth="32" MinColumnsLarge="6" MinColumnsMedium="2" MaxColumns="6" MaxRows="1">
               <InRibbonGallery.MenuLayout>
-                <FlowMenuLayout Rows="9"
-                                    Gripper="Vertical" />
+                <FlowMenuLayout Rows="9" Gripper="Vertical" />
               </InRibbonGallery.MenuLayout>
               <InRibbonGallery.MenuGroups>
                 <MenuGroup>
@@ -1059,11 +529,10 @@
                 </MenuGroup>
               </InRibbonGallery.MenuGroups>
             </InRibbonGallery>
-
             <DropDownButton CommandName="cmdButtonChangeStyles">
               <MenuGroup>
                 <Button CommandName="cmdButtonMenuStyleSet" />
-                <DropDownColorPicker CommandName="cmdButtonMenuColors"/>
+                <DropDownColorPicker CommandName="cmdButtonMenuColors" />
                 <Button CommandName="cmdButtonMenuFont" />
               </MenuGroup>
               <MenuGroup>
@@ -1071,7 +540,7 @@
               </MenuGroup>
             </DropDownButton>
           </Group>
-          <Group CommandName="cmdGroupEditing" SizeDefinition="FourButtons" >
+          <Group CommandName="cmdGroupEditing" SizeDefinition="FourButtons">
             <Button CommandName="cmdButtonFind" />
             <Button CommandName="cmdButtonReplace" />
             <Button CommandName="cmdButtonGoto" />
@@ -1084,14 +553,130 @@
             </DropDownButton>
           </Group>
         </Tab>
-        <Tab CommandName ="cmdTabInsert">
-          <Group CommandName="cmdGroupPages"></Group>
-          <Group CommandName="cmdGroupTables"></Group>
-          <Group CommandName="cmdGroupIllustrations"></Group>
+        <Tab CommandName="cmdTabInsert">
+          <Group CommandName="cmdGroupPages" />
+          <Group CommandName="cmdGroupTables" />
+          <Group CommandName="cmdGroupIllustrations" />
         </Tab>
-        <Tab CommandName ="cmdTabPageLayout">
+        <Tab CommandName="cmdTabPageLayout">
+          <Group CommandName="cmdGroup1">
+            <SizeDefinition>
+              <ControlNameMap>
+                <ControlNameDefinition Name="c1" />
+                <ControlNameDefinition Name="b1" />
+                <ControlNameDefinition Name="c2" />
+                <ControlNameDefinition Name="b2" />
+                <ControlNameDefinition Name="h1" />
+              </ControlNameMap>
+              <GroupSizeDefinition Size="Large">
+                <Row>
+                  <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="c1" />
+                  <ControlSizeDefinition IsImageVisible="false" ControlName="b1" />
+                </Row>
+                <Row>
+                  <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="c2" />
+                  <ControlSizeDefinition IsImageVisible="false" ControlName="b2" />
+                </Row>
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="h1" />
+              </GroupSizeDefinition>
+            </SizeDefinition>
+            <ComboBox CommandName="cmdCombo1" />
+            <Button CommandName="cmdButton1" />
+            <ComboBox CommandName="cmdCombo2" />
+            <Button CommandName="cmdButton2" />
+            <Button CommandName="cmdHidden1" />
+          </Group>
+          <Group CommandName="cmdGroup2">
+            <SizeDefinition>
+              <ControlNameMap>
+                <ControlNameDefinition Name="c1" />
+                <ControlNameDefinition Name="b1" />
+                <ControlNameDefinition Name="c2" />
+                <ControlNameDefinition Name="b2" />
+                <ControlNameDefinition Name="h1" />
+                <ControlNameDefinition Name="h2" />
+              </ControlNameMap>
+              <GroupSizeDefinition Size="Large">
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="c1" />
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="c2" />
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="h1" />
+                <ColumnBreak ShowSeparator="false" />
+                <ControlSizeDefinition IsImageVisible="false" ControlName="b1" />
+                <ControlSizeDefinition IsImageVisible="false" ControlName="b2" />
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="h2" />
+              </GroupSizeDefinition>
+            </SizeDefinition>
+            <ComboBox CommandName="cmdCombo1" />
+            <Button CommandName="cmdButton1" />
+            <ComboBox CommandName="cmdCombo2" />
+            <Button CommandName="cmdButton2" />
+            <Button CommandName="cmdHidden1" />
+            <Button CommandName="cmdHidden2" />
+          </Group>
+          <Group CommandName="cmdGroup3">
+            <SizeDefinition>
+              <ControlNameMap>
+                <ControlNameDefinition Name="l1" />
+                <ControlNameDefinition Name="c1" />
+                <ControlNameDefinition Name="h1" />
+              </ControlNameMap>
+              <GroupSizeDefinition Size="Large">
+                <ControlSizeDefinition IsImageVisible="false" ControlName="l1" />
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="c1" />
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="h1" />
+              </GroupSizeDefinition>
+            </SizeDefinition>
+            <Button CommandName="cmdButtonLabel" />
+            <ComboBox CommandName="cmdCombo1" />
+            <Button CommandName="cmdHidden1" />
+          </Group>
+          <Group CommandName="cmdGroup4">
+            <SizeDefinition>
+              <ControlNameMap>
+                <ControlNameDefinition Name="c1" />
+                <ControlNameDefinition Name="b1" />
+                <ControlNameDefinition Name="c2" />
+                <ControlNameDefinition Name="b2" />
+                <ControlNameDefinition Name="h1" />
+                <ControlNameDefinition Name="h2" />
+              </ControlNameMap>
+              <GroupSizeDefinition Size="Large">
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="c1" />
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="h1" />
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="c2" />
+                <ColumnBreak ShowSeparator="false" />
+                <ControlSizeDefinition IsImageVisible="false" ControlName="b1" />
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="h2" />
+                <ControlSizeDefinition IsImageVisible="false" ControlName="b2" />
+              </GroupSizeDefinition>
+            </SizeDefinition>
+            <ComboBox CommandName="cmdCombo1" />
+            <Button CommandName="cmdButton1" />
+            <ComboBox CommandName="cmdCombo2" />
+            <Button CommandName="cmdButton2" />
+            <Button CommandName="cmdHidden1" />
+            <Button CommandName="cmdHidden2" />
+          </Group>
+          <Group CommandName="cmdGroup5">
+            <SizeDefinition>
+              <ControlNameMap>
+                <ControlNameDefinition Name="dt" />
+                <ControlNameDefinition Name="h1" />
+                <ControlNameDefinition Name="h2" />
+              </ControlNameMap>
+              <GroupSizeDefinition Size="Large">
+                <ControlSizeDefinition IsImageVisible="false" ControlName="dt" />
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="h1" />
+                <ControlSizeDefinition IsLabelVisible="false" IsImageVisible="false" ControlName="h2" />
+              </GroupSizeDefinition>
+            </SizeDefinition>
+            <Button CommandName="cmdButtonDate" />
+            <Button CommandName="cmdHidden1" />
+            <Button CommandName="cmdHidden2" />
+          </Group>
         </Tab>
       </Ribbon.Tabs>
     </Ribbon>
   </Application.Views>
 </Application>
+<!--ResourceName Value="APPLICATION"-->

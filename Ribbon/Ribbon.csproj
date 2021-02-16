@@ -166,4 +166,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="BeforeBuild">
+    <Delete Files=".\obj\project.assets.json"/>
+  </Target>
+
 </Project>

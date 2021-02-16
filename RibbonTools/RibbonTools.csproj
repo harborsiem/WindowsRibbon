@@ -653,4 +653,8 @@
     <EmbeddedResource Include="Images\ImageSample_ViewRibbon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <Target Name="BeforeBuild">
+    <Delete Files=".\obj\project.assets.json"/>
+  </Target>
 </Project>
