@@ -23,7 +23,7 @@
     <Authors>Hartmut Borkenhagen</Authors>
     <Company>RibbonLib</Company>
     <PackageIcon>Ribbon64.png</PackageIcon>
-    <Title>Windows Ribbon Library for WinForms</Title>
+	<Title>Windows Ribbon Library for WinForms</Title>
     <Description>Windows Ribbon for WinForms is a .NET wrapper for Windows Ribbon control. It will allow WinForms developers to use Microsoft Windows Ribbon control in their WinForms applications.
 	Former developers: Arik Poznanski, Bernhard Elbl
 	</Description>
@@ -34,6 +34,7 @@
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Deterministic>false</Deterministic>
+    <PackageLicenseFile>License</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU' and ('$(TargetFramework)' == 'net5.0-windows' or '$(TargetFramework)' == 'netcoreapp3.1')">
@@ -60,7 +61,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Ribbon64.png" Pack="true" PackagePath="\"/>
+    <None Include="..\License">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="Ribbon64.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   
   <ItemGroup>

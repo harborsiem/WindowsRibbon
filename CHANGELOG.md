@@ -2,7 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.10.0, RibbonTools V1.3.5
+
+#### Changed (RibbonTools)
+
+- Bugfix: Saving Bitmap files
+- Methods added to class AlphaBitmap
+
 ### Ribbon V2.10.0, RibbonTools V1.3.4
+
 #### Changed (Ribbon)
 - new Ribbon event ViewDestroy (Example: you can use it for saving the settings)
 - new Properties (Tag, CommandType) for all Ribbon Controls (RibbonButton, ...)

@@ -86,7 +86,7 @@ namespace UIRibbonTools
             _filename = image.Owner.BuildAbsoluteFilename(image.Source);
             if (File.Exists(_filename))
             {
-                uIImage = AlphaBitmap.BitmapFromFile(_filename);
+                uIImage = AlphaBitmap.TryAlphaBitmapFromFile(_filename);
                 try
                 {
                     Graphics canvas = Graphics.FromImage(_bitmap);
@@ -153,7 +153,7 @@ namespace UIRibbonTools
                 //UIImage will automatically convert to 32 - bit alpha image
 
                 bitmap = null;
-                uIImage = AlphaBitmap.BitmapFromFile(newFilename, (_flags & ImageFlags.HighContrast) != 0);
+                uIImage = AlphaBitmap.TryAlphaBitmapFromFile(newFilename, (_flags & ImageFlags.HighContrast) != 0);
 
                 try
                 {
@@ -179,13 +179,14 @@ namespace UIRibbonTools
                         //we have to do some checks if the choosen file has a BM Header
                         //or is it possible for the WindowsRibbon, that we can use png files ?
                     }
-                    if (!usePngFile && !Path.GetExtension(newFilename).Equals("bmp", StringComparison.OrdinalIgnoreCase))
+                    if (!usePngFile && !Path.GetExtension(newFilename).Equals(".bmp", StringComparison.OrdinalIgnoreCase))
                     {
                         saveToBmp = true;
                         newFilename = Path.ChangeExtension(newFilename, ".bmp");
                     }
                     if (saveToBmp)
                     {
+                        AlphaBitmap.SetTransparentRGB(bitmap, Color.LightGray.ToArgb() & 0xffffff);
                         bitmap.Save(newFilename, ImageFormat.Bmp); //@ changed, don't override the same file
                     }
 

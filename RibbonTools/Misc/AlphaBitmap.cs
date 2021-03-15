@@ -13,6 +13,71 @@ namespace UIRibbonTools
     {
         private AlphaBitmap() { }
 
+        private static Bitmap TryConvertToAlphaBitmap(Bitmap bitmap)
+        {
+            if (bitmap.PixelFormat == PixelFormat.Format32bppRgb && bitmap.RawFormat.Guid == ImageFormat.Bmp.Guid)
+            {
+                int length = bitmap.Width * bitmap.Height;
+                int[] bmpScan = new int[length];
+                Bitmap alpha = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format32bppArgb);
+                BitmapData bmpData = bitmap.LockBits(new Rectangle(new Point(), bitmap.Size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+                Marshal.Copy(bmpData.Scan0, bmpScan, 0, length);
+                bitmap.UnlockBits(bmpData);
+                BitmapData alphaData = alpha.LockBits(new Rectangle(new Point(), alpha.Size), ImageLockMode.ReadWrite, alpha.PixelFormat);
+                Marshal.Copy(bmpScan, 0, alphaData.Scan0, length);
+                alpha.UnlockBits(alphaData);
+                return alpha;
+            }
+            return bitmap;
+        }
+
+        public static Bitmap TryCreateAlphaBitmap(Stream stream)
+        {
+            Bitmap bmp = new Bitmap(stream);
+            return TryConvertToAlphaBitmap(bmp);
+        }
+
+        /// <summary>
+        /// Load a Bitmap (with transparency) from file (*.bmp or *.png)
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns>The Bitmap with fully transparency if available</returns>
+        public static Bitmap TryCreateAlphaBitmap(string filename)
+        {
+            Bitmap bmp = new Bitmap(filename);
+            return TryConvertToAlphaBitmap(bmp);
+        }
+
+        /// <summary>
+        /// Load a Bitmap (with transparency) from file (*.bmp or *.png) via file content or Bitmap ctor
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="highContrast"></param>
+        /// <returns>The Bitmap with fully transparency if available</returns>
+        public static Bitmap TryAlphaBitmapFromFile(string fileName, bool highContrast = false)
+        {
+            if (string.IsNullOrEmpty(fileName))
+                throw new ArgumentNullException(nameof(fileName));
+            if (!File.Exists(fileName))
+                throw new ArgumentException("File does not exist", nameof(fileName));
+            Bitmap bitmap = new Bitmap(fileName);
+            if (!highContrast)
+            {
+                bitmap = TryConvertToAlphaBitmap(bitmap);
+            }
+            if (!highContrast)
+                if (!(bitmap.PixelFormat == PixelFormat.Format32bppArgb || bitmap.PixelFormat == PixelFormat.Format32bppPArgb))
+                    bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
+                else
+                {
+                    if ((int)bitmap.HorizontalResolution != 96)
+                    {
+                        bitmap.SetResolution(96.0f, 96.0f); //only png bitmaps can have other resolution
+                    }
+                }
+            return bitmap;
+        }
+
         private static byte[] IsBmpFile(string fileName)
         {
             byte[] bytes = File.ReadAllBytes(fileName);
@@ -27,6 +92,12 @@ namespace UIRibbonTools
             return null;
         }
 
+        /// <summary>
+        /// Load a Bitmap (with transparency) from file (*.bmp or *.png) via file content or Bitmap ctor
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="highContrast"></param>
+        /// <returns>The Bitmap with fully transparency if available</returns>
         public static Bitmap BitmapFromFile(string fileName, bool highContrast = false)
         {
             Bitmap bitmap = null;
@@ -70,6 +141,11 @@ namespace UIRibbonTools
             return bitmap;
         }
 
+        /// <summary>
+        /// Get the managed ARGB Bitmap
+        /// </summary>
+        /// <param name="hBitmap">Handle to a Bitmap</param>
+        /// <returns>The Bitmap with fully transparency if available</returns>
         public static Bitmap GetManagedARGBBitmap(IntPtr hBitmap)
         {
             // Create the BITMAP structure and get info from our nativeHBitmap
@@ -93,6 +169,11 @@ namespace UIRibbonTools
             return managedBitmap;
         }
 
+        /// <summary>
+        /// Load a Bitmap (with transparency) from file (*.bmp or *.png) via Windows API
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>The Bitmap with fully transparency if available</returns>
         public static Bitmap ImageFromFile(string path)
         {
             if (string.IsNullOrEmpty(path))
@@ -119,6 +200,36 @@ namespace UIRibbonTools
             }
             return bitmap;
         }
+
+        /// <summary>
+        /// Set a RGB Color value if the alpha is 0, best guess is Color.LightGray.ToArgb() & 0xffffff
+        /// </summary>
+        /// <param name="bitmap">The Bitmap</param>
+        /// <param name="transparentRGB">The RGB Color if alpha == 0</param>
+        /// <returns>The converted Bitmap</returns>
+        public static Bitmap SetTransparentRGB(Bitmap bitmap, int transparentRGB)
+        {
+            int x, y;
+            IntPtr p;
+            if (bitmap.PixelFormat != PixelFormat.Format32bppArgb)
+                bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
+            BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, bitmap.PixelFormat);
+            for (y = 0; y < bitmap.Height; y++)
+            {
+                p = data.Scan0 + y * 4 * bitmap.Width;
+                for (x = 0; x < bitmap.Width; x++)
+                {
+                    uint value = (uint)Marshal.ReadInt32(p);
+                    if ((value & 0xff000000) == 0)
+                        Marshal.WriteInt32(p, transparentRGB);
+                    p = p + 4;
+                }
+            }
+
+            bitmap.UnlockBits(data);
+            return bitmap;
+        }
+
 
         class NativeMethods
         {

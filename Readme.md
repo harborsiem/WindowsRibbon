@@ -52,6 +52,12 @@ Thanks to Arik Poznanski and Bernhard Elbl for the great work.
 
 Now the WindowsRibbon project is running also in the latest Visual Studio Versions 2017 and 2019. Have a look to the file "HowToUse.md" to see how to use the WindowsRibbon in a .NET WinForms application. In the Releases page of this Github repository there are also zipped *.msi setup files for the components. The msi files are build with the WIX Toolset.
 
+---
+
+WindowsRibbon is also available on NuGet, with Package Id [WindowsRibbon](https://www.nuget.org/packages/WindowsRibbon).
+
+---
+
 There is also a gui and console based designing, building and previewing tool called RibbonTools. 
 
 The C# samples are added with a more complex Mainform application. Here you can see the Ribbon of Mainform in the RibbonTools app.

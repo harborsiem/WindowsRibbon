@@ -194,7 +194,7 @@ namespace UIRibbonTools
 
                     // UIImage will automatically convert to 32 - bit alpha image
                     bitmap = null;
-                    uIImage = AlphaBitmap.BitmapFromFile(filename, (ImageFlags.HighContrast & _flags) != 0);
+                    uIImage = AlphaBitmap.TryAlphaBitmapFromFile(filename, (ImageFlags.HighContrast & _flags) != 0);
                     try
                     {
                         bitmap = uIImage.Clone(new Rectangle(new Point(), uIImage.Size), uIImage.PixelFormat);
@@ -210,12 +210,13 @@ namespace UIRibbonTools
                             else
                                 saveToBmp = true;
                         }
-                        if (!usePngFile && !Path.GetExtension(filename).Equals("bmp", StringComparison.OrdinalIgnoreCase)) {
+                        if (!usePngFile && !Path.GetExtension(filename).Equals(".bmp", StringComparison.OrdinalIgnoreCase)) {
                             saveToBmp = true;
                             filename = Path.ChangeExtension(filename, ".bmp");
                         }
                         if (saveToBmp)
                         {
+                            AlphaBitmap.SetTransparentRGB(bitmap, Color.LightGray.ToArgb() & 0xffffff);
                             bitmap.Save(filename, ImageFormat.Bmp); //@ changed, don't override the same file
                         }
                         image.Source = image.Owner.BuildRelativeFilename(filename);
@@ -332,7 +333,7 @@ namespace UIRibbonTools
             filename = image.Owner.BuildAbsoluteFilename(image.Source);
             if (File.Exists(filename))
             {
-                uIImage = AlphaBitmap.BitmapFromFile(filename);
+                uIImage = AlphaBitmap.TryAlphaBitmapFromFile(filename);
                 try
                 {
                     if ((uIImage.Width == _imageList.ImageSize.Width) && (uIImage.Height == _imageList.ImageSize.Height))
