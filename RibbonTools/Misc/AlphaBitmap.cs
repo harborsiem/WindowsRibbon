@@ -19,16 +19,33 @@ namespace UIRibbonTools
             {
                 int length = bitmap.Width * bitmap.Height;
                 int[] bmpScan = new int[length];
-                Bitmap alpha = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format32bppArgb);
                 BitmapData bmpData = bitmap.LockBits(new Rectangle(new Point(), bitmap.Size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
                 Marshal.Copy(bmpData.Scan0, bmpScan, 0, length);
                 bitmap.UnlockBits(bmpData);
-                BitmapData alphaData = alpha.LockBits(new Rectangle(new Point(), alpha.Size), ImageLockMode.ReadWrite, alpha.PixelFormat);
-                Marshal.Copy(bmpScan, 0, alphaData.Scan0, length);
-                alpha.UnlockBits(alphaData);
-                return alpha;
+                if (IsAnyAlpha(bmpScan))
+                {
+                    Bitmap alpha = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format32bppArgb);
+                    BitmapData alphaData = alpha.LockBits(new Rectangle(new Point(), alpha.Size), ImageLockMode.ReadWrite, alpha.PixelFormat);
+                    Marshal.Copy(bmpScan, 0, alphaData.Scan0, length);
+                    alpha.UnlockBits(alphaData);
+                    return alpha;
+                }
             }
             return bitmap;
+        }
+
+        private static bool IsAnyAlpha(int[] bmpScan)
+        {
+            bool result = false;
+            for (int i = 0; i < bmpScan.Length; i++)
+            {
+                if (((uint)bmpScan[i] & 0xff000000) < 0xff000000)
+                {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
         }
 
         public static Bitmap TryCreateAlphaBitmap(Stream stream)

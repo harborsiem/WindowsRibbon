@@ -19,7 +19,7 @@
 
     <PackageId>WindowsRibbon</PackageId>
     <Product>Windows Ribbon Control</Product>
-    <Version>2.10.0</Version>
+    <Version>2.10.1</Version>
     <Authors>Hartmut Borkenhagen</Authors>
     <Company>RibbonLib</Company>
     <PackageIcon>Ribbon64.png</PackageIcon>
@@ -34,7 +34,6 @@
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Deterministic>false</Deterministic>
-    <PackageLicenseFile>License</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU' and ('$(TargetFramework)' == 'net5.0-windows' or '$(TargetFramework)' == 'netcoreapp3.1')">
@@ -60,11 +59,11 @@
     <DocumentationFile>.\bin\Release\net40\Ribbon.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageLicenseExpression>MS-PL OR MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
   <ItemGroup>
-    <None Include="..\License">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
     <None Include="Ribbon64.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   
