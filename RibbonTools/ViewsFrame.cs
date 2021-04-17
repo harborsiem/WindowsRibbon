@@ -1371,7 +1371,9 @@ namespace UIRibbonTools
             //_actionMoveUp.ShortCut = ShortCut(VK_UP, [ssCtrl]);
             //_actionMoveDown.ShortCut = ShortCut(VK_DOWN, [ssCtrl]); ;
 
+            treeViewRibbon.BeginUpdate();
             UpdateTreeNodeCaption(treeViewRibbon.Nodes[0], true);
+            treeViewRibbon.EndUpdate();
 
             if (_currentNode == null) //@ added begin
                 treeViewRibbon.SelectedNode = treeViewRibbon.Nodes[0];

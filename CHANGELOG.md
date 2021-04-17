@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Bugfix: Saving Bitmap files
 - Methods added to class AlphaBitmap
+- Big Views with better performance
 
 ### Ribbon V2.10.0, RibbonTools V1.3.4
 
