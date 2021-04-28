@@ -14,6 +14,9 @@
     <Compile Update="Commands\ImageListFrame.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ConvertImage\ConvertImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Dialogs\ApplicationModesForm.cs">
       <SubType>Form</SubType>
     </Compile>

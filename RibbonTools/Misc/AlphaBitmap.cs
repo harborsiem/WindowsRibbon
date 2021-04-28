@@ -17,9 +17,10 @@ namespace UIRibbonTools
         {
             if (bitmap.PixelFormat == PixelFormat.Format32bppRgb && bitmap.RawFormat.Guid == ImageFormat.Bmp.Guid)
             {
-                int length = bitmap.Width * bitmap.Height;
-                int[] bmpScan = new int[length];
                 BitmapData bmpData = bitmap.LockBits(new Rectangle(new Point(), bitmap.Size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+                int rowSize = bmpData.Stride < 0 ? -bmpData.Stride : bmpData.Stride;
+                int length = rowSize * bitmap.Height / sizeof(int);
+                int[] bmpScan = new int[length];
                 Marshal.Copy(bmpData.Scan0, bmpScan, 0, length);
                 bitmap.UnlockBits(bmpData);
                 if (IsAnyAlpha(bmpScan))

@@ -99,8 +99,8 @@ namespace UIRibbonTools
             // ribbon
             // 
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Minimized = false;
             this.ribbon.Name = "ribbon";
+            this.ribbon.ResourceIdentifier = null;
             this.ribbon.ResourceName = null;
             this.ribbon.ShortcutTableResourceName = null;
             this.ribbon.Size = new System.Drawing.Size(800, 114);
@@ -670,10 +670,11 @@ namespace UIRibbonTools
             this.tabControl.Controls.Add(this.tabSheetContextTabs);
             this.tabControl.Controls.Add(this.tabSheetContextPopups);
             this.tabControl.Controls.Add(this.tabSheetColorize);
-            this.tabControl.Location = new System.Drawing.Point(0, 134);
+            this.tabControl.Location = new System.Drawing.Point(0, 147);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(800, 316);
+            this.tabControl.Size = new System.Drawing.Size(800, 306);
             this.tabControl.TabIndex = 1;
             // 
             // PreviewForm

@@ -38,6 +38,8 @@ namespace UIRibbonTools
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuNew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this._nN9 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuImage = new System.Windows.Forms.ToolStripMenuItem();
             this._nN1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,6 +109,8 @@ namespace UIRibbonTools
             this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuNew,
             this.menuOpen,
+            this._nN9,
+            this.menuImage,
             this._nN1,
             this.menuSave,
             this.menuSaveAs,
@@ -121,52 +125,63 @@ namespace UIRibbonTools
             // menuNew
             // 
             this.menuNew.Name = "menuNew";
-            this.menuNew.Size = new System.Drawing.Size(116, 22);
+            this.menuNew.Size = new System.Drawing.Size(180, 22);
             this.menuNew.Text = "New";
             // 
             // menuOpen
             // 
             this.menuOpen.Name = "menuOpen";
-            this.menuOpen.Size = new System.Drawing.Size(116, 22);
+            this.menuOpen.Size = new System.Drawing.Size(180, 22);
             this.menuOpen.Text = "Open";
+            // 
+            // _nN9
+            // 
+            this._nN9.Name = "_nN9";
+            this._nN9.Size = new System.Drawing.Size(177, 6);
+            // 
+            // menuImage
+            // 
+            this.menuImage.Name = "menuImage";
+            this.menuImage.Size = new System.Drawing.Size(180, 22);
+            this.menuImage.Text = "Convert Images";
             // 
             // _nN1
             // 
             this._nN1.Name = "_nN1";
-            this._nN1.Size = new System.Drawing.Size(113, 6);
+            this._nN1.Size = new System.Drawing.Size(177, 6);
             // 
             // menuSave
             // 
             this.menuSave.Name = "menuSave";
-            this.menuSave.Size = new System.Drawing.Size(116, 22);
+            this.menuSave.Size = new System.Drawing.Size(180, 22);
             this.menuSave.Text = "Save";
             // 
             // menuSaveAs
             // 
             this.menuSaveAs.Name = "menuSaveAs";
-            this.menuSaveAs.Size = new System.Drawing.Size(116, 22);
+            this.menuSaveAs.Size = new System.Drawing.Size(180, 22);
             this.menuSaveAs.Text = "Save as";
             // 
             // _nN3
             // 
             this._nN3.Name = "_nN3";
-            this._nN3.Size = new System.Drawing.Size(113, 6);
+            this._nN3.Size = new System.Drawing.Size(177, 6);
             // 
             // menuSettings
             // 
             this.menuSettings.Name = "menuSettings";
-            this.menuSettings.Size = new System.Drawing.Size(116, 22);
+            this.menuSettings.Size = new System.Drawing.Size(180, 22);
             this.menuSettings.Text = "Settings";
             // 
             // _nN2
             // 
             this._nN2.Name = "_nN2";
-            this._nN2.Size = new System.Drawing.Size(113, 6);
+            this._nN2.Size = new System.Drawing.Size(177, 6);
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
-            this.menuExit.Size = new System.Drawing.Size(116, 22);
+            this.menuExit.Size = new System.Drawing.Size(180, 22);
             this.menuExit.Text = "Exit";
             // 
             // menuProject
@@ -227,30 +242,30 @@ namespace UIRibbonTools
             // menuTutorial
             // 
             this.menuTutorial.Name = "menuTutorial";
-            this.menuTutorial.Size = new System.Drawing.Size(180, 22);
+            this.menuTutorial.Size = new System.Drawing.Size(160, 22);
             this.menuTutorial.Text = "Tutorial";
             // 
             // menuWebSite
             // 
             this.menuWebSite.Name = "menuWebSite";
-            this.menuWebSite.Size = new System.Drawing.Size(180, 22);
+            this.menuWebSite.Size = new System.Drawing.Size(160, 22);
             this.menuWebSite.Text = "WebSite";
             // 
             // menuDotnetWebSite
             // 
             this.menuDotnetWebSite.Name = "menuDotnetWebSite";
-            this.menuDotnetWebSite.Size = new System.Drawing.Size(180, 22);
+            this.menuDotnetWebSite.Size = new System.Drawing.Size(160, 22);
             this.menuDotnetWebSite.Text = "WebSite";
             // 
             // _nN4
             // 
             this._nN4.Name = "_nN4";
-            this._nN4.Size = new System.Drawing.Size(177, 6);
+            this._nN4.Size = new System.Drawing.Size(157, 6);
             // 
             // menuMSDN
             // 
             this.menuMSDN.Name = "menuMSDN";
-            this.menuMSDN.Size = new System.Drawing.Size(180, 22);
+            this.menuMSDN.Size = new System.Drawing.Size(160, 22);
             this.menuMSDN.Text = "MSDN";
             // 
             // toolVersion
@@ -520,6 +535,8 @@ namespace UIRibbonTools
         private System.Windows.Forms.Timer _timerRestoreLog;
         private System.Windows.Forms.ToolStripComboBox toolPreviewLanguageCombo;
         private System.Windows.Forms.ToolStripTextBox toolVersion;
+        private System.Windows.Forms.ToolStripSeparator _nN9;
+        private System.Windows.Forms.ToolStripMenuItem menuImage;
     }
 }
 

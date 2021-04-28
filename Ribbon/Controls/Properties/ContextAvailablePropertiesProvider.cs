@@ -54,7 +54,6 @@ namespace RibbonLib.Controls.Properties
                 if (_contextAvailable.HasValue)
                 {
                     newValue.SetUInt((uint)_contextAvailable.Value);
-                    _contextAvailable = null;
                 }
             } 
             

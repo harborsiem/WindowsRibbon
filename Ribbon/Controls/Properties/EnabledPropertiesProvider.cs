@@ -77,6 +77,8 @@ namespace RibbonLib.Controls.Properties
                     {
                         return (bool)boolValue.Value;
                     }
+                    if (_enabled == null)
+                        _enabled = true;
                 }
 
                 return _enabled.GetValueOrDefault();

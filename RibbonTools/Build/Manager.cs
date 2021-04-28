@@ -162,7 +162,7 @@ namespace UIRibbonTools
             }
         }
 
-        public byte[] CreateRibbon(Target element, string resourceName)
+        public byte[] CreateRibbon(Target element, string resourceIdentifier)
         {
             string localizedRibbonXmlFilename = null;
             CleanupFiles.Clear();
@@ -175,7 +175,7 @@ namespace UIRibbonTools
                 string ribbonDll = null;
                 byte[] result;
 
-                RibbonCompileResult compileResult = compiler.Compile(localizedRibbonXmlFilename, resourceName);
+                RibbonCompileResult compileResult = compiler.Compile(localizedRibbonXmlFilename, resourceIdentifier);
                 if (compileResult == RibbonCompileResult.Ok)
                 {
                     ribbonDll = compiler.RibbonDll;

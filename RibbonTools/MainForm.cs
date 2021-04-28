@@ -47,6 +47,7 @@ namespace UIRibbonTools
         private TAction _actionMSDN;
         private TAction _actionSetResourceName;
         private TAction _actionGenerateResourceIDs;
+        private TAction _actionConvertImage;
 
         private bool _initialized;
         private TRibbonDocument _document;
@@ -132,6 +133,7 @@ namespace UIRibbonTools
             _actionPreview = new TAction(components);
             _actionOpen = new TAction(components);
             _actionNew = new TAction(components);
+            _actionConvertImage = new TAction(components);
             _actionGenerateCommandIDs = new TAction(components);
             _actionSaveAs = new TAction(components);
             _actionSave = new TAction(components);
@@ -151,6 +153,7 @@ namespace UIRibbonTools
                 _actionPreview,
                 _actionOpen,
                 _actionNew,
+                _actionConvertImage,
                 _actionGenerateCommandIDs,
                 _actionSaveAs,
                 _actionSave,
@@ -190,6 +193,15 @@ namespace UIRibbonTools
             _actionNew.Text = "New";
             _actionNew.ShortcutKeys = (Keys)(Keys.Control | Keys.N);
             _actionNew.SetComponent(menuNew, true);
+
+            //_actionConvertImage.Visible = false;
+            //_nN9.Visible = false;
+            _actionConvertImage.Execute += ActionImageExecute;
+            _actionConvertImage.Hint = "Convert to Bitmaps with Alpha channel";
+            //_actionConvertImage.ImageIndex = 0;
+            _actionConvertImage.Text = "Convert Images";
+            //_actionConvertImage.ShortcutKeys = (Keys)(Keys.Control | Keys.N);
+            _actionConvertImage.SetComponent(menuImage, true);
 
             _actionGenerateCommandIDs.Execute += ActionGenerateCommandIDsExecute;
             _actionGenerateCommandIDs.Hint = "Generates and sets IDs for all commands in this markup.";
@@ -437,6 +449,12 @@ namespace UIRibbonTools
             NewFile(false);
         }
 
+        private void ActionImageExecute(object sender, EventArgs e)
+        {
+            ConvertImageForm dialog = new ConvertImageForm();
+            dialog.ShowDialog(this);
+        }
+
         private void ActionOpenExecute(object sender, EventArgs e)
         {
             if (!CheckSave())
@@ -540,7 +558,8 @@ namespace UIRibbonTools
             ClearLog();
             if (_modified)
                 ActionSaveExecute(this, EventArgs.Empty);
-            _buildPreviewHelper.ResourceIdentifier = _document.Application.ResourceName;
+            string resourceIdentifier = Settings.Instance.AllowChangingResourceName ? _document.Application.ResourceName : TRibbonObject.ApplicationDefaultName;
+            _buildPreviewHelper.ResourceIdentifier = resourceIdentifier;
             if (preview)
             {
                 _buildPreviewHelper.ShowPreviewDialog(this);
@@ -550,7 +569,7 @@ namespace UIRibbonTools
                 this.Cursor = Cursors.WaitCursor;
                 try
                 {
-                    _buildPreviewHelper.BuildRibbonFile(_document.Application.ResourceName);
+                    _buildPreviewHelper.BuildRibbonFile(resourceIdentifier);
                 }
                 finally
                 {

@@ -43,7 +43,9 @@ namespace UIRibbonTools
 
         //note: resourceName APPLICATION is converted by uicc.exe to APPLICATION_RIBBON to the resourcefile
         //that is the only allowed resourceName for .NET Ribbon
-        public RibbonCompileResult Compile(string filename, string resourceName)
+        //here called resourceIdentifier because we have a naming conflict with Ribbon.ResourceName
+        //Ribbon.ResourceIdentifier is the name parameter for the UICC Compiler
+        public RibbonCompileResult Compile(string filename, string resourceIdentifier)
         {
             RibbonCompileResult result = RibbonCompileResult.Ok;
             string docDir;
@@ -69,8 +71,8 @@ namespace UIRibbonTools
                 return RibbonCompileResult.NoTools;
             }
 
-            if (!Settings.Instance.AllowChangingResourceName)
-                resourceName = TRibbonObject.ApplicationDefaultName;
+            //if (!Settings.Instance.AllowChangingResourceName)
+            //    resourceIdentifier = TRibbonObject.ApplicationDefaultName;
 
             docDir = Path.GetDirectoryName(filename);
 
@@ -80,7 +82,7 @@ namespace UIRibbonTools
             headerFileParam = string.Format("\"/header:{0}\"", headerFilename);
             rcFilename = Path.ChangeExtension(filename, ".rc");
             rcFileParam = string.Format("\"/res:{0} \"", rcFilename);
-            nameParam = string.Format("\"/name:{0}\"", resourceName);
+            nameParam = string.Format("\"/name:{0}\"", resourceIdentifier);
             resFilename = Path.ChangeExtension(filename, ".res");
             dllFilename = Path.ChangeExtension(filename, ".ribbondll");
 

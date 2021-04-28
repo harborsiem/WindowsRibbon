@@ -72,7 +72,7 @@ namespace UIRibbonTools
                 DisplayHelp();
                 return true;
             }
-            if (args.Length == 2) //@ parameter for resourcename ? or lastline comment with resourcename ?
+            if (args.Length == 2) //@ parameter for resourceIdentifier ? or lastline comment with resourceIdentifier ?
             {
                 if (args[1].Equals("--build", StringComparison.OrdinalIgnoreCase))
                 {
@@ -80,7 +80,7 @@ namespace UIRibbonTools
                     return false;
                 }
             }
-            if (args.Length == 3) //@ parameter for resourcename ? or lastline comment with resourcename ?
+            if (args.Length == 3) //@ parameter for resourceIdentifier ? or lastline comment with resourceIdentifier ?
             {
                 if (args[2].Equals("--build", StringComparison.OrdinalIgnoreCase))
                 {
@@ -93,12 +93,12 @@ namespace UIRibbonTools
             return true;
         }
 
-        private static void BuildRibbon(string path, string resourceName = TRibbonObject.ApplicationDefaultName)
+        private static void BuildRibbon(string path, string resourceIdentifier = TRibbonObject.ApplicationDefaultName)
         {
             if (File.Exists(path))
             {
-                Settings.Instance.Read(new System.Drawing.Size()); //We need the external Tools paths
-                BuildPreviewHelper.ConsoleBuild(Addons.GetExactFilenameWithPath(path), resourceName);
+                Settings.Instance.Read(new System.Drawing.Size()); //We Read the Settings because we need the external Tools paths
+                BuildPreviewHelper.ConsoleBuild(Addons.GetExactFilenameWithPath(path), resourceIdentifier);
             }
             else
             {
@@ -113,7 +113,7 @@ namespace UIRibbonTools
             WriteLine("Build the ribbon files from the Xml-Markup file");
             WriteLine();
             WriteLine("Usage: RibbonTools [options]");
-            WriteLine("Usage: RibbonTools [path - to - markup] [ResourceName] [options]");
+            WriteLine("Usage: RibbonTools [path - to - markup] [ResourceIdentifier] [options]");
             WriteLine();
             WriteLine("options:");
             WriteLine("  /?|-h|--help Display help.");
@@ -121,8 +121,11 @@ namespace UIRibbonTools
             WriteLine();
             WriteLine("path-to-markup:");
             WriteLine("  The path to a ribbon markup file.");
-            WriteLine("ResourceName:");
+            WriteLine("ResourceIdentifier:");
             WriteLine("  Optional parameter, don't use it with .NET");
+            WriteLine();
+            WriteLine("ResourceIdentifier is the Name parameter for the UICC.exe");
+            WriteLine("ResourceIdentifier is sometimes called ResourceName");
         }
 
         private static void WriteLine(string line)

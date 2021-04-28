@@ -22,13 +22,15 @@ namespace UIRibbonTools
 
         public ImageEditForm()
         {
+#if Core
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25f);
+#endif
             InitializeComponent();
-            Label1.Font = new Font(Label1.Font, FontStyle.Bold);
-            //MemoHelp.Size = new Size(MemoHelp.Width, (MemoHelp.Font.Height) * (MemoHelp.Lines.Length + 1));
 #if SegoeFont
             this.Font = SystemFonts.MessageBoxFont;
 #endif
+            Label1.Font = new Font(Label1.Font, FontStyle.Bold);
+            //MemoHelp.Size = new Size(MemoHelp.Width, (MemoHelp.Font.Height) * (MemoHelp.Lines.Length + 1));
             if (components == null)
                 components = new Container();
             RightButton.ImageList = ImageManager.ImageList_Edit(components);

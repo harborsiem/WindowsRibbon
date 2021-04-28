@@ -999,15 +999,6 @@ namespace RibbonLib
             return new UIRibbonImageFromBitmapFactory() as IUIImageFromBitmap;
         }
 
-        ///// <summary>
-        ///// Generates a default ribbon dll name
-        ///// </summary>
-        ///// <returns>name of the dll</returns>
-        //private string GenerateDefaultRibbonDllName()
-        //{
-        //    return Path.ChangeExtension(new Uri(Assembly.GetEntryAssembly().CodeBase).LocalPath, ".ribbon.dll");
-        //}
-
         /// <summary>
         /// Adds a ribbon control to the internal map
         /// </summary>
@@ -1160,6 +1151,20 @@ namespace RibbonLib
             EventHandler eh = Events[EventRibbonHeight] as EventHandler;
             if (eh != null)
                 eh(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Returns the Dll Handle for the culture specific RibbonMarkup.ribbon file.
+        /// One can use this handle to get Strings, Bitmaps.
+        /// </summary>
+        /// <returns>The Dll Handle of the Ribbon resource</returns>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public IntPtr MarkupHandle
+        {
+            get
+            {
+                return _loadedDllHandle;
+            }
         }
     }
 }

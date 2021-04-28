@@ -33,6 +33,7 @@ namespace UIRibbonTools
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
             ribbon.ResourceIdentifier = _buildPreviewHelper.ResourceIdentifier;
             ribbon.ResourceName = _buildPreviewHelper.RibbonResourceName;
+            ribbon.RibbonHeightChanged += Ribbon_RibbonHeightChanged;
             _classBuilder = new RibbonClassBuilder(ribbon);
 
             Load += MainForm_Load;
@@ -60,6 +61,16 @@ namespace UIRibbonTools
             this.textButton.Click += TextButton_Click;
             this.highlightButton.Click += HighlightButton_Click;
             this.backgroundButton.Click += BackgroundButton_Click;
+        }
+
+        private void Ribbon_RibbonHeightChanged(object sender, EventArgs e)
+        {
+            Control control = tabControl;
+            int height = ribbon.Height;
+            Rectangle bounds = control.Bounds;
+            bounds.Height -= (height + control.Margin.Top - bounds.Y);
+            bounds.Y = height + control.Margin.Top;
+            control.Bounds = bounds;
         }
 
         private void BackgroundButton_Click(object sender, EventArgs e)
@@ -248,17 +259,10 @@ namespace UIRibbonTools
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            //MessageBox.Show(rHeight.ToString() + "; " + tTop.ToString());
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            int rHeight;
-            int tTop;
-            rHeight = ribbon.Height;
-            tTop = tabControl.Top;
-            tabControl.Top = rHeight;
-            tabControl.Height = tabControl.Height + tTop - rHeight;
         }
 
         private void GetColorsButton_Click(object sender, EventArgs e)

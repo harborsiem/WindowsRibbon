@@ -42,7 +42,7 @@ namespace UIRibbonTools
         {
             //string sdkPath = null;
             //sdkPath = Util.DetectAppropriateWindowsSdkPath();
-            //uiccXsdPath = Path.Combine(sdkPath, "UICC.xsd");
+            //_uiccXsdPath = Path.Combine(sdkPath, "UICC.xsd");
         }
 
         public void ShowPreviewDialog(Form form)
@@ -181,7 +181,7 @@ namespace UIRibbonTools
             //Console.WriteLine(msg == "" ? "Document is valid" : "Document invalid: " + msg);
         }
 
-        public void BuildRibbonFile(string resourceName)
+        public void BuildRibbonFile(string resourceIdentifier)
         {
             MessageOutput message = null;
             try
@@ -193,7 +193,7 @@ namespace UIRibbonTools
                 var targets = manager.Targets;
                 foreach (var target in targets)
                 {
-                    var buffer = manager.CreateRibbon(target, resourceName);
+                    var buffer = manager.CreateRibbon(target, resourceIdentifier);
                     File.WriteAllBytes(target.RibbonFilename, buffer);
                 }
                 bool validResource = CheckRibbonResource(path);
@@ -240,7 +240,7 @@ namespace UIRibbonTools
                 new VBCodeBuilder().Execute(path, parser);
         }
 
-        public static void ConsoleBuild(string path, string resourceName)
+        public static void ConsoleBuild(string path, string resourceIdentifier)
         {
             ConsoleMessageOutput message = null;
             try
@@ -253,7 +253,7 @@ namespace UIRibbonTools
                 var targets = manager.Targets;
                 foreach (var target in targets)
                 {
-                    var buffer = manager.CreateRibbon(target, resourceName);
+                    var buffer = manager.CreateRibbon(target, resourceIdentifier);
                     File.WriteAllBytes(target.RibbonFilename, buffer);
                 }
 

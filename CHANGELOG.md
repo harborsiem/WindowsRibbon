@@ -2,10 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-### Ribbon V2.10.0, RibbonTools V1.3.5
+### Ribbon V2.11.0, RibbonTools V1.3.5
+
+#### Changed (Ribbon)
+
+- Property Enabled of all Ribbon items returns true after application startup
 
 #### Changed (RibbonTools)
 
+- New: Image Converters with Bitmap V5 Header support
 - Bugfix: Saving Bitmap files
 - Methods added to class AlphaBitmap
 - Big Views with better performance
