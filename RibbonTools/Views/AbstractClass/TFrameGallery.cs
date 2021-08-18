@@ -54,25 +54,23 @@ namespace UIRibbonTools
                 InitializeComponent();
         }
 
-        private void DisableControlsInAppMenu()
+        private void AppMenuConstraint()
         {
-            if (_gallery.Parent.ObjectType() == RibbonObjectType.AppMenuGroup)
-            {
-                _label2.Enabled = false;
-                _comboBoxGalleryType.Enabled = false;
-                _label7.Enabled = false;
-                _comboBoxTextPosition.Enabled = false;
-                _label3.Enabled = false;
-                _label4.Enabled = false;
-                _upDownItemHeight.Enabled = false;
-                _label5.Enabled = false;
-                _label6.Enabled = false;
-                _upDownItemWidth.Enabled = false;
-                _checkBoxHasLargeItems.Enabled = false;
-                _label8.Enabled = false;
-                _comboBoxLayoutType.Enabled = false;
-                _groupBox1.Enabled = false;
-            }
+            bool enabled = !(_gallery.Parent.ObjectType() == RibbonObjectType.AppMenuGroup);
+            _label2.Enabled = enabled;
+            _comboBoxGalleryType.Enabled = enabled;
+            _label7.Enabled = enabled;
+            _comboBoxTextPosition.Enabled = enabled;
+            _label3.Enabled = enabled;
+            _label4.Enabled = enabled;
+            _upDownItemHeight.Enabled = enabled;
+            _label5.Enabled = enabled;
+            _label6.Enabled = enabled;
+            _upDownItemWidth.Enabled = enabled;
+            _checkBoxHasLargeItems.Enabled = enabled;
+            _label8.Enabled = enabled;
+            _comboBoxLayoutType.Enabled = enabled;
+            _groupBox1.Enabled = enabled;
         }
 
         protected override void InitComponentStep1()
@@ -731,7 +729,7 @@ namespace UIRibbonTools
             }
             else
                 ComboBoxLayoutType.SelectedIndex = LT_DEFAULT;
-            DisableControlsInAppMenu(); //added
+            AppMenuConstraint(); //added
             UpdateControls();
         }
 
