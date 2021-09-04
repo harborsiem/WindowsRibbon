@@ -675,6 +675,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
+    <Copy SourceFiles=".\obj\project.assets.json" DestinationFiles=".\obj\project.assets.json_" Condition="Exists('.\obj\project.assets.json')" />
     <Delete Files=".\obj\project.assets.json" />
   </Target>
+  <Target Name="AfterBuild">
+    <Copy SourceFiles=".\obj\project.assets.json_" DestinationFiles=".\obj\project.assets.json" Condition="Exists('.\obj\project.assets.json_')" />
+    <Delete Files=".\obj\project.assets.json_" />
+  </Target>
+
 </Project>
