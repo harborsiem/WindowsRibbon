@@ -6,7 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 #### Changed (RibbonTools)
 
-- Bugfix: GalleryControls in AppMenuGroup and in other Groups
+- Bugfixes: GalleryControls in AppMenuGroup and in other Groups
+- Default TextPosition in GalleryControls
 ### Ribbon V2.11.0, RibbonTools V1.3.5
 
 #### Changed (Ribbon)

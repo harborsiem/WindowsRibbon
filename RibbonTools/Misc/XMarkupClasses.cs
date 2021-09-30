@@ -2976,7 +2976,7 @@ namespace UIRibbonTools
             _hasLargeItems = true;
             _itemHeight = -1;
             _itemWidth = -1;
-            _textPosition = RibbonTextPosition.Bottom;
+            _textPosition = RibbonTextPosition.Right;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -2997,16 +2997,16 @@ namespace UIRibbonTools
             _itemWidth = AttributeAsInt32OrDefault(E, AN_ITEM_WIDTH, -1);
 
             s = E.Attribute(AN_TEXT_POSITION)?.Value;
-            if ((string.IsNullOrEmpty(s)) || (s == ES_BOTTOM))
-                _textPosition = RibbonTextPosition.Bottom;
+            if ((string.IsNullOrEmpty(s)) || (s == ES_RIGHT))
+                _textPosition = RibbonTextPosition.Right;
             else if (s == ES_HIDE)
                 _textPosition = RibbonTextPosition.Hide;
             else if (s == ES_LEFT)
                 _textPosition = RibbonTextPosition.Left;
             else if (s == ES_OVERLAP)
                 _textPosition = RibbonTextPosition.Overlap;
-            else if (s == ES_RIGHT)
-                _textPosition = RibbonTextPosition.Right;
+            else if (s == ES_BOTTOM)
+                _textPosition = RibbonTextPosition.Bottom;
             else if (s == ES_TOP)
                 _textPosition = RibbonTextPosition.Top;
             else
@@ -3047,7 +3047,7 @@ namespace UIRibbonTools
             if (_itemWidth != -1)
                 writer.WriteAttributeString(AN_ITEM_WIDTH, XmlConvert.ToString(_itemWidth));
 
-            if (_textPosition != RibbonTextPosition.Bottom)
+            if (_textPosition != RibbonTextPosition.Right)
                 writer.WriteAttributeString(AN_TEXT_POSITION, TEXT_POSITIONS[(int)_textPosition]);
         }
 
