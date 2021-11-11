@@ -2,12 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-### Ribbon V2.11.0, RibbonTools V1.3.6
+### Ribbon V2.11.1, RibbonTools V1.3.6
+
+#### Changed (Ribbon)
+
+- DesignMode issue for .NET5, .NET6 (other naming for the Visual Studio Designer)
 
 #### Changed (RibbonTools)
 
 - Bugfixes: GalleryControls in AppMenuGroup and in other Groups
 - Default TextPosition in GalleryControls
+- RibbonToolsCore.sln only supports .NET6 (VS2022 required)
 ### Ribbon V2.11.0, RibbonTools V1.3.5
 
 #### Changed (Ribbon)

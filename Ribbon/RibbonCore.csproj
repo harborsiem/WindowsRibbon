@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net5.0-windows;netcoreapp3.1;net40</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows;net5.0-windows;netcoreapp3.1;net40</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon />
     <StartupObject />
@@ -19,7 +19,7 @@
 
     <PackageId>WindowsRibbon</PackageId>
     <Product>Windows Ribbon Control</Product>
-    <Version>2.11.0</Version>
+    <Version>2.11.1</Version>
     <Authors>Hartmut Borkenhagen</Authors>
     <Company>RibbonLib</Company>
     <PackageIcon>Ribbon64.png</PackageIcon>
@@ -36,7 +36,7 @@
     <Deterministic>false</Deterministic>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU' and ('$(TargetFramework)' == 'net5.0-windows' or '$(TargetFramework)' == 'netcoreapp3.1')">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU' and ('$(TargetFramework)' == 'net6.0-windows' or '$(TargetFramework)' == 'net5.0-windows' or '$(TargetFramework)' == 'netcoreapp3.1')">
     <DefineConstants>DEBUG;Core</DefineConstants>
   </PropertyGroup>
 
@@ -44,14 +44,19 @@
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU' and '$(TargetFramework)' == 'netcoreapp3.1'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU' and '$(TargetFramework)' == 'net6.0-windows'">
     <DefineConstants>TRACE;Core</DefineConstants>
-    <DocumentationFile>.\bin\Release\netcoreapp3.1\Ribbon.xml</DocumentationFile>
+    <DocumentationFile>.\bin\Release\net6.0-windows\Ribbon.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU' and '$(TargetFramework)' == 'net5.0-windows'">
     <DefineConstants>TRACE;Core</DefineConstants>
     <DocumentationFile>.\bin\Release\net5.0-windows\Ribbon.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU' and '$(TargetFramework)' == 'netcoreapp3.1'">
+    <DefineConstants>TRACE;Core</DefineConstants>
+    <DocumentationFile>.\bin\Release\netcoreapp3.1\Ribbon.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU' and '$(TargetFramework)' == 'net40'">

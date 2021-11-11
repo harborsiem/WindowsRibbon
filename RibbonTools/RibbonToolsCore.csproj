@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net5.0-windows;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
 	<UseWPF>true</UseWPF>
     <ApplicationIcon>Images\Ribbon.ico</ApplicationIcon>
@@ -112,15 +112,9 @@
     <EmbeddedResource Include="Wordpad.zip" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0-windows'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
     <Reference Include="Ribbon">
-      <HintPath>..\Ribbon\bin\Release\net5.0-windows\Ribbon.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-    <Reference Include="Ribbon">
-      <HintPath>..\Ribbon\bin\Release\netcoreapp3.1\Ribbon.dll</HintPath>
+      <HintPath>..\Ribbon\bin\Release\net6.0-windows\Ribbon.dll</HintPath>
     </Reference>
   </ItemGroup>
 

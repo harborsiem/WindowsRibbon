@@ -21,7 +21,7 @@ namespace RibbonLib
         static Util()
         {
             // design mode is true if host process is: Visual Studio, Visual Studio Express Versions (C#, VB, C++) or SharpDevelop
-            var designerHosts = new List<string>() { "devenv", "vcsexpress", "vbexpress", "vcexpress", "sharpdevelop" };
+            var designerHosts = new List<string>() { "designtoolsserver", "devenv", "vcsexpress", "vbexpress", "vcexpress", "sharpdevelop" };
             var processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName.ToLower();
             _designMode = designerHosts.Contains(processName);
         }
