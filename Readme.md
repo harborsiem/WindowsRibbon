@@ -50,7 +50,7 @@ Thanks to Arik Poznanski and Bernhard Elbl for the great work.
 
 
 
-Now the WindowsRibbon project is running also in the latest Visual Studio Versions 2017 and 2019. Have a look to the file "HowToUse.md" to see how to use the WindowsRibbon in a .NET WinForms application. In the Releases page of this Github repository there are also zipped *.msi setup files for the components. The msi files are build with the WIX Toolset.
+Now the WindowsRibbon project is running also in the latest Visual Studio Versions 2017, 2019, 2022. Have a look to the **WIKI** and the file "HowToUse.md" to see how to use the WindowsRibbon in a .NET WinForms application. In the Releases page of this Github repository there are also zipped *.msi setup files for the components. The msi files are build with the WIX Toolset.
 
 ---
 
@@ -68,7 +68,7 @@ The C# samples are added with a more complex Mainform application. Here you can 
 
 An other C# Application with the Ribbon Control one can find at the following page:
 
-[ElementViewer](https://github.com/harborsiem/ELEMNTViewer)
+[ElemntViewer](https://github.com/harborsiem/ELEMNTViewer)
 
 ## Installation:
 

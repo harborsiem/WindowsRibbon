@@ -12,6 +12,9 @@
    element (much like XAML). This class model unifies this: it can read both
    ways as a single LabelTitle, and it writes it in a format that is most
    efficient.
+   
+   -These Classes ignore XML Comments when reading and they doesn't support
+    XML Comments when saving the document.
    */
 // see also files Enums.cs and TRibbonObject.Const.cs
 
@@ -362,6 +365,12 @@ namespace UIRibbonTools
             }
         }
 
+        public void Sort(Comparison<T> comparison)
+        {
+            if (_items != null && _items.Count > 1)
+                _items.Sort(comparison);
+        }
+
         public List<T>.Enumerator GetEnumerator()
         {
             return _items.GetEnumerator();
@@ -488,7 +497,7 @@ namespace UIRibbonTools
         internal void Initialize(XElement E)
         {
             XElement C;
-            _content = E.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
+            _content = E.Value;
             _id = 0;
             _symbol = string.Empty;
 
@@ -503,16 +512,16 @@ namespace UIRibbonTools
                 if (C.Name.LocalName != EN_STRING)
                     Error(C, RS_ELEMENT_EXPECTED, EN_STRING, C.Name.LocalName);
 
-                _content = C.Attribute(AN_CONTENT)?.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
+                _content = C.Attribute(AN_CONTENT)?.Value;
                 if (string.IsNullOrEmpty(_content))
-                    _content = C.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
+                    _content = C.Value;
                 SetId(StringToCommandValue(C.Attribute(AN_ID)?.Value));
                 SetSymbol(C.Attribute(AN_SYMBOL)?.Value);
 
                 foreach (XElement GC in C.Elements())
                 {
                     if (GC.Name.LocalName == EN_STRING_CONTENT)
-                        _content = GC.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
+                        _content = GC.Value;
                     else if (GC.Name.LocalName == EN_STRING_ID)
                         SetId(StringToCommandValue(GC.Value));
                     else if (GC.Name.LocalName == EN_STRING_SYMBOL)
@@ -535,8 +544,8 @@ namespace UIRibbonTools
                 if (!string.IsNullOrEmpty(_symbol))
                     writer.WriteAttributeString(AN_SYMBOL, _symbol);
                 if (!string.IsNullOrEmpty(_content))
-                    writer.WriteValue(_content); //.Replace("&#xA;", ((char)0xA).ToString())); this replace does not work
-                //WriteRow is a better solution than WriteValue if we have line breaks, but we have to replace a & to &amp; in the _content;
+                    writer.WriteValue(_content);
+
                 writer.WriteEndElement();
 
                 writer.WriteEndElement();
@@ -1010,6 +1019,7 @@ namespace UIRibbonTools
     {
         #region Internal Declarations
 
+        public const int MaxImages = 4;
         private string _name = string.Empty;
         private string _symbol = string.Empty;
         private int _id;
@@ -1078,6 +1088,40 @@ namespace UIRibbonTools
             }
         }
 
+        private static int CompareRibbonImages(TRibbonImage x, TRibbonImage y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    // If x is null and y is null, they're equal.
+                    return 0;
+                }
+                else
+                {
+                    // If x is null and y is not null, y is greater.
+                    return -1;
+                }
+            }
+            else
+            {
+                // If x is not null...
+                if (y == null)
+                // ...and y is null, x is greater.
+                {
+                    return 1;
+                }
+                else
+                {
+                    if (x.MinDpi > y.MinDpi)
+                        return 1;
+                    if (x.MinDpi < y.MinDpi)
+                        return -1;
+                    return 0;
+                }
+            }
+        }
+
         public TRibbonCommand(TRibbonDocument owner) : base(owner)
         {
             _labelTitle = new TRibbonString(owner);
@@ -1102,10 +1146,10 @@ namespace UIRibbonTools
             SetId(StringToCommandValue(E.Attribute(AN_ID)?.Value));
             _constructing = false;
             _comment = E.Attribute(AN_COMMENT)?.Value;
-            _labelTitle.Content = E.Attribute(AN_LABEL_TITLE)?.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
-            _labelDescription.Content = E.Attribute(AN_LABEL_DESCRIPTION)?.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
-            _tooltipTitle.Content = E.Attribute(AN_TOOLTIP_TITLE)?.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
-            _tooltipDescription.Content = E.Attribute(AN_TOOLTIP_DESCRIPTION)?.Value; //.Replace(((char)0xA).ToString(), "&#xA;");
+            _labelTitle.Content = E.Attribute(AN_LABEL_TITLE)?.Value;
+            _labelDescription.Content = E.Attribute(AN_LABEL_DESCRIPTION)?.Value;
+            _tooltipTitle.Content = E.Attribute(AN_TOOLTIP_TITLE)?.Value;
+            _tooltipDescription.Content = E.Attribute(AN_TOOLTIP_DESCRIPTION)?.Value;
             _keytip.Content = E.Attribute(AN_KEYTIP)?.Value;
 
             foreach (XElement C in E.Elements())
@@ -1154,13 +1198,13 @@ namespace UIRibbonTools
             if (_id != 0)
                 writer.WriteAttributeString(AN_ID, XmlConvert.ToString(_id));
             if (_labelTitle.HasSimpleString())
-                writer.WriteAttributeString(AN_LABEL_TITLE, _labelTitle.Content); //.Replace("&#xA;", ((char)0xA).ToString()));
+                writer.WriteAttributeString(AN_LABEL_TITLE, _labelTitle.Content);
             if (_labelDescription.HasSimpleString())
-                writer.WriteAttributeString(AN_LABEL_DESCRIPTION, _labelDescription.Content); //.Replace("&#xA;", ((char)0xA).ToString()));
+                writer.WriteAttributeString(AN_LABEL_DESCRIPTION, _labelDescription.Content);
             if (_tooltipTitle.HasSimpleString())
-                writer.WriteAttributeString(AN_TOOLTIP_TITLE, _tooltipTitle.Content); //.Replace("&#xA;", ((char)0xA).ToString()));
+                writer.WriteAttributeString(AN_TOOLTIP_TITLE, _tooltipTitle.Content);
             if (_tooltipDescription.HasSimpleString())
-                writer.WriteAttributeString(AN_TOOLTIP_DESCRIPTION, _tooltipDescription.Content); //.Replace("&#xA;", ((char)0xA).ToString()));
+                writer.WriteAttributeString(AN_TOOLTIP_DESCRIPTION, _tooltipDescription.Content);
             if (_keytip.HasSimpleString())
                 writer.WriteAttributeString(AN_KEYTIP, _keytip.Content);
 
@@ -1225,13 +1269,15 @@ namespace UIRibbonTools
             else
                 result = _name;
 
-            if (!string.IsNullOrEmpty(_labelTitle.Content))
-                result = result + " (" + _labelTitle.Content + ")";
+            //if (!string.IsNullOrEmpty(_labelTitle.Content))
+            //    result = result + " (" + _labelTitle.Content + ")";
             return result;
         }
 
         public TRibbonImage AddSmallImage()
         {
+            if (_smallImages.Count >= MaxImages)
+                return null;
             TRibbonImage result = new TRibbonImage(Owner);
             _smallImages.Add(result);
             return result;
@@ -1239,6 +1285,8 @@ namespace UIRibbonTools
 
         public TRibbonImage AddLargeImage()
         {
+            if (_largeImages.Count >= MaxImages)
+                return null;
             TRibbonImage result = new TRibbonImage(Owner);
             _largeImages.Add(result);
             return result;
@@ -1246,6 +1294,8 @@ namespace UIRibbonTools
 
         public TRibbonImage AddSmallHighContrastImage()
         {
+            if (_smallHighContrastImages.Count >= MaxImages)
+                return null;
             TRibbonImage result = new TRibbonImage(Owner);
             _smallHighContrastImages.Add(result);
             return result;
@@ -1253,6 +1303,8 @@ namespace UIRibbonTools
 
         public TRibbonImage AddLargeHighContrastImage()
         {
+            if (_largeHighContrastImages.Count >= MaxImages)
+                return null;
             TRibbonImage result = new TRibbonImage(Owner);
             _largeHighContrastImages.Add(result);
             return result;
@@ -1270,6 +1322,12 @@ namespace UIRibbonTools
             _largeImages.Remove(image);
             _smallHighContrastImages.Remove(image);
             _largeHighContrastImages.Remove(image);
+        }
+
+        public void SortImages(TRibbonList<TRibbonImage> images)
+        {
+            if (images != null)
+                images.Sort(CompareRibbonImages);
         }
 
         public string Name { get { return _name; } set { SetName(value); } }
@@ -3489,9 +3547,9 @@ namespace UIRibbonTools
 
         public override bool SupportApplicationModes() { return false; }
 
-        public void EnableRecentItems(bool Enable)
+        public void EnableRecentItems(bool enable)
         {
-            if (Enable)
+            if (enable)
             {
                 if (_recentItems == null)
                     _recentItems = new TRibbonApplicationMenuRecentItems(Owner, this);
@@ -3977,6 +4035,8 @@ namespace UIRibbonTools
 
         internal void Save(XmlWriter writer)
         {
+            if (_controlNameDefinitions.Count == 0)
+                return;
             writer.WriteStartElement(EN_CONTROL_NAME_MAP);
 
             foreach (string s in _controlNameDefinitions)
@@ -4072,8 +4132,11 @@ namespace UIRibbonTools
             _isImageVisible = AttributeAsBooleanOrDefault(E, AN_IS_IMAGE_VISIBLE, true);
             _isPopup = AttributeAsBooleanOrDefault(E, AN_IS_POPUP, false);
             _controlName = E.Attribute(AN_CONTROL_NAME)?.Value;
-            if (!IsValidCommandNameString(_controlName))
-                Error(E, RS_INVALID_COMMAND_NAME, _controlName);
+            if (_controlName != null)
+            {
+                if (!IsValidCommandNameString(_controlName))
+                    Error(E, RS_INVALID_COMMAND_NAME, _controlName);
+            }
         }
 
         internal override void Save(XmlWriter writer)

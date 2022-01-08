@@ -234,7 +234,10 @@ namespace UIRibbonTools
             ComboBoxControlName.Items.Clear();
             foreach (string controlName in _sizeDef.OwnerDefinition.ControlNameMap.ControlNameDefinitions)
                 ComboBoxControlName.Items.Add(controlName);
-            ComboBoxControlName.SelectedIndex = ComboBoxControlName.Items.IndexOf(_sizeDef.ControlName);
+            if (_sizeDef.ControlName != null)
+                ComboBoxControlName.SelectedIndex = ComboBoxControlName.Items.IndexOf(_sizeDef.ControlName);
+            else
+                ComboBoxControlName.SelectedIndex = -1;
             ComboBoxImageSize.SelectedIndex = (int)(_sizeDef.ImageSize);
             CheckBoxIsLabelVisible.Checked = _sizeDef.IsLabelVisible;
             CheckBoxIsImageVisible.Checked = _sizeDef.IsImageVisible;

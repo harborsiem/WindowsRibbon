@@ -33,7 +33,7 @@ namespace UIRibbonTools
             this.toolBarImages = new System.Windows.Forms.ToolStrip();
             this.toolButtonAddImage = new System.Windows.Forms.ToolStripDropDownButton();
             this.popupAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.popupAddMultiple = new System.Windows.Forms.ToolStripMenuItem();
+            this.popupAddRange = new System.Windows.Forms.ToolStripMenuItem();
             this.toolButtonRemoveImage = new System.Windows.Forms.ToolStripButton();
             this.toolButtonRemoveAllImages = new System.Windows.Forms.ToolStripButton();
             this.toolButtonEditImage = new System.Windows.Forms.ToolStripButton();
@@ -65,7 +65,7 @@ namespace UIRibbonTools
             // 
             this.toolButtonAddImage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.popupAdd,
-            this.popupAddMultiple});
+            this.popupAddRange});
             this.toolButtonAddImage.Image = ((System.Drawing.Image)(resources.GetObject("toolButtonAddImage.Image")));
             this.toolButtonAddImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolButtonAddImage.Name = "toolButtonAddImage";
@@ -78,11 +78,11 @@ namespace UIRibbonTools
             this.popupAdd.Size = new System.Drawing.Size(180, 22);
             this.popupAdd.Text = "Add";
             // 
-            // popupAddMultiple
+            // popupAddRange
             // 
-            this.popupAddMultiple.Name = "popupAddMultiple";
-            this.popupAddMultiple.Size = new System.Drawing.Size(180, 22);
-            this.popupAddMultiple.Text = "Add Multiple";
+            this.popupAddRange.Name = "popupAddRange";
+            this.popupAddRange.Size = new System.Drawing.Size(180, 22);
+            this.popupAddRange.Text = "Add Range";
             // 
             // toolButtonRemoveImage
             // 
@@ -204,7 +204,7 @@ namespace UIRibbonTools
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ImageList _imageList;
         private System.Windows.Forms.ToolStripMenuItem popupAdd;
-        private System.Windows.Forms.ToolStripMenuItem popupAddMultiple;
+        private System.Windows.Forms.ToolStripMenuItem popupAddRange;
         private System.Windows.Forms.Panel listViewPanel;
     }
 }

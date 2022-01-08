@@ -94,7 +94,11 @@ namespace UIRibbonTools
             dialog.Description = RS_SELECT_DIR_CAPTION;
             dialog.RootFolder = Environment.SpecialFolder.MyComputer;
             if (!string.IsNullOrEmpty(directory) && Directory.Exists(directory))
+#if Core
+                dialog.InitialDirectory = directory;
+#else
                 dialog.SelectedPath = directory;
+#endif
             dialog.ShowNewFolderButton = true;
 
             if (dialog.ShowDialog() == DialogResult.OK)

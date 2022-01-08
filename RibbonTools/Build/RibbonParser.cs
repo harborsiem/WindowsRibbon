@@ -132,7 +132,8 @@ namespace UIRibbonTools
 
         private void Parse()
         {
-            ParseApplicationCommands(applicationCommands);
+            if (applicationCommands != null)
+                ParseApplicationCommands(applicationCommands);
 
             commandIdPairs = GetCommandsAndIds();
 

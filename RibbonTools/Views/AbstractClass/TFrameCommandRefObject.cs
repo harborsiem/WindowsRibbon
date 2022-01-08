@@ -16,6 +16,8 @@ namespace UIRibbonTools
         private TRibbonCommandRefObject _commandRefSubject;
         protected Label Label1 { get => _label1; }
         protected ComboBox ComboBoxCommand { get => _comboBoxCommand; }
+        private NativeMethods.COMBOBOXINFO _commandInfo;
+        private ToolTip _commandTip;
 
         public TFrameCommandRefObject()
         {
@@ -31,6 +33,7 @@ namespace UIRibbonTools
         {
             if (components == null)
                 components = new Container();
+            _commandTip = new ToolTip(components);
             this._label1 = new System.Windows.Forms.Label();
             this._comboBoxCommand = new System.Windows.Forms.ComboBox();
             base.InitComponentStep1();
@@ -88,6 +91,10 @@ namespace UIRibbonTools
         {
             base.InitEvents();
             ComboBoxCommand.SelectedIndexChanged += ComboBoxCommandChange;
+            ComboBoxCommand.DrawMode = DrawMode.OwnerDrawFixed;
+            ComboBoxCommand.DrawItem += ComboBoxCommand_DrawItem;
+            ComboBoxCommand.DropDownClosed += ComboBoxCommand_DropDownClosed;
+            ComboBoxCommand.HandleCreated += ComboBoxCommand_HandleCreated;
         }
 
         protected override void InitTooltips(IContainer components)
@@ -190,6 +197,41 @@ namespace UIRibbonTools
                     ComboBoxCommand.SelectedIndex = RibbonCommandItem.IndexOf(ComboBoxCommand, _commandRefSubject.CommandRef);
                 //ComboBoxCommand.Items.IndexOf(FCommandRefSubject.CommandRef);
             }
+        }
+
+        private void ComboBoxCommand_HandleCreated(object sender, EventArgs e)
+        {
+            _commandInfo = NativeMethods.COMBOBOXINFO.Create();
+            NativeMethods.GetComboBoxInfo(_comboBoxCommand.Handle, ref _commandInfo);
+        }
+
+        private void ComboBoxCommand_DropDownClosed(object sender, EventArgs e)
+        {
+            _commandTip.Hide(_comboBoxCommand);
+        }
+
+        private void ComboBoxCommand_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0)
+                return;
+            string text = _comboBoxCommand.GetItemText(_comboBoxCommand.Items[e.Index]);
+            RibbonCommandItem item = (RibbonCommandItem)_comboBoxCommand.Items[e.Index];
+            e.DrawBackground();
+            using (SolidBrush br = new SolidBrush(e.ForeColor))
+            {
+                e.Graphics.DrawString(text, e.Font, br, e.Bounds);
+            }
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected && (e.State & DrawItemState.ComboBoxEdit) != DrawItemState.ComboBoxEdit)
+            {
+                NativeMethods.RECT comboRect;
+                NativeMethods.RECT listRect;
+                NativeMethods.GetWindowRect(_commandInfo.hwndCombo, out comboRect);
+                NativeMethods.GetWindowRect(_commandInfo.hwndList, out listRect);
+                int plusY = listRect.Top - comboRect.Top;
+                _commandTip.Hide(_comboBoxCommand);
+                _commandTip.Show(item.Description, _comboBoxCommand, e.Bounds.Right, e.Bounds.Y + plusY, 2000);
+            }
+            e.DrawFocusRectangle();
         }
     }
 }

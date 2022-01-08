@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.11.1, RibbonTools V1.3.7
+
+#### Changed (RibbonTools)
+
+- Bugfixes: NullReferenceException with Empty Commands
+- Command Images are now sorted when using Add, Add Range
+- In SizeDefinitions ControlName is now optional.
+- CommandName in Views shows now only the CommandName. In the ComboBox you get a Tooltip with the LabelTitle for the CommandName
+- Some refactoring with ConvertImage
+
 ### Ribbon V2.11.1, RibbonTools V1.3.6
 
 #### Changed (Ribbon)

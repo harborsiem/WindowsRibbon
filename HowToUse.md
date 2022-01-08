@@ -8,8 +8,10 @@
 
 2. For building an application with Ribbon one have to create a Windows Forms App.
 
-3. In Solution Explorer References: choose -> Add Reference -> Assemblies -> Extensions -> Ribbon.dll
-![References](./Images/SelectRibbon.png)
+3. In Solution Explorer References: choose -> Add Reference -> Assemblies -> Extensions -> Ribbon.dll 
+  In newer versions the name of the Ribbon is: ***Windows Ribbon for .NET*** 
+
+3. ![References](./Images/SelectRibbon.png)
 
 4. Visual Studio  Menu: Tool -> Choose Toolbox Items: Select Ribbon with Namespace RibbonLib
     ![ToolBox Items](./Images/ToolBoxItems.png)

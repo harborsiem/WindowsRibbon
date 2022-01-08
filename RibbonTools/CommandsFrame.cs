@@ -485,10 +485,14 @@ namespace UIRibbonTools
 
         private void EditDescriptionChange(object sender, EventArgs e)
         {
-            if (_command != null && (_command.LabelDescription.Content != EditDescription.Text))
+            if (_command != null)
             {
-                _command.LabelDescription.Content = EditDescription.Text;
-                Modified();
+                string textboxContent = TextboxToContent(EditDescription.Text);
+                if (_command.LabelDescription.Content != textboxContent)
+                {
+                    _command.LabelDescription.Content = textboxContent;
+                    Modified();
+                }
             }
         }
 
@@ -602,10 +606,14 @@ namespace UIRibbonTools
 
         private void EditTooltipDescriptionChange(object sender, EventArgs e)
         {
-            if (_command != null && (_command.TooltipDescription.Content != EditTooltipDescription.Text))
+            if (_command != null)
             {
-                _command.TooltipDescription.Content = EditTooltipDescription.Text;
-                Modified();
+                string textboxContent = TextboxToContent(EditTooltipDescription.Text);
+                if (_command.TooltipDescription.Content != textboxContent)
+                {
+                    _command.TooltipDescription.Content = textboxContent;
+                    Modified();
+                }
             }
         }
 
@@ -853,7 +861,7 @@ namespace UIRibbonTools
                     EditCaptionId.Value = _command.LabelTitle.Id;
                     EditCaptionSymbol.Text = _command.LabelTitle.Symbol;
 
-                    EditDescription.Text = _command.LabelDescription.Content;
+                    EditDescription.Text = ContentToTextbox(_command.LabelDescription.Content);
                     EditDescriptionId.Value = _command.LabelDescription.Id;
                     EditDescriptionSymbol.Text = _command.LabelDescription.Symbol;
 
@@ -861,7 +869,7 @@ namespace UIRibbonTools
                     EditTooltipTitleId.Value = _command.TooltipTitle.Id;
                     EditTooltipTitleSymbol.Text = _command.TooltipTitle.Symbol;
 
-                    EditTooltipDescription.Text = _command.TooltipDescription.Content;
+                    EditTooltipDescription.Text = ContentToTextbox(_command.TooltipDescription.Content);
                     EditTooltipDescriptionId.Value = _command.TooltipDescription.Id;
                     EditTooltipDescriptionSymbol.Text = _command.TooltipDescription.Symbol;
 
@@ -920,6 +928,20 @@ namespace UIRibbonTools
                 else
                     upDown.Value = 0;
             }
+        }
+
+        private static string ContentToTextbox(string content)
+        {
+            if (content == null)
+                return null;
+            return content.Replace(((char)0xA).ToString(), @"\n");
+        }
+
+        private static string TextboxToContent(string textboxText)
+        {
+            if (string.IsNullOrEmpty(textboxText))
+                return null;
+            return textboxText.Replace(@"\n", ((char)0xA).ToString());
         }
     }
 }

@@ -31,7 +31,7 @@ namespace UIRibbonTools
         private TAction _actionRemoveImage;
         private TAction _actionRemoveAllImages;
         private TAction _actionEditImage;
-        private TAction _actionAddMultiple;
+        private TAction _actionAddRange;
 
         public ImageListFrame()
         {
@@ -64,14 +64,14 @@ namespace UIRibbonTools
             _actionRemoveImage = new TAction(components);
             _actionRemoveAllImages = new TAction(components);
             _actionEditImage = new TAction(components);
-            _actionAddMultiple = new TAction(components);
+            _actionAddRange = new TAction(components);
 
             _actionList.Actions.AddRange(new TAction[] {
                 _actionAddImage,
                 _actionRemoveImage,
                 _actionRemoveAllImages,
                 _actionEditImage,
-                _actionAddMultiple
+                _actionAddRange
             });
 
             _actionAddImage.Execute += ActionAddImageExecute;
@@ -102,11 +102,11 @@ namespace UIRibbonTools
             _actionEditImage.Text = "Edit";
             _actionEditImage.SetComponent(toolButtonEditImage, true);
 
-            _actionAddMultiple.Execute += ActionAddMultipleExecute;
-            _actionAddMultiple.Hint = "Add multiple images with different resolutions";
-            //_actionAddMultiple.ImageIndex = 2;
-            _actionAddMultiple.Text = "Add Multiple Images";
-            _actionAddMultiple.SetComponent(popupAddMultiple, true);
+            _actionAddRange.Execute += ActionAddRangeExecute;
+            _actionAddRange.Hint = "Add a range of images with different resolutions";
+            //_actionAddRange.ImageIndex = 2;
+            _actionAddRange.Text = "Add Range";
+            _actionAddRange.SetComponent(popupAddRange, true);
 
             _actionList.ImageList = _imageListToolbars;
         }
@@ -138,15 +138,31 @@ namespace UIRibbonTools
             else
                 image = _command.AddSmallImage();
 
+            if (image == null) //to many images defined (>= TRibbonCommand.MaxImages, 4)
+                return;
+
             dialog = new ImageEditForm(image, _flags);
             try
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    item = listView.Items.Add(new ListViewItem());
-                    SetImageItem(item, image);
-                    listView.Items[item.Index].Selected = true;
+                    _command.SortImages(_images);
+                    int index = -1;
+                    foreach (TRibbonImage image1 in _images)
+                    {
+                        index++;
+                        if (image == image1)
+                            break;
+                    }
+                    ShowImages(_command, _flags);
+                    item = listView.Items[index];
+                    item.Selected = true;
                     item.Focused = true;
+                    item.EnsureVisible();
+                    //item = listView.Items.Add(new ListViewItem());
+                    //SetImageItem(item, image);
+                    //listView.Items[item.Index].Selected = true;
+                    //item.Focused = true;
                 }
                 else
                     _command.RemoveImage(image);
@@ -157,7 +173,7 @@ namespace UIRibbonTools
             }
         }
 
-        private void ActionAddMultipleExecute(object sender, EventArgs e)
+        private void ActionAddRangeExecute(object sender, EventArgs e)
         {
             string filename;
             bool usePngFile;
@@ -190,6 +206,9 @@ namespace UIRibbonTools
                     else
                         image = _command.AddSmallImage();
 
+                    if (image == null) //to many images defined (>= TRibbonCommand.MaxImages, 4)
+                        break;
+
                     usePngFile = Settings.Instance.AllowPngImages && Path.GetExtension(s).Equals(".png", StringComparison.OrdinalIgnoreCase);
 
                     // UIImage will automatically convert to 32 - bit alpha image
@@ -210,7 +229,8 @@ namespace UIRibbonTools
                             else
                                 saveToBmp = true;
                         }
-                        if (!usePngFile && !Path.GetExtension(filename).Equals(".bmp", StringComparison.OrdinalIgnoreCase)) {
+                        if (!usePngFile && !Path.GetExtension(filename).Equals(".bmp", StringComparison.OrdinalIgnoreCase))
+                        {
                             saveToBmp = true;
                             filename = Path.ChangeExtension(filename, ".bmp");
                         }
@@ -239,12 +259,17 @@ namespace UIRibbonTools
                         bitmap.Dispose();
                     }
 
-                    item = listView.Items.Add(new ListViewItem());
-                    SetImageItem(item, image);
-                    listView.Items[item.Index].Selected = true;
-                    item.Focused = true;
+                    //item = listView.Items.Add(new ListViewItem());
+                    //SetImageItem(item, image);
+                    //listView.Items[item.Index].Selected = true;
+                    //item.Focused = true;
                     MainForm.FormMain.Modified();
                 }
+                _command.SortImages(_images);
+                ShowImages(_command, _flags);
+                item = listView.Items[0];
+                item.Focused = true;
+                item.EnsureVisible();
             }
         }
 

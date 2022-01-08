@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +45,7 @@ namespace UIRibbonTools
             else
                 bmp = AlphaBitmap.TryAlphaBitmapFromFile(fileName);
             string bmpFile = Path.Combine(_outputPath, _fileNameWithoutExtension + ".bmp");
-            if (bmp.PixelFormat == System.Drawing.Imaging.PixelFormat.Format32bppArgb && _outputSelected == OutputSelector.Bitmap)
+            if (bmp.PixelFormat == PixelFormat.Format32bppArgb && _outputSelected == OutputSelector.Bitmap)
             {
                 AlphaBitmap.SetTransparentRGB(bmp, TransparentRGBColor);
             }

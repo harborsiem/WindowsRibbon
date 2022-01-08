@@ -276,11 +276,10 @@ namespace UIRibbonTools
                 public int biYPelsPerMeter;
                 public uint biClrUsed;
                 public uint biClrImportant;
-
-                public void Init()
+                public static BITMAPINFOHEADER Create() => new BITMAPINFOHEADER
                 {
-                    biSize = (uint)Marshal.SizeOf(this);
-                }
+                    biSize = (uint)Marshal.SizeOf<BITMAPINFOHEADER>()
+                };
             }
 
             [DllImport("gdi32", CharSet = CharSet.Auto, EntryPoint = "GetObject")]

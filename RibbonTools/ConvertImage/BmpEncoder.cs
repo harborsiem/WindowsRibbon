@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,42 +13,11 @@ namespace UIRibbonTools
 {
     public class BmpEncoder
     {
-        private const int FileHeaderSize = 14;
-        private const int DBIV1Size = 40;
-        private const int DBIV4Size = 108;
-        private const int DBIV5Size = 124;
+        private const uint FileHeaderSize = 14;
+        //private const int DBIV1Size = 40;
+        //private const int DBIV4Size = 108;
+        //private const int DBIV5Size = 124;
         private const byte ForcedAlpha = 0xff;
-
-        // Bmp Header
-        private const ushort Magic = 0x4d42; //"BM"
-        private uint FileSize;
-        private const int Unused = 0;
-        private int DataOffset;
-
-        // DBI Header
-        private uint DBI_Size;
-        private int Width;
-        private int Height;
-        private ushort NumberOfColorPlanes;
-        private ushort BitsPerPixel;
-        private uint DataType; //0 or 3
-        private uint SizeOfRawBitmapData;
-        private const int XPrintResolution = 0xec4; // (int)Math.Round(bitmap.VerticalResolution * 39.3701); // Pixels per meter
-        private const int YPrintResolution = 0xec4; // (int)Math.Round(bitmap.VerticalResolution * 39.3701); // Pixels per meter
-        private uint ColorInPalette;
-        private uint ColorImportant;
-
-        // DBI Extra for ARGB with no gamma correction
-        private const uint RedChannelMask = 0xff0000;
-        private const uint GreenChannelMask = 0xff00;
-        private const uint BlueChannelMask = 0xff;
-        private const uint AlphaChannelMask = 0xff000000;
-        private const uint WindowColorSpace = 0x57696e20; //= "Win ",   sRGB = 0x73524742;
-        private byte[] UnusedForsRGB = new byte[0x30]; //No gamma correction, 36 Bytes + 3 DWords
-        private int Intent;
-        private const uint ProfileData = 0;
-        private const uint ProfileSize = 0;
-        private const uint Reserved = 0;
 
         private string _path;
 
@@ -154,14 +123,15 @@ namespace UIRibbonTools
         /// </remarks>
         private void Encode32Bpp(Image bmp)
         {
+            BITMAPFILEHEADER bmpFH = BITMAPFILEHEADER.Create();
+            BITMAPV5HEADER bmpV5 = BITMAPV5HEADER.Create();
             Bitmap bitmap = CastImageToBitmap(bmp);
             BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, bitmap.PixelFormat);
             int paddingLength = 0;
             int rowSize = data.Stride < 0 ? -data.Stride : data.Stride;
             using (BinaryWriter bw = new BinaryWriter(new FileStream(_path, FileMode.Create)))
             {
-                // Encodes header
-                bw.Write(Magic);
+                // Encodes file header
                 uint rawDataLength;
                 if (bitmap.PixelFormat == PixelFormat.Format24bppRgb)
                 {
@@ -174,46 +144,67 @@ namespace UIRibbonTools
                 }
                 else
                     rawDataLength = (uint)(rowSize * data.Height);
-                FileSize = (uint)(FileHeaderSize + DBIV5Size + rawDataLength);
+                bmpFH.bfSize = FileHeaderSize + bmpV5.biSize + rawDataLength;
+                bmpFH.bfOffBits = FileHeaderSize + bmpV5.biSize;
                 //=============== Read just for forced (Padding)===================================
-                bw.Write(FileSize);
-                bw.Write(Unused);
-                DataOffset = FileHeaderSize + DBIV5Size;
-                bw.Write(DataOffset);
-                // Encodes DBI Header
-                DBI_Size = DBIV5Size;
-                bw.Write(DBI_Size);
-                Width = bitmap.Width;
-                bw.Write(Width);
-                Height = bitmap.Height;
-                bw.Write(Height);
-                NumberOfColorPlanes = 1;
-                bw.Write(NumberOfColorPlanes);
-                BitsPerPixel = 32;
-                bw.Write(BitsPerPixel);
-                DataType = 3;
-                bw.Write(DataType);
-                SizeOfRawBitmapData = rawDataLength;
-                bw.Write(SizeOfRawBitmapData);
-                bw.Write(XPrintResolution);
-                bw.Write(YPrintResolution);
-                ColorInPalette = 0;
-                bw.Write(ColorInPalette);
-                ColorImportant = 0;
-                bw.Write(ColorImportant);
-                // Encodes DBI Extra for ARGB
-                bw.Write(RedChannelMask);
-                bw.Write(GreenChannelMask);
-                bw.Write(BlueChannelMask);
-                bw.Write(AlphaChannelMask);
-                bw.Write(WindowColorSpace);
-                bw.Write(UnusedForsRGB);
+                bw.Write(bmpFH.bfType);
+                bw.Write(bmpFH.bfSize);
+                bw.Write(bmpFH.bfReserved1);
+                bw.Write(bmpFH.bfReserved2);
+                bw.Write(bmpFH.bfOffBits);
 
-                Intent = (int)GamutMappingIntent.LCS_GM_IMAGES;
-                bw.Write(Intent);
-                bw.Write(ProfileData);
-                bw.Write(ProfileSize);
-                bw.Write(Reserved);
+                // Encodes DBI Header
+                bmpV5.biWidth = bitmap.Width;
+                bmpV5.biHeight = bitmap.Height;
+                bmpV5.biPlanes = 1;
+                bmpV5.biBitCount = 32;
+                bmpV5.biCompression = BitmapCompressionMode.BI_BITFIELDS;
+                bmpV5.biSizeImage = rawDataLength;
+                bmpV5.biXPelsPerMeter = 0xec4; // (int)Math.Round(bitmap.VerticalResolution * 39.3701); // Pixels per meter
+                bmpV5.biYPelsPerMeter = 0xec4; // (int)Math.Round(bitmap.VerticalResolution * 39.3701); // Pixels per meter
+                bmpV5.biClrUsed = 0;
+                bmpV5.biClrImportant = 0;
+                // Encodes DBI Extra for ARGB
+                bmpV5.biRedMask = 0xff0000;
+                bmpV5.biGreenMask = 0xff00;
+                bmpV5.biBlueMask = 0xff;
+                bmpV5.biAlphaMask = 0xff000000;
+                bmpV5.biCSType = 0x57696e20; //= "Win ",   sRGB = 0x73524742;
+                bmpV5.biEndPoints = new byte[36];
+                bmpV5.biGammaRed = 0;
+                bmpV5.biGammaGreen = 0;
+                bmpV5.biGammaBlue = 0;
+                bmpV5.biIntent = (int)GamutMappingIntent.LCS_GM_IMAGES;
+                bmpV5.biProfileData = 0;
+                bmpV5.biProfileSize = 0;
+                bmpV5.biReserved = 0;
+
+                bw.Write(bmpV5.biSize);
+                bw.Write(bmpV5.biWidth);
+                bw.Write(bmpV5.biHeight);
+                bw.Write(bmpV5.biPlanes);
+                bw.Write(bmpV5.biBitCount);
+                bw.Write((uint)bmpV5.biCompression);
+                bw.Write(bmpV5.biSizeImage);
+                bw.Write(bmpV5.biXPelsPerMeter);
+                bw.Write(bmpV5.biYPelsPerMeter);
+                bw.Write(bmpV5.biClrUsed);
+                bw.Write(bmpV5.biClrImportant);
+
+                bw.Write(bmpV5.biRedMask);
+                bw.Write(bmpV5.biGreenMask);
+                bw.Write(bmpV5.biBlueMask);
+                bw.Write(bmpV5.biAlphaMask);
+                bw.Write(bmpV5.biCSType);
+
+                bw.Write(bmpV5.biEndPoints);
+                bw.Write(bmpV5.biGammaRed);
+                bw.Write(bmpV5.biGammaGreen);
+                bw.Write(bmpV5.biGammaBlue);
+                bw.Write(bmpV5.biIntent);
+                bw.Write(bmpV5.biProfileData);
+                bw.Write(bmpV5.biProfileSize);
+                bw.Write(bmpV5.biReserved);
 
                 // Encodes image data
                 byte[] rowBytes = new byte[rowSize];
@@ -256,6 +247,5 @@ namespace UIRibbonTools
             }
             bitmap.UnlockBits(data);
         }
-
     }
 }

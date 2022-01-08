@@ -142,6 +142,29 @@ namespace UIRibbonTools
             SendMessage(hWnd, WM_SETREDRAW, (IntPtr)1, IntPtr.Zero);
         }
 
+        public enum ComboBoxButtonState
+        {
+            STATE_SYSTEM_NONE = 0,
+            STATE_SYSTEM_INVISIBLE = 0x00008000,
+            STATE_SYSTEM_PRESSED = 0x00000008
+        }
+
+        public struct COMBOBOXINFO
+        {
+            public Int32 cbSize;
+            public RECT rcItem;
+            public RECT rcButton;
+            public ComboBoxButtonState buttonState;
+            public IntPtr hwndCombo;
+            public IntPtr hwndEdit;
+            public IntPtr hwndList;
+            public static COMBOBOXINFO Create() => new COMBOBOXINFO { cbSize = Marshal.SizeOf<COMBOBOXINFO>() };
+        }
+
+        [DllImport("user32.dll")]
+        public static extern bool GetComboBoxInfo(IntPtr hWnd, ref COMBOBOXINFO pcbi);
+
+
         /// <summary>
         /// Describes the width, height, and location of a rectangle.
         /// </summary>
@@ -192,6 +215,9 @@ namespace UIRibbonTools
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern int DrawText(IntPtr hdc, string lpchText, int cchText,
           ref RECT lprc, uint dwDTFormat);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
 
         public const int TRANSPARENT = 1;
         public const int OPAQUE = 2;

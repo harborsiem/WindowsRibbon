@@ -857,7 +857,7 @@ namespace UIRibbonTools
 
         private BaseFrame AddCurrentFrame<T>() where T : BaseFrame, new()
         {
-            const string namespaceString = "UIRibbonTools";
+            const string namespaceString = "UIRibbonTools"; //@ hard coded
             const int dotLength = 1;
             int startOfClassName = namespaceString.Length + dotLength;
             string className = typeof(T).ToString().Substring(startOfClassName);

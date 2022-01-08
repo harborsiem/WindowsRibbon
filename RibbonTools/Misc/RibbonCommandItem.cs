@@ -17,10 +17,21 @@ namespace UIRibbonTools
             Name = name;
             Value = value;
         }
+
         public override string ToString()
         {
             // Generates the text shown in the combo box
             return Name;
+        }
+
+        public string Description
+        {
+            get {
+                string result = Value?.LabelTitle.Content;
+                if (result == null)
+                    result = string.Empty;
+                return result;
+            }
         }
 
         public int CompareTo(object obj)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace UIRibbonTools
 {
-//Wingdi.h
+    //Wingdi.h
     public enum GamutMappingIntent : uint
     {
         LCS_GM_ABS_COLORIMETRIC = 0x00000008,
@@ -29,16 +29,16 @@ namespace UIRibbonTools
     [StructLayout(LayoutKind.Sequential, Pack = 2)]
     public struct BITMAPFILEHEADER
     {
+        //Size is 14 Bytes
         public ushort bfType;
         public uint bfSize;
         public ushort bfReserved1;
         public ushort bfReserved2;
         public uint bfOffBits;
-
-        public void Init()
+        public static BITMAPFILEHEADER Create() => new BITMAPFILEHEADER
         {
-            bfType = 0x4d42; //"BM"
-        }
+            bfType = 0x4d42, //"BM"
+        };
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -49,11 +49,10 @@ namespace UIRibbonTools
         public ushort bcHeight;
         public ushort bcPlanes;
         public ushort bcBitCount;
-
-        public void Init()
+        public static BITMAPCOREHEADER Create() => new BITMAPCOREHEADER
         {
-            bcSize = (uint)Marshal.SizeOf(this);
-        }
+            bcSize = (uint)Marshal.SizeOf<BITMAPCOREHEADER>()
+        };
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -70,11 +69,10 @@ namespace UIRibbonTools
         public int biYPelsPerMeter;
         public uint biClrUsed;
         public uint biClrImportant;
-
-        public void Init()
+        public static BITMAPINFOHEADER Create() => new BITMAPINFOHEADER
         {
-            biSize = (uint)Marshal.SizeOf(this);
-        }
+            biSize = (uint)Marshal.SizeOf<BITMAPINFOHEADER>()
+        };
     }
 
     //Undocumented, Used by Adobe Photoshop
@@ -95,11 +93,10 @@ namespace UIRibbonTools
         public uint biRedMask;
         public uint biGreenMask;
         public uint biBlueMask;
-
-        public void Init()
+        public static BITMAPV2HEADER Create() => new BITMAPV2HEADER
         {
-            biSize = (uint)Marshal.SizeOf(this);
-        }
+            biSize = (uint)Marshal.SizeOf<BITMAPV2HEADER>()
+        };
     }
 
     //Undocumented, Used by Adobe Photoshop
@@ -121,11 +118,10 @@ namespace UIRibbonTools
         public uint biGreenMask;
         public uint biBlueMask;
         public uint biAlphaMask;
-
-        public void Init()
+        public static BITMAPV3HEADER Create() => new BITMAPV3HEADER
         {
-            biSize = (uint)Marshal.SizeOf(this);
-        }
+            biSize = (uint)Marshal.SizeOf<BITMAPV3HEADER>()
+        };
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -152,11 +148,10 @@ namespace UIRibbonTools
         public uint biGammaRed;
         public uint biGammaGreen;
         public uint biGammaBlue;
-
-        public void Init()
+        public static BITMAPV4HEADER Create() => new BITMAPV4HEADER
         {
-            biSize = (uint)Marshal.SizeOf(this);
-        }
+            biSize = (uint)Marshal.SizeOf<BITMAPV4HEADER>()
+        };
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -187,10 +182,9 @@ namespace UIRibbonTools
         public uint biProfileData;
         public uint biProfileSize;
         public uint biReserved;
-
-        public void Init()
+        public static BITMAPV5HEADER Create() => new BITMAPV5HEADER
         {
-            biSize = (uint)Marshal.SizeOf(this);
-        }
+            biSize = (uint)Marshal.SizeOf<BITMAPV5HEADER>()
+        };
     }
 }
