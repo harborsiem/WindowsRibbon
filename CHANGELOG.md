@@ -9,8 +9,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Bugfixes: NullReferenceException with Empty Commands
 - Command Images are now sorted when using Add, Add Range
 - In SizeDefinitions ControlName is now optional.
-- CommandName in Views shows now only the CommandName. In the ComboBox you get a Tooltip with the LabelTitle for the CommandName
+- Now CommandName in Views shows only the CommandName. In the ComboBox list you get a Tooltip with the LabelTitle for the CommandName
 - Some refactoring with ConvertImage
+- Newline \n in TooltipDescription and LabelDescription allowed. In the markup xml file the \n is replaced with xml newline characters.
 
 ### Ribbon V2.11.1, RibbonTools V1.3.6
 

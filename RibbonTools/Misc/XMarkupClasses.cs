@@ -544,7 +544,21 @@ namespace UIRibbonTools
                 if (!string.IsNullOrEmpty(_symbol))
                     writer.WriteAttributeString(AN_SYMBOL, _symbol);
                 if (!string.IsNullOrEmpty(_content))
-                    writer.WriteValue(_content);
+                {
+                    //Tricky code for the \n newline
+                    if (_content.IndexOf((char)0xA) == -1)
+                        writer.WriteString(_content);
+                    else
+                    {
+                        string[] split = _content.Split((char)0xA);
+                        for (int i = 0; i < split.Length; i++)
+                        {
+                            writer.WriteString(split[i]);
+                            if (i != split.Length - 1)
+                                writer.WriteRaw("&#xA;");
+                        }
+                    }
+                }
 
                 writer.WriteEndElement();
 
