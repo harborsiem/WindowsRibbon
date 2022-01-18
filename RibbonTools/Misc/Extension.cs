@@ -13,7 +13,7 @@ namespace System.Windows.Forms
         Insert,
     }
 
-    public static class TreeNodeEx
+    public static class TreeNodeExtensions
     {
         public static void MoveTo(this TreeNode node, TreeNode treeNode, TreeNodeAction action)
         {

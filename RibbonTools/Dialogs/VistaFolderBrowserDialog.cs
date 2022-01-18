@@ -14,6 +14,8 @@ namespace System.Windows.Forms
         private Environment.SpecialFolder _rootFolder;
         private string _descriptionText;
         private string _selectedPath;
+        // Initial folder.
+        private string _initialDirectory;
 
         /// <summary>
         ///  Initializes a new instance of the <see cref='FolderBrowserDialog'/> class.
@@ -46,6 +48,16 @@ namespace System.Windows.Forms
         {
             get { return _selectedPath; }
             set { _selectedPath = value ?? string.Empty; }
+        }
+
+        /// <summary>
+        ///  Gets or sets the initial directory displayed by the folder browser dialog.
+        /// </summary>
+        [DefaultValue("")]
+        public string InitialDirectory
+        {
+            get => _initialDirectory;
+            set => _initialDirectory = value ?? string.Empty;
         }
 
         [Browsable(true)]
@@ -177,48 +189,34 @@ namespace System.Windows.Forms
 
             dialog.SetOptions(FOS.PICKFOLDERS | FOS.FORCEFILESYSTEM | FOS.FILEMUSTEXIST);
 
-            string parent;
-            string folder = string.Empty;
+            if (!string.IsNullOrEmpty(_initialDirectory))
+            {
+                try
+                {
+                    FileDialogNative.IShellItem initialDirectory = FileDialogNative.GetShellItemForPath(_initialDirectory);
+
+                    dialog.SetDefaultFolder(initialDirectory);
+                    dialog.SetFolder(initialDirectory);
+                }
+                catch (FileNotFoundException)
+                {
+                }
+            }
 
             if (!string.IsNullOrEmpty(_selectedPath))
             {
-                parent = Path.GetDirectoryName(_selectedPath);
-                if (parent == null || !Directory.Exists(parent))
+                string parent = Path.GetDirectoryName(_selectedPath);
+                if (parent is null || !string.IsNullOrEmpty(_initialDirectory) || !Directory.Exists(parent))
                 {
-                    if (Directory.Exists(_selectedPath))
-                    {
-                        folder = Path.GetFileName(_selectedPath);
-                        parent = _selectedPath;
-                    }
-                    else
-                        parent = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer); //not existing drive name   
+                    dialog.SetFileName(_selectedPath);
                 }
                 else
                 {
-                    folder = Path.GetFileName(_selectedPath);
+                    string folder = Path.GetFileName(_selectedPath);
+                    dialog.SetFolder(FileDialogNative.CreateItemFromParsingName(parent));
+                    dialog.SetFileName(folder);
                 }
             }
-            else
-            {
-                parent = Environment.GetFolderPath(RootFolder);
-            }
-            dialog.SetFolder(FileDialogNative.CreateItemFromParsingName(parent));
-            dialog.SetFileName(folder);
-
-            //if (!string.IsNullOrEmpty(_selectedPath))
-            //{
-            //    string parent = Path.GetDirectoryName(_selectedPath);
-            //    if (parent == null || !Directory.Exists(parent))
-            //    {
-            //        dialog.SetFileName(_selectedPath);
-            //    }
-            //    else
-            //    {
-            //        string folder = Path.GetFileName(_selectedPath);
-            //        dialog.SetFolder(FileDialogNative.CreateItemFromParsingName(parent));
-            //        dialog.SetFileName(folder);
-            //    }
-            //}
         }
 
         private void GetResult(FileDialogNative.IFileDialog dialog)

@@ -145,8 +145,14 @@ namespace UIRibbonTools
 
         private void OutSelectButton_Click(object sender, EventArgs e)
         {
+#if Core
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+#else
             VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
-            dialog.RootFolder = Environment.SpecialFolder.CommonDocuments;
+            //dialog.RootFolder = Environment.SpecialFolder.MyDocuments;
+#endif
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 outPathTextBox.Text = dialog.SelectedPath;

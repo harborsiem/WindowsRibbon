@@ -11,6 +11,7 @@ namespace System.Windows.Forms
     using System.Runtime.InteropServices;
     using System.Runtime.CompilerServices;
     using System.Text;
+    using System.IO;
 
     static class FileDialogNative
     {
@@ -379,6 +380,25 @@ namespace System.Windows.Forms
             return (IShellItem)item;
         }
 
+        [DllImport("Shell32.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
+        private static extern HRESULT SHParseDisplayName(string pszName, IntPtr bindingContext, out IntPtr ppidl, uint sfgaoIn, out uint sfgaoOut);
+
+        [DllImport("Shell32.dll", ExactSpelling = true)]
+        public static extern HRESULT SHCreateShellItem(IntPtr pidlParent, IntPtr psfParent, IntPtr pidl, out IShellItem ppsi);
+
+        public static IShellItem GetShellItemForPath(string path)
+        {
+            if (SHParseDisplayName(path, IntPtr.Zero, out IntPtr pidl, 0, out uint _).Succeeded())
+            {
+                // No parent specified
+                if (SHCreateShellItem(IntPtr.Zero, IntPtr.Zero, pidl, out IShellItem ret).Succeeded())
+                {
+                    return ret;
+                }
+            }
+
+            throw new FileNotFoundException();
+        }
     }
 
     public enum CDCS : uint
@@ -489,5 +509,17 @@ namespace System.Windows.Forms
         E_INVALIDARG = unchecked((int)0x80070057),
         ERROR_CANCELLED = unchecked((int)0x800704C7),
         RPC_E_CHANGED_MODE = unchecked((int)0x80010106),
+    }
+
+    internal static class HResultExtensions
+    {
+        public static bool Succeeded(this HRESULT hr) => hr >= 0;
+
+        public static bool Failed(this HRESULT hr) => hr < 0;
+
+        public static string AsString(this HRESULT hr)
+            => Enum.IsDefined(typeof(HRESULT), hr)
+                ? $"HRESULT {hr} [0x{(int)hr:X} ({(int)hr:D})]"
+                : $"HRESULT [0x{(int)hr:X} ({(int)hr:D})]";
     }
 }

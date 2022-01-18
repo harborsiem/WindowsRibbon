@@ -1,5 +1,6 @@
 #define xele
 //#define xtext
+//#define XmlChars
 
 using System;
 using System.Collections.Generic;
@@ -475,7 +476,13 @@ namespace UIRibbonTools
                     RT.Left += _quoteWidth;
 
                     NativeMethods.SetTextColor(DC, COLOR_SYMBOL);
-                    s = attr.Value.Replace(((char)0xA).ToString(), @"\n");
+                    s = attr.Value;
+#if XmlChars
+                    s = System.Net.WebUtility.HtmlEncode(s);
+                    s = s.Replace(((char)0xA).ToString(), @"&#xA;");
+#else
+                    s = s.Replace(((char)0xA).ToString(), @"\n");
+#endif
                     NativeMethods.DrawText(DC, s, s.Length, ref RT, TEXT_FLAGS);
 
                     NativeMethods.DrawText(DC, s, s.Length, ref RM, TEXT_FLAGS | NativeMethods.DT_CALCRECT);
@@ -489,12 +496,18 @@ namespace UIRibbonTools
             }
 
             if (element != null && element.Nodes().Count() == 1 && element.FirstNode is XText)
-                s = element.Value.Replace(((char)0xA).ToString(), @"\n");
+                s = element.Value;
             else
                 s = string.Empty;
 
             if (!string.IsNullOrEmpty(s))
             {
+#if XmlChars
+                s = System.Net.WebUtility.HtmlEncode(s);
+                s = s.Replace(((char)0xA).ToString(), @"&#xA;");
+#else
+                s = s.Replace(((char)0xA).ToString(), @"\n");
+#endif
                 NativeMethods.SetTextColor(DC, COLOR_SYMBOL);
                 NativeMethods.DrawText(DC, ">", 1, ref RT, TEXT_FLAGS);
                 RT.Left += _greaterThanWidth;

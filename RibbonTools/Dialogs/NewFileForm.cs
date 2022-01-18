@@ -92,13 +92,11 @@ namespace UIRibbonTools
             VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
 #endif
             dialog.Description = RS_SELECT_DIR_CAPTION;
-            dialog.RootFolder = Environment.SpecialFolder.MyComputer;
+            //dialog.RootFolder = Environment.SpecialFolder.MyDocuments;
             if (!string.IsNullOrEmpty(directory) && Directory.Exists(directory))
-#if Core
                 dialog.InitialDirectory = directory;
-#else
-                dialog.SelectedPath = directory;
-#endif
+            else
+                dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             dialog.ShowNewFolderButton = true;
 
             if (dialog.ShowDialog() == DialogResult.OK)
