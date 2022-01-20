@@ -213,12 +213,12 @@ namespace UIRibbonTools
             viewsTip.SetToolTip(CheckBoxEnableRecentItems, "Whether the application menu supports recent items");
         }
 
-        public override void Activate_()
+        public override void ActivateFrame()
         {
             ViewsFrame frameViews;
             string currentCmd;
 
-            base.Activate_();
+            base.ActivateFrame();
             frameViews = Owner as ViewsFrame;
             currentCmd = ComboBoxCaptionCommand.Text;
             ComboBoxCaptionCommand.Items.Clear();

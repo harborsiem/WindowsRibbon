@@ -144,7 +144,7 @@ namespace UIRibbonTools
 
         protected TRibbonCommandRefObject CommandRefSubject { get { return _commandRefSubject; } }
 
-        public virtual void Activate_()
+        public virtual void ActivateFrame()
         {
             ViewsFrame frameViews;
             string currentCmd;

@@ -208,7 +208,7 @@ namespace UIRibbonTools
             _document = document;
         }
 
-        public void Activate_()
+        public void ActivateFrame()
         {
             _treeNodes = new List<TreeNode>();
             TreeNode root = null;
@@ -262,7 +262,7 @@ namespace UIRibbonTools
             }
         }
 
-        public void Deactivate_()
+        public void DeactivateFrame()
         {
             //Nothing yet
         }

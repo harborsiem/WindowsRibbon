@@ -8,6 +8,6 @@ namespace UIRibbonTools
 {
     interface IActivate
     {
-        void Activate_();
+        void ActivateFrame();
     }
 }

@@ -617,7 +617,7 @@ namespace UIRibbonTools
         //        _timerRestoreLog.Enabled = true;
         //        //    if (result == RibbonCompileResult.RibbonCompilerError) 
         //        //    {
-        //        //      _xmlSourceFrame.Activate_();
+        //        //      _xmlSourceFrame.ActivateFrame();
         //        //      tabControl.SelectedTab = tabPageXmlSource;
         //        //    }
         //    }
@@ -825,23 +825,23 @@ namespace UIRibbonTools
         {
             if (tabControl.SelectedTab == tabPageViews)
             {
-                _commandsFrame.Deactivate_();
-                _xmlSourceFrame.Deactivate_();
-                _viewsFrame.Activate_();
+                _commandsFrame.DeactivateFrame();
+                _xmlSourceFrame.DeactivateFrame();
+                _viewsFrame.ActivateFrame();
             }
             else if (tabControl.SelectedTab == tabPageCommands)
             {
-                _viewsFrame.Deactivate_();
-                _xmlSourceFrame.Deactivate_();
-                _commandsFrame.Activate_();
+                _viewsFrame.DeactivateFrame();
+                _xmlSourceFrame.DeactivateFrame();
+                _commandsFrame.ActivateFrame();
             }
             else if (tabControl.SelectedTab == tabPageXmlSource)
             {
                 if (_modified)
                     ActionSaveExecute(sender, e);
-                _viewsFrame.Deactivate_();
-                _commandsFrame.Deactivate_();
-                _xmlSourceFrame.Activate_();
+                _viewsFrame.DeactivateFrame();
+                _commandsFrame.DeactivateFrame();
+                _xmlSourceFrame.ActivateFrame();
             }
         }
 
@@ -857,9 +857,9 @@ namespace UIRibbonTools
 
         private void ShowDocument()
         {
-            _xmlSourceFrame.Deactivate_();
-            _viewsFrame.Deactivate_();
-            _commandsFrame.Activate_();
+            _xmlSourceFrame.DeactivateFrame();
+            _viewsFrame.DeactivateFrame();
+            _commandsFrame.ActivateFrame();
             _commandsFrame.ShowDocument(_document);
             _viewsFrame.ShowDocument(_document);
             _xmlSourceFrame.ShowDocument(_document);

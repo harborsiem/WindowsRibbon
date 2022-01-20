@@ -560,7 +560,7 @@ namespace UIRibbonTools
             treeViewRibbon.Nodes.Clear();
         }
 
-        public void Deactivate_()
+        public void DeactivateFrame()
         {
             ((MainForm)FindForm()).ShortCutKeysHandler.Remove(_actionList);
             //@ different
@@ -881,9 +881,9 @@ namespace UIRibbonTools
                 obj.SetOwner(this);
                 ChangeCurrentFrame(obj);
 
-                IActivate acti = obj as IActivate;
-                if (acti != null)
-                    acti.Activate_();
+                IActivate frame = obj as IActivate;
+                if (frame != null)
+                    frame.ActivateFrame();
             }
             return obj;
         }
@@ -1360,7 +1360,7 @@ namespace UIRibbonTools
             (sender as TAction).Enabled = (treeViewRibbon.SelectedNode != null);
         }
 
-        public void Activate_()
+        public void ActivateFrame()
         {
             if (treeViewRibbon.Nodes.Count == 0)
                 return; // Nothing to do here
@@ -1391,9 +1391,9 @@ namespace UIRibbonTools
             //@ different implementation
             foreach (var clazz in _viewClasses.Values) //caching of ViewFrameClasses
             {
-                IActivate acti = clazz as IActivate;
-                if (acti != null)
-                    acti.Activate_();
+                IActivate frame = clazz as IActivate;
+                if (frame != null)
+                    frame.ActivateFrame();
             }
         }
     }

@@ -364,7 +364,7 @@ namespace UIRibbonTools
             }
         }
 
-        public void Activate_()
+        public void ActivateFrame()
         {
             ((MainForm)FindForm()).ShortCutKeysHandler.Add(_actionList);
             //@ changed
@@ -437,7 +437,7 @@ namespace UIRibbonTools
             EditId.Text = FindSmallestUnusedID(minID).ToString();
         }
 
-        public void Deactivate_()
+        public void DeactivateFrame()
         {
             ((MainForm)FindForm()).ShortCutKeysHandler.Remove(_actionList);
             //@ changed

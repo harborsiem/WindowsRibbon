@@ -100,11 +100,11 @@ namespace UIRibbonTools
             viewsTip.SetToolTip(ComboBoxCustomizeCommand, "The command to use to customize the quick access toolbar");
         }
 
-        public override void Activate_()
+        public override void ActivateFrame()
         {
             ViewsFrame frameViews;
             TRibbonCommand cmd;
-            base.Activate_();
+            base.ActivateFrame();
             frameViews = Owner as ViewsFrame;
             if (ComboBoxCustomizeCommand.SelectedIndex >= 0)
             {
