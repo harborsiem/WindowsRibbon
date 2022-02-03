@@ -54,7 +54,7 @@ Now the WindowsRibbon project is running also in the latest Visual Studio Versio
 
 ---
 
-WindowsRibbon is also available on NuGet, with Package Id [WindowsRibbon](https://www.nuget.org/packages/WindowsRibbon). Via this package you can get a compiled Ribbon Library also for .NET Framework 4.0, .NET Core 3.1 and .NET 5.0
+WindowsRibbon is also available on NuGet, with Package Id [WindowsRibbon](https://www.nuget.org/packages/WindowsRibbon). Via this package you can get a compiled Ribbon Library also for .NET Framework 4.0, .NET Core 3.1, .NET 5 and .NET6
 
 ---
 
