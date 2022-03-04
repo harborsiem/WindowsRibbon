@@ -29,6 +29,7 @@ namespace UIRibbonTools
                     BitmapData alphaData = alpha.LockBits(new Rectangle(new Point(), alpha.Size), ImageLockMode.ReadWrite, alpha.PixelFormat);
                     Marshal.Copy(bmpScan, 0, alphaData.Scan0, length);
                     alpha.UnlockBits(alphaData);
+                    bitmap.Dispose();
                     return alpha;
                 }
             }
@@ -101,8 +102,7 @@ namespace UIRibbonTools
             byte[] bytes = File.ReadAllBytes(fileName);
             if (bytes.Length > 54)
             {
-                string headerMark = Encoding.ASCII.GetString(bytes, 0, 2);
-                if (headerMark.Equals("BM"))
+                if (bytes[0] == 0x42 && bytes[1] == 0x4d) //"BM"
                 {
                     return bytes;
                 }
@@ -116,6 +116,7 @@ namespace UIRibbonTools
         /// <param name="fileName"></param>
         /// <param name="highContrast"></param>
         /// <returns>The Bitmap with fully transparency if available</returns>
+        [Obsolete("Please use function TryAlphaBitmapFromFile")]
         public static Bitmap BitmapFromFile(string fileName, bool highContrast = false)
         {
             Bitmap bitmap = null;
@@ -160,11 +161,11 @@ namespace UIRibbonTools
         }
 
         /// <summary>
-        /// Get the managed ARGB Bitmap
+        /// Get the managed ARGB Bitmap if possible (32 bit per pixel)
         /// </summary>
         /// <param name="hBitmap">Handle to a Bitmap</param>
         /// <returns>The Bitmap with fully transparency if available</returns>
-        public static Bitmap GetManagedARGBBitmap(IntPtr hBitmap)
+        public static Bitmap FromHbitmap(IntPtr hBitmap)
         {
             // Create the BITMAP structure and get info from our nativeHBitmap
             NativeMethods.BITMAP bitmapStruct = new NativeMethods.BITMAP();
@@ -182,7 +183,7 @@ namespace UIRibbonTools
             else
             {
                 managedBitmap = Bitmap.FromHbitmap(hBitmap);
-                managedBitmap.MakeTransparent();
+                //managedBitmap.MakeTransparent();
             }
             return managedBitmap;
         }
@@ -198,25 +199,67 @@ namespace UIRibbonTools
                 throw new ArgumentNullException(nameof(path));
             if (!File.Exists(path))
                 throw new ArgumentException("File does not exist", nameof(path));
-            char[] buffer = new char[2];
-            StreamReader sr = File.OpenText(path);
-            int length = sr.ReadBlock(buffer, 0, 2);
-            long baseLength = sr.BaseStream.Length;
-            sr.Close();
-            if (baseLength > 54 && length == 2 && buffer[0] == 'B' && buffer[1] == 'M')
+            byte[] bytes = new byte[2];
+            FileStream stream = File.OpenRead(path);
+            if (stream.Length > 54) //minimum length of a bitmap file
+                stream.Read(bytes, 0, 2);
+            stream.Close();
+            if (bytes[0] == 0x42 && bytes[1] == 0x4d) //"BM"
             {
                 IntPtr handle = IntPtr.Zero;
                 handle = NativeMethods.LoadImage(IntPtr.Zero, path, (uint)NativeMethods.ImageType.IMAGE_BITMAP, 0, 0,
                     (uint)(NativeMethods.ImageLoad.LR_LOADFROMFILE | NativeMethods.ImageLoad.LR_CREATEDIBSECTION));
-                return GetManagedARGBBitmap(handle);
+                if (handle != IntPtr.Zero)
+                    return FromHbitmap(handle);
+                return null;
             }
-
-            Bitmap bitmap = new Bitmap(path);
-            if ((int)bitmap.HorizontalResolution != 96)
+            try
             {
-                bitmap.SetResolution(96.0f, 96.0f); //only png bitmaps can have other resolution
+                Bitmap bitmap = new Bitmap(path);
+                if ((int)bitmap.HorizontalResolution != 96)
+                {
+                    bitmap.SetResolution(96.0f, 96.0f); //only png bitmaps can have other resolution
+                }
+                return bitmap;
             }
-            return bitmap;
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Load a Bitmap (with transparency) from a native resource dll via Windows API
+        /// The resourceHandle should be Ribbon.MarkupHandle, id is an Image id from RibbonMarkup.h
+        /// </summary>
+        /// <param name="resourceHandle">LoadLibrary handle (Ribbon.MarkupHandle)</param>
+        /// <param name="id">id of the image (from headerfile RibbonMarkup.h)</param>
+        /// <returns>The Bitmap with fully transparency if available</returns>
+        public static Bitmap ImageFromResource(IntPtr resourceHandle, uint id)
+        {
+            if (resourceHandle == IntPtr.Zero)
+                throw new ArgumentNullException(nameof(resourceHandle));
+            IntPtr bmpHandle = NativeMethods.LoadImage(resourceHandle, (IntPtr)id, (uint)NativeMethods.ImageType.IMAGE_BITMAP, 0, 0, (uint)NativeMethods.ImageLoad.LR_CREATEDIBSECTION);
+            if (bmpHandle != IntPtr.Zero)
+            {
+                return FromHbitmap(bmpHandle);
+            }
+            //Lookup for the Bitmap resource in the resource folder IMAGE
+            //Maybe it is a Bitmap V5 or a PNG Bitmap
+            IntPtr hResource = NativeMethods.FindResource(resourceHandle, (IntPtr)id, "IMAGE");
+            if (hResource == IntPtr.Zero)
+                return null;
+            uint imageSize = NativeMethods.SizeofResource(resourceHandle, hResource);
+            if (imageSize == 0)
+                return null;
+            IntPtr res = NativeMethods.LoadResource(resourceHandle, hResource);
+            IntPtr pResourceData = NativeMethods.LockResource(res);
+            if (pResourceData == IntPtr.Zero)
+                return null;
+            byte[] imageData = new byte[imageSize];
+            Marshal.Copy(pResourceData, imageData, 0, (int)imageSize);
+            MemoryStream stream = new MemoryStream(imageData);
+            return new Bitmap(stream);
         }
 
         /// <summary>
@@ -251,7 +294,6 @@ namespace UIRibbonTools
 
         class NativeMethods
         {
-
             public enum BitmapCompressionMode : uint
             {
                 BI_RGB = 0,
@@ -331,7 +373,11 @@ namespace UIRibbonTools
             }
 
             [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-            public static extern IntPtr LoadImage(IntPtr hinst, string lpszName, uint uType,
+            public static extern IntPtr LoadImage(IntPtr hinst, string lpszName, uint type,
+                int cxDesired, int cyDesired, uint fuLoad);
+
+            [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+            public static extern IntPtr LoadImage(IntPtr hinst, IntPtr lpszName, uint type,
                 int cxDesired, int cyDesired, uint fuLoad);
 
             public enum ImageType
@@ -372,6 +418,24 @@ namespace UIRibbonTools
                 //This function finds the first image in the cache with the requested resource name, regardless of the size requested.
                 LR_VGACOLOR = 0x00000080
             }
+
+            [DllImport("kernel32.dll")]
+            public static extern IntPtr FindResource(IntPtr hModule, string lpName, IntPtr lpType);
+
+            [DllImport("kernel32.dll")]
+            public static extern IntPtr FindResource(IntPtr hModule, IntPtr lpName, IntPtr lpType);
+
+            [DllImport("kernel32.dll")]
+            public static extern IntPtr FindResource(IntPtr hModule, IntPtr lpName, string lpType);
+
+            [DllImport("kernel32.dll", SetLastError = true)]
+            public static extern uint SizeofResource(IntPtr hModule, IntPtr hResInfo);
+
+            [DllImport("kernel32.dll", SetLastError = true)]
+            public static extern IntPtr LoadResource(IntPtr hModule, IntPtr hResInfo);
+
+            [DllImport("kernel32.dll")]
+            public static extern IntPtr LockResource(IntPtr hResData);
         }
     }
 }

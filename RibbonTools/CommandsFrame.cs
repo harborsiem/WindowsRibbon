@@ -48,7 +48,7 @@ namespace UIRibbonTools
                 components = new Container();
 
             _listViewColumnSorter = new ListViewColumnSorter();
-            _listViewTimer = new Timer(); //@ added, because we don't want unEnabled the right site after each selection change
+            _listViewTimer = new Timer(); //@ added, because we don't want disabled the right site after each selection change
             _listViewTimer.Interval = 100;
 
             bool runtime = (LicenseManager.UsageMode == LicenseUsageMode.Runtime);
@@ -454,6 +454,16 @@ namespace UIRibbonTools
                 ListViewCommands.SelectedItems[0].SubItems[1].Text = EditCaption.Text;
                 Modified();
             }
+            //if (_command != null)
+            //{
+            //    string textboxContent = TextboxToContent(EditCaption.Text);
+            //    if (_command.LabelTitle.Content != textboxContent)
+            //    {
+            //        _command.LabelTitle.Content = textboxContent;
+            //        ListViewCommands.SelectedItems[0].SubItems[1].Text = EditCaption.Text;
+            //        Modified();
+            //    }
+            //}
         }
 
         private void EditCaptionIdChange(object sender, EventArgs e)

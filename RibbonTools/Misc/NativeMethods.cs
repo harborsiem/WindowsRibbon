@@ -238,6 +238,9 @@ namespace UIRibbonTools
             LOGPIXELSY = 90,
         }
 
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern int LoadString(IntPtr hInstance, uint uID, StringBuilder lpBuffer, int nBufferMax);
+
         public double DpiScaling()
         {
             Graphics g = Graphics.FromHwnd(IntPtr.Zero);
