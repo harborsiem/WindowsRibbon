@@ -52,6 +52,8 @@ namespace UIRibbonTools
 
         public static Bitmap TryCreateAlphaBitmap(Stream stream)
         {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
             Bitmap bmp = new Bitmap(stream);
             return TryConvertToAlphaBitmap(bmp);
         }
@@ -61,9 +63,13 @@ namespace UIRibbonTools
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns>The Bitmap with fully transparency if available</returns>
-        public static Bitmap TryCreateAlphaBitmap(string filename)
+        public static Bitmap TryCreateAlphaBitmap(string fileName)
         {
-            Bitmap bmp = new Bitmap(filename);
+            if (string.IsNullOrEmpty(fileName))
+                throw new ArgumentNullException(nameof(fileName));
+            if (!File.Exists(fileName))
+                throw new ArgumentException("File does not exist", nameof(fileName));
+            Bitmap bmp = new Bitmap(fileName);
             return TryConvertToAlphaBitmap(bmp);
         }
 
@@ -167,10 +173,21 @@ namespace UIRibbonTools
         /// <returns>The Bitmap with fully transparency if available</returns>
         public static Bitmap FromHbitmap(IntPtr hBitmap)
         {
+            if (hBitmap == IntPtr.Zero)
+                throw new ArgumentNullException(nameof(hBitmap));
             // Create the BITMAP structure and get info from our nativeHBitmap
             NativeMethods.BITMAP bitmapStruct = new NativeMethods.BITMAP();
-            NativeMethods.GetObjectBitmap(hBitmap, Marshal.SizeOf(bitmapStruct), ref bitmapStruct);
-
+            try
+            {
+                int bitmapSize = Marshal.SizeOf(bitmapStruct);
+                int size = NativeMethods.GetObjectBitmap(hBitmap, bitmapSize, ref bitmapStruct);
+                if (size != bitmapSize)
+                    return null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
             Bitmap managedBitmap;
             if (bitmapStruct.bmBitsPixel == 32)
             {
@@ -183,7 +200,6 @@ namespace UIRibbonTools
             else
             {
                 managedBitmap = Bitmap.FromHbitmap(hBitmap);
-                //managedBitmap.MakeTransparent();
             }
             return managedBitmap;
         }
@@ -211,7 +227,7 @@ namespace UIRibbonTools
                     (uint)(NativeMethods.ImageLoad.LR_LOADFROMFILE | NativeMethods.ImageLoad.LR_CREATEDIBSECTION));
                 if (handle != IntPtr.Zero)
                     return FromHbitmap(handle);
-                return null;
+                //A V5 Bitmap is not supported by LoadImage, so we try with a Bitmap Ctor
             }
             try
             {
@@ -270,6 +286,8 @@ namespace UIRibbonTools
         /// <returns>The converted Bitmap</returns>
         public static Bitmap SetTransparentRGB(Bitmap bitmap, int transparentRGB)
         {
+            if (bitmap == null)
+                throw new ArgumentNullException(nameof(bitmap));
             int x, y;
             IntPtr p;
             if (bitmap.PixelFormat != PixelFormat.Format32bppArgb)

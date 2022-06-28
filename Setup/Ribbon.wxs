@@ -9,7 +9,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:WixUI="http://schemas.microsoft.com/wix/UIExtension">
-  <Product Id="{8D6EB941-6AB0-4452-B721-AE4B4FD35704}" Name="Ribbon" Language="1033" Version="2.11.1.0" Manufacturer="RibbonLib" UpgradeCode="FA403F70-F169-497E-8DC2-CCA0609A1E30">
+  <Product Id="{7EC3451D-AEF4-406B-9170-84B2839849A5}" Name="Ribbon" Language="1033" Version="2.12.0.0" Manufacturer="RibbonLib" UpgradeCode="FA403F70-F169-497E-8DC2-CCA0609A1E30">
     <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x86" Description="Windows Ribbon Library for .NET" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -37,6 +37,8 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
         <Directory Id="Di.INSTALLFOLDER" Name="RibbonLib">
+			<Directory Id="Di.GAC_CLONE" Name="GacClone">
+			</Directory>
         </Directory>
       </Directory>
     </Directory>
@@ -49,7 +51,7 @@
           .NET2.0, 3.5 GAC Assembly
           -->
         <RegistryKey Root="HKLM" Key="Software\Microsoft\.NETFramework\AssemblyFolders\[ProductName]" ForceCreateOnInstall="yes" ForceDeleteOnUninstall="yes" Id="R.AssemblyRef">
-          <RegistryValue Type="string" Value="[ProgramFilesFolder]RibbonLib\" />
+          <RegistryValue Type="string" Value="[ProgramFilesFolder]RibbonLib\GacClone" />
         </RegistryKey>
         <!--
           .NET4.x GAC Assembly
@@ -65,7 +67,7 @@
   </Fragment>
 
   <Fragment>
-    <ComponentGroup Id="ProductComponents" Directory="Di.INSTALLFOLDER">
+    <ComponentGroup Id="ProductComponents" Directory="Di.GAC_CLONE">
       <Component Id="C.RibbonBin" Guid="D0AB8E49-9794-429B-888B-C591AF0B1E84">
         <File Id="Fi.RibbonDllClone" Name="Ribbon.dll" Source="..\Ribbon\bin\Release\Ribbon.dll" KeyPath="yes" />
         <File Id="Fi.RibbonPdb" Name="Ribbon.pdb" Source="..\Ribbon\bin\Release\Ribbon.pdb" />

@@ -2,11 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-### Ribbon V2.11.1, RibbonTools V1.3.7+
+### Ribbon V2.12.0, RibbonTools V1.4.0
+
+#### Changed (Ribbon)
+
+- AssemblyVersion is now 1.0.0.0 for .NET Framework 3.5. This version is installed to the GAC. For all other (.NET Framework 4.0 and higher, .NET Core) the AssemblyVersion is 4.0.0.0. These changes are done for easier handling with different .Net versions, mainly for .NET Framework 4.x.
 
 #### Changed (RibbonTools)
 
 - Added functions (and small changes) to AlphaBitmap, NativeMethods
+- Project files changes to the Ribbon with Assembly version 4.0.0.0
+- So we don't need to activate the .NET Framework 3.5 in the Windows System
+
+#### Changed Setup files
+
 
 ### Ribbon V2.11.1, RibbonTools V1.3.7
 

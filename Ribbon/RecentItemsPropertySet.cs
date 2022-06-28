@@ -14,7 +14,7 @@ namespace RibbonLib
     /// <summary>
     /// Helper class that wraps a recent items simple property set.
     /// </summary>
-    public class RecentItemsPropertySet : IUISimplePropertySet
+    public sealed class RecentItemsPropertySet : IUISimplePropertySet
     {
         private string _label;
         private string _labelDescription;

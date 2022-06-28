@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RibbonLib")]
 [assembly: AssemblyProduct("Ribbon")]
-[assembly: AssemblyCopyright("Copyright © 2009, 2021")]
+[assembly: AssemblyCopyright("Copyright © 2009, 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,6 +32,10 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
+#if NET || NET40 || NETCOREAPP3_1
+[assembly: AssemblyVersion("4.0.0.0")]
+#else
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("2.11.1.0")]
+#endif
+[assembly: AssemblyFileVersion("2.12.0.0")]
 

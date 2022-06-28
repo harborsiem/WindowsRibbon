@@ -19,7 +19,7 @@
 
     <PackageId>WindowsRibbon</PackageId>
     <Product>Windows Ribbon Control</Product>
-    <Version>2.11.1</Version>
+    <Version>2.12.0</Version>
     <Authors>Hartmut Borkenhagen</Authors>
     <Company>RibbonLib</Company>
     <PackageIcon>Ribbon64.png</PackageIcon>

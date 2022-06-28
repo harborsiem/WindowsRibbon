@@ -763,9 +763,9 @@ namespace RibbonLib
         }
 
         /// <summary>
-        /// Wraps a bitmap object with IUIImage interface
+        /// Wraps a Bitmap object with IUIImage interface
         /// </summary>
-        /// <param name="bitmap">bitmap object to wrap</param>
+        /// <param name="bitmap">Bitmap object to wrap</param>
         /// <returns>IUIImage wrapper</returns>
         public IUIImage ConvertToUIImage(Bitmap bitmap)
         {
