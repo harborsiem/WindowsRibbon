@@ -175,16 +175,16 @@ namespace UIRibbonTools
             _actionPreview.ImageIndex = 3;
             _actionPreview.Text = "Preview";
             _actionPreview.ShortcutKeys = Keys.F9;
-            _actionPreview.SetComponent(toolButtonPreview, true);
-            _actionPreview.SetComponent(menuPreview, true);
+            _actionList.SetAction(toolButtonPreview, _actionPreview);
+            _actionList.SetAction(menuPreview, _actionPreview);
 
             _actionOpen.Execute += ActionOpenExecute;
             _actionOpen.Hint = "Open an existing Ribbon document (Ctrl+O)";
             _actionOpen.ImageIndex = 1;
             _actionOpen.Text = "Open";
             _actionOpen.ShortcutKeys = (Keys)(Keys.Control | Keys.O);
-            _actionOpen.SetComponent(toolButtonOpen, true);
-            _actionOpen.SetComponent(menuOpen, true);
+            _actionList.SetAction(toolButtonOpen, _actionOpen);
+            _actionList.SetAction(menuOpen, _actionOpen);
             //_actionAddCommand.ShowTextOnToolBar = false;
 
             _actionNew.Execute += ActionNewExecute;
@@ -192,7 +192,7 @@ namespace UIRibbonTools
             _actionNew.ImageIndex = 0;
             _actionNew.Text = "New";
             _actionNew.ShortcutKeys = (Keys)(Keys.Control | Keys.N);
-            _actionNew.SetComponent(menuNew, true);
+            _actionList.SetAction(menuNew, _actionNew);
 
             //_actionConvertImage.Visible = false;
             //_nN9.Visible = false;
@@ -201,19 +201,19 @@ namespace UIRibbonTools
             //_actionConvertImage.ImageIndex = 0;
             _actionConvertImage.Text = "Convert Images";
             //_actionConvertImage.ShortcutKeys = (Keys)(Keys.Control | Keys.N);
-            _actionConvertImage.SetComponent(menuImage, true);
+            _actionList.SetAction(menuImage, _actionConvertImage);
 
             _actionGenerateCommandIDs.Execute += ActionGenerateCommandIDsExecute;
             _actionGenerateCommandIDs.Hint = "Generates and sets IDs for all commands in this markup.";
             _actionGenerateCommandIDs.Text = "Auto generate IDs for all commands";
-            _actionGenerateCommandIDs.SetComponent(autoGenerateIdsForAllCommands, true);
+            _actionList.SetAction(autoGenerateIdsForAllCommands, _actionGenerateCommandIDs);
 
             _actionSaveAs.Execute += ActionSaveAsExecute;
             _actionSaveAs.Enabled = false; //@ added
             _actionSaveAs.Hint = "Saves the Ribbon document under a new name (Shift+Ctrl+S)";
             _actionSaveAs.Text = "Save As";
             _actionSaveAs.ShortcutKeys = (Keys)(Keys.Shift | Keys.Control | Keys.S);
-            _actionSaveAs.SetComponent(menuSaveAs, true);
+            _actionList.SetAction(menuSaveAs, _actionSaveAs);
 
             _actionSave.Execute += ActionSaveExecute;
             _actionSave.Enabled = false; //@ added
@@ -221,23 +221,23 @@ namespace UIRibbonTools
             _actionSave.ImageIndex = 2;
             _actionSave.Text = "Save";
             _actionSave.ShortcutKeys = (Keys)(Keys.Control | Keys.S);
-            _actionSave.SetComponent(toolButtonSave, true);
-            _actionSave.SetComponent(menuSave, true);
+            _actionList.SetAction(toolButtonSave, _actionSave);
+            _actionList.SetAction(menuSave, _actionSave);
 
             _actionSettings.Execute += ActionSettingsExecute;
             _actionSettings.ImageIndex = 4;
             _actionSettings.Text = "Settings";
-            _actionSettings.SetComponent(menuSettings, true);
+            _actionList.SetAction(menuSettings, _actionSettings);
 
             _actionExit.Execute += ActionExitExecute;
             _actionExit.Hint = "Exits the " + RS_RIBBON_TOOLS;
             _actionExit.Text = "Exit";
-            _actionExit.SetComponent(menuExit, true);
+            _actionList.SetAction(menuExit, _actionExit);
 
             //_actionNewBlank.Hint = "Create a new blank Ribbon Document";
             //_actionNewBlank.Text = "Empty Ribbon Document";
             ////_actionNewBlank.Shortcut = (Shortcut)16462;
-            //_actionNewBlank.SetComponent(menuNew, true);
+            //_actionList.SetAction(menuNew, _actionNewBlank);
 
             _actionBuild.Execute += ActionBuildExecute;
             _actionBuild.Enabled = false; //@ added
@@ -245,41 +245,41 @@ namespace UIRibbonTools
             _actionBuild.ImageIndex = 5;
             _actionBuild.Text = "Build";
             _actionBuild.ShortcutKeys = (Keys)(Keys.Control | Keys.F9);
-            _actionBuild.SetComponent(toolButtonBuild, true);
-            _actionBuild.SetComponent(menuBuild, true);
+            _actionList.SetAction(toolButtonBuild, _actionBuild);
+            _actionList.SetAction(menuBuild, _actionBuild);
 
             _actionTutorial.Execute += ActionTutorialExecute;
             _actionTutorial.ImageIndex = 7;
             _actionTutorial.Text = "Tutorial";
-            _actionTutorial.SetComponent(menuTutorial, true);
+            _actionList.SetAction(menuTutorial, _actionTutorial);
 
             _actionWebSite.Execute += ActionWebSiteExecute;
             _actionWebSite.ImageIndex = 7;
             _actionWebSite.Text = "Ribbon Framework for Delphi website";
-            _actionWebSite.SetComponent(menuWebSite, true);
+            _actionList.SetAction(menuWebSite, _actionWebSite);
             _actionWebSite.Visible = false;
 
             _actionDotnetWebSite.Execute += ActionDotnetWebSiteExecute;
             _actionDotnetWebSite.Hint = "C#, VB Ribbon Framework";
             _actionDotnetWebSite.ImageIndex = 7;
             _actionDotnetWebSite.Text = "Website for .NET Windows Ribbon";
-            _actionDotnetWebSite.SetComponent(menuDotnetWebSite, true);
+            _actionList.SetAction(menuDotnetWebSite, _actionDotnetWebSite);
 
             _actionMSDN.Execute += ActionMSDNExecute;
             _actionMSDN.ImageIndex = 6;
             _actionMSDN.Text = "MSDN Windows Ribbon";
-            _actionMSDN.SetComponent(menuMSDN, true);
+            _actionList.SetAction(menuMSDN, _actionMSDN);
 
-            _actionSetResourceName.Visible = Settings.Instance.AllowChangingResourceName; // false; //@ not supported in .NET Ribbon
+            _actionSetResourceName.Visible = Settings.Instance.AllowChangingResourceName; // false; //@ not necessary in .NET Ribbon
             _actionSetResourceName.Execute += ActionSetResourceNameExecute;
             _actionSetResourceName.Hint =
                 "Set a resource name for the markup. This is necessary " + Environment.NewLine +
                 "if multiple markups are used in one application." + Environment.NewLine +
                 "The default is APPLICATION" + Environment.NewLine +
-                Environment.NewLine + "Changing of default is not supported in .NET Ribbon";
+                Environment.NewLine + "Changing of default is not necessary in .NET Ribbon";
 
             _actionSetResourceName.Text = "Set ribbon resource name";
-            _actionSetResourceName.SetComponent(setresourcename, true);
+            _actionList.SetAction(setresourcename, _actionSetResourceName);
 
             _actionGenerateResourceIDs.Execute += ActionGenerateResourceIDsExecute;
             _actionGenerateResourceIDs.Hint =
@@ -289,7 +289,7 @@ namespace UIRibbonTools
                 "so that there are no conflicting resource IDs)";
             _actionGenerateResourceIDs.Text = "Auto generate IDs for all resources";
             _actionGenerateResourceIDs.ShortcutKeys = (Keys)(Keys.Control | Keys.G);
-            _actionGenerateResourceIDs.SetComponent(autoGenerateIdsForAllResources, true);
+            _actionList.SetAction(autoGenerateIdsForAllResources, _actionGenerateResourceIDs);
 
             _actionList.ImageList = _imageListMain;
         }

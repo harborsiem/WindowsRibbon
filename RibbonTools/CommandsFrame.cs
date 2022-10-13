@@ -102,8 +102,8 @@ namespace UIRibbonTools
             _actionAddCommand.ImageIndex = 0;
             _actionAddCommand.ShortcutKeys = Keys.Shift | Keys.Control | Keys.Insert;
             _actionAddCommand.Text = "Add";
-            _actionAddCommand.SetComponent(toolButtonAddCommand, true);
-            _actionAddCommand.SetComponent(menuAddCommand, true);
+            _actionList.SetAction(toolButtonAddCommand, _actionAddCommand);
+            _actionList.SetAction(menuAddCommand, _actionAddCommand);
             //_actionAddCommand.ShowTextOnToolBar = false;
 
             _actionRemoveCommand.Execute += ActionRemoveCommandExecute;
@@ -112,8 +112,8 @@ namespace UIRibbonTools
             _actionRemoveCommand.ImageIndex = 1;
             _actionRemoveCommand.ShortcutKeys = Keys.Control | Keys.Delete;
             _actionRemoveCommand.Text = "Remove";
-            _actionRemoveCommand.SetComponent(toolButtonRemoveCommand, true);
-            _actionRemoveCommand.SetComponent(menuRemoveCommand, true);
+            _actionList.SetAction(toolButtonRemoveCommand, _actionRemoveCommand);
+            _actionList.SetAction(menuRemoveCommand, _actionRemoveCommand);
 
             _actionMoveUp.Execute += ActionMoveUpExecute;
             _actionMoveUp.Update += ActionUpdateUp;
@@ -121,8 +121,8 @@ namespace UIRibbonTools
             _actionMoveUp.ImageIndex = 2;
             _actionMoveUp.ShortcutKeys = Keys.Control | Keys.Up;
             _actionMoveUp.Text = "Up";
-            _actionMoveUp.SetComponent(toolButtonMoveUp, true);
-            _actionMoveUp.SetComponent(menuMoveUp, true);
+            _actionList.SetAction(toolButtonMoveUp, _actionMoveUp);
+            _actionList.SetAction(menuMoveUp, _actionMoveUp);
 
             _actionMoveDown.Execute += ActionMoveDownExecute;
             _actionMoveDown.Update += ActionUpdateDown;
@@ -130,8 +130,8 @@ namespace UIRibbonTools
             _actionMoveDown.ImageIndex = 3;
             _actionMoveDown.ShortcutKeys = Keys.Control | Keys.Down;
             _actionMoveDown.Text = "Down";
-            _actionMoveDown.SetComponent(toolButtonMoveDown, true);
-            _actionMoveDown.SetComponent(menuMoveDown, true);
+            _actionList.SetAction(toolButtonMoveDown, _actionMoveDown);
+            _actionList.SetAction(menuMoveDown, _actionMoveDown);
 
             _actionSearchCommand.Execute += ActionSearchCommandExecute;
             _actionSearchCommand.Update += ActionUpdate;
@@ -139,7 +139,7 @@ namespace UIRibbonTools
             _actionSearchCommand.ImageIndex = 4;
             _actionSearchCommand.ShortcutKeys = Keys.Control | Keys.F;
             _actionSearchCommand.Text = "Search";
-            _actionSearchCommand.SetComponent(toolButtonSearchCommand, true);
+            _actionList.SetAction(toolButtonSearchCommand, _actionSearchCommand);
 
             _actionList.ImageList = _imageListToolbars;
         }

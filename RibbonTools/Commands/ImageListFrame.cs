@@ -79,8 +79,8 @@ namespace UIRibbonTools
             _actionAddImage.Hint = "Adds a new image";
             _actionAddImage.ImageIndex = 0;
             _actionAddImage.Text = "Add";
-            _actionAddImage.SetComponent(toolButtonAddImage, true);
-            _actionAddImage.SetComponent(popupAdd, true);
+            _actionList.SetAction(toolButtonAddImage, _actionAddImage);
+            _actionList.SetAction(popupAdd, _actionAddImage);
             //_actionAddCommand.ShowTextOnToolBar = false;
 
             _actionRemoveImage.Execute += ActionRemoveImageExecute;
@@ -88,25 +88,25 @@ namespace UIRibbonTools
             _actionRemoveImage.Hint = "Remove the selected image";
             _actionRemoveImage.ImageIndex = 1;
             _actionRemoveImage.Text = "Remove";
-            _actionRemoveImage.SetComponent(toolButtonRemoveImage, true);
+            _actionList.SetAction(toolButtonRemoveImage, _actionRemoveImage);
 
             _actionRemoveAllImages.Execute += ActionRemoveAllImagesExecute;
             //_actionRemoveAllImages.ImageIndex = 1;
             _actionRemoveAllImages.Text = "Remove All";
-            _actionRemoveAllImages.SetComponent(toolButtonRemoveAllImages, true);
+            _actionList.SetAction(toolButtonRemoveAllImages, _actionRemoveAllImages);
 
             _actionEditImage.Execute += ActionEditImageExecute;
             _actionEditImage.Enabled = false;
             _actionEditImage.Hint = "Edit the selected image";
             _actionEditImage.ImageIndex = 2;
             _actionEditImage.Text = "Edit";
-            _actionEditImage.SetComponent(toolButtonEditImage, true);
+            _actionList.SetAction(toolButtonEditImage, _actionEditImage);
 
             _actionAddRange.Execute += ActionAddRangeExecute;
             _actionAddRange.Hint = "Add a range of images with different resolutions";
             //_actionAddRange.ImageIndex = 2;
             _actionAddRange.Text = "Add Range";
-            _actionAddRange.SetComponent(popupAddRange, true);
+            _actionList.SetAction(popupAddRange, _actionAddRange);
 
             _actionList.ImageList = _imageListToolbars;
         }
