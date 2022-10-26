@@ -33,7 +33,6 @@ namespace UIRibbonTools
             sw.WriteLine("using System;");
             sw.WriteLine("using RibbonLib;");
             sw.WriteLine("using RibbonLib.Controls;");
-            sw.WriteLine("using RibbonLib.Interop;");
             sw.WriteLine();
             sw.WriteLine("namespace RibbonLib.Controls");
             sw.WriteLine("{");

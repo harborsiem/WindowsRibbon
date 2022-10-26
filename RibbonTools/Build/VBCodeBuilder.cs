@@ -33,7 +33,6 @@ namespace UIRibbonTools
             sw.WriteLine("Imports System");
             sw.WriteLine("Imports RibbonLib");
             sw.WriteLine("Imports RibbonLib.Controls");
-            sw.WriteLine("Imports RibbonLib.Interop");
             sw.WriteLine();
             sw.WriteLine("Namespace RibbonLib.Controls");
             //sw.WriteLine("{");
