@@ -383,6 +383,27 @@ namespace RibbonLib.Interop
         }
 
         /// <summary>
+        /// Called to clear the PropVariant's referenced and local memory.
+        /// </summary>
+        /// <remarks>
+        /// You must call Clear to avoid memory leaks.
+        /// </remarks>
+        /// <param name="var">The PropVariant.</param>
+        public static void Clear(ref PropVariant var)
+        {
+            UnsafeNativeMethods.PropVariantClear(ref var);
+        }
+
+        /// <summary>
+        /// Set all values to zero.
+        /// </summary>
+        /// <param name="var">The PropVariant.</param>
+        public static void PropVariantInit(ref PropVariant var)
+        {
+            var = default(PropVariant);
+        }
+
+        /// <summary>
         /// Clone a PropVariant
         /// </summary>
         /// <returns>PropVariant</returns>
@@ -403,7 +424,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetUInt(UInt32 value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
 
             valueType = (ushort)VarEnum.VT_UI4;
             valueData = (IntPtr)((int)value);
@@ -415,7 +436,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetBool(bool value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
 
             valueType = (ushort)VarEnum.VT_BOOL;
             valueData = ((value == true) ? (IntPtr)65535 : (IntPtr)0);
@@ -427,12 +448,12 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetDateTime(DateTime value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
             
             valueType = (ushort)VarEnum.VT_FILETIME;
 
             PropVariant propVar;
-            System.Runtime.InteropServices.ComTypes.FILETIME ft = DateTimeTotFileTime(value);
+            System.Runtime.InteropServices.ComTypes.FILETIME ft = DateTimeToFileTime(value);
             UnsafeNativeMethods.InitPropVariantFromFileTime(ref ft, out propVar);
             CopyData(propVar);
         }
@@ -443,7 +464,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetString(string value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
 
             valueType = (ushort)VarEnum.VT_LPWSTR;
             valueData = Marshal.StringToCoTaskMemUni(value);
@@ -455,7 +476,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetIUnknown(object value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
 
             valueType = (ushort)VarEnum.VT_UNKNOWN;
             valueData = Marshal.GetIUnknownForObject(value);
@@ -467,12 +488,11 @@ namespace RibbonLib.Interop
         /// <param name="array">The new value to set.</param>
         public void SetSafeArray(Array array)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
 
             if (array == null) return;
 
-            const ushort vtUnknown = 13;
-            IntPtr psa = UnsafeNativeMethods.SafeArrayCreateVector(vtUnknown, 0, (uint)array.Length);
+            IntPtr psa = UnsafeNativeMethods.SafeArrayCreateVector((ushort)VarEnum.VT_UNKNOWN, 0, (uint)array.Length);
 
             IntPtr pvData = UnsafeNativeMethods.SafeArrayAccessData(psa);
             try // to remember to release lock on data
@@ -499,7 +519,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetByte(byte value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
             
             valueType = (ushort)VarEnum.VT_UI1;
             valueData = (IntPtr)value;
@@ -511,7 +531,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetSByte(sbyte value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
 
             valueType = (ushort)VarEnum.VT_I1;
             valueData = (IntPtr)value;
@@ -523,7 +543,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetShort(short value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
 
             valueType = (ushort)VarEnum.VT_I2;
             valueData = (IntPtr)value;
@@ -535,7 +555,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetUShort(ushort value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
             
             valueType = (ushort)VarEnum.VT_UI2;
             valueData = (IntPtr)value;
@@ -547,7 +567,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetInt(int value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
             
             valueType = (ushort)VarEnum.VT_I4;
             valueData = (IntPtr)value;
@@ -703,7 +723,7 @@ namespace RibbonLib.Interop
 
             for (int i = 0; i < array.Length; i++)
             {
-                fileTimeArr[i] = DateTimeTotFileTime(array[i]);
+                fileTimeArr[i] = DateTimeToFileTime(array[i]);
             }
 
             PropVariant propVar;
@@ -717,7 +737,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetDecimal(decimal value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
 
             PVDecimalOuterUnion union = new PVDecimalOuterUnion();
             union.decVal = value;
@@ -734,7 +754,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetLong(long value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
             
             long[] valueArr = new long[] { value };
 
@@ -750,7 +770,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetULong(ulong value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
             
             PropVariant propVar;
             ulong[] valueArr = new ulong[] { value };
@@ -765,7 +785,7 @@ namespace RibbonLib.Interop
         /// <param name="value">The new value to set.</param>
         public void SetDouble(double value)
         {
-            if (!this.IsNull()) this.Clear();
+            if (!this.IsNull()) PropVariantInit(ref this);
 
             double[] valueArr = new double[] { value };
 
@@ -949,7 +969,7 @@ namespace RibbonLib.Interop
             return (((long)val.dwHighDateTime) << 32) + val.dwLowDateTime;
         }
 
-        private static System.Runtime.InteropServices.ComTypes.FILETIME DateTimeTotFileTime(DateTime value)
+        private static System.Runtime.InteropServices.ComTypes.FILETIME DateTimeToFileTime(DateTime value)
         {
             long hFT = value.ToFileTime();
             System.Runtime.InteropServices.ComTypes.FILETIME ft =

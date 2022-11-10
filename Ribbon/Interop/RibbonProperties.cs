@@ -83,7 +83,7 @@ namespace RibbonLib.Interop
         public static PropertyKey NoColorLabel = CreateRibbonPropertyKey(407, VarEnum.VT_LPWSTR);
         public static PropertyKey MoreColorsLabel = CreateRibbonPropertyKey(408, VarEnum.VT_LPWSTR);
         public static PropertyKey ThemeColors = CreateRibbonPropertyKey(409, (VarEnum.VT_VECTOR | VarEnum.VT_UI4));
-        public static PropertyKey StandardColors = CreateRibbonPropertyKey(400, (VarEnum.VT_VECTOR | VarEnum.VT_UI4));
+        public static PropertyKey StandardColors = CreateRibbonPropertyKey(410, (VarEnum.VT_VECTOR | VarEnum.VT_UI4));
         public static PropertyKey ThemeColorsTooltips = CreateRibbonPropertyKey(411, (VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR));
         public static PropertyKey StandardColorsTooltips = CreateRibbonPropertyKey(412, (VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR));
 

@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.13.0, RibbonTools V1.5.0
+
+#### Changed (Ribbon)
+
+- Bugfix RibbonDropDownColorPicker.StandardColors.
+- Free unmanaged memory as soon as possible.
+- Support for .NET7
+
+#### Changed (RibbonTools)
+
+- Correct usage of TActions
+- delete unnecessary namespace in CodeBuilder for RibbonItems
+
+
 ### Ribbon V2.12.0, RibbonTools V1.4.0
 
 #### Changed (Ribbon)

@@ -75,7 +75,9 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.StringValue, out stringValue);
                     if (NativeMethods.Succeeded(hr))
                     {
-                        return (string)stringValue.Value;
+                        string result = (string)stringValue.Value;
+                        PropVariant.Clear(ref stringValue);
+                        return result;
                     }
                 }
 
@@ -97,6 +99,7 @@ namespace RibbonLib.Controls.Properties
                         stringValue = PropVariant.FromObject(_stringValue);
                     } 
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.StringValue, ref stringValue);
+                    PropVariant.Clear(ref stringValue);
                 }
             }
         }

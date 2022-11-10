@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net6.0-windows;net5.0-windows;netcoreapp3.1;net40</TargetFrameworks>
+    <TargetFrameworks>net7.0-windows;net6.0-windows;net5.0-windows;netcoreapp3.1;net40</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon />
     <StartupObject />
@@ -19,7 +20,7 @@
 
     <PackageId>WindowsRibbon</PackageId>
     <Product>Windows Ribbon Control</Product>
-    <Version>2.12.0</Version>
+    <Version>2.13.0</Version>
     <Authors>Hartmut Borkenhagen</Authors>
     <Company>RibbonLib</Company>
     <PackageIcon>Ribbon64.png</PackageIcon>
@@ -36,12 +37,17 @@
     <Deterministic>false</Deterministic>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU' and ('$(TargetFramework)' == 'net6.0-windows' or '$(TargetFramework)' == 'net5.0-windows' or '$(TargetFramework)' == 'netcoreapp3.1')">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU' and ('$(TargetFramework)' == 'net7.0-windows' or '$(TargetFramework)' == 'net6.0-windows' or '$(TargetFramework)' == 'net5.0-windows' or '$(TargetFramework)' == 'netcoreapp3.1')">
     <DefineConstants>DEBUG;Core</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU' and '$(TargetFramework)' == 'net40'">
     <DefineConstants>DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU' and '$(TargetFramework)' == 'net7.0-windows'">
+    <DefineConstants>TRACE;Core</DefineConstants>
+    <DocumentationFile>.\bin\Release\net7.0-windows\Ribbon.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU' and '$(TargetFramework)' == 'net6.0-windows'">

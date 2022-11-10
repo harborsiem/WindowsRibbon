@@ -235,7 +235,9 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.AutomaticColorLabel, out automaticColorLabel);
                     if (NativeMethods.Succeeded(hr))
                     {
-                        return (string)automaticColorLabel.Value;
+                        string result = (string)automaticColorLabel.Value;
+                        PropVariant.Clear(ref automaticColorLabel);
+                        return result;
                     }
                 }
 
@@ -256,6 +258,7 @@ namespace RibbonLib.Controls.Properties
                         automaticColorLabel = PropVariant.FromObject(_automaticColorLabel);
                     }
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.AutomaticColorLabel, ref automaticColorLabel);
+                    PropVariant.Clear(ref automaticColorLabel);
                 }
             }
         }
@@ -333,7 +336,9 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.MoreColorsLabel, out moreColorsLabel);
                     if (NativeMethods.Succeeded(hr))
                     {
-                        return (string)moreColorsLabel.Value;
+                        string result = (string)moreColorsLabel.Value;
+                        PropVariant.Clear(ref moreColorsLabel);
+                        return result;
                     }
                 }
 
@@ -354,6 +359,7 @@ namespace RibbonLib.Controls.Properties
                         moreColorsLabel = PropVariant.FromObject(_moreColorsLabel);
                     }
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.MoreColorsLabel, ref moreColorsLabel);
+                    PropVariant.Clear(ref moreColorsLabel);
                 }
             }
         }
@@ -371,7 +377,9 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.NoColorLabel, out noColorLabel);
                     if (NativeMethods.Succeeded(hr))
                     {
-                        return (string)noColorLabel.Value;
+                        string result = (string)noColorLabel.Value;
+                        PropVariant.Clear(ref noColorLabel);
+                        return result;
                     }
                 }
 
@@ -392,6 +400,7 @@ namespace RibbonLib.Controls.Properties
                         noColorLabel = PropVariant.FromObject(_noColorLabel);
                     }
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.NoColorLabel, ref noColorLabel);
+                    PropVariant.Clear(ref noColorLabel);
                 }
             }
         }
@@ -409,7 +418,9 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.RecentColorsCategoryLabel, out recentColorsCategoryLabel);
                     if (NativeMethods.Succeeded(hr))
                     {
-                        return (string)recentColorsCategoryLabel.Value;
+                        string result = (string)recentColorsCategoryLabel.Value;
+                        PropVariant.Clear(ref recentColorsCategoryLabel);
+                        return result;
                     }
                 }
 
@@ -430,6 +441,7 @@ namespace RibbonLib.Controls.Properties
                         recentColorsCategoryLabel = PropVariant.FromObject(_recentColorsCategoryLabel);
                     }
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.RecentColorsCategoryLabel, ref recentColorsCategoryLabel);
+                    PropVariant.Clear(ref recentColorsCategoryLabel);
                 }
             }
         }
@@ -450,6 +462,7 @@ namespace RibbonLib.Controls.Properties
                         uint[] uintStandardColors = (uint[])standardColors.Value;
                         int[] intStandardColors = Array.ConvertAll<uint, int>(uintStandardColors, new Converter<uint, int>(Convert.ToInt32));
                         Color[] colorStandardColors = Array.ConvertAll<int, Color>(intStandardColors, new Converter<int, Color>(ColorTranslator.FromWin32));
+                        PropVariant.Clear(ref standardColors);
                         return colorStandardColors;
                     }
                 }
@@ -466,6 +479,7 @@ namespace RibbonLib.Controls.Properties
 
                     PropVariant standardColors = PropVariant.FromObject(uintStandardColors);
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.StandardColors, ref standardColors);
+                    PropVariant.Clear(ref standardColors);
                 }
             }
         }
@@ -483,7 +497,9 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.StandardColorsCategoryLabel, out standardColorsCategoryLabel);
                     if (NativeMethods.Succeeded(hr))
                     {
-                        return (string)standardColorsCategoryLabel.Value;
+                        string result = (string)standardColorsCategoryLabel.Value;
+                        PropVariant.Clear(ref standardColorsCategoryLabel);
+                        return result;
                     }
                 }
 
@@ -504,6 +520,7 @@ namespace RibbonLib.Controls.Properties
                         standardColorsCategoryLabel = PropVariant.FromObject(_standardColorsCategoryLabel);
                     }
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.StandardColorsCategoryLabel, ref standardColorsCategoryLabel);
+                    PropVariant.Clear(ref standardColorsCategoryLabel);
                 }
             }
         }
@@ -521,7 +538,9 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.StandardColorsTooltips, out standardColorsTooltips);
                     if (NativeMethods.Succeeded(hr))
                     {
-                        return (string[])standardColorsTooltips.Value;
+                        string[] result = (string[])standardColorsTooltips.Value;
+                        PropVariant.Clear(ref standardColorsTooltips);
+                        return result;
                     }
                 }
 
@@ -534,6 +553,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant standardColorsTooltips = PropVariant.FromObject(value);
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.StandardColorsTooltips, ref standardColorsTooltips);
+                    PropVariant.Clear(ref standardColorsTooltips);
                 }
             }
         }
@@ -554,6 +574,7 @@ namespace RibbonLib.Controls.Properties
                         uint[] uintThemeColors = (uint[])themeColors.Value;
                         int[] intThemeColors = Array.ConvertAll<uint, int>(uintThemeColors, new Converter<uint, int>(Convert.ToInt32));
                         Color[] colorThemeColors = Array.ConvertAll<int, Color>(intThemeColors, new Converter<int, Color>(ColorTranslator.FromWin32));
+                        PropVariant.Clear(ref themeColors);
                         return colorThemeColors;
                     }
                 }
@@ -570,6 +591,7 @@ namespace RibbonLib.Controls.Properties
 
                     PropVariant themeColors = PropVariant.FromObject(uintThemeColors);
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.ThemeColors, ref themeColors);
+                    PropVariant.Clear(ref themeColors);
                 }
             }
         }
@@ -587,7 +609,9 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ThemeColorsCategoryLabel, out themeColorsCategoryLabel);
                     if (NativeMethods.Succeeded(hr))
                     {
-                        return (string)themeColorsCategoryLabel.Value;
+                        string result = (string)themeColorsCategoryLabel.Value;
+                        PropVariant.Clear(ref themeColorsCategoryLabel);
+                        return result;
                     }
                 }
 
@@ -608,6 +632,7 @@ namespace RibbonLib.Controls.Properties
                         themeColorsCategoryLabel = PropVariant.FromObject(_themeColorsCategoryLabel);
                     }
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.ThemeColorsCategoryLabel, ref themeColorsCategoryLabel);
+                    PropVariant.Clear(ref themeColorsCategoryLabel);
                 }
             }
         }
@@ -625,7 +650,9 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ThemeColorsTooltips, out themeColorsTooltips);
                     if (NativeMethods.Succeeded(hr))
                     {
-                        return (string[])themeColorsTooltips.Value;
+                        string[] result = (string[])themeColorsTooltips.Value;
+                        PropVariant.Clear(ref themeColorsTooltips);
+                        return result;
                     }
                 }
 
@@ -638,6 +665,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant themeColorsTooltips = PropVariant.FromObject(value);
                     HRESULT hr = _ribbon.Framework.SetUICommandProperty(_commandID, ref RibbonProperties.ThemeColorsTooltips, ref themeColorsTooltips);
+                    PropVariant.Clear(ref themeColorsTooltips);
                 }
             }
         }

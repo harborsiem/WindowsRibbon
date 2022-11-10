@@ -118,6 +118,7 @@ namespace RibbonLib.Controls.Properties
                     {
                         PropVariant propFamily = PropVariant.FromObject(_family);
                         fontProperties.SetValue(ref RibbonProperties.FontProperties_Family, ref propFamily);
+                        PropVariant.Clear(ref propFamily);
                     }
 
                     // set size
@@ -233,7 +234,9 @@ namespace RibbonLib.Controls.Properties
                     IPropertyStore propertyStore = FontProperties;
                     PropVariant propFamily;
                     HRESULT hr = propertyStore.GetValue(ref RibbonProperties.FontProperties_Family, out propFamily);
-                    return (string)propFamily.Value;
+                    string result = (string)propFamily.Value;
+                    PropVariant.Clear(ref propFamily);
+                    return result;
                 }
 
                 return _family;
