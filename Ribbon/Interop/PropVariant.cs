@@ -64,7 +64,7 @@ namespace RibbonLib.Interop
             public IntPtr pElems;
         }
 
-        private static class UnsafeNativeMethods
+        internal static class UnsafeNativeMethods
         {
             [DllImport("Ole32.dll", PreserveSig = false)] // returns hresult
             internal extern static void PropVariantClear([In, Out] ref PropVariant pvar);
@@ -167,6 +167,13 @@ namespace RibbonLib.Interop
 
             [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true)]
             internal static extern void InitPropVariantFromStringVector([In, Out] string[] prgsz, uint cElems, out PropVariant ppropvar);
+
+            [DllImport("PROPSYS.dll", ExactSpelling = true)]
+           public static extern uint PropVariantToUInt32WithDefault([In] ref PropVariant propvarIn, uint ulDefault);
+
+            [DllImport("PROPSYS.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
+            [return: MarshalAs(UnmanagedType.LPWStr)]
+            public static extern string PropVariantToStringWithDefault([In] ref PropVariant propvarIn, [MarshalAs(UnmanagedType.LPWStr)]string pszDefault);
 
         }
 

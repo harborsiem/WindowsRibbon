@@ -18,6 +18,16 @@ namespace RibbonLib.Controls.Properties
     public interface IGalleryPropertiesProvider
     {
         /// <summary>
+        /// Categories property, Managed version
+        /// </summary>
+        UICollection<GalleryItemPropertySet> GCategories { get; }
+
+        /// <summary>
+        /// Items source property
+        /// </summary>
+        UICollection<GalleryItemPropertySet> GItemItemsSource { get; }
+
+        /// <summary>
         /// Categories property
         /// </summary>
         IUICollection Categories { get; }
@@ -51,6 +61,7 @@ namespace RibbonLib.Controls.Properties
         private object _sender;
         private bool categoriesReadyFired;
         private bool itemsSourceReadyFired;
+        internal GalleryCommandProperties GalleryCommand { get; private set; }
 
         /// <summary>
         /// GalleryPropertiesProvider ctor
@@ -67,6 +78,7 @@ namespace RibbonLib.Controls.Properties
             _supportedProperties.Add(RibbonProperties.Categories);
             _supportedProperties.Add(RibbonProperties.ItemsSource);
             _supportedProperties.Add(RibbonProperties.SelectedItem);
+            GalleryCommand = new GalleryCommandProperties();
         }
 
         private uint? _selectedItem;
@@ -82,39 +94,54 @@ namespace RibbonLib.Controls.Properties
         {
             if (key == RibbonProperties.Categories)
             {
-                if (!categoriesReadyFired && CategoriesReady != null)
+                if (!categoriesReadyFired)
                 {
+                    GCategories = new UICollection<GalleryItemPropertySet>((IUICollection)currentValue.PropVariant.Value, (BaseRibbonControl)_sender, CollectionType.Categories);
                     categoriesReadyFired = true;
-                    try
+
+                    if (CategoriesReady != null)
                     {
-                        CategoriesReady(_sender, EventArgs.Empty);
-                    }
-                    catch (Exception ex)
-                    {
-                        ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
-                        if (_ribbon.OnRibbonEventException(_sender, e))
-                            return HRESULT.E_FAIL;
-                        Environment.FailFast(ex.StackTrace);
-                        return HRESULT.E_ABORT;
+                        try
+                        {
+                            CategoriesReady(_sender, EventArgs.Empty);
+                        }
+                        catch (Exception ex)
+                        {
+                            ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
+                            if (_ribbon.OnRibbonEventException(_sender, e))
+                                return HRESULT.E_FAIL;
+                            Environment.FailFast(ex.StackTrace);
+                            return HRESULT.E_ABORT;
+                        }
+
                     }
                 }
             }
             else if (key == RibbonProperties.ItemsSource)
             {
-                if (!itemsSourceReadyFired && ItemsSourceReady != null)
+                if (!itemsSourceReadyFired)
                 {
                     itemsSourceReadyFired = true;
-                    try
+                    BaseRibbonControl brc = (BaseRibbonControl)_sender;
+                    if (brc.CommandType == CommandType.Collection)
+                        GItemItemsSource = new UICollection<GalleryItemPropertySet>((IUICollection)currentValue.PropVariant.Value, brc, CollectionType.ItemsSource);
+                    else if (brc.CommandType == CommandType.Commandcollection)
+                        GalleryCommand.GCommandItemsSource = new UICollection<GalleryCommandPropertySet>((IUICollection)currentValue.PropVariant.Value, brc, CollectionType.ItemsSource);
+
+                    if (ItemsSourceReady != null)
                     {
-                        ItemsSourceReady(_sender, EventArgs.Empty);
-                    }
-                    catch (Exception ex)
-                    {
-                        ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
-                        if (_ribbon.OnRibbonEventException(_sender, e))
-                            return HRESULT.E_FAIL;
-                        Environment.FailFast(ex.StackTrace);
-                        return HRESULT.E_ABORT;
+                        try
+                        {
+                            ItemsSourceReady(_sender, EventArgs.Empty);
+                        }
+                        catch (Exception ex)
+                        {
+                            ThreadExceptionEventArgs e = new ThreadExceptionEventArgs(ex);
+                            if (_ribbon.OnRibbonEventException(_sender, e))
+                                return HRESULT.E_FAIL;
+                            Environment.FailFast(ex.StackTrace);
+                            return HRESULT.E_ABORT;
+                        }
                     }
                 }
             }
@@ -130,6 +157,16 @@ namespace RibbonLib.Controls.Properties
         }
 
         #region IGalleryPropertiesProvider Members
+
+        /// <summary>
+        /// Categories property
+        /// </summary>
+        public UICollection<GalleryItemPropertySet> GCategories { get; private set; }
+
+        /// <summary>
+        /// Items source property for Item
+        /// </summary>
+        public UICollection<GalleryItemPropertySet> GItemItemsSource { get; private set; }
 
         /// <summary>
         /// Categories property

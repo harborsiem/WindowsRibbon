@@ -67,6 +67,9 @@ namespace RibbonLib.Interop
         /// <returns></returns>
         public override string ToString()
         {
+            string value = RibbonProperties.KeyToString(this);
+            if (value != null)
+                return value;
             return "PKey: " + FormatId.ToString() + ":" + PropertyId.ToString(CultureInfo.InvariantCulture.NumberFormat);
         }
 

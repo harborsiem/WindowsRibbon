@@ -65,6 +65,12 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Gets or sets the object that contains to this PropertySet
+        /// Additional object for the user
+        /// </summary>
+        public object Tag { get; set; }
+
         #region IUISimplePropertySet Members
 
         /// <summary>
@@ -121,5 +127,21 @@ namespace RibbonLib
         }
 
         #endregion
+
+        /// <summary>
+        /// Clone
+        /// </summary>
+        /// <returns></returns>
+        public RecentItemsPropertySet Clone()
+        {
+            RecentItemsPropertySet result = new RecentItemsPropertySet()
+            {
+                Label = this.Label,
+                LabelDescription = this.LabelDescription,
+                Pinned = this.Pinned,
+                Tag = this.Tag
+            };
+            return result;
+        }
     }
 }

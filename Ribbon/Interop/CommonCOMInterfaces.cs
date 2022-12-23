@@ -23,6 +23,8 @@ namespace RibbonLib.Interop
         E_ABORT = 0x80004004,
         E_FAIL = 0x80004005,
         E_NOTIMPL = 0x80004001,
+        E_INVALIDARG = 0x80070057,
+        ERROR_NOT_SUPPORTED = 0x80070032,
     }
 
     public static class NativeMethods

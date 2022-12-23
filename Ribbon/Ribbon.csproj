@@ -70,7 +70,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractPropertySet.cs" />
+    <Compile Include="Controls\Events\ColorPickerEventArgs.cs" />
     <Compile Include="Controls\Events\ExecuteEventArgs.cs" />
+    <Compile Include="Controls\Events\FontControlEventArgs.cs" />
+    <Compile Include="Controls\Events\GalleryItemEventArgs.cs" />
+    <Compile Include="Controls\Events\RecentItemsEventArgs.cs" />
+    <Compile Include="Controls\Properties\GalleryCommandProperties.cs" />
     <Compile Include="Controls\Properties\RecentItemsPropertiesProvider.cs" />
     <Compile Include="Controls\RibbonApplicationMenu.cs" />
     <Compile Include="Controls\RibbonCheckBox.cs" />
@@ -120,9 +126,12 @@
     <Compile Include="Interop\PropertyKey.cs" />
     <Compile Include="Interop\PropVariant.cs" />
     <Compile Include="Interop\StreamAdapter.cs" />
+    <Compile Include="QatCommandPropertySet.cs" />
     <Compile Include="RecentItemsPropertySet.cs" />
     <Compile Include="RibbonColors.cs" />
     <Compile Include="RibbonShortcutTable.cs" />
+    <Compile Include="SelectedItem%271.cs" />
+    <Compile Include="UICollection%271.cs" />
     <Compile Include="UICollection.cs" />
     <Compile Include="UICollectionChangedEvent.cs" />
     <Compile Include="Controls\RibbonComboBox.cs" />
@@ -174,5 +183,4 @@
     <Copy SourceFiles=".\obj\project.assets.json_" DestinationFiles=".\obj\project.assets.json" Condition="Exists('.\obj\project.assets.json_')" />
     <Delete Files=".\obj\project.assets.json_" />
   </Target>
-
 </Project>

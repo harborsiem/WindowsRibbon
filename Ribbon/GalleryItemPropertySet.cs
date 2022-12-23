@@ -14,7 +14,7 @@ namespace RibbonLib
     /// <summary>
     /// Helper class that wraps a gallery item simple property set.
     /// </summary>
-    public class GalleryItemPropertySet : IUISimplePropertySet
+    public sealed class GalleryItemPropertySet : AbstractPropertySet //, IUISimplePropertySet
     {
         private string _label;
         private uint? _categoryID;
@@ -65,6 +65,12 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Gets or sets the object that contains to this PropertySet
+        /// Additional object for the user
+        /// </summary>
+        public object Tag { get; set; }
+
         #region IUISimplePropertySet Members
 
         /// <summary>
@@ -73,7 +79,7 @@ namespace RibbonLib
         /// <param name="key">The Property Key of interest.</param>
         /// <param name="value">When this method returns, contains a pointer to the value for key.</param>
         /// <returns></returns>
-        public HRESULT GetValue(ref PropertyKey key, out PropVariant value)
+        public override HRESULT GetValueImpl(ref PropertyKey key, out PropVariant value)
         {
             if (key == RibbonProperties.Label)
             {

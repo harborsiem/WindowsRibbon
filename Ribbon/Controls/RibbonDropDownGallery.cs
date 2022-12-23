@@ -18,6 +18,7 @@ namespace RibbonLib.Controls
     /// </summary>
     public class RibbonDropDownGallery : BaseRibbonControl, 
         IGalleryPropertiesProvider,
+        IGallery2PropertiesProvider,
         IEnabledPropertiesProvider, 
         IKeytipPropertiesProvider,
         ILabelPropertiesProvider,
@@ -55,6 +56,26 @@ namespace RibbonLib.Controls
         }
 
         #region IGalleryPropertiesProvider Members
+
+        /// <summary>
+        /// The list of categories. 
+        /// Also exposed as an UICollection of GalleryItemPropertySet elements
+        /// </summary>
+        public UICollection<GalleryItemPropertySet> GCategories => _galleryPropertiesProvider.GCategories;
+
+        /// <summary>
+        /// The list of DropDownGallery items.
+        /// It is exposed as an UICollection where every element
+        /// in the collection is of type: GalleryItemPropertySet
+        /// </summary>
+        public UICollection<GalleryItemPropertySet> GItemItemsSource => _galleryPropertiesProvider.GItemItemsSource;
+
+        /// <summary>
+        /// The list of DropDownGallery items.
+        /// It is exposed as an UICollection where every element
+        /// in the collection is of type: GalleryCommandPropertySet
+        /// </summary>
+        public UICollection<GalleryCommandPropertySet> GCommandItemsSource => _galleryPropertiesProvider.GalleryCommand.GCommandItemsSource;
 
         /// <summary>
         /// The list of categories. 

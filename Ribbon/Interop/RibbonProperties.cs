@@ -8,6 +8,7 @@
 //****************************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -20,6 +21,117 @@ namespace RibbonLib.Interop
     /// </summary>
     public static class RibbonProperties
     {
+        static RibbonProperties()
+        {
+            InitPropertyKeyNames();
+        }
+
+        public static string KeyToString(PropertyKey key)
+        {
+            byte[] guid = key.FormatId.ToByteArray();
+            int index = BitConverter.ToInt32(guid, 0);
+            string name = RibbonProperties.GetPropertyKeyName(index);
+            if (string.IsNullOrEmpty(name))
+                return null;
+            string veString;
+            VarEnum ve = (VarEnum)(key.PropertyId);
+            if ((ve & VarEnum.VT_VECTOR) != 0)
+                veString = "VT_VECTOR" + " | " + (ve & ~VarEnum.VT_VECTOR).ToString();
+            else if ((ve & VarEnum.VT_ARRAY) != 0)
+                veString = "VT_ARRAY" + " | " + (ve & ~VarEnum.VT_ARRAY).ToString();
+            else
+                veString = ve.ToString();
+            return "PROPERTYKEY." + name + " : " + veString + " : " + key.FormatId.ToString();
+        }
+
+        private static Dictionary<int, string> propertyKeyNames;
+
+        public static string GetPropertyKeyName(int key)
+        {
+            if (propertyKeyNames.TryGetValue(key, out var value))
+            {
+                return value;
+            }
+            return string.Empty;
+        }
+
+        private static void InitPropertyKeyNames()
+        {
+            propertyKeyNames = new Dictionary<int, string>();
+            propertyKeyNames.Add(1, nameof(Enabled));
+            propertyKeyNames.Add(2, nameof(LabelDescription));
+            propertyKeyNames.Add(3, nameof(Keytip));
+            propertyKeyNames.Add(4, nameof(Label));
+            propertyKeyNames.Add(5, nameof(TooltipDescription));
+            propertyKeyNames.Add(6, nameof(TooltipTitle));
+            propertyKeyNames.Add(7, nameof(LargeImage));
+            propertyKeyNames.Add(8, nameof(LargeHighContrastImage));
+            propertyKeyNames.Add(9, nameof(SmallImage));
+            propertyKeyNames.Add(10, nameof(SmallHighContrastImage));
+
+            propertyKeyNames.Add(100, nameof(CommandID));
+            propertyKeyNames.Add(101, nameof(ItemsSource));
+            propertyKeyNames.Add(102, nameof(Categories));
+            propertyKeyNames.Add(103, nameof(CategoryID));
+            propertyKeyNames.Add(104, nameof(SelectedItem));
+            propertyKeyNames.Add(105, nameof(CommandType));
+            propertyKeyNames.Add(106, nameof(ItemImage));
+
+            propertyKeyNames.Add(200, nameof(BooleanValue));
+            propertyKeyNames.Add(201, nameof(DecimalValue));
+            propertyKeyNames.Add(202, nameof(StringValue));
+            propertyKeyNames.Add(203, nameof(MaxValue));
+            propertyKeyNames.Add(204, nameof(MinValue));
+            propertyKeyNames.Add(205, nameof(Increment));
+            propertyKeyNames.Add(206, nameof(DecimalPlaces));
+            propertyKeyNames.Add(207, nameof(FormatString));
+            propertyKeyNames.Add(208, nameof(RepresentativeString));
+
+            propertyKeyNames.Add(300, nameof(FontProperties));
+            propertyKeyNames.Add(301, nameof(FontProperties_Family));
+            propertyKeyNames.Add(302, nameof(FontProperties_Size));
+            propertyKeyNames.Add(303, nameof(FontProperties_Bold));
+            propertyKeyNames.Add(304, nameof(FontProperties_Italic));
+            propertyKeyNames.Add(305, nameof(FontProperties_Underline));
+            propertyKeyNames.Add(306, nameof(FontProperties_Strikethrough));
+            propertyKeyNames.Add(307, nameof(FontProperties_VerticalPositioning));
+            propertyKeyNames.Add(308, nameof(FontProperties_ForegroundColor));
+            propertyKeyNames.Add(309, nameof(FontProperties_BackgroundColor));
+            propertyKeyNames.Add(310, nameof(FontProperties_ForegroundColorType));
+            propertyKeyNames.Add(311, nameof(FontProperties_BackgroundColorType));
+            propertyKeyNames.Add(312, nameof(FontProperties_ChangedProperties));
+            propertyKeyNames.Add(313, nameof(FontProperties_DeltaSize));
+
+            propertyKeyNames.Add(350, nameof(RecentItems));
+            propertyKeyNames.Add(351, nameof(Pinned));
+
+            propertyKeyNames.Add(400, nameof(Color));
+            propertyKeyNames.Add(401, nameof(ColorType));
+            propertyKeyNames.Add(402, nameof(ColorMode));
+            propertyKeyNames.Add(403, nameof(ThemeColorsCategoryLabel));
+            propertyKeyNames.Add(404, nameof(StandardColorsCategoryLabel));
+            propertyKeyNames.Add(405, nameof(RecentColorsCategoryLabel));
+            propertyKeyNames.Add(406, nameof(AutomaticColorLabel));
+            propertyKeyNames.Add(407, nameof(NoColorLabel));
+            propertyKeyNames.Add(408, nameof(MoreColorsLabel));
+            propertyKeyNames.Add(409, nameof(ThemeColors));
+            propertyKeyNames.Add(410, nameof(StandardColors));
+            propertyKeyNames.Add(411, nameof(ThemeColorsTooltips));
+            propertyKeyNames.Add(412, nameof(StandardColorsTooltips));
+
+            propertyKeyNames.Add(1000, nameof(Viewable));
+            propertyKeyNames.Add(1001, nameof(Minimized));
+            propertyKeyNames.Add(1002, nameof(QuickAccessToolbarDock));
+
+            propertyKeyNames.Add(1100, nameof(ContextAvailable));
+
+            propertyKeyNames.Add(2000, nameof(GlobalBackgroundColor));
+            propertyKeyNames.Add(2001, nameof(GlobalHighlightColor));
+            propertyKeyNames.Add(2002, nameof(GlobalTextColor));
+            //propertyKeyNames.Add(2003, nameof(ApplicationButtonColor));
+            //propertyKeyNames.Add(2004, nameof(DarkModeRibbon));
+        }
+
         // Core command properties
         public static PropertyKey Enabled = CreateRibbonPropertyKey(1, VarEnum.VT_BOOL);
         public static PropertyKey LabelDescription = CreateRibbonPropertyKey(2, VarEnum.VT_LPWSTR);
@@ -66,7 +178,7 @@ namespace RibbonLib.Interop
         public static PropertyKey FontProperties_ForegroundColorType = CreateRibbonPropertyKey(310, VarEnum.VT_UI4); // UI_SWATCHCOLORTYPE
         public static PropertyKey FontProperties_BackgroundColorType = CreateRibbonPropertyKey(311, VarEnum.VT_UI4); // UI_SWATCHCOLORTYPE
         public static PropertyKey FontProperties_ChangedProperties = CreateRibbonPropertyKey(312, VarEnum.VT_UNKNOWN); // IPropertyStore
-        public static PropertyKey FontProperties_DeltaSize = CreateRibbonPropertyKey(313, VarEnum.VT_UINT); // UI_FONTDELTASIZE 
+        public static PropertyKey FontProperties_DeltaSize = CreateRibbonPropertyKey(313, VarEnum.VT_UI4); // UI_FONTDELTASIZE 
 
         // Application menu properties
         public static PropertyKey RecentItems = CreateRibbonPropertyKey(350, (VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN));
@@ -118,21 +230,25 @@ namespace RibbonLib.Interop
         /// <remarks>This function is used for debugging.</remarks>
         public static string GetPropertyKeyName(ref PropertyKey propertyKey)
         {
-            FieldInfo[] fields = typeof(RibbonProperties).GetFields();
+            byte[] guid = propertyKey.FormatId.ToByteArray();
+            int index = BitConverter.ToInt32(guid, 0);
+            return GetPropertyKeyName(index);
 
-            foreach (FieldInfo field in fields)
-            {
-                if (field.FieldType == typeof(PropertyKey))
-                {
-                    PropertyKey currentPropertyKey = (PropertyKey)field.GetValue(null);
-                    if (currentPropertyKey.FormatId == propertyKey.FormatId)
-                    {
-                        return field.Name;
-                    }
-                }
-            }
+            //FieldInfo[] fields = typeof(RibbonProperties).GetFields();
 
-            return string.Empty;
+            //foreach (FieldInfo field in fields)
+            //{
+            //    if (field.FieldType == typeof(PropertyKey))
+            //    {
+            //        PropertyKey currentPropertyKey = (PropertyKey)field.GetValue(null);
+            //        if (currentPropertyKey.FormatId == propertyKey.FormatId)
+            //        {
+            //            return field.Name;
+            //        }
+            //    }
+            //}
+
+            //return string.Empty;
         }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }

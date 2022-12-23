@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using RibbonLib.Interop;
 
 namespace RibbonLib.Controls.Properties
@@ -21,6 +22,11 @@ namespace RibbonLib.Controls.Properties
         /// Recent items property
         /// </summary>
         IList<RecentItemsPropertySet> RecentItems { get; set; }
+
+        /// <summary>
+        /// Maximal count of RecentItems
+        /// </summary>
+        int MaxCount { get; }
     }
 
     /// <summary>
@@ -35,12 +41,13 @@ namespace RibbonLib.Controls.Properties
         /// <param name="commandId">ribbon control command id</param>
         public RecentItemsPropertiesProvider(Ribbon ribbon, uint commandId)
             : base(ribbon, commandId)
-        { 
+        {
             // add supported properties
             _supportedProperties.Add(RibbonProperties.RecentItems);
         }
 
-        private IList<RecentItemsPropertySet> _recentItems;
+        private IList<RecentItemsPropertySet> _recentItems = new List<RecentItemsPropertySet>();
+        private bool _maxCountFound;
 
         /// <summary>
         /// Handles IUICommandHandler.UpdateProperty function for the supported properties
@@ -53,7 +60,16 @@ namespace RibbonLib.Controls.Properties
         {
             if (key == RibbonProperties.RecentItems)
             {
-                if (_recentItems != null)
+                if (!_maxCountFound && currentValue != null)
+                {
+                    if (currentValue.PropVariant.VarType == (VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN))
+                    {
+                        object[] oa = currentValue.PropVariant.Value as object[];
+                        MaxCount = oa.Length;
+                        _maxCountFound = true;
+                    }
+                }
+                if (_recentItems != null && _recentItems.Count > 0)
                 {
                     newValue.SetSafeArray(_recentItems.ToArray());
                 }
@@ -67,7 +83,7 @@ namespace RibbonLib.Controls.Properties
         /// <summary>
         /// Recent items property
         /// </summary>
-        public IList<RecentItemsPropertySet> RecentItems 
+        public IList<RecentItemsPropertySet> RecentItems
         {
             get
             {
@@ -78,7 +94,16 @@ namespace RibbonLib.Controls.Properties
                 _recentItems = value;
             }
         }
-    
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int MaxCount
+        {
+            get;
+            private set;
+        }
+
         #endregion
     }
 }

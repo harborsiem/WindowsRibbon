@@ -190,12 +190,40 @@ namespace RibbonLib.Controls
         }
 
         #endregion
-        
-        #region IEnabledPropertiesProvider Members
 
         /// <summary>
-        /// Get or set the Enabled state.
+        /// System.Drawing.FontStyle. A combination of some properties
         /// </summary>
+        public FontStyle FontStyle
+        {
+            get
+            {
+                FontStyle fontStyle = FontStyle.Regular;
+                if (this.Bold == FontProperties.Set)
+                {
+                    fontStyle |= FontStyle.Bold;
+                }
+                if (this.Italic == FontProperties.Set)
+                {
+                    fontStyle |= FontStyle.Italic;
+                }
+                if (this.Underline == FontUnderline.Set)
+                {
+                    fontStyle |= FontStyle.Underline;
+                }
+                if (this.Strikethrough == FontProperties.Set)
+                {
+                    fontStyle |= FontStyle.Strikeout;
+                }
+                return fontStyle;
+            }
+        }
+
+        #region IEnabledPropertiesProvider Members
+
+            /// <summary>
+            /// Get or set the Enabled state.
+            /// </summary>
         public bool Enabled
         {
             get

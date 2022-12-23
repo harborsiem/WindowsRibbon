@@ -15,7 +15,7 @@ namespace RibbonLib.Controls
     /// <summary>
     /// Helper class that wraps the ribbon quick access toolbar.
     /// </summary>
-    public class RibbonQuickAccessToolbar : BaseRibbonControl, 
+    public class RibbonQuickAccessToolbar : BaseRibbonControl,
         IExecuteEventsProvider
     {
         ///// <summary>
@@ -33,14 +33,14 @@ namespace RibbonLib.Controls
         /// </summary>
         protected RibbonButton _customizeButton;
 
-        private IUICollection _itemsSource = new UICollection();
+        //private IUICollection _itemsSource = new UICollection();
 
         /// <summary>
         /// Initializes a new instance of the Ribbon QuickAccessToolbar (QAT)
         /// </summary>
         /// <param name="ribbon">Parent Ribbon control</param>
         /// <param name="commandId">Command id attached to this control</param>
-        public RibbonQuickAccessToolbar(Ribbon ribbon, uint commandId) :base(ribbon, commandId)
+        public RibbonQuickAccessToolbar(Ribbon ribbon, uint commandId) : base(ribbon, commandId)
         {
             _ribbon = ribbon;
             _commandID = commandId;
@@ -83,21 +83,20 @@ namespace RibbonLib.Controls
         /// </summary>
         public override HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
         {
-            //if (key == RibbonProperties.ItemsSource)
+            QatItemsSource = new UICollection<QatCommandPropertySet>((IUICollection)currentValue.PropVariant.Value, this, CollectionType.QatItemsSource);
+            //List<object> items = new List<object>();
+            //if (_itemsSource != null)
             //{
-            //    if (_itemsSource != null)
-            //    {
-            //        IUICollection itemsSource = (IUICollection)currentValue.PropVariant.Value;
+            //    IUICollection itemsSource = (IUICollection)currentValue.PropVariant.Value;
 
-            //        itemsSource.Clear();
-            //        uint count;
-            //        _itemsSource.GetCount(out count);
-            //        for (uint i = 0; i < count; ++i)
-            //        {
-            //            object item;
-            //            _itemsSource.GetItem(i, out item);
-            //            itemsSource.Add(item);
-            //        }
+            //    //itemsSource.Clear();
+            //    uint count;
+            //    itemsSource.GetCount(out count);
+            //    for (uint i = 0; i < count; ++i)
+            //    {
+            //        object item;
+            //        itemsSource.GetItem(i, out item);
+            //        items.Add(item);
             //    }
             //}
             return HRESULT.S_OK;
@@ -106,6 +105,7 @@ namespace RibbonLib.Controls
         /// <summary>
         /// Items source property
         /// </summary>
+        [Obsolete("User should use QatItemsSource")]
         public IUICollection ItemsSource
         {
             get
@@ -120,8 +120,16 @@ namespace RibbonLib.Controls
                     }
                 }
 
-                return _itemsSource;
+                return null;
             }
+        }
+
+        /// <summary>
+        /// Managed Items source property
+        /// </summary>
+        public UICollection<QatCommandPropertySet> QatItemsSource
+        {
+            get; private set;
         }
 
         #endregion
@@ -134,7 +142,7 @@ namespace RibbonLib.Controls
         public event EventHandler<ExecuteEventArgs> ExecuteEvent
         {
             add
-            { 
+            {
                 if (_customizeButton != null)
                 {
                     _customizeButton.ExecuteEvent += value;

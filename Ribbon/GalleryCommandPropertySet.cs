@@ -14,11 +14,16 @@ namespace RibbonLib
     /// <summary>
     /// Helper class that wraps a gallery command simple property set.
     /// </summary>
-    public class GalleryCommandPropertySet : IUISimplePropertySet
+    public sealed class GalleryCommandPropertySet : AbstractPropertySet //, IUISimplePropertySet
     {
         private uint? _commandID;
         private CommandType? _commandType;
         private uint? _categoryID;
+
+        /// <summary>
+        /// The Ribbon Control like RibbonButton, ... which belongs to the CommandID
+        /// </summary>
+        public IRibbonControl RibbonCtrl { get; set; }
 
         /// <summary>
         /// Get or set the Command ID
@@ -65,6 +70,12 @@ namespace RibbonLib
             }
         }
 
+        /// <summary>
+        /// Gets or sets the object that contains to this PropertySet
+        /// Additional object for the user
+        /// </summary>
+        public object Tag { get; set; }
+
         #region IUISimplePropertySet Members
 
         /// <summary>
@@ -73,7 +84,7 @@ namespace RibbonLib
         /// <param name="key">The Property Key of interest.</param>
         /// <param name="value">When this method returns, contains a pointer to the value for key.</param>
         /// <returns></returns>
-        public HRESULT GetValue(ref PropertyKey key, out PropVariant value)
+        public override HRESULT GetValueImpl(ref PropertyKey key, out PropVariant value)
         {
             if (key == RibbonProperties.CommandID)
             {

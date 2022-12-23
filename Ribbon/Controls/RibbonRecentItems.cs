@@ -56,6 +56,19 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// This property contains the maximum count of recent items.
+        /// This is configured in the RibbonMarkup file
+        /// The value is available after first showing the file menu
+        /// </summary>
+        public int MaxCount
+        {
+            get
+            {
+                return _recentItemsPropertiesProvider.MaxCount;
+            }
+        }
+
         #endregion
 
         #region IKeytipPropertiesProvider Members

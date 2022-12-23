@@ -41,5 +41,16 @@ namespace RibbonLib
         /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
         HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue);
+
+        /// <summary>
+        /// Gets or sets the object that contains data about the control
+        /// </summary>
+        object Tag { get; set; }
+
+        /// <summary>
+        /// The CommandType of the Control
+        /// If the CommandType is CommandType.Unknown then the Control is not initialized by the Framework
+        /// </summary>
+        CommandType CommandType { get; }
     }
 }

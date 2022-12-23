@@ -645,9 +645,9 @@ namespace RibbonLib
             }
 
             // convert colors to proper color format
-            uint backgroundColor = ColorHelper.RGBToUInt32(background);
-            uint highlightColor = ColorHelper.RGBToUInt32(highlight);
-            uint textColor = ColorHelper.RGBToUInt32(text);
+            uint backgroundColor = ColorHelper.ColorToHSB(background);
+            uint highlightColor = ColorHelper.ColorToHSB(highlight);
+            uint textColor = ColorHelper.ColorToHSB(text);
 
             IPropertyStore propertyStore = (IPropertyStore)Framework;
 
@@ -675,7 +675,7 @@ namespace RibbonLib
             }
 
             // convert color to proper color format
-            uint color = ColorHelper.RGBToUInt32(background);
+            uint color = ColorHelper.ColorToHSB(background);
 
             IPropertyStore propertyStore = (IPropertyStore)Framework;
 
@@ -699,7 +699,7 @@ namespace RibbonLib
             }
 
             // convert color to proper color format
-            uint color = ColorHelper.RGBToUInt32(highlight);
+            uint color = ColorHelper.ColorToHSB(highlight);
 
             IPropertyStore propertyStore = (IPropertyStore)Framework;
 
@@ -723,7 +723,7 @@ namespace RibbonLib
             }
 
             // convert color to proper color format
-            uint color = ColorHelper.RGBToUInt32(text);
+            uint color = ColorHelper.ColorToHSB(text);
 
             IPropertyStore propertyStore = (IPropertyStore)Framework;
 
@@ -758,7 +758,7 @@ namespace RibbonLib
             uint background = (uint)backgroundColorProp.Value;
             uint highlight = (uint)highlightColorProp.Value;
             uint text = (uint)textColorProp.Value;
-            colors = new RibbonColors(ColorHelper.UInt32ToRGB(background), ColorHelper.UInt32ToRGB(highlight), ColorHelper.UInt32ToRGB(text));
+            colors = new RibbonColors(ColorHelper.HSBtoColor(background), ColorHelper.HSBtoColor(highlight), ColorHelper.HSBtoColor(text));
             return colors;
         }
 
