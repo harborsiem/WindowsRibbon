@@ -179,7 +179,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant unknownValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.Categories, out unknownValue);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         return (IUICollection)unknownValue.Value;
                     }
@@ -200,7 +200,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant unknownValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ItemsSource, out unknownValue);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         return (IUICollection)unknownValue.Value;
                     }
@@ -221,7 +221,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant uintValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.SelectedItem, out uintValue);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         return (uint)uintValue.Value;
                     }

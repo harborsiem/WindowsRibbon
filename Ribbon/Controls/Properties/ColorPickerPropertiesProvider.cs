@@ -233,7 +233,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant automaticColorLabel;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.AutomaticColorLabel, out automaticColorLabel);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         string result = (string)automaticColorLabel.Value;
                         PropVariant.Clear(ref automaticColorLabel);
@@ -274,7 +274,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant color;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.Color, out color);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         return ColorTranslator.FromWin32((int)(uint)color.Value);
                     }
@@ -304,7 +304,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant colorType;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ColorType, out colorType);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         return (SwatchColorType)colorType.Value;
                     }
@@ -334,7 +334,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant moreColorsLabel;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.MoreColorsLabel, out moreColorsLabel);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         string result = (string)moreColorsLabel.Value;
                         PropVariant.Clear(ref moreColorsLabel);
@@ -375,7 +375,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant noColorLabel;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.NoColorLabel, out noColorLabel);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         string result = (string)noColorLabel.Value;
                         PropVariant.Clear(ref noColorLabel);
@@ -416,7 +416,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant recentColorsCategoryLabel;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.RecentColorsCategoryLabel, out recentColorsCategoryLabel);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         string result = (string)recentColorsCategoryLabel.Value;
                         PropVariant.Clear(ref recentColorsCategoryLabel);
@@ -457,7 +457,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant standardColors;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.StandardColors, out standardColors);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         uint[] uintStandardColors = (uint[])standardColors.Value;
                         int[] intStandardColors = Array.ConvertAll<uint, int>(uintStandardColors, new Converter<uint, int>(Convert.ToInt32));
@@ -495,7 +495,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant standardColorsCategoryLabel;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.StandardColorsCategoryLabel, out standardColorsCategoryLabel);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         string result = (string)standardColorsCategoryLabel.Value;
                         PropVariant.Clear(ref standardColorsCategoryLabel);
@@ -536,7 +536,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant standardColorsTooltips;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.StandardColorsTooltips, out standardColorsTooltips);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         string[] result = (string[])standardColorsTooltips.Value;
                         PropVariant.Clear(ref standardColorsTooltips);
@@ -569,7 +569,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant themeColors;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ThemeColors, out themeColors);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         uint[] uintThemeColors = (uint[])themeColors.Value;
                         int[] intThemeColors = Array.ConvertAll<uint, int>(uintThemeColors, new Converter<uint, int>(Convert.ToInt32));
@@ -607,7 +607,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant themeColorsCategoryLabel;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ThemeColorsCategoryLabel, out themeColorsCategoryLabel);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         string result = (string)themeColorsCategoryLabel.Value;
                         PropVariant.Clear(ref themeColorsCategoryLabel);
@@ -648,7 +648,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant themeColorsTooltips;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ThemeColorsTooltips, out themeColorsTooltips);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         string[] result = (string[])themeColorsTooltips.Value;
                         PropVariant.Clear(ref themeColorsTooltips);

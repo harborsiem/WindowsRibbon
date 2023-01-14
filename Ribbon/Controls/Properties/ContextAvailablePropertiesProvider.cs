@@ -73,7 +73,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant uintValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ContextAvailable, out uintValue);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         return (ContextAvailability)uintValue.Value;
                     }

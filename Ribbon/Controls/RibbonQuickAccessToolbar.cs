@@ -114,7 +114,7 @@ namespace RibbonLib.Controls
                 {
                     PropVariant unknownValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ItemsSource, out unknownValue);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         return (IUICollection)unknownValue.Value;
                     }

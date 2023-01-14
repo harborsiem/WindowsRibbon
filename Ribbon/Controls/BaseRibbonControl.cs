@@ -138,8 +138,6 @@ namespace RibbonLib.Controls
             return HRESULT.S_OK;
         }
 
-        #endregion
-
         /// <summary>
         /// Gets or sets the object that contains data about the control
         /// </summary>
@@ -150,5 +148,7 @@ namespace RibbonLib.Controls
         /// If the CommandType is CommandType.Unknown then the Control is not initialized by the Framework
         /// </summary>
         public CommandType CommandType { get; internal set; }
+
+        #endregion
     }
 }

@@ -210,7 +210,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant iunknownValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.FontProperties, out iunknownValue);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         return (IPropertyStore)iunknownValue.Value;
                     }

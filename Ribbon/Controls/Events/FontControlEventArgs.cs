@@ -25,6 +25,8 @@ namespace RibbonLib.Controls.Events
 
         /// <summary>
         /// The changed values
+		/// Key is a String that is defined in RibbonProperties.cs for the Font control properties
+		/// like FontProperties_Family, FontProperties_Size, ...
         /// </summary>
         public Dictionary<string, object> ChangedValues { get; private set; }
 

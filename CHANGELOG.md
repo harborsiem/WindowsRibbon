@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.14.0, RibbonTools V1.6.0
+
+#### Changed (Ribbon)
+
+- Additional classes: AbstractPropertySet QatCommandPropertySet, UICollection<T>,, SelectedItem<T>, GalleryCommandProperties.
+- RecentItemsEventArgs, GalleryItemEventArgs, ColorPickerEventArgs, FontControlEventArgs, HRESULT, PInvoke
+- With usage of the additional classes the user don't need to handle Com interface IUICollection and the structs PropVariant and PropertyKey
+- DarkMode only for the Ribbon for newer Windows 10, Windows 11 versions.
+- Todo: Samples update, Events for the RibbonControls (Spinner, ToggleButton, CheckBox)
+
+#### Changed (RibbonTools)
+
+- Tooltips for Qat CustomizeCommand ComboBox
+- ResourceIdentifier savings
+- Preview colorization design issue
+
 ### Ribbon V2.13.0, RibbonTools V1.5.0
 
 #### Changed (Ribbon)

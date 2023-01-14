@@ -113,7 +113,7 @@ namespace UIRibbonTools
             this.tabSheetAppModes.Location = new System.Drawing.Point(4, 22);
             this.tabSheetAppModes.Name = "tabSheetAppModes";
             this.tabSheetAppModes.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSheetAppModes.Size = new System.Drawing.Size(792, 290);
+            this.tabSheetAppModes.Size = new System.Drawing.Size(792, 280);
             this.tabSheetAppModes.TabIndex = 0;
             this.tabSheetAppModes.Text = "Application Modes";
             this.tabSheetAppModes.UseVisualStyleBackColor = true;
@@ -148,7 +148,7 @@ namespace UIRibbonTools
             this.tabSheetContextTabs.Location = new System.Drawing.Point(4, 22);
             this.tabSheetContextTabs.Name = "tabSheetContextTabs";
             this.tabSheetContextTabs.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSheetContextTabs.Size = new System.Drawing.Size(792, 290);
+            this.tabSheetContextTabs.Size = new System.Drawing.Size(792, 280);
             this.tabSheetContextTabs.TabIndex = 1;
             this.tabSheetContextTabs.Text = "Contextual Tabs";
             this.tabSheetContextTabs.UseVisualStyleBackColor = true;
@@ -182,7 +182,7 @@ namespace UIRibbonTools
             this.tabSheetContextPopups.Controls.Add(this.labelContextPopups);
             this.tabSheetContextPopups.Location = new System.Drawing.Point(4, 22);
             this.tabSheetContextPopups.Name = "tabSheetContextPopups";
-            this.tabSheetContextPopups.Size = new System.Drawing.Size(792, 290);
+            this.tabSheetContextPopups.Size = new System.Drawing.Size(792, 280);
             this.tabSheetContextPopups.TabIndex = 2;
             this.tabSheetContextPopups.Text = "Context Popups";
             this.tabSheetContextPopups.UseVisualStyleBackColor = true;
@@ -214,14 +214,14 @@ namespace UIRibbonTools
             this.tabSheetColorize.Controls.Add(this.getColorsButton);
             this.tabSheetColorize.Location = new System.Drawing.Point(4, 22);
             this.tabSheetColorize.Name = "tabSheetColorize";
-            this.tabSheetColorize.Size = new System.Drawing.Size(792, 290);
+            this.tabSheetColorize.Size = new System.Drawing.Size(792, 280);
             this.tabSheetColorize.TabIndex = 3;
             this.tabSheetColorize.Text = "Colorize";
             this.tabSheetColorize.UseVisualStyleBackColor = true;
             // 
             // setColorsButton
             // 
-            this.setColorsButton.Location = new System.Drawing.Point(89, 180);
+            this.setColorsButton.Location = new System.Drawing.Point(87, 178);
             this.setColorsButton.Name = "setColorsButton";
             this.setColorsButton.Size = new System.Drawing.Size(75, 23);
             this.setColorsButton.TabIndex = 2;
@@ -230,7 +230,6 @@ namespace UIRibbonTools
             // 
             // colorizeLayout
             // 
-            this.colorizeLayout.AutoSize = true;
             this.colorizeLayout.ColumnCount = 3;
             this.colorizeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.colorizeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -244,23 +243,23 @@ namespace UIRibbonTools
             this.colorizeLayout.Controls.Add(this.textColorGroup, 2, 0);
             this.colorizeLayout.Controls.Add(this.textColorPanel, 2, 1);
             this.colorizeLayout.Controls.Add(this.textButton, 2, 2);
-            this.colorizeLayout.Location = new System.Drawing.Point(8, 3);
+            this.colorizeLayout.Location = new System.Drawing.Point(3, 3);
             this.colorizeLayout.Name = "colorizeLayout";
             this.colorizeLayout.RowCount = 3;
             this.colorizeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.colorizeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.colorizeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.colorizeLayout.Size = new System.Drawing.Size(618, 171);
+            this.colorizeLayout.Size = new System.Drawing.Size(408, 171);
             this.colorizeLayout.TabIndex = 1;
             // 
             // backgroundGroupBox1
             // 
-            this.backgroundGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.backgroundGroupBox1.AutoSize = true;
             this.backgroundGroupBox1.Controls.Add(this.backgroundLayout);
+            this.backgroundGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backgroundGroupBox1.Location = new System.Drawing.Point(3, 3);
             this.backgroundGroupBox1.Name = "backgroundGroupBox1";
-            this.backgroundGroupBox1.Size = new System.Drawing.Size(200, 100);
+            this.backgroundGroupBox1.Size = new System.Drawing.Size(130, 112);
             this.backgroundGroupBox1.TabIndex = 0;
             this.backgroundGroupBox1.TabStop = false;
             this.backgroundGroupBox1.Text = "BackgroundColor";
@@ -270,8 +269,8 @@ namespace UIRibbonTools
             this.backgroundLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.backgroundLayout.ColumnCount = 2;
-            this.backgroundLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.backgroundLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.backgroundLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.backgroundLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.backgroundLayout.Controls.Add(this.label1, 0, 0);
             this.backgroundLayout.Controls.Add(this.numericUpDownB_R, 1, 0);
             this.backgroundLayout.Controls.Add(this.label2, 0, 1);
@@ -285,14 +284,13 @@ namespace UIRibbonTools
             this.backgroundLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.backgroundLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.backgroundLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.backgroundLayout.Size = new System.Drawing.Size(194, 78);
+            this.backgroundLayout.Size = new System.Drawing.Size(124, 78);
             this.backgroundLayout.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 26);
@@ -302,23 +300,21 @@ namespace UIRibbonTools
             // 
             // numericUpDownB_R
             // 
-            this.numericUpDownB_R.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownB_R.Location = new System.Drawing.Point(100, 3);
+            this.numericUpDownB_R.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDownB_R.Location = new System.Drawing.Point(46, 3);
             this.numericUpDownB_R.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numericUpDownB_R.Name = "numericUpDownB_R";
-            this.numericUpDownB_R.Size = new System.Drawing.Size(91, 20);
+            this.numericUpDownB_R.Size = new System.Drawing.Size(75, 20);
             this.numericUpDownB_R.TabIndex = 4;
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
             this.label2.Location = new System.Drawing.Point(3, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 26);
@@ -328,23 +324,21 @@ namespace UIRibbonTools
             // 
             // numericUpDownB_G
             // 
-            this.numericUpDownB_G.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownB_G.Location = new System.Drawing.Point(100, 29);
+            this.numericUpDownB_G.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDownB_G.Location = new System.Drawing.Point(46, 29);
             this.numericUpDownB_G.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numericUpDownB_G.Name = "numericUpDownB_G";
-            this.numericUpDownB_G.Size = new System.Drawing.Size(91, 20);
+            this.numericUpDownB_G.Size = new System.Drawing.Size(75, 20);
             this.numericUpDownB_G.TabIndex = 5;
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
             this.label3.Location = new System.Drawing.Point(3, 52);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(28, 26);
@@ -354,31 +348,29 @@ namespace UIRibbonTools
             // 
             // numericUpDownB_B
             // 
-            this.numericUpDownB_B.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownB_B.Location = new System.Drawing.Point(100, 55);
+            this.numericUpDownB_B.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDownB_B.Location = new System.Drawing.Point(46, 55);
             this.numericUpDownB_B.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numericUpDownB_B.Name = "numericUpDownB_B";
-            this.numericUpDownB_B.Size = new System.Drawing.Size(91, 20);
+            this.numericUpDownB_B.Size = new System.Drawing.Size(75, 20);
             this.numericUpDownB_B.TabIndex = 6;
             // 
             // backgroundColorPanel
             // 
-            this.backgroundColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.backgroundColorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backgroundColorPanel.Location = new System.Drawing.Point(3, 121);
             this.backgroundColorPanel.Name = "backgroundColorPanel";
-            this.backgroundColorPanel.Size = new System.Drawing.Size(200, 18);
+            this.backgroundColorPanel.Size = new System.Drawing.Size(130, 18);
             this.backgroundColorPanel.TabIndex = 3;
             // 
             // backgroundButton
             // 
             this.backgroundButton.AutoSize = true;
+            this.backgroundButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.backgroundButton.Location = new System.Drawing.Point(3, 145);
             this.backgroundButton.Name = "backgroundButton";
             this.backgroundButton.Size = new System.Drawing.Size(94, 23);
@@ -388,12 +380,12 @@ namespace UIRibbonTools
             // 
             // highlightGroup
             // 
-            this.highlightGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.highlightGroup.AutoSize = true;
             this.highlightGroup.Controls.Add(this.highlightLayout);
-            this.highlightGroup.Location = new System.Drawing.Point(209, 3);
+            this.highlightGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.highlightGroup.Location = new System.Drawing.Point(139, 3);
             this.highlightGroup.Name = "highlightGroup";
-            this.highlightGroup.Size = new System.Drawing.Size(200, 100);
+            this.highlightGroup.Size = new System.Drawing.Size(130, 112);
             this.highlightGroup.TabIndex = 1;
             this.highlightGroup.TabStop = false;
             this.highlightGroup.Text = "HighlightColor";
@@ -403,8 +395,8 @@ namespace UIRibbonTools
             this.highlightLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.highlightLayout.ColumnCount = 2;
-            this.highlightLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.highlightLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.highlightLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.highlightLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.highlightLayout.Controls.Add(this.label4, 0, 0);
             this.highlightLayout.Controls.Add(this.numericUpDownH_R, 1, 0);
             this.highlightLayout.Controls.Add(this.label5, 0, 1);
@@ -418,14 +410,13 @@ namespace UIRibbonTools
             this.highlightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.highlightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.highlightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.highlightLayout.Size = new System.Drawing.Size(194, 78);
+            this.highlightLayout.Size = new System.Drawing.Size(124, 78);
             this.highlightLayout.TabIndex = 0;
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 26);
@@ -435,23 +426,21 @@ namespace UIRibbonTools
             // 
             // numericUpDownH_R
             // 
-            this.numericUpDownH_R.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownH_R.Location = new System.Drawing.Point(100, 3);
+            this.numericUpDownH_R.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDownH_R.Location = new System.Drawing.Point(46, 3);
             this.numericUpDownH_R.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numericUpDownH_R.Name = "numericUpDownH_R";
-            this.numericUpDownH_R.Size = new System.Drawing.Size(91, 20);
+            this.numericUpDownH_R.Size = new System.Drawing.Size(75, 20);
             this.numericUpDownH_R.TabIndex = 4;
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Left;
             this.label5.Location = new System.Drawing.Point(3, 26);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 26);
@@ -461,23 +450,21 @@ namespace UIRibbonTools
             // 
             // numericUpDownH_G
             // 
-            this.numericUpDownH_G.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownH_G.Location = new System.Drawing.Point(100, 29);
+            this.numericUpDownH_G.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDownH_G.Location = new System.Drawing.Point(46, 29);
             this.numericUpDownH_G.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numericUpDownH_G.Name = "numericUpDownH_G";
-            this.numericUpDownH_G.Size = new System.Drawing.Size(91, 20);
+            this.numericUpDownH_G.Size = new System.Drawing.Size(75, 20);
             this.numericUpDownH_G.TabIndex = 5;
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
             this.label6.Location = new System.Drawing.Point(3, 52);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(28, 26);
@@ -487,32 +474,30 @@ namespace UIRibbonTools
             // 
             // numericUpDownH_B
             // 
-            this.numericUpDownH_B.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownH_B.Location = new System.Drawing.Point(100, 55);
+            this.numericUpDownH_B.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDownH_B.Location = new System.Drawing.Point(46, 55);
             this.numericUpDownH_B.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numericUpDownH_B.Name = "numericUpDownH_B";
-            this.numericUpDownH_B.Size = new System.Drawing.Size(91, 20);
+            this.numericUpDownH_B.Size = new System.Drawing.Size(75, 20);
             this.numericUpDownH_B.TabIndex = 6;
             // 
             // highlightColorPanel
             // 
-            this.highlightColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.highlightColorPanel.Location = new System.Drawing.Point(209, 121);
+            this.highlightColorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.highlightColorPanel.Location = new System.Drawing.Point(139, 121);
             this.highlightColorPanel.Name = "highlightColorPanel";
-            this.highlightColorPanel.Size = new System.Drawing.Size(200, 18);
+            this.highlightColorPanel.Size = new System.Drawing.Size(130, 18);
             this.highlightColorPanel.TabIndex = 4;
             // 
             // highlightButton
             // 
             this.highlightButton.AutoSize = true;
-            this.highlightButton.Location = new System.Drawing.Point(209, 145);
+            this.highlightButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.highlightButton.Location = new System.Drawing.Point(139, 145);
             this.highlightButton.Name = "highlightButton";
             this.highlightButton.Size = new System.Drawing.Size(94, 23);
             this.highlightButton.TabIndex = 7;
@@ -521,12 +506,12 @@ namespace UIRibbonTools
             // 
             // textColorGroup
             // 
-            this.textColorGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textColorGroup.AutoSize = true;
             this.textColorGroup.Controls.Add(this.textLayout);
-            this.textColorGroup.Location = new System.Drawing.Point(415, 3);
+            this.textColorGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textColorGroup.Location = new System.Drawing.Point(275, 3);
             this.textColorGroup.Name = "textColorGroup";
-            this.textColorGroup.Size = new System.Drawing.Size(200, 100);
+            this.textColorGroup.Size = new System.Drawing.Size(130, 112);
             this.textColorGroup.TabIndex = 2;
             this.textColorGroup.TabStop = false;
             this.textColorGroup.Text = "TextColor";
@@ -536,8 +521,8 @@ namespace UIRibbonTools
             this.textLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textLayout.ColumnCount = 2;
-            this.textLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.textLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.textLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.textLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.textLayout.Controls.Add(this.label7, 0, 0);
             this.textLayout.Controls.Add(this.numericUpDownT_R, 1, 0);
             this.textLayout.Controls.Add(this.label8, 0, 1);
@@ -551,14 +536,13 @@ namespace UIRibbonTools
             this.textLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.textLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.textLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.textLayout.Size = new System.Drawing.Size(194, 78);
+            this.textLayout.Size = new System.Drawing.Size(124, 78);
             this.textLayout.TabIndex = 0;
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
             this.label7.Location = new System.Drawing.Point(3, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(27, 26);
@@ -568,23 +552,21 @@ namespace UIRibbonTools
             // 
             // numericUpDownT_R
             // 
-            this.numericUpDownT_R.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownT_R.Location = new System.Drawing.Point(100, 3);
+            this.numericUpDownT_R.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDownT_R.Location = new System.Drawing.Point(71, 3);
             this.numericUpDownT_R.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numericUpDownT_R.Name = "numericUpDownT_R";
-            this.numericUpDownT_R.Size = new System.Drawing.Size(91, 20);
+            this.numericUpDownT_R.Size = new System.Drawing.Size(75, 20);
             this.numericUpDownT_R.TabIndex = 4;
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Left;
             this.label8.Location = new System.Drawing.Point(3, 26);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 26);
@@ -594,23 +576,21 @@ namespace UIRibbonTools
             // 
             // numericUpDownT_G
             // 
-            this.numericUpDownT_G.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownT_G.Location = new System.Drawing.Point(100, 29);
+            this.numericUpDownT_G.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDownT_G.Location = new System.Drawing.Point(71, 29);
             this.numericUpDownT_G.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numericUpDownT_G.Name = "numericUpDownT_G";
-            this.numericUpDownT_G.Size = new System.Drawing.Size(91, 20);
+            this.numericUpDownT_G.Size = new System.Drawing.Size(75, 20);
             this.numericUpDownT_G.TabIndex = 5;
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Left;
             this.label9.Location = new System.Drawing.Point(3, 52);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(28, 26);
@@ -620,32 +600,30 @@ namespace UIRibbonTools
             // 
             // numericUpDownT_B
             // 
-            this.numericUpDownT_B.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownT_B.Location = new System.Drawing.Point(100, 55);
+            this.numericUpDownT_B.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDownT_B.Location = new System.Drawing.Point(71, 55);
             this.numericUpDownT_B.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.numericUpDownT_B.Name = "numericUpDownT_B";
-            this.numericUpDownT_B.Size = new System.Drawing.Size(91, 20);
+            this.numericUpDownT_B.Size = new System.Drawing.Size(75, 20);
             this.numericUpDownT_B.TabIndex = 6;
             // 
             // textColorPanel
             // 
-            this.textColorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textColorPanel.Location = new System.Drawing.Point(415, 121);
+            this.textColorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textColorPanel.Location = new System.Drawing.Point(275, 121);
             this.textColorPanel.Name = "textColorPanel";
-            this.textColorPanel.Size = new System.Drawing.Size(200, 18);
+            this.textColorPanel.Size = new System.Drawing.Size(130, 18);
             this.textColorPanel.TabIndex = 5;
             // 
             // textButton
             // 
             this.textButton.AutoSize = true;
-            this.textButton.Location = new System.Drawing.Point(415, 145);
+            this.textButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.textButton.Location = new System.Drawing.Point(275, 145);
             this.textButton.Name = "textButton";
             this.textButton.Size = new System.Drawing.Size(94, 23);
             this.textButton.TabIndex = 8;
@@ -654,7 +632,7 @@ namespace UIRibbonTools
             // 
             // getColorsButton
             // 
-            this.getColorsButton.Location = new System.Drawing.Point(8, 180);
+            this.getColorsButton.Location = new System.Drawing.Point(6, 178);
             this.getColorsButton.Name = "getColorsButton";
             this.getColorsButton.Size = new System.Drawing.Size(75, 23);
             this.getColorsButton.TabIndex = 0;
@@ -694,7 +672,6 @@ namespace UIRibbonTools
             this.tabSheetContextPopups.ResumeLayout(false);
             this.tabSheetContextPopups.PerformLayout();
             this.tabSheetColorize.ResumeLayout(false);
-            this.tabSheetColorize.PerformLayout();
             this.colorizeLayout.ResumeLayout(false);
             this.colorizeLayout.PerformLayout();
             this.backgroundGroupBox1.ResumeLayout(false);

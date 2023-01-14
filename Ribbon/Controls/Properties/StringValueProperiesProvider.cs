@@ -73,7 +73,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant stringValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.StringValue, out stringValue);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         string result = (string)stringValue.Value;
                         PropVariant.Clear(ref stringValue);

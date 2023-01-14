@@ -17,6 +17,8 @@ namespace UIRibbonTools
 
         private Label Label2 { get => _label2; }
         private ComboBox ComboBoxCustomizeCommand { get => _comboBoxCustomizeCommand; }
+        private NativeMethods.COMBOBOXINFO _commandInfo;
+        private ToolTip _commandTip;
 
         private TRibbonQuickAccessToolbar _quickAccessToolbar;
 
@@ -31,6 +33,7 @@ namespace UIRibbonTools
         {
             if (components == null)
                 components = new Container();
+            _commandTip = new ToolTip(components);
             this._label2 = new System.Windows.Forms.Label();
             this._comboBoxCustomizeCommand = new System.Windows.Forms.ComboBox();
             base.InitComponentStep1();
@@ -92,6 +95,10 @@ namespace UIRibbonTools
         {
             base.InitEvents();
             ComboBoxCustomizeCommand.SelectedIndexChanged += ComboBoxCustomizeCommandChange;
+            ComboBoxCustomizeCommand.DrawMode = DrawMode.OwnerDrawFixed;
+            ComboBoxCustomizeCommand.DrawItem += ComboBoxCommand_DrawItem;
+            ComboBoxCustomizeCommand.DropDownClosed += ComboBoxCommand_DropDownClosed;
+            ComboBoxCustomizeCommand.HandleCreated += ComboBoxCommand_HandleCreated;
         }
 
         protected override void InitTooltips(IContainer components)
@@ -163,6 +170,41 @@ namespace UIRibbonTools
         protected override Image SetImageSample()
         {
             return sample;
+        }
+
+        private void ComboBoxCommand_HandleCreated(object sender, EventArgs e)
+        {
+            _commandInfo = NativeMethods.COMBOBOXINFO.Create();
+            NativeMethods.GetComboBoxInfo(_comboBoxCustomizeCommand.Handle, ref _commandInfo);
+        }
+
+        private void ComboBoxCommand_DropDownClosed(object sender, EventArgs e)
+        {
+            _commandTip.Hide(_comboBoxCustomizeCommand);
+        }
+
+        private void ComboBoxCommand_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0)
+                return;
+            string text = _comboBoxCustomizeCommand.GetItemText(_comboBoxCustomizeCommand.Items[e.Index]);
+            RibbonCommandItem item = (RibbonCommandItem)_comboBoxCustomizeCommand.Items[e.Index];
+            e.DrawBackground();
+            using (SolidBrush br = new SolidBrush(e.ForeColor))
+            {
+                e.Graphics.DrawString(text, e.Font, br, e.Bounds);
+            }
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected && (e.State & DrawItemState.ComboBoxEdit) != DrawItemState.ComboBoxEdit)
+            {
+                NativeMethods.RECT comboRect;
+                NativeMethods.RECT listRect;
+                NativeMethods.GetWindowRect(_commandInfo.hwndCombo, out comboRect);
+                NativeMethods.GetWindowRect(_commandInfo.hwndList, out listRect);
+                int plusY = listRect.Top - comboRect.Top;
+                _commandTip.Hide(_comboBoxCustomizeCommand);
+                _commandTip.Show(item.Description, _comboBoxCustomizeCommand, e.Bounds.Right, e.Bounds.Y + plusY, 2000);
+            }
+            e.DrawFocusRectangle();
         }
     }
 }

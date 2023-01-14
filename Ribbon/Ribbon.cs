@@ -526,11 +526,11 @@ namespace RibbonLib
         void InitFramework(string resourceName, string ribbonDllName)
         {
             // dynamically load ribbon library
-            _loadedDllHandle = NativeMethods.LoadLibraryEx(ribbonDllName, IntPtr.Zero,
-                                                            NativeMethods.DONT_RESOLVE_DLL_REFERENCES |
-                                                            NativeMethods.LOAD_IGNORE_CODE_AUTHZ_LEVEL |
-                                                            NativeMethods.LOAD_LIBRARY_AS_DATAFILE |
-                                                            NativeMethods.LOAD_LIBRARY_AS_IMAGE_RESOURCE);
+            _loadedDllHandle = PInvoke.LoadLibraryEx(ribbonDllName, IntPtr.Zero,
+                                                            LOAD_LIBRARY_FLAGS.DONT_RESOLVE_DLL_REFERENCES |
+                                                            LOAD_LIBRARY_FLAGS.LOAD_IGNORE_CODE_AUTHZ_LEVEL |
+                                                            LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE |
+                                                            LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_IMAGE_RESOURCE);
 
             if (_loadedDllHandle == IntPtr.Zero)
             {
@@ -556,7 +556,7 @@ namespace RibbonLib
 
             // init ribbon framework
             HRESULT hr = Framework.Initialize(this.WindowHandle, _application);
-            if (NativeMethods.Failed(hr))
+            if (hr.Failed)
             {
                 Marshal.ThrowExceptionForHR((int)hr);
             }
@@ -573,7 +573,7 @@ namespace RibbonLib
                 }
             }
 
-            if (NativeMethods.Failed(hr))
+            if (hr.Failed)
             {
                 Marshal.ThrowExceptionForHR((int)hr);
             }
@@ -601,7 +601,7 @@ namespace RibbonLib
             if (_loadedDllHandle != IntPtr.Zero)
             {
                 // free dynamic library
-                NativeMethods.FreeLibrary(_loadedDllHandle);
+                PInvoke.FreeLibrary(_loadedDllHandle);
                 _loadedDllHandle = IntPtr.Zero;
             }
 
@@ -830,7 +830,7 @@ namespace RibbonLib
             object contextualUIObject;
             Guid contextualUIGuid = new Guid(RibbonIIDGuid.IUIContextualUI);
             HRESULT hr = Framework.GetView(contextPopupID, ref contextualUIGuid, out contextualUIObject);
-            if (NativeMethods.Succeeded(hr))
+            if (hr.Succeeded)
             {
                 IUIContextualUI contextualUI = contextualUIObject as IUIContextualUI;
                 contextualUI.ShowAtLocation(x, y);
@@ -839,6 +839,85 @@ namespace RibbonLib
             else
             {
                 Marshal.ThrowExceptionForHR((int)hr);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Color ApplicationButtonColor
+        {
+            get
+            {
+                // check that ribbon is initialized
+                if (!Initialized)
+                {
+                    return default(Color);
+                }
+
+                IPropertyStore propertyStore = (IPropertyStore)this.Framework;
+                HRESULT hr = propertyStore.GetValue(RibbonProperties.ApplicationButtonColor, out PropVariant propVariant);
+                if (hr.Succeeded)
+                {
+                    uint result = (uint)propVariant.Value;
+                    Color color = ColorHelper.HSBtoColor(result);
+                    return color;
+                }
+                return default(Color);
+            }
+            set
+            {
+                // check that ribbon is initialized
+                if (!Initialized)
+                {
+                    return;
+                }
+                uint hsb = ColorHelper.ColorToHSB(value);
+                IPropertyStore propertyStore = (IPropertyStore)this.Framework;
+                PropVariant propVariant = PropVariant.FromObject(hsb);
+                HRESULT hr = propertyStore.SetValue(RibbonProperties.ApplicationButtonColor, propVariant);
+                if (hr.Succeeded)
+                    hr = propertyStore.Commit();
+            }
+        }
+
+        /// <summary>
+        /// Get or Set the DarkModeRibbon PropertyKey
+        /// </summary>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool DarkModeRibbon
+        {
+            get
+            {
+                // check that ribbon is initialized
+                if (!Initialized)
+                {
+                    return false;
+                }
+
+                IPropertyStore propertyStore = (IPropertyStore)this.Framework;
+                HRESULT hr = propertyStore.GetValue(RibbonProperties.DarkModeRibbon, out PropVariant propDarkMode);
+                if (hr.Succeeded)
+                {
+                    bool result = (bool)propDarkMode.Value;
+                    return result;
+                }
+                return false;
+            }
+            set
+            {
+                // check that ribbon is initialized
+                if (!Initialized)
+                {
+                    return;
+                }
+
+                IPropertyStore propertyStore = (IPropertyStore)this.Framework;
+                PropVariant propDarkMode = PropVariant.FromObject(value);
+                HRESULT hr = propertyStore.SetValue(RibbonProperties.DarkModeRibbon, propDarkMode);
+                if (hr.Succeeded)
+                    hr = propertyStore.Commit();
             }
         }
 

@@ -73,7 +73,7 @@ namespace RibbonLib.Controls.Properties
                 {
                     PropVariant boolValue;
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.BooleanValue, out boolValue);
-                    if (NativeMethods.Succeeded(hr))
+                    if (hr.Succeeded)
                     {
                         return (bool)boolValue.Value;
                     }

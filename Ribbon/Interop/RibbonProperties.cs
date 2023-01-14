@@ -214,6 +214,8 @@ namespace RibbonLib.Interop
         public static PropertyKey GlobalBackgroundColor = CreateRibbonPropertyKey(2000, VarEnum.VT_UI4); // UI_HSBCOLOR
         public static PropertyKey GlobalHighlightColor = CreateRibbonPropertyKey(2001, VarEnum.VT_UI4); // UI_HSBCOLOR
         public static PropertyKey GlobalTextColor = CreateRibbonPropertyKey(2002, VarEnum.VT_UI4); // UI_HSBCOLOR
+        public static PropertyKey ApplicationButtonColor = CreateRibbonPropertyKey(2003, VarEnum.VT_UI4); // UI_HSBCOLOR
+        public static PropertyKey DarkModeRibbon = CreateRibbonPropertyKey(2004, VarEnum.VT_BOOL);
 
         public static PropertyKey CreateRibbonPropertyKey(Int32 index, VarEnum id)
         {

@@ -13,49 +13,26 @@ using System.Runtime.InteropServices;
 namespace RibbonLib.Interop
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-    /// <summary>
-    /// HRESULT Wrapper
-    /// </summary>
-    public enum HRESULT : uint
-    {
-        S_OK = 0x00000000,
-        S_FALSE = 0x00000001,
-        E_ABORT = 0x80004004,
-        E_FAIL = 0x80004005,
-        E_NOTIMPL = 0x80004001,
-        E_INVALIDARG = 0x80070057,
-        ERROR_NOT_SUPPORTED = 0x80070032,
-    }
 
-    public static class NativeMethods
-    {
-        public const uint DONT_RESOLVE_DLL_REFERENCES = 0x00000001;
-        public const uint LOAD_LIBRARY_AS_DATAFILE = 0x00000002;
-        public const uint LOAD_WITH_ALTERED_SEARCH_PATH = 0x00000008;
-        public const uint LOAD_IGNORE_CODE_AUTHZ_LEVEL = 0x00000010;
-        public const uint LOAD_LIBRARY_AS_IMAGE_RESOURCE = 0x00000020;
-        public const uint LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE = 0x00000040;
-        public const uint LOAD_LIBRARY_REQUIRE_SIGNED_TARGET = 0x00000080;
+    //public static class NativeMethods
+    //{
+    //    public const uint DONT_RESOLVE_DLL_REFERENCES = 0x00000001;
+    //    public const uint LOAD_LIBRARY_AS_DATAFILE = 0x00000002;
+    //    public const uint LOAD_WITH_ALTERED_SEARCH_PATH = 0x00000008;
+    //    public const uint LOAD_IGNORE_CODE_AUTHZ_LEVEL = 0x00000010;
+    //    public const uint LOAD_LIBRARY_AS_IMAGE_RESOURCE = 0x00000020;
+    //    public const uint LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE = 0x00000040;
+    //    public const uint LOAD_LIBRARY_REQUIRE_SIGNED_TARGET = 0x00000080;
 
-        [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)] string lpFileName);
+    //    [DllImport("kernel32.dll", SetLastError = true)]
+    //    public static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)] string lpFileName);
 
-        [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, uint dwFlags);
+    //    [DllImport("kernel32.dll", SetLastError = true)]
+    //    public static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hFile, uint dwFlags);
 
-        [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool FreeLibrary([In] IntPtr hModule);
-
-        public static bool Succeeded(HRESULT hr)
-        {
-            return ((int)hr >= 0);
-        }
-
-        public static bool Failed(HRESULT hr)
-        {
-            return ((int)hr < 0);
-        }
-    }
+    //    [DllImport("kernel32.dll", SetLastError = true)]
+    //    public static extern bool FreeLibrary([In] IntPtr hModule);
+    //}
 
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

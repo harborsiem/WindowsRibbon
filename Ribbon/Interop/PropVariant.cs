@@ -1283,6 +1283,72 @@ namespace RibbonLib.Interop
 
         #endregion
 
+        #region PropVariant macros
+
+        const short VARIANT_TRUE = -1;
+        const short VARIANT_FALSE = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fVal"></param>
+        /// <param name="ppropvar"></param>
+        /// <returns></returns>
+        public static HRESULT InitPropVariantFromBoolean(bool fVal, out PropVariant ppropvar)
+        {
+            ppropvar = new PropVariant();
+            ppropvar.valueType = (ushort)VarEnum.VT_BOOL;
+            ppropvar.valueData = fVal ? (IntPtr)VARIANT_TRUE : (IntPtr)VARIANT_FALSE;
+            return HRESULT.S_OK;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ulVal"></param>
+        /// <param name="ppropvar"></param>
+        /// <returns></returns>
+        public static HRESULT InitPropVariantFromUInt32(uint ulVal, out PropVariant ppropvar)
+        {
+            ppropvar = new PropVariant();
+            ppropvar.valueType = (ushort)VarEnum.VT_UI4;
+            ppropvar.valueData = (IntPtr)(int)ulVal;
+            return HRESULT.S_OK;
+        }
+
+        // Creates a VT_LPWSTR propvariant.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="psz"></param>
+        /// <param name="ppropvar"></param>
+        /// <returns></returns>
+        public static HRESULT InitPropVariantFromString(string psz, out PropVariant ppropvar)
+        {
+            ppropvar = new PropVariant();
+            HRESULT hr = psz != null ? HRESULT.S_OK : HRESULT.E_INVALIDARG; // Previous API behavior counter to the SAL requirement.
+            if (hr.Succeeded)
+            {
+                IntPtr pwszVal = Marshal.StringToCoTaskMemUni(psz);
+                //SIZE_T const byteCount = static_cast<SIZE_T>((wcslen(psz) + 1) * sizeof(*psz));
+                //V_UNION(ppropvar, pwszVal) = static_cast<PWSTR>(CoTaskMemAlloc(byteCount));
+                //hr = V_UNION(ppropvar, pwszVal) ? HRESULT.S_OK : HRESULT.E_OUTOFMEMORY;
+                ppropvar.valueData = pwszVal;
+                if (hr.Succeeded)
+                {
+                    //memcpy_s(V_UNION(ppropvar, pwszVal), byteCount, psz, byteCount);
+                    ppropvar.valueType = (ushort)VarEnum.VT_LPWSTR;
+                }
+            }
+            if (hr.Failed)
+            {
+                PropVariantInit(ref ppropvar);
+            }
+            return hr;
+        }
+
+        #endregion PropVariant macros
+
     }
 
     // It is sometimes useful to represent the struct as a reference-type 

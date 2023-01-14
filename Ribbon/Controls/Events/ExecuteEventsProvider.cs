@@ -33,7 +33,7 @@ namespace RibbonLib.Controls.Events
         /// <summary>
         /// Initializes a new instance of the ExecuteEventsProvider
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">Is a RibbonControl like RibbonButton</param>
         public ExecuteEventsProvider(object sender)
         {
             _sender = sender;

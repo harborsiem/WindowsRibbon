@@ -123,6 +123,8 @@
     <Compile Include="Controls\Properties\IPropertiesProvider.cs" />
     <Compile Include="Controls\RibbonSplitButtonGallery.cs" />
     <Compile Include="Controls\RibbonTab.cs" />
+    <Compile Include="Interop\HRESULT.cs" />
+    <Compile Include="Interop\PInvoke.cs" />
     <Compile Include="Interop\PropertyKey.cs" />
     <Compile Include="Interop\PropVariant.cs" />
     <Compile Include="Interop\StreamAdapter.cs" />

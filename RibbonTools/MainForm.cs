@@ -518,8 +518,14 @@ namespace UIRibbonTools
         {
             string userInput;
             userInput = InputBox.Show(this, "Enter resource name", "Please enter a resource name that is used for this ribbon markup", _document.Application.ResourceName);
-            if (!string.IsNullOrEmpty(userInput))
-                _document.Application.ResourceName = userInput;
+            if (!string.IsNullOrWhiteSpace(userInput))
+            {
+                if (userInput != _document.Application.ResourceName)
+                {
+                    Modified();
+                    _document.Application.ResourceName = userInput;
+                }
+            }
         }
 
         private void ActionSettingsExecute(object sender, EventArgs e)
@@ -875,8 +881,15 @@ namespace UIRibbonTools
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     _actionSetResourceName.Visible = Settings.Instance.AllowChangingResourceName;
+                    if (!Settings.Instance.AllowChangingResourceName)
+                    {
+                        if (_document.Application.ResourceName != TRibbonObject.ApplicationDefaultName)
+                        {
+                            Modified();
+                            _document.Application.ResourceName = TRibbonObject.ApplicationDefaultName;
+                        }
+                    }
                 }
-
             }
             finally
             {

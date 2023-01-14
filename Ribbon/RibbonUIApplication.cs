@@ -75,7 +75,7 @@ namespace RibbonLib
                         // Call to the framework to determine the desired height of the Ribbon.
                         hr = UIRibbon.GetHeight(out uRibbonHeight);
 
-                        if (NativeMethods.Failed(hr))
+                        if (hr.Failed)
                         {
                             // error
                         }
