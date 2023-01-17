@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://schemas.microsoft.com/windows/2009/Ribbon">
+  <Application.Commands>
+    <Command Name="cmdApplication" Id="2" />
+    <Command Name="cmdQat" Id="3" />
+    <Command Name="cmdQatCustomize" Id="4" LabelTitle="QatCustomize" TooltipTitle="Customize"/>
+    <Command Name="cmdTab1" Id="5" LabelTitle="Start" />
+    <Command Name="cmdGroup1_1" Id="6" LabelTitle="Group1_1" />
+    <Command Name="cmdDropDownColor" Id="7" LabelTitle="ColorPicker" TooltipTitle="ColorPicker" TooltipDescription="ColorPicker">
+      <Command.SmallImages>
+        <Image>Res/Colors32.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image>Res/Colors32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroup1_2" Id="8" LabelTitle="Fonts" />
+    <Command Name="cmdFontPicker" Id="9" LabelTitle="Font" TooltipTitle="FontControl" TooltipDescription="FontControl" />
+    <Command Name="cmdRecentItems" Id="10" LabelTitle="Recent Items" LabelDescription="Filenames" TooltipTitle="Recent Items" TooltipDescription="Filenames" />
+    <Command Name="cmdButtonOpen" Id="11" LabelTitle="Open" TooltipTitle="Open" TooltipDescription="Open an ...">
+      <Command.SmallImages>
+        <Image>Res/Open32.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image>Res/Open32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroup1_3" Id="12" LabelTitle="Group1_3" />
+    <Command Name="cmdInRibbon" Id="13" LabelTitle="InRibbon" TooltipTitle="InRibbon" TooltipDescription="InRibbon Commands" />
+    <Command Name="cmdButtonHelp" Id="14" LabelTitle="Help" TooltipTitle="Help" TooltipDescription="Help me" />
+    <Command Name="cmdGroup1_4" Id="15" LabelTitle="Group1_4" LabelDescription="Group1_4" />
+    <Command Name="cmdComboBox" Id="16" LabelTitle="Combo" />
+  </Application.Commands>
+  <Application.Views>
+    <Ribbon>
+      <Ribbon.ApplicationMenu>
+        <ApplicationMenu CommandName="cmdApplication">
+          <ApplicationMenu.RecentItems>
+            <RecentItems CommandName="cmdRecentItems" />
+          </ApplicationMenu.RecentItems>
+          <MenuGroup>
+            <Button CommandName="cmdButtonOpen" />
+          </MenuGroup>
+        </ApplicationMenu>
+      </Ribbon.ApplicationMenu>
+      <Ribbon.HelpButton>
+        <HelpButton CommandName="cmdButtonHelp" />
+      </Ribbon.HelpButton>
+      <Ribbon.QuickAccessToolbar>
+        <QuickAccessToolbar CommandName="cmdQat" CustomizeCommandName="cmdQatCustomize">
+          <QuickAccessToolbar.ApplicationDefaults>
+            <Button CommandName="cmdButtonOpen" ApplicationDefaults.IsChecked="true" />
+          </QuickAccessToolbar.ApplicationDefaults>
+        </QuickAccessToolbar>
+      </Ribbon.QuickAccessToolbar>
+      <Ribbon.Tabs>
+        <Tab CommandName="cmdTab1">
+          <Group CommandName="cmdGroup1_1" SizeDefinition="OneButton">
+            <DropDownColorPicker CommandName="cmdDropDownColor" />
+          </Group>
+          <Group CommandName="cmdGroup1_2" SizeDefinition="OneFontControl">
+            <FontControl CommandName="cmdFontPicker" FontType="FontWithColor" IsHighlightButtonVisible="true" />
+          </Group>
+          <Group CommandName="cmdGroup1_3" SizeDefinition="OneInRibbonGallery">
+            <InRibbonGallery CommandName="cmdInRibbon" Type="Commands" HasLargeItems="false" MaxColumns="3" MaxRows="3" />
+          </Group>
+          <Group CommandName="cmdGroup1_4">
+            <ComboBox CommandName="cmdComboBox" IsEditable="false" />
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+    </Ribbon>
+    <ContextPopup />
+  </Application.Views>
+</Application>
+<!--ResourceName Value="APPLICATION"-->

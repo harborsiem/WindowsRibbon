@@ -43,6 +43,16 @@ namespace RibbonLib.Controls.Events
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="e">Parameters from event: ExecuteEventArgs</param>
+        /// <returns></returns>
+        public static ColorPickerEventArgs Create(ExecuteEventArgs e)
+        {
+            return Create(ref e.Key.PropertyKey, ref e.CurrentValue.PropVariant, e.CommandExecutionProperties);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="key"></param>
         /// <param name="currentValue"></param>
         /// <param name="commandExecutionProperties"></param>

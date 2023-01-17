@@ -146,13 +146,13 @@ namespace RibbonLib
         /// <summary>
         /// Indicated whether the "Grow Font" or "Shrink Font" buttons were pressed.
         /// </summary>
-        public FontDeltaSize DeltaSize
+        public FontDeltaSize? DeltaSize
         {
             get
             {
                 PropVariant propDeltaSize;
                 HRESULT hr = _propertyStore.GetValue(ref RibbonProperties.FontProperties_DeltaSize, out propDeltaSize);
-                return (FontDeltaSize)(uint)propDeltaSize.Value;
+                return (FontDeltaSize?)(uint?)propDeltaSize.Value;
             }
         }
 

@@ -6,11 +6,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 #### Changed (Ribbon)
 
-- Additional classes: AbstractPropertySet QatCommandPropertySet, UICollection<T>,, SelectedItem<T>, GalleryCommandProperties.
+- Additional classes: AbstractPropertySet, QatCommandPropertySet, UICollection<T>, SelectedItem<T>, GalleryCommandProperties.
 - RecentItemsEventArgs, GalleryItemEventArgs, ColorPickerEventArgs, FontControlEventArgs, HRESULT, PInvoke
 - With usage of the additional classes the user don't need to handle Com interface IUICollection and the structs PropVariant and PropertyKey
-- DarkMode only for the Ribbon for newer Windows 10, Windows 11 versions.
-- Todo: Samples update, Events for the RibbonControls (Spinner, ToggleButton, CheckBox)
+- Gallery controls like RibbonComboBox, RibbonDropDownGallery, RibbonInRibbonGallery, RibbonSplitButtonGallery have easy to use new properties.
+GCategories, GItemItemsSource (for Item controls), GCommandItemsSource (for Command controls)
+These new properties should be used instead of ItemsSource, Categories
+- RibbonQuickAccessToolbar gets a new property: QatItemsSource. This should be used instead of ItemsSource
+- DarkMode only for the Ribbon for newer Windows 10, Windows 11 versions (DarkModeRibbon property in the Ribbon class). But wait till Microsoft delivers DarkMode for WinForms
+- Bugfix in FontPropertyStore (DeltaSize is changed to a Nullable enum)
+- In events for Spinner, ToggleButton, CheckBox one don't need to use ExecuteEventsArgs class.
+ 1. One can use for RibbonSpinner the property DecimalValue from this RibbonControl
+ 2. For RibbonToggleButton, RibbonCheckBox one can use property BooleanValue
+- new C# Sample "NewFunctions" that shows the usage of new functions.
 
 #### Changed (RibbonTools)
 

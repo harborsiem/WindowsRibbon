@@ -28,6 +28,16 @@ namespace RibbonLib.Controls.Events
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="e">Parameters from event: ExecuteEventArgs</param>
+        /// <returns></returns>
+        public static GalleryItemEventArgs Create(ExecuteEventArgs e)
+        {
+            return Create(ref e.Key.PropertyKey, ref e.CurrentValue.PropVariant, e.CommandExecutionProperties);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="key"></param>
         /// <param name="currentValue"></param>
         /// <param name="commandExecutionProperties"></param>
@@ -42,7 +52,8 @@ namespace RibbonLib.Controls.Events
                 // get selected item index
                 selectedItemIndex = (int)(uint)currentValue.Value;
 
-                propSet = GetGalleryItemProperty(commandExecutionProperties);
+                if (commandExecutionProperties != null)
+                    propSet = GetGalleryItemProperty(commandExecutionProperties);
                 selected = new SelectedItem<GalleryItemPropertySet>(selectedItemIndex, propSet);
             }
             GalleryItemEventArgs e = new GalleryItemEventArgs(selected);

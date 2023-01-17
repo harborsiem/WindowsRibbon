@@ -17,18 +17,35 @@ namespace RibbonLib.Controls.Events
         /// <summary>
         /// Ctor
         /// </summary>
+        /// <param name="currentFontStore"></param>
         /// <param name="changedValues"></param>
-        private FontControlEventArgs(Dictionary<string, object> changedValues)
+        private FontControlEventArgs(FontPropertyStore currentFontStore, Dictionary<string, object> changedValues)
         {
+            CurrentFontStore = currentFontStore;
             ChangedValues = changedValues;
         }
 
         /// <summary>
-        /// The changed values
+        /// Current Font Properties Store
+        /// </summary>
+        public FontPropertyStore CurrentFontStore { get; private set; }
+
+        /// <summary>
+        /// The changed values, can be null
 		/// Key is a String that is defined in RibbonProperties.cs for the Font control properties
 		/// like FontProperties_Family, FontProperties_Size, ...
         /// </summary>
         public Dictionary<string, object> ChangedValues { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e">Parameters from event: ExecuteEventArgs</param>
+        /// <returns></returns>
+        public static FontControlEventArgs Create(ExecuteEventArgs e)
+        {
+            return Create(ref e.Key.PropertyKey, ref e.CurrentValue.PropVariant, e.CommandExecutionProperties);
+        }
 
         /// <summary>
         /// 
@@ -40,19 +57,27 @@ namespace RibbonLib.Controls.Events
         public static FontControlEventArgs Create(ref PropertyKey key, ref PropVariant currentValue, IUISimplePropertySet commandExecutionProperties)
         {
             HRESULT hr;
-            Dictionary<string, object> keys = new Dictionary<string, object>();
+            IPropertyStore currentStore = null;
+            FontPropertyStore fontStore = null;
+            if (key == RibbonProperties.FontProperties)
+            {
+                currentStore = (IPropertyStore)currentValue.Value;
+                fontStore = new FontPropertyStore(currentStore);
+            }
+            Dictionary<string, object> keys = null;
             PropVariant varChanges;
             if (commandExecutionProperties != null)
             {
                 hr = commandExecutionProperties.GetValue(RibbonProperties.FontProperties_ChangedProperties, out varChanges);
                 if (varChanges.VarType != VarEnum.VT_EMPTY)
                 {
+                    keys = new Dictionary<string, object>();
                     IPropertyStore store = (IPropertyStore)varChanges.Value;
                     Solution1(store, keys);
                     PropVariant.UnsafeNativeMethods.PropVariantClear(ref varChanges);
                 }
             }
-            FontControlEventArgs e = new FontControlEventArgs(keys);
+            FontControlEventArgs e = new FontControlEventArgs(fontStore, keys);
             return e;
         }
 

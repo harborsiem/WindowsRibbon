@@ -319,6 +319,21 @@ namespace RibbonLib
         #endregion
 
         /// <summary>
+        /// Event provider: The Collection is changing.
+        /// </summary>
+        public event EventHandler<UICollectionChangedEventArgs> ChangedEvent
+        {
+            add
+            {
+                _changedEvent.ChangedEvent += value;
+            }
+            remove
+            {
+                _changedEvent.ChangedEvent -= value;
+            }
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         private sealed class PropertySetEnumerator : IEnumerable<T>, IEnumerator<T>

@@ -50,6 +50,17 @@ namespace RibbonLib.Controls.Events
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="sender">Parameters from event: sender = RibbonControl</param>
+        /// <param name="e">Parameters from event: ExecuteEventArgs</param>
+        /// <returns></returns>
+        public static RecentItemsEventArgs Create(object sender, ExecuteEventArgs e)
+        {
+            return Create(sender, ref e.Key.PropertyKey, ref e.CurrentValue.PropVariant, e.CommandExecutionProperties);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="sender"></param>
         /// <param name="key"></param>
         /// <param name="currentValue"></param>

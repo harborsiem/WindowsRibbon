@@ -944,6 +944,9 @@ namespace RibbonLib.Interop
                         return GetVector<Boolean>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_FILETIME):
                         return GetVector<DateTime>();
+                    case VarEnum.VT_EMPTY:
+                    case VarEnum.VT_NULL:
+                        return null;
                     default:
                         throw new NotSupportedException("The type of this variable is not support ('" + valueType.ToString(CultureInfo.CurrentCulture.NumberFormat) + "')");
                 }
