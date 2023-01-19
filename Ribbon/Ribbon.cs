@@ -296,20 +296,6 @@ namespace RibbonLib
         /// <summary>
         /// Check if ribbon framework has been initialized
         /// </summary>
-        [Obsolete("Use Initialized")]
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Initalized
-        {
-            get
-            {
-                return (Framework != null);
-            }
-        }
-
-        /// <summary>
-        /// Check if ribbon framework has been initialized
-        /// </summary>
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Initialized
         {

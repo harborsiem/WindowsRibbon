@@ -14,11 +14,37 @@ GCategories, GItemItemsSource (for Item controls), GCommandItemsSource (for Comm
 These new properties should be used instead of ItemsSource, Categories
 - RibbonQuickAccessToolbar gets a new property: QatItemsSource. This should be used instead of ItemsSource
 - DarkMode only for the Ribbon for newer Windows 10, Windows 11 versions (DarkModeRibbon property in the Ribbon class). But wait till Microsoft delivers DarkMode for WinForms
+
+```
+        // Example code for the (Ribbon) Form to change DarkMode in TitleBar. 
+		
+		public unsafe void SetDarkModeTitleBar(bool enabled)
+        {
+            HRESULT hr;
+            int trueValue = 0x01, falseValue = 0x00;
+            HWND hwnd = new HWND(this.Handle);
+            if (enabled)
+            {
+                hr = PInvoke.DwmSetWindowAttribute(hwnd, DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE, &trueValue, (uint)Marshal.SizeOf(typeof(int)));
+                PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, new WPARAM(0), new LPARAM());
+                PInvoke.UpdateWindow(hwnd);
+            }
+            else
+            {
+                hr = PInvoke.DwmSetWindowAttribute(hwnd, DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE, &falseValue, (uint)Marshal.SizeOf(typeof(int)));
+                PInvoke.SendMessage(hwnd, PInvoke.WM_NCACTIVATE, new WPARAM(1), new LPARAM());
+                PInvoke.UpdateWindow(hwnd);
+            }
+        }
+```
+For PInvoke functions above see [Microsoft.CsWin32](https://www.nuget.org/packages/Microsoft.Windows.CsWin32) or [Github page](https://github.com/Microsoft/CsWin32)
+
 - Bugfix in FontPropertyStore (DeltaSize is changed to a Nullable enum)
 - In events for Spinner, ToggleButton, CheckBox one don't need to use ExecuteEventsArgs class.
  1. One can use for RibbonSpinner the property DecimalValue from this RibbonControl
  2. For RibbonToggleButton, RibbonCheckBox one can use property BooleanValue
 - new C# Sample "NewFunctions" that shows the usage of new functions.
+- Supported .NET Framework versions: 3.5 and 4.x. Supported .NET (Core) versions: 6.0, 7.0
 
 #### Changed (RibbonTools)
 

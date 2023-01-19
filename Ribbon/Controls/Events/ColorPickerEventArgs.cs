@@ -47,6 +47,8 @@ namespace RibbonLib.Controls.Events
         /// <returns></returns>
         public static ColorPickerEventArgs Create(ExecuteEventArgs e)
         {
+            if (e == null)
+                throw new ArgumentNullException(nameof(e));
             return Create(ref e.Key.PropertyKey, ref e.CurrentValue.PropVariant, e.CommandExecutionProperties);
         }
 
