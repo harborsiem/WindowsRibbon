@@ -10,7 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - RecentItemsEventArgs, GalleryItemEventArgs, ColorPickerEventArgs, FontControlEventArgs, HRESULT, PInvoke
 - With usage of the additional classes the user don't need to handle Com interface IUICollection and the structs PropVariant and PropertyKey
 - Gallery controls like RibbonComboBox, RibbonDropDownGallery, RibbonInRibbonGallery, RibbonSplitButtonGallery have easy to use new properties.
-GCategories, GItemItemsSource (for Item controls), GCommandItemsSource (for Command controls)
+GalleryCategories, GalleryItemItemsSource (for Item controls), GalleryCommandItemsSource (for Command controls)
 These new properties should be used instead of ItemsSource, Categories
 - RibbonQuickAccessToolbar gets a new property: QatItemsSource. This should be used instead of ItemsSource
 - DarkMode only for the Ribbon for newer Windows 10, Windows 11 versions (DarkModeRibbon property in the Ribbon class). But wait till Microsoft delivers DarkMode for WinForms

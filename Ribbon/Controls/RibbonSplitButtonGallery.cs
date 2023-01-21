@@ -83,21 +83,21 @@ namespace RibbonLib.Controls
         /// The list of categories. 
         /// Also exposed as an UICollection of GalleryItemPropertySet elements
         /// </summary>
-        public UICollection<GalleryItemPropertySet> GCategories => _galleryPropertiesProvider.GCategories;
+        public UICollection<GalleryItemPropertySet> GalleryCategories => _galleryPropertiesProvider.GalleryCategories;
 
         /// <summary>
         /// The list of SplitButtonGallery items.
         /// It is exposed as an UICollection where every element
         /// in the collection is of type: GalleryItemPropertySet
         /// </summary>
-        public UICollection<GalleryItemPropertySet> GItemItemsSource => _galleryPropertiesProvider.GItemItemsSource;
+        public UICollection<GalleryItemPropertySet> GalleryItemItemsSource => _galleryPropertiesProvider.GalleryItemItemsSource;
 
         /// <summary>
         /// The list of SplitButtonGallery items.
         /// It is exposed as an UICollection where every element
         /// in the collection is of type: GalleryCommandPropertySet
         /// </summary>
-        public UICollection<GalleryCommandPropertySet> GCommandItemsSource => _galleryPropertiesProvider.GalleryCommand.GCommandItemsSource;
+        public UICollection<GalleryCommandPropertySet> GalleryCommandItemsSource => _galleryPropertiesProvider.GalleryCommand.GalleryCommandItemsSource;
 
         /// <summary>
         /// The list of categories. 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,7 +12,7 @@ namespace RibbonLib.Controls.Properties
         /// <summary>
         /// Items source property for Command
         /// </summary>
-        UICollection<GalleryCommandPropertySet> GCommandItemsSource { get; }
+        UICollection<GalleryCommandPropertySet> GalleryCommandItemsSource { get; }
     }
 
     internal class GalleryCommandProperties : IGallery2PropertiesProvider
@@ -20,6 +20,6 @@ namespace RibbonLib.Controls.Properties
         /// <summary>
         /// Items source property for Command
         /// </summary>
-        public UICollection<GalleryCommandPropertySet> GCommandItemsSource { get; internal set; }
+        public UICollection<GalleryCommandPropertySet> GalleryCommandItemsSource { get; internal set; }
     }
 }

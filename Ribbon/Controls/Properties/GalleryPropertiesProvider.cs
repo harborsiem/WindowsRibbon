@@ -20,12 +20,12 @@ namespace RibbonLib.Controls.Properties
         /// <summary>
         /// Categories property, Managed version
         /// </summary>
-        UICollection<GalleryItemPropertySet> GCategories { get; }
+        UICollection<GalleryItemPropertySet> GalleryCategories { get; }
 
         /// <summary>
         /// Items source property
         /// </summary>
-        UICollection<GalleryItemPropertySet> GItemItemsSource { get; }
+        UICollection<GalleryItemPropertySet> GalleryItemItemsSource { get; }
 
         /// <summary>
         /// Categories property
@@ -96,7 +96,7 @@ namespace RibbonLib.Controls.Properties
             {
                 if (!categoriesReadyFired)
                 {
-                    GCategories = new UICollection<GalleryItemPropertySet>((IUICollection)currentValue.PropVariant.Value, (BaseRibbonControl)_sender, CollectionType.Categories);
+                    GalleryCategories = new UICollection<GalleryItemPropertySet>((IUICollection)currentValue.PropVariant.Value, (BaseRibbonControl)_sender, CollectionType.Categories);
                     categoriesReadyFired = true;
 
                     if (CategoriesReady != null)
@@ -124,9 +124,9 @@ namespace RibbonLib.Controls.Properties
                     itemsSourceReadyFired = true;
                     BaseRibbonControl brc = (BaseRibbonControl)_sender;
                     if (brc.CommandType == CommandType.Collection)
-                        GItemItemsSource = new UICollection<GalleryItemPropertySet>((IUICollection)currentValue.PropVariant.Value, brc, CollectionType.ItemsSource);
+                        GalleryItemItemsSource = new UICollection<GalleryItemPropertySet>((IUICollection)currentValue.PropVariant.Value, brc, CollectionType.ItemsSource);
                     else if (brc.CommandType == CommandType.Commandcollection)
-                        GalleryCommand.GCommandItemsSource = new UICollection<GalleryCommandPropertySet>((IUICollection)currentValue.PropVariant.Value, brc, CollectionType.ItemsSource);
+                        GalleryCommand.GalleryCommandItemsSource = new UICollection<GalleryCommandPropertySet>((IUICollection)currentValue.PropVariant.Value, brc, CollectionType.ItemsSource);
 
                     if (ItemsSourceReady != null)
                     {
@@ -161,12 +161,12 @@ namespace RibbonLib.Controls.Properties
         /// <summary>
         /// Categories property
         /// </summary>
-        public UICollection<GalleryItemPropertySet> GCategories { get; private set; }
+        public UICollection<GalleryItemPropertySet> GalleryCategories { get; private set; }
 
         /// <summary>
         /// Items source property for Item
         /// </summary>
-        public UICollection<GalleryItemPropertySet> GItemItemsSource { get; private set; }
+        public UICollection<GalleryItemPropertySet> GalleryItemItemsSource { get; private set; }
 
         /// <summary>
         /// Categories property

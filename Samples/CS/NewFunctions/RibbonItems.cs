@@ -99,15 +99,15 @@ namespace RibbonLib.Controls
 
         private void ComboBox_CategoriesReady(object sender, EventArgs e)
         {
-            ComboBox.GCategories.Add(new GalleryItemPropertySet() { CategoryID = 0 });
+            ComboBox.GalleryCategories.Add(new GalleryItemPropertySet() { CategoryID = 0 });
         }
 
         private void ComboBox_ItemsSourceReady(object sender, EventArgs e)
         {
-            ComboBox.GItemItemsSource.Add(new GalleryItemPropertySet() { Label = "_1", CategoryID = 0 });
-            ComboBox.GItemItemsSource.Add(new GalleryItemPropertySet() { Label = "_2", CategoryID = 0 });
-            ComboBox.GItemItemsSource.Add(new GalleryItemPropertySet() { Label = "_3", CategoryID = 0 });
-            ComboBox.GItemItemsSource.Add(new GalleryItemPropertySet() { Label = "_4", CategoryID = 0 });
+            ComboBox.GalleryItemItemsSource.Add(new GalleryItemPropertySet() { Label = "_1", CategoryID = 0 });
+            ComboBox.GalleryItemItemsSource.Add(new GalleryItemPropertySet() { Label = "_2", CategoryID = 0 });
+            ComboBox.GalleryItemItemsSource.Add(new GalleryItemPropertySet() { Label = "_3", CategoryID = 0 });
+            ComboBox.GalleryItemItemsSource.Add(new GalleryItemPropertySet() { Label = "_4", CategoryID = 0 });
         }
 
         #endregion ComboBox
@@ -211,7 +211,7 @@ namespace RibbonLib.Controls
 
         private void InRibbon_CategoriesReady(object sender, EventArgs e)
         {
-            InRibbon.GCategories.Add(new GalleryItemPropertySet() { CategoryID = 0 });
+            InRibbon.GalleryCategories.Add(new GalleryItemPropertySet() { CategoryID = 0 });
         }
 
         private void InRibbon_ItemsSourceReady(object sender, EventArgs e)
@@ -221,7 +221,7 @@ namespace RibbonLib.Controls
             toggle1.ExecuteEvent += Toggle1_ExecuteEvent;
             toggle1.Label = "T1";
             toggle1.SmallImage = _checkNormal;
-            InRibbon.GCommandItemsSource.Add(new GalleryCommandPropertySet()
+            InRibbon.GalleryCommandItemsSource.Add(new GalleryCommandPropertySet()
             {
                 CategoryID = 0,
                 CommandID = toggle1.CommandID,
@@ -232,7 +232,7 @@ namespace RibbonLib.Controls
             button1.ExecuteEvent += Button1_ExecuteEvent;
             button1.Label = "B1";
             //toggle1.SmallImage = _checkNormal;
-            InRibbon.GCommandItemsSource.Add(new GalleryCommandPropertySet()
+            InRibbon.GalleryCommandItemsSource.Add(new GalleryCommandPropertySet()
             {
                 CategoryID = 0,
                 CommandID = button1.CommandID,
@@ -243,7 +243,7 @@ namespace RibbonLib.Controls
             checkBox1.ExecuteEvent += CheckBox1_ExecuteEvent;
             checkBox1.Label = "C1";
             checkBox1.SmallImage = _checkNormal;
-            InRibbon.GCommandItemsSource.Add(new GalleryCommandPropertySet()
+            InRibbon.GalleryCommandItemsSource.Add(new GalleryCommandPropertySet()
             {
                 CategoryID = 0,
                 CommandID = checkBox1.CommandID,
