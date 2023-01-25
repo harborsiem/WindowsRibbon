@@ -158,14 +158,14 @@ namespace RibbonLib.Controls
         private void FontPicker_ExecuteEvent(object sender, ExecuteEventArgs e)
         {
             FontControlEventArgs args = FontControlEventArgs.Create(e);
-            Dictionary<string, object> changedFontValues = args.ChangedValues;
+            Dictionary<FontPropertiesEnum, object> changedFontValues = args.ChangedFontValues;
             FontPropertyStore store = args.CurrentFontStore;
         }
 
         private void FontPicker_PreviewEvent(object sender, ExecuteEventArgs e)
         {
             FontControlEventArgs args = FontControlEventArgs.Create(e);
-            Dictionary<string, object> changedFont = args.ChangedValues;
+            Dictionary<FontPropertiesEnum, object> changedFont = args.ChangedFontValues;
             FontPropertyStore store = args.CurrentFontStore;
             FontDeltaSize? dSize = store.DeltaSize;
         }
@@ -173,7 +173,7 @@ namespace RibbonLib.Controls
         private void FontPicker_CancelPreviewEvent(object sender, ExecuteEventArgs e)
         {
             FontControlEventArgs args = FontControlEventArgs.Create(e);
-            Dictionary<string, object> changedFont = args.ChangedValues;
+            Dictionary<FontPropertiesEnum, object> changedFont = args.ChangedFontValues;
             FontPropertyStore store = args.CurrentFontStore;
         }
 

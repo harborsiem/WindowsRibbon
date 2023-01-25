@@ -26,7 +26,7 @@ namespace RibbonLib.Controls.Events
         public SelectedItem<GalleryItemPropertySet> SelectedItem { get; private set; }
 
         /// <summary>
-        /// 
+        /// Creates a GalleryItemEventArgs from ExecuteEventArgs of a Ribbon Gallery Control (RibbonComboBox, ...) event
         /// </summary>
         /// <param name="e">Parameters from event: ExecuteEventArgs</param>
         /// <returns></returns>

@@ -38,10 +38,9 @@ Following is the list of sample application and their description:
 - **17 - QuickAccessToolbar** WinForms application that demonstrates the use of quick access toolbar.
 - **18 - SizeDefinition** WinForms application that demonstrates the use of custom layout templates.
 - **19 - Localization** WinForms application that demonstrates how to localize your ribbon.
+- **NewFunctions** WinForms application that demonstrates new functions with Ribbon version 2.14 and above
 
 see also:
-[Codeplex archive](https://archive.codeplex.com/?p=windowsribbon)
-
 [Documentation archive](https://www.codeproject.com/Articles/55599/Windows-Ribbon-for-WinForms-Part-Table-of-Conten)
 
 [Current Documentation](https://github.com/harborsiem/WindowsRibbon/wiki)
@@ -54,7 +53,7 @@ Now the WindowsRibbon project is running also in the latest Visual Studio Versio
 
 ---
 
-WindowsRibbon is also available on NuGet, with Package Id [WindowsRibbon](https://www.nuget.org/packages/WindowsRibbon). Via this package you can get a compiled Ribbon Library also for .NET Framework 4.0, .NET Core 3.1, .NET 5 and .NET6
+WindowsRibbon is also available on NuGet, with Package Id [WindowsRibbon](https://www.nuget.org/packages/WindowsRibbon). Via this package you can get a compiled Ribbon Library also for .NET Framework 4.0, .NET 6 and .NET 7
 
 ---
 
@@ -73,5 +72,3 @@ An other C# Application with the Ribbon Control one can find at the following pa
 ## Installation:
 
 Requirement for installation is the Microsoft .NET Framework 4.6.2 or any higher version. If it is not installed on your computer then you can download it from a Microsoft page. Install this first.
-
-You also need Microsoft .NET Framework 3.5. In Windows 10 you have to go to the Control Panel > Programs > Programs and Features. On the left side click to "Turn Windows features on or off". You get a new dialog. Here you have to select ".NET Framework 3.5 (includes ...)".

@@ -48,7 +48,7 @@ namespace RibbonLib.Controls.Events
         public IList<RecentItemsPropertySet> OldRecentItems { get; private set; }
 
         /// <summary>
-        /// 
+        /// Creates a RecentItemsEventArgs from ExecuteEventArgs of a RibbonRecentItems event
         /// </summary>
         /// <param name="sender">Parameters from event: sender = RibbonControl</param>
         /// <param name="e">Parameters from event: ExecuteEventArgs</param>

@@ -41,7 +41,7 @@ namespace RibbonLib.Controls.Events
         public Color? RGBColor { get; private set;}
 
         /// <summary>
-        /// 
+        /// Creates a ColorPickerEventArgs from ExecuteEventArgs of a RibbonDropDownColorPicker event
         /// </summary>
         /// <param name="e">Parameters from event: ExecuteEventArgs</param>
         /// <returns></returns>
