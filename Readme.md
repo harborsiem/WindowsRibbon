@@ -1,21 +1,25 @@
 # WindowsRibbon
 
-Windows Ribbon for WinForms
+*Windows Ribbon* for WinForms
 
-Windows Ribbon for WinForms is a .NET wrapper for Windows 7 Ribbon control. It will allow WinForms developers to use Microsoft Windows 7 Ribbon control in their WinForms applications. Newer versions of Windows (Windows 8, Windows 10) are welcome.
+Windows Ribbon for WinForms is a .NET wrapper for *Microsoft Windows Ribbon* control UIRibbon.dll. It will allow WinForms developers to use *Microsoft Windows Ribbon* control in their WinForms applications. Supported Windows versions are Windows 7 and newer versions (Windows 8, Windows 10, Windows 11).
 
-WindowsRibbon is sometimes called UIRibbon. The former development title is Scenic Ribbon.
+*Windows Ribbon* is sometimes called UIRibbon. The former development title is *Scenic Ribbon*.
+
+See also [Microsoft documentation](https://learn.microsoft.com/en-us/windows/win32/windowsribbon/-uiplat-windowsribbon-entry)
 
 ## **Project Description**
 
- Windows Ribbon for WinForms is a .NET wrapper for Windows 7 Ribbon control.
- It will allow WinForms developers to use Microsoft Windows 7 Ribbon control in their WinForms applications.
+ Windows Ribbon for WinForms is a .NET wrapper for *Microsoft Windows Ribbon* control.
+ It will allow WinForms developers to use *Microsoft Windows Ribbon* control in their WinForms applications.
 
-The project includes the library RibbonLib, which adds support for Windows Ribbon to WinForms application and sample applications, written both in C# and VB.NET, that demonstrates the use of the library and the different Ribbon features available.
+The project includes the library RibbonLib, which adds support for *Microsoft Windows Ribbon* to WinForms application and sample applications, written both in C# and VB.NET, that demonstrates the use of the library and the different Ribbon features available.
 
-Read the Wiki Pages for more details on how to use the windows ribbon.
+Read the Wiki Pages for more details on how to use the *Microsoft Windows Ribbon*.
 
-Note: you must have the Windows 7 SDK (or later) installed in order to compile the project. 
+Note: You must have the Windows 7 SDK (or any later SDK) installed in order to compile (build) the project.
+
+For easier designing, building and previewing the Windows Ribbon there is gui and console based tool called **RibbonTools**
 
 Following is the list of sample application and their description: 
 
@@ -48,7 +52,6 @@ see also:
 Thanks to Arik Poznanski and Bernhard Elbl for the great work.
 
 
-
 Now the WindowsRibbon project is running also in the latest Visual Studio Versions 2017, 2019, 2022. Have a look to the **WIKI** and the file "HowToUse.md" to see how to use the WindowsRibbon in a .NET WinForms application. In the Releases page of this Github repository there are also zipped *.msi setup files for the components. The msi files are build with the WIX Toolset.
 
 ---
@@ -56,8 +59,6 @@ Now the WindowsRibbon project is running also in the latest Visual Studio Versio
 WindowsRibbon is also available on NuGet, with Package Id [WindowsRibbon](https://www.nuget.org/packages/WindowsRibbon). Via this package you can get a compiled Ribbon Library also for .NET Framework 4.0, .NET 6 and .NET 7
 
 ---
-
-There is also a gui and console based designing, building and previewing tool called RibbonTools. 
 
 The C# samples are added with a more complex Mainform application. Here you can see the Ribbon of Mainform in the RibbonTools app.
 
