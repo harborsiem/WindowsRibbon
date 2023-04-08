@@ -573,6 +573,8 @@ namespace RibbonLib
 
             if (Initialized)
             {
+                if (EventLogger != null)
+                    EventLogger.Destroy();
                 // destroy ribbon framework
                 Framework.Destroy();
                 Marshal.ReleaseComObject(Framework);

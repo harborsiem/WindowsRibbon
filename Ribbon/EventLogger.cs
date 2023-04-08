@@ -59,5 +59,15 @@ namespace RibbonLib
                 handler(this, new EventLoggerEventArgs(ref pEventParams));
             }
         }
+
+        /// <summary>
+        ///  Disposes of the resources.
+        /// </summary>
+        internal void Destroy()
+        {
+            if (attached)
+                Detach();
+            _eventingManager = null;
+        }
     }
 }
