@@ -2,11 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-### Ribbon V2.14.1, RibbonTools V1.6.0
+### Ribbon V2.15.0 RibbonTools V1.7.0
 
 #### Changed (Ribbon)
 
 - Destroy EventLogger.
+- Static method GetBitmap(IUIImage) in Ribbon class added.
+
+
+#### Changed (RibbonTools)
+
+- Bitmap Alpha channel detection like Microsoft in the Icon class.
+- Changes for Issue #12
 
 ### Ribbon V2.14.0, RibbonTools V1.6.0
 

@@ -65,6 +65,39 @@ namespace RibbonLib.Interop
         //        return __result;
         //    }
         //}
+
+        /// <summary>The GetObject function retrieves information for the specified graphics object.</summary>
+        /// <param name="h">A handle to the graphics object of interest. This can be a handle to one of the following: a logical bitmap, a brush, a font, a palette, a pen, or a device independent bitmap created by calling the <a href="https://docs.microsoft.com/windows/desktop/api/wingdi/nf-wingdi-createdibsection">CreateDIBSection</a> function.</param>
+        /// <param name="c">The number of bytes of information to be written to the buffer.</param>
+        /// <param name="pv">
+        /// <para>A pointer to a buffer that receives the information about the specified graphics object. The following table shows the type of information the buffer receives for each type of graphics object you can specify with <i>hgdiobj</i>. </para>
+        /// <para>This doc was truncated.</para>
+        /// <para><see href="https://docs.microsoft.com/windows/win32/api//wingdi/nf-wingdi-getobjectw#parameters">Read more on docs.microsoft.com</see>.</para>
+        /// </param>
+        /// <returns>
+        /// <para>If the function succeeds, and <i>lpvObject</i> is a valid pointer, the return value is the number of bytes stored into the buffer. If the function succeeds, and <i>lpvObject</i> is <b>NULL</b>, the return value is the number of bytes required to hold the information the function would store into the buffer. If the function fails, the return value is zero.</para>
+        /// </returns>
+        /// <remarks>
+        /// <para><see href="https://docs.microsoft.com/windows/win32/api//wingdi/nf-wingdi-getobjectw">Learn more about this API from docs.microsoft.com</see>.</para>
+        /// </remarks>
+        [DllImport("GDI32.dll", ExactSpelling = true, EntryPoint = "GetObjectW")]
+        //[DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+        //[SupportedOSPlatform("windows5.0")]
+        public static extern unsafe int GetObject(IntPtr h, int c, [Optional] void* pv);
+
+        /// <summary>The DeleteObject function deletes a logical pen, brush, font, bitmap, region, or palette, freeing all system resources associated with the object. After the object is deleted, the specified handle is no longer valid.</summary>
+        /// <param name="ho">A handle to a logical pen, brush, font, bitmap, region, or palette.</param>
+        /// <returns>
+        /// <para>If the function succeeds, the return value is nonzero. If the specified handle is not valid or is currently selected into a DC, the return value is zero.</para>
+        /// </returns>
+        /// <remarks>
+        /// <para><see href="https://docs.microsoft.com/windows/win32/api//wingdi/nf-wingdi-deleteobject">Learn more about this API from docs.microsoft.com</see>.</para>
+        /// </remarks>
+        [DllImport("GDI32.dll", ExactSpelling = true)]
+        //[DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+        //[SupportedOSPlatform("windows5.0")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool DeleteObject(IntPtr ho);
     }
 
     [Flags]
@@ -86,4 +119,29 @@ namespace RibbonLib.Interop
         LOAD_LIBRARY_SAFE_CURRENT_DIRS = 0x00002000,
         LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = 0x00004000,
     }
+
+    /// <summary>The BITMAP structure defines the type, width, height, color format, and bit values of a bitmap.</summary>
+    /// <remarks>
+    /// <para>The bitmap formats currently used are monochrome and color. The monochrome bitmap uses a one-bit, one-plane format. Each scan is a multiple of 16 bits. Scans are organized as follows for a monochrome bitmap of height <i>n</i>: <pre class="syntax" xml:space="preserve"><code> Scan 0 Scan 1 . . . Scan n-2 Scan n-1 </code></pre> The pixels on a monochrome device are either black or white. If the corresponding bit in the bitmap is 1, the pixel is set to the foreground color; if the corresponding bit in the bitmap is zero, the pixel is set to the background color. All devices that have the RC_BITBLT device capability support bitmaps. For more information, see <a href="https://docs.microsoft.com/windows/desktop/api/wingdi/nf-wingdi-getdevicecaps">GetDeviceCaps</a>. Each device has a unique color format. To transfer a bitmap from one device to another, use the <a href="https://docs.microsoft.com/windows/desktop/api/wingdi/nf-wingdi-getdibits">GetDIBits</a> and <a href="https://docs.microsoft.com/windows/desktop/api/wingdi/nf-wingdi-setdibits">SetDIBits</a> functions.</para>
+    /// <para><see href="https://docs.microsoft.com/windows/win32/api//wingdi/ns-wingdi-bitmap#">Read more on docs.microsoft.com</see>.</para>
+    /// </remarks>
+    //[global::System.CodeDom.Compiler.GeneratedCode("Microsoft.Windows.CsWin32", "0.2.219-beta+aaafe7c65c")]
+    public partial struct BITMAP
+    {
+        /// <summary>The bitmap type. This member must be zero.</summary>
+        public int bmType;
+        /// <summary>The width, in pixels, of the bitmap. The width must be greater than zero.</summary>
+        public int bmWidth;
+        /// <summary>The height, in pixels, of the bitmap. The height must be greater than zero.</summary>
+        public int bmHeight;
+        /// <summary>The number of bytes in each scan line. This value must be divisible by 2, because the system assumes that the bit values of a bitmap form an array that is word aligned.</summary>
+        public int bmWidthBytes;
+        /// <summary>The count of color planes.</summary>
+        public ushort bmPlanes;
+        /// <summary>The number of bits required to indicate the color of a pixel.</summary>
+        public ushort bmBitsPixel;
+        /// <summary>A pointer to the location of the bit values for the bitmap. The <b>bmBits</b> member must be a pointer to an array of character (1-byte) values.</summary>
+        public unsafe void* bmBits;
+    }
+
 }

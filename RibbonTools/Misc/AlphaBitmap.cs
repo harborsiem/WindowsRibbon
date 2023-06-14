@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Reflection;
 
 namespace UIRibbonTools
 {
@@ -17,37 +18,104 @@ namespace UIRibbonTools
         {
             if (bitmap.PixelFormat == PixelFormat.Format32bppRgb && bitmap.RawFormat.Guid == ImageFormat.Bmp.Guid)
             {
-                BitmapData bmpData = bitmap.LockBits(new Rectangle(new Point(), bitmap.Size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
-                int rowSize = bmpData.Stride < 0 ? -bmpData.Stride : bmpData.Stride;
-                int length = rowSize * bitmap.Height / sizeof(int);
-                int[] bmpScan = new int[length];
-                Marshal.Copy(bmpData.Scan0, bmpScan, 0, length);
-                bitmap.UnlockBits(bmpData);
-                if (IsAnyAlpha(bmpScan))
+                BitmapData bmpData = null;
+                BitmapData alphaData = null;
+                Bitmap alpha = null;
+                try
                 {
-                    Bitmap alpha = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format32bppArgb);
-                    BitmapData alphaData = alpha.LockBits(new Rectangle(new Point(), alpha.Size), ImageLockMode.ReadWrite, alpha.PixelFormat);
-                    Marshal.Copy(bmpScan, 0, alphaData.Scan0, length);
-                    alpha.UnlockBits(alphaData);
-                    bitmap.Dispose();
-                    return alpha;
+                    bmpData = bitmap.LockBits(new Rectangle(new Point(), bitmap.Size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+                    if (BitmapHasAlpha(bmpData))
+                    {
+                        //alpha = new Bitmap(bitmap.Width, bitmap.Height, bmpData.Stride, PixelFormat.Format32bppArgb, bmpData.Scan0);
+                        alpha = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format32bppArgb);
+                        alphaData = alpha.LockBits(new Rectangle(new Point(), alpha.Size), ImageLockMode.WriteOnly, alpha.PixelFormat);
+                        CopyBitmapData(bmpData, alphaData);
+                        return alpha;
+                    }
+                }
+                finally
+                {
+                    if (bmpData != null)
+                        bitmap.UnlockBits(bmpData);
+                    if (alpha != null)
+                    {
+                        alpha.UnlockBits(alphaData);
+                        bitmap.Dispose();
+                    }
                 }
             }
             return bitmap;
         }
 
-        private static bool IsAnyAlpha(int[] bmpScan)
+        //private static Bitmap TryConvertToAlphaBitmap1(Bitmap bitmap)
+        //{
+        //    if (bitmap.PixelFormat == PixelFormat.Format32bppRgb && bitmap.RawFormat.Guid == ImageFormat.Bmp.Guid)
+        //    {
+        //        BitmapData bmpData = bitmap.LockBits(new Rectangle(new Point(), bitmap.Size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+        //        int rowSize = bmpData.Stride < 0 ? -bmpData.Stride : bmpData.Stride;
+        //        int length = rowSize * bitmap.Height / sizeof(int);
+        //        int[] bmpScan = new int[length];
+        //        Marshal.Copy(bmpData.Scan0, bmpScan, 0, length);
+        //        bitmap.UnlockBits(bmpData);
+        //        if (IsAnyAlpha(bmpScan))
+        //        {
+        //            Bitmap alpha = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format32bppArgb);
+        //            BitmapData alphaData = alpha.LockBits(new Rectangle(new Point(), alpha.Size), ImageLockMode.ReadWrite, alpha.PixelFormat);
+        //            Marshal.Copy(bmpScan, 0, alphaData.Scan0, length);
+        //            alpha.UnlockBits(alphaData);
+        //            //var bitmapNativeImage = typeof(Bitmap).GetField("nativeImage", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(bitmap);
+        //            //var alphaNativeImage = typeof(Bitmap).GetField("nativeImage", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(alpha);
+        //            //typeof(Bitmap).GetField("nativeImage", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(bitmap, alphaNativeImage);
+        //            //typeof(Bitmap).GetField("nativeImage", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(alpha, bitmapNativeImage);
+        //            //alpha.Dispose(); //=> return bitmap;
+        //            bitmap.Dispose();
+        //            return alpha;
+        //        }
+        //    }
+        //    return bitmap;
+        //}
+
+        //From Microsoft System.Drawing.Icon.cs
+        private unsafe static bool BitmapHasAlpha(BitmapData bmpData)
         {
-            bool result = false;
-            for (int i = 0; i < bmpScan.Length; i++)
+            bool hasAlpha = false;
+            for (int i = 0; i < bmpData.Height; i++)
             {
-                if (((uint)bmpScan[i] & 0xff000000) < 0xff000000)
+                for (int j = 3; j < Math.Abs(bmpData.Stride); j += 4)
                 {
-                    result = true;
-                    break;
+                    // Stride here is fine since we know we're doing this on the whole image.
+                    unsafe
+                    {
+                        byte* candidate = unchecked(((byte*)bmpData.Scan0.ToPointer()) + (i * bmpData.Stride) + j);
+                        if (*candidate != 0)
+                        {
+                            hasAlpha = true;
+                            return hasAlpha;
+                        }
+                    }
                 }
             }
-            return result;
+
+            return false;
+        }
+
+        private unsafe static void CopyBitmapData(BitmapData sourceData, BitmapData targetData)
+        {
+            byte* srcPtr = (byte*)sourceData.Scan0;
+            byte* destPtr = (byte*)targetData.Scan0;
+
+            Debug.Assert(sourceData.Height == targetData.Height, "Unexpected height. How did this happen?");
+            int height = Math.Min(sourceData.Height, targetData.Height);
+            long bytesToCopyEachIter = Math.Abs(targetData.Stride);
+
+            for (int i = 0; i < height; i++)
+            {
+                Buffer.MemoryCopy(srcPtr, destPtr, bytesToCopyEachIter, bytesToCopyEachIter);
+                srcPtr += sourceData.Stride;
+                destPtr += targetData.Stride;
+            }
+
+            //GC.KeepAlive(null); // finalizer mustn't deallocate data blobs while this method is running
         }
 
         public static Bitmap TryCreateAlphaBitmap(Stream stream)
@@ -103,91 +171,21 @@ namespace UIRibbonTools
             return bitmap;
         }
 
-        private static byte[] IsBmpFile(string fileName)
-        {
-            byte[] bytes = File.ReadAllBytes(fileName);
-            if (bytes.Length > 54)
-            {
-                if (bytes[0] == 0x42 && bytes[1] == 0x4d) //"BM"
-                {
-                    return bytes;
-                }
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Load a Bitmap (with transparency) from file (*.bmp or *.png) via file content or Bitmap ctor
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <param name="highContrast"></param>
-        /// <returns>The Bitmap with fully transparency if available</returns>
-        [Obsolete("Please use function TryAlphaBitmapFromFile")]
-        public static Bitmap BitmapFromFile(string fileName, bool highContrast = false)
-        {
-            Bitmap bitmap = null;
-            if (string.IsNullOrEmpty(fileName))
-                throw new ArgumentNullException(nameof(fileName));
-            if (!File.Exists(fileName))
-                throw new ArgumentException("File does not exist", nameof(fileName));
-            byte[] bytes = IsBmpFile(fileName);
-            if (!highContrast && bytes != null)
-            {
-                int offBits = BitConverter.ToInt32(bytes, 10); //normally 54
-                int width = BitConverter.ToInt32(bytes, 18);
-                int height = BitConverter.ToInt32(bytes, 22);
-                int length = BitConverter.ToInt16(bytes, 2) - offBits;
-                NativeMethods.BitmapCompressionMode compression = (NativeMethods.BitmapCompressionMode)BitConverter.ToUInt32(bytes, 30);
-                short bitCount = BitConverter.ToInt16(bytes, 28);
-                //Make some tests if it is a ARGB Bitmap
-                if (bitCount == 32 && compression == NativeMethods.BitmapCompressionMode.BI_RGB)
-                {
-                    GCHandle gcH = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-                    IntPtr scan0 = gcH.AddrOfPinnedObject() + offBits;
-                    bitmap = new Bitmap(width, height, 4 * width, PixelFormat.Format32bppArgb, scan0);
-                    if (height > 0)
-                        bitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);
-                    gcH.Free();
-                    return bitmap;
-                }
-            }
-            //What shall we do with .png files or .bmp files with smaller formats ?
-            bitmap = new Bitmap(fileName);
-            if (!highContrast)
-                if (!(bitmap.PixelFormat == PixelFormat.Format32bppArgb || bitmap.PixelFormat == PixelFormat.Format32bppPArgb))
-                    bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
-                else
-                {
-                    if ((int)bitmap.HorizontalResolution != 96)
-                    {
-                        bitmap.SetResolution(96.0f, 96.0f); //only png bitmaps can have other resolution
-                    }
-                }
-            return bitmap;
-        }
-
         /// <summary>
         /// Get the managed ARGB Bitmap if possible (32 bit per pixel)
         /// </summary>
         /// <param name="hBitmap">Handle to a Bitmap</param>
         /// <returns>The Bitmap with fully transparency if available</returns>
-        public static Bitmap FromHbitmap(IntPtr hBitmap)
+        public unsafe static Bitmap FromHbitmap(IntPtr hBitmap)
         {
             if (hBitmap == IntPtr.Zero)
                 throw new ArgumentNullException(nameof(hBitmap));
             // Create the BITMAP structure and get info from our nativeHBitmap
             NativeMethods.BITMAP bitmapStruct = new NativeMethods.BITMAP();
-            try
-            {
-                int bitmapSize = Marshal.SizeOf(bitmapStruct);
-                int size = NativeMethods.GetObjectBitmap(hBitmap, bitmapSize, ref bitmapStruct);
-                if (size != bitmapSize)
-                    return null;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            int bitmapSize = Marshal.SizeOf(bitmapStruct);
+            int size = NativeMethods.GetObjectBitmap(hBitmap, bitmapSize, ref bitmapStruct);
+            //if (size != bitmapSize)
+            //    return null;
             Bitmap managedBitmap;
             if (bitmapStruct.bmBitsPixel == 32)
             {
@@ -199,6 +197,7 @@ namespace UIRibbonTools
             }
             else
             {
+                //NativeMethods.DeleteObject((IntPtr)(void*)&bitmapStruct);
                 managedBitmap = Bitmap.FromHbitmap(hBitmap);
             }
             return managedBitmap;
@@ -228,6 +227,7 @@ namespace UIRibbonTools
                 if (handle != IntPtr.Zero)
                     return FromHbitmap(handle);
                 //A V5 Bitmap is not supported by LoadImage, so we try with a Bitmap Ctor
+                //NativeMethods.DeleteObject(handle);
             }
             try
             {
@@ -344,6 +344,21 @@ namespace UIRibbonTools
 
             [DllImport("gdi32", CharSet = CharSet.Auto, EntryPoint = "GetObject")]
             public static extern int GetObjectBitmap(IntPtr hObject, int nCount, ref BITMAP lpObject);
+
+            /// <summary>The DeleteObject function deletes a logical pen, brush, font, bitmap, region, or palette, freeing all system resources associated with the object. After the object is deleted, the specified handle is no longer valid.</summary>
+            /// <param name="ho">A handle to a logical pen, brush, font, bitmap, region, or palette.</param>
+            /// <returns>
+            /// <para>If the function succeeds, the return value is nonzero. If the specified handle is not valid or is currently selected into a DC, the return value is zero.</para>
+            /// </returns>
+            /// <remarks>
+            /// <para>Do not delete a drawing object (pen or brush) while it is still selected into a DC. When a pattern brush is deleted, the bitmap associated with the brush is not deleted. The bitmap must be deleted independently.</para>
+            /// <para><see href="https://docs.microsoft.com/windows/win32/api/wingdi/nf-wingdi-deleteobject#">Read more on docs.microsoft.com</see>.</para>
+            /// </remarks>
+            [DllImport("GDI32.dll", ExactSpelling = true)]
+            //[DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+            //[SupportedOSPlatform("windows5.0")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool DeleteObject(IntPtr ho);
 
             /// <summary>
             /// The BITMAP structure defines the type, width, height, color format, and bit values of a bitmap.

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -1232,6 +1233,89 @@ namespace RibbonLib
             {
                 return _loadedDllHandle;
             }
+        }
+
+        /// <summary>
+        /// Get a Bitmap from an IUIImage
+        /// </summary>
+        /// <param name="uiImage"></param>
+        /// <returns></returns>
+        public static unsafe Bitmap GetBitmap(IUIImage uiImage)
+        {
+            if (uiImage == null)
+                throw new ArgumentNullException(nameof(uiImage));
+            IntPtr hBitmap; //HBITMAP
+            uiImage.GetBitmap(out hBitmap);
+            // Create the BITMAP structure and get info from our nativeHBitmap
+            //this is a workaround because GDI+ did it not correct for 32 bit Bitmaps
+            BITMAP bitmapStruct = new BITMAP();
+            int bitmapSize = Marshal.SizeOf(bitmapStruct);
+            int size = PInvoke.GetObject(hBitmap, bitmapSize, &bitmapStruct);
+            //if (size != bitmapSize)
+            //    return null;
+            Bitmap managedBitmap;
+            if (bitmapStruct.bmBitsPixel == 32)
+            {
+                // Create the managed bitmap using the pointer to the pixel data of the native HBitmap
+                managedBitmap = new Bitmap(
+                    bitmapStruct.bmWidth, bitmapStruct.bmHeight, bitmapStruct.bmWidthBytes, PixelFormat.Format32bppArgb, (IntPtr)bitmapStruct.bmBits);
+                if (bitmapStruct.bmHeight > 0)
+                    managedBitmap.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            }
+            else
+            {
+                managedBitmap = Bitmap.FromHbitmap(hBitmap);
+            }
+            return managedBitmap;
+        }
+
+        private static Bitmap TryConvertToAlphaBitmap(Bitmap bitmap)
+        {
+            if (bitmap.PixelFormat == PixelFormat.Format32bppRgb && bitmap.RawFormat.Guid == ImageFormat.Bmp.Guid)
+            {
+                BitmapData bmpData = null;
+                try
+                {
+                    bmpData = bitmap.LockBits(new Rectangle(new Point(), bitmap.Size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
+                    if (BitmapHasAlpha(bmpData))
+                    {
+                        Bitmap alpha = new Bitmap(bitmap.Width, bitmap.Height, bmpData.Stride, PixelFormat.Format32bppArgb, bmpData.Scan0);
+                        //Do not Dispose bitmap because we use the Scan0 data in the alpha Bitmap
+                        //or is it better to copy all data from bitmap to alpha and Dispose bitmap ?
+                        return alpha;
+                    }
+                }
+                finally
+                {
+                    if (bmpData != null)
+                        bitmap.UnlockBits(bmpData);
+                }
+            }
+            return bitmap;
+        }
+
+        //From Microsoft System.Drawing.Icon.cs
+        private unsafe static bool BitmapHasAlpha(BitmapData bmpData)
+        {
+            bool hasAlpha = false;
+            for (int i = 0; i < bmpData.Height; i++)
+            {
+                for (int j = 3; j < Math.Abs(bmpData.Stride); j += 4)
+                {
+                    // Stride here is fine since we know we're doing this on the whole image.
+                    unsafe
+                    {
+                        byte* candidate = unchecked(((byte*)bmpData.Scan0.ToPointer()) + (i * bmpData.Stride) + j);
+                        if (*candidate != 0)
+                        {
+                            hasAlpha = true;
+                            return hasAlpha;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

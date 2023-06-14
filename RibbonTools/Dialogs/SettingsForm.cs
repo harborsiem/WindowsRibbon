@@ -150,8 +150,11 @@ namespace UIRibbonTools
         private void RibbonCompilerRightButtonClick(object sender, EventArgs e)
         {
             _openDialog.Filter = "uicc.exe|uicc.exe";
-            _openDialog.InitialDirectory = Path.GetDirectoryName(ribbonCompilerText.Text);
-            _openDialog.FileName = Path.GetFileName(ribbonCompilerText.Text);
+            if (!string.IsNullOrEmpty(ribbonCompilerText.Text))
+            {
+                _openDialog.InitialDirectory = Path.GetDirectoryName(ribbonCompilerText.Text);
+                _openDialog.FileName = Path.GetFileName(ribbonCompilerText.Text);
+            }
             if (_openDialog.ShowDialog() == DialogResult.OK)
             {
                 ribbonCompilerText.Text = _openDialog.FileName;
@@ -162,8 +165,11 @@ namespace UIRibbonTools
         private void ResourceCompilerRightButtonClick(object sender, EventArgs e)
         {
             _openDialog.Filter = "rc.exe|rc.exe";
-            _openDialog.InitialDirectory = Path.GetDirectoryName(resourceCompilerText.Text);
-            _openDialog.FileName = Path.GetFileName(resourceCompilerText.Text);
+            if (!string.IsNullOrEmpty(resourceCompilerText.Text))
+            {
+                _openDialog.InitialDirectory = Path.GetDirectoryName(resourceCompilerText.Text);
+                _openDialog.FileName = Path.GetFileName(resourceCompilerText.Text);
+            }
             if (_openDialog.ShowDialog() == DialogResult.OK)
             {
                 resourceCompilerText.Text = _openDialog.FileName;
@@ -174,8 +180,11 @@ namespace UIRibbonTools
         private void LinkerRightButtonClick(object sender, EventArgs e)
         {
             _openDialog.Filter = "link.exe|link.exe";
-            _openDialog.InitialDirectory = Path.GetDirectoryName(linkerText.Text);
-            _openDialog.FileName = Path.GetFileName(linkerText.Text);
+            if (!string.IsNullOrEmpty(linkerText.Text))
+            {
+                _openDialog.InitialDirectory = Path.GetDirectoryName(linkerText.Text);
+                _openDialog.FileName = Path.GetFileName(linkerText.Text);
+            }
             if (_openDialog.ShowDialog() == DialogResult.OK)
             {
                 linkerText.Text = _openDialog.FileName;

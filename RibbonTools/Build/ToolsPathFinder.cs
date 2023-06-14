@@ -167,7 +167,10 @@ namespace UIRibbonTools
         private static string GetMSVCToolsVersion(string visualStudioInstallRoot)
         {
             string filePath = Path.Combine(visualStudioInstallRoot, "VC", "Auxiliary", "Build", "Microsoft.VCToolsVersion.default.txt");
-            return File.ReadAllText(filePath).Trim();
+            if (File.Exists(filePath))
+                return File.ReadAllText(filePath).Trim();
+            else
+                return string.Empty;
         }
 
         private static string[] DetectMSVCVersion()
@@ -182,7 +185,8 @@ namespace UIRibbonTools
                     {
                         installRoot = line.Substring("installationPath:".Length).TrimStart();
                         string msvcVersion = GetMSVCToolsVersion(installRoot);
-                        return new string[] { msvcVersion, installRoot };
+                        if (!string.IsNullOrEmpty(msvcVersion))
+                            return new string[] { msvcVersion, installRoot };
                     }
                 }
             }
@@ -211,12 +215,15 @@ namespace UIRibbonTools
                         installRoot = line.Substring("installationPath:".Length).TrimStart();
                         vcvars32Bat = Path.Combine(installRoot, "VC", "Auxiliary", "Build", "vcvars32.bat");
                         string msvcVersion = GetMSVCToolsVersion(installRoot);
-                        vcLinkExe = Path.Combine(installRoot, "VC", "Tools", "MSVC", msvcVersion, "bin", "Hostx86", "x86", "link.exe");
-                        linkPaths.VcVars32Bat = vcvars32Bat;
-                        linkPaths.VcLinkExe = vcLinkExe;
-                        linkPaths.EnvironmentVcVars32Bat = string.Empty;
-                        linkPaths.EnvironmentVcLinkExe = string.Empty;
-                        result = true;
+                        if (!string.IsNullOrEmpty(msvcVersion))
+                        {
+                            vcLinkExe = Path.Combine(installRoot, "VC", "Tools", "MSVC", msvcVersion, "bin", "Hostx86", "x86", "link.exe");
+                            linkPaths.VcVars32Bat = vcvars32Bat;
+                            linkPaths.VcLinkExe = vcLinkExe;
+                            linkPaths.EnvironmentVcVars32Bat = string.Empty;
+                            linkPaths.EnvironmentVcLinkExe = string.Empty;
+                            result = true;
+                        }
                         break;
                     }
                 }
