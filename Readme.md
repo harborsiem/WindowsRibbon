@@ -1,8 +1,8 @@
-# WindowsRibbon
+# Windows Ribbon Framework for .NET
 
-*Windows Ribbon* for WinForms
+*Windows Ribbon Framework* for WinForms
 
-Windows Ribbon for WinForms is a .NET wrapper for *Microsoft Windows Ribbon* control UIRibbon.dll. It will allow WinForms developers to use *Microsoft Windows Ribbon* control in their WinForms applications. Supported Windows versions are Windows 7 and newer versions (Windows 8, Windows 10, Windows 11).
+Windows Ribbon for WinForms is a .NET wrapper for *Microsoft Windows Ribbon Framework* control UIRibbon.dll. It will allow WinForms developers to use *Microsoft Windows Ribbon Framework* control in their WinForms applications. Supported Windows versions are Windows 7 and newer versions (Windows 8, Windows 10, Windows 11).
 
 *Windows Ribbon* is sometimes called UIRibbon. The former development title is *Scenic Ribbon*.
 
@@ -10,16 +10,16 @@ See also [Microsoft documentation](https://learn.microsoft.com/en-us/windows/win
 
 ## **Project Description**
 
- Windows Ribbon for WinForms is a .NET wrapper for *Microsoft Windows Ribbon* control.
- It will allow WinForms developers to use *Microsoft Windows Ribbon* control in their WinForms applications.
+ Windows Ribbon for WinForms is a .NET wrapper for *Microsoft Windows Ribbon Framework* control.
+ It will allow WinForms developers to use *Microsoft Windows Ribbon Framework* control in their WinForms applications.
 
-The project includes the library RibbonLib, which adds support for *Microsoft Windows Ribbon* to WinForms application and sample applications, written both in C# and VB.NET, that demonstrates the use of the library and the different Ribbon features available.
+The project includes the library RibbonLib, which adds support for *Microsoft Windows Ribbon Framework* to WinForms application and sample applications, written both in C# and VB.NET, that demonstrates the use of the library and the different Ribbon features available.
 
-Read the Wiki Pages for more details on how to use the *Microsoft Windows Ribbon*.
+Read the Wiki Pages for more details on how to use the *Microsoft Windows Ribbon Framework*.
 
 Note: You must have the Windows 7 SDK (or any later SDK) installed in order to compile (build) the project.
 
-For easier designing, building and previewing the Windows Ribbon there is gui and console based tool called **RibbonTools**
+For easier designing, building and previewing the Windows Ribbon Framework there is gui and console based tool called **RibbonTools**
 
 Following is the list of sample application and their description: 
 
