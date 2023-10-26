@@ -187,7 +187,7 @@ namespace UIRibbonTools
             //if (size != bitmapSize)
             //    return null;
             Bitmap managedBitmap;
-            if (bitmapStruct.bmBitsPixel == 32)
+            if (Has32BitAlpha(ref bitmapStruct))
             {
                 // Create the managed bitmap using the pointer to the pixel data of the native HBitmap
                 managedBitmap = new Bitmap(
@@ -201,6 +201,29 @@ namespace UIRibbonTools
                 managedBitmap = Bitmap.FromHbitmap(hBitmap);
             }
             return managedBitmap;
+        }
+
+        private static unsafe bool Has32BitAlpha(ref NativeMethods.BITMAP bitmapStruct)
+        {
+            if (bitmapStruct.bmBitsPixel == 32)
+            {
+                for (int i = 0; i < bitmapStruct.bmHeight; i++)
+                {
+                    for (int j = 3; j < Math.Abs(bitmapStruct.bmWidthBytes); j += 4)
+                    {
+                        // Stride here is fine since we know we're doing this on the whole image.
+                        unsafe
+                        {
+                            byte* candidate = unchecked(((byte*)bitmapStruct.bmBits) + (i * bitmapStruct.bmWidthBytes) + j);
+                            if (*candidate != 0)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -222,12 +245,11 @@ namespace UIRibbonTools
             if (bytes[0] == 0x42 && bytes[1] == 0x4d) //"BM"
             {
                 IntPtr handle = IntPtr.Zero;
-                handle = NativeMethods.LoadImage(IntPtr.Zero, path, (uint)NativeMethods.ImageType.IMAGE_BITMAP, 0, 0,
-                    (uint)(NativeMethods.ImageLoad.LR_LOADFROMFILE | NativeMethods.ImageLoad.LR_CREATEDIBSECTION));
+                handle = NativeMethods.LoadImage(IntPtr.Zero, path, (uint)NativeMethods.GDI_IMAGE_TYPE.IMAGE_BITMAP, 0, 0,
+                    (uint)(NativeMethods.IMAGE_FLAGS.LR_LOADFROMFILE | NativeMethods.IMAGE_FLAGS.LR_CREATEDIBSECTION | NativeMethods.IMAGE_FLAGS.LR_SHARED));
                 if (handle != IntPtr.Zero)
                     return FromHbitmap(handle);
                 //A V5 Bitmap is not supported by LoadImage, so we try with a Bitmap Ctor
-                //NativeMethods.DeleteObject(handle);
             }
             try
             {
@@ -255,7 +277,7 @@ namespace UIRibbonTools
         {
             if (resourceHandle == IntPtr.Zero)
                 throw new ArgumentNullException(nameof(resourceHandle));
-            IntPtr bmpHandle = NativeMethods.LoadImage(resourceHandle, (IntPtr)id, (uint)NativeMethods.ImageType.IMAGE_BITMAP, 0, 0, (uint)NativeMethods.ImageLoad.LR_CREATEDIBSECTION);
+            IntPtr bmpHandle = NativeMethods.LoadImage(resourceHandle, (IntPtr)id, (uint)NativeMethods.GDI_IMAGE_TYPE.IMAGE_BITMAP, 0, 0, (uint)(NativeMethods.IMAGE_FLAGS.LR_CREATEDIBSECTION | NativeMethods.IMAGE_FLAGS.LR_SHARED));
             if (bmpHandle != IntPtr.Zero)
             {
                 return FromHbitmap(bmpHandle);
@@ -312,7 +334,7 @@ namespace UIRibbonTools
 
         class NativeMethods
         {
-            public enum BitmapCompressionMode : uint
+            public enum BI_COMPRESSION : uint
             {
                 BI_RGB = 0,
                 BI_RLE8 = 1,
@@ -330,7 +352,7 @@ namespace UIRibbonTools
                 public int biHeight;
                 public ushort biPlanes;
                 public ushort biBitCount;
-                public BitmapCompressionMode biCompression;
+                public BI_COMPRESSION biCompression;
                 public uint biSizeImage;
                 public int biXPelsPerMeter;
                 public int biYPelsPerMeter;
@@ -413,7 +435,7 @@ namespace UIRibbonTools
             public static extern IntPtr LoadImage(IntPtr hinst, IntPtr lpszName, uint type,
                 int cxDesired, int cyDesired, uint fuLoad);
 
-            public enum ImageType
+            public enum GDI_IMAGE_TYPE
             {
                 IMAGE_BITMAP = 0,
                 IMAGE_ICON = 1,
@@ -421,7 +443,7 @@ namespace UIRibbonTools
             }
 
             [Flags]
-            public enum ImageLoad
+            public enum IMAGE_FLAGS
             {
                 LR_CREATEDIBSECTION = 0x00002000,
                 //When the uType parameter specifies IMAGE_BITMAP, causes the function to return a DIB section bitmap rather than a compatible bitmap. This flag is useful for loading a bitmap without mapping it to the colors of the display device. 

@@ -38,7 +38,7 @@ namespace RibbonLib
         /// <param name="key">The Property Key of interest.</param>
         /// <param name="value">When this method returns, contains a pointer to the value for key.</param>
         /// <returns></returns>
-        public HRESULT GetValue(ref PropertyKey key, out PropVariant value)
+        HRESULT IUISimplePropertySet.GetValue(ref PropertyKey key, out PropVariant value)
         {
             return GetValueImpl(ref key, out value);
         }

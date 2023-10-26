@@ -1,4 +1,4 @@
-﻿namespace _12_FontControl
+namespace _12_FontControl
 {
     partial class Form1
     {
@@ -39,15 +39,15 @@
             this._ribbon.Name = "_ribbon";
             this._ribbon.ResourceName = "_12_FontControl.RibbonMarkup.ribbon";
             this._ribbon.ShortcutTableResourceName = null;
-            this._ribbon.Size = new System.Drawing.Size(651, 100);
+            this._ribbon.Size = new System.Drawing.Size(651, 116);
             this._ribbon.TabIndex = 4;
             // 
             // richTextBox1
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 100);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 116);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(651, 167);
+            this.richTextBox1.Size = new System.Drawing.Size(651, 151);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);

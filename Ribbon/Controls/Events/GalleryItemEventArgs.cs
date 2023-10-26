@@ -28,10 +28,33 @@ namespace RibbonLib.Controls.Events
         /// <summary>
         /// Creates a GalleryItemEventArgs from ExecuteEventArgs of a Ribbon Gallery Control (RibbonComboBox, ...) event
         /// </summary>
+        /// <param name="sender">Parameter from event: sender</param>
         /// <param name="e">Parameters from event: ExecuteEventArgs</param>
         /// <returns></returns>
-        public static GalleryItemEventArgs Create(ExecuteEventArgs e)
+        public static GalleryItemEventArgs Create(object sender, ExecuteEventArgs e)
         {
+            bool isItemClass = false;
+            if (sender is RibbonComboBox cBox)
+            {
+                isItemClass = true;
+            }
+            if (!isItemClass && sender is RibbonDropDownGallery ddGallery)
+            {
+                if (ddGallery.CommandType == CommandType.Collection)
+                    isItemClass = true;
+            }
+            if (!isItemClass && sender is RibbonSplitButtonGallery sbGallery)
+            {
+                if (sbGallery.CommandType == CommandType.Collection)
+                    isItemClass = true;
+            }
+            if (!isItemClass && sender is RibbonInRibbonGallery irGallery)
+            {
+                if (irGallery.CommandType == CommandType.Collection)
+                    isItemClass = true;
+            }
+            if (!isItemClass)
+                throw new ArgumentException("Not an ItemsControl", nameof(sender));
             if (e == null)
                 throw new ArgumentNullException(nameof(e));
             return Create(ref e.Key.PropertyKey, ref e.CurrentValue.PropVariant, e.CommandExecutionProperties);
@@ -44,7 +67,7 @@ namespace RibbonLib.Controls.Events
         /// <param name="currentValue"></param>
         /// <param name="commandExecutionProperties"></param>
         /// <returns></returns>
-        public static GalleryItemEventArgs Create(ref PropertyKey key, ref PropVariant currentValue, IUISimplePropertySet commandExecutionProperties)
+        private static GalleryItemEventArgs Create(ref PropertyKey key, ref PropVariant currentValue, IUISimplePropertySet commandExecutionProperties)
         {
             GalleryItemPropertySet propSet = null;
             SelectedItem<GalleryItemPropertySet> selected = null;

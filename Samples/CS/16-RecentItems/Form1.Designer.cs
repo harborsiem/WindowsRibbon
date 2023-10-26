@@ -1,4 +1,4 @@
-﻿namespace _16_RecentItems
+namespace _16_RecentItems
 {
     partial class Form1
     {
@@ -38,7 +38,7 @@
             this._ribbon.Name = "_ribbon";
             this._ribbon.ResourceName = "_16_RecentItems.RibbonMarkup.ribbon";
             this._ribbon.ShortcutTableResourceName = null;
-            this._ribbon.Size = new System.Drawing.Size(501, 100);
+            this._ribbon.Size = new System.Drawing.Size(501, 116);
             this._ribbon.TabIndex = 6;
             // 
             // Form1

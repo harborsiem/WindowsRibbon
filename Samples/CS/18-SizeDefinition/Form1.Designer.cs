@@ -1,4 +1,4 @@
-﻿namespace _18_SizeDefinition
+namespace _18_SizeDefinition
 {
     partial class Form1
     {
@@ -38,7 +38,7 @@
             this._ribbon.Name = "_ribbon";
             this._ribbon.ResourceName = "_18_SizeDefinition.RibbonMarkup.ribbon";
             this._ribbon.ShortcutTableResourceName = null;
-            this._ribbon.Size = new System.Drawing.Size(501, 100);
+            this._ribbon.Size = new System.Drawing.Size(501, 116);
             this._ribbon.TabIndex = 6;
             // 
             // Form1

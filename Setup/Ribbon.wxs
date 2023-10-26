@@ -10,7 +10,7 @@
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:WixUI="http://schemas.microsoft.com/wix/UIExtension">
   <Product Id="{290EB9B3-047E-46BA-B5F6-56832F7F4169}" Name="Ribbon" Language="1033" Version="2.15.0.0" Manufacturer="RibbonLib" UpgradeCode="FA403F70-F169-497E-8DC2-CCA0609A1E30">
-    <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x86" Description="Windows Ribbon Library for .NET" />
+    <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x86" Description="Windows Ribbon Framework Library for .NET" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <Media Id="1" Cabinet="Data.cab" EmbedCab="yes" />
@@ -27,7 +27,7 @@
     <Icon Id="MainIcon.ico" SourceFile=".\Ribbon.ico" />
     <Property Id="ARPPRODUCTICON" Value="MainIcon.ico" />
     <Property Id="ARPHELPLINK" Value="https://github.com/harborsiem/WindowsRibbon/wiki" />
-    <Property Id="ARPCOMMENTS" Value="Windows Ribbon Library for .NET" />
+    <Property Id="ARPCOMMENTS" Value="Windows Ribbon Framework Library for .NET" />
     <Property Id="ARPURLUPDATEINFO" Value="https://github.com/harborsiem/WindowsRibbon/releases" />
     <Property Id="ARPNOREPAIR" Value="yes" />
     <WixVariable Id="WixUILicenseRtf" Value="Ms-PL_License.rtf" />

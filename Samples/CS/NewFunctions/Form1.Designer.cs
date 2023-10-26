@@ -38,7 +38,7 @@ namespace NewFunctions
             this.ribbon1.ResourceIdentifier = null;
             this.ribbon1.ResourceName = "NewFunctions.RibbonMarkup.ribbon";
             this.ribbon1.ShortcutTableResourceName = null;
-            this.ribbon1.Size = new System.Drawing.Size(800, 66);
+            this.ribbon1.Size = new System.Drawing.Size(800, 116);
             this.ribbon1.TabIndex = 0;
             // 
             // Form1

@@ -1,4 +1,4 @@
-﻿namespace _02_ApplicationMenuButton
+namespace _02_ApplicationMenuButton
 {
     partial class Form1
     {
@@ -70,7 +70,7 @@
             this._ribbon.Name = "_ribbon";
             this._ribbon.ResourceName = "_02_ApplicationMenuButton.RibbonMarkup.ribbon";
             this._ribbon.ShortcutTableResourceName = null;
-            this._ribbon.Size = new System.Drawing.Size(407, 100);
+            this._ribbon.Size = new System.Drawing.Size(407, 116);
             this._ribbon.TabIndex = 2;
             // 
             // panel1
@@ -79,9 +79,9 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 100);
+            this.panel1.Location = new System.Drawing.Point(0, 116);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(407, 281);
+            this.panel1.Size = new System.Drawing.Size(407, 265);
             this.panel1.TabIndex = 3;
             // 
             // Form1

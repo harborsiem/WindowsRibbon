@@ -8,12 +8,20 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Destroy EventLogger.
 - Static method GetBitmap(IUIImage) in Ribbon class added.
-
+- Hide Interface methods Execute, UpdateProperty, GetValue
+- Update Ribbon Size for Designer 
+- New Name property (RibbonButton, RibbonComboBox, ...) for easier debugging. One can set the Name after instantiation the RibbonButton, ...
+- Create method in GalleryItemEventArgs, ColorPickerEventArgs, FontControlEventArgs add a sender parameter for checking
 
 #### Changed (RibbonTools)
 
 - Bitmap Alpha channel detection like Microsoft in the Icon class.
 - Changes for Issue #12
+
+#### Changed (Samples)
+
+- Update Size for the Ribbon Control.
+- C# Sample "NewFunctions" updated with new sender parameter.
 
 ### Ribbon V2.14.0, RibbonTools V1.6.0
 

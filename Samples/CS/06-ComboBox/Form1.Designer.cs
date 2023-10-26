@@ -1,4 +1,4 @@
-﻿namespace _06_ComboBox
+namespace _06_ComboBox
 {
     partial class Form1
     {
@@ -38,7 +38,7 @@
             this._ribbon.Name = "_ribbon";
             this._ribbon.ResourceName = "_06_ComboBox.RibbonMarkup.ribbon";
             this._ribbon.ShortcutTableResourceName = null;
-            this._ribbon.Size = new System.Drawing.Size(712, 100);
+            this._ribbon.Size = new System.Drawing.Size(712, 116);
             this._ribbon.TabIndex = 2;
             // 
             // Form1

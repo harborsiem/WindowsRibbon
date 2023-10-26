@@ -1,4 +1,4 @@
-﻿namespace _09_Galleries
+namespace _09_Galleries
 {
     partial class Form1
     {
@@ -102,7 +102,7 @@
             this._ribbon.Name = "_ribbon";
             this._ribbon.ResourceName = "_09_Galleries.RibbonMarkup.ribbon";
             this._ribbon.ShortcutTableResourceName = null;
-            this._ribbon.Size = new System.Drawing.Size(501, 100);
+            this._ribbon.Size = new System.Drawing.Size(501, 116);
             this._ribbon.TabIndex = 4;
             // 
             // Form1

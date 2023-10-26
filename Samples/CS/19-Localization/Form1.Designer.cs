@@ -1,4 +1,4 @@
-﻿namespace _19_Localization
+namespace _19_Localization
 {
     partial class Form1
     {
@@ -38,9 +38,9 @@
             // 
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 118);
+            this.panel1.Location = new System.Drawing.Point(0, 116);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(501, 310);
+            this.panel1.Size = new System.Drawing.Size(501, 312);
             this.panel1.TabIndex = 3;
             // 
             // label1
@@ -60,7 +60,7 @@
             this._ribbonControl.Name = "_ribbonControl";
             this._ribbonControl.ResourceName = "_19_Localization.RibbonMarkup.ribbon";
             this._ribbonControl.ShortcutTableResourceName = "_19_Localization.RibbonMarkup.shortcuts";
-            this._ribbonControl.Size = new System.Drawing.Size(501, 118);
+            this._ribbonControl.Size = new System.Drawing.Size(501, 116);
             this._ribbonControl.TabIndex = 2;
             // 
             // Form1

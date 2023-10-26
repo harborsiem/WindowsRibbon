@@ -79,7 +79,7 @@ namespace RibbonLib
         /// <param name="key">The Property Key of interest.</param>
         /// <param name="value">When this method returns, contains a pointer to the value for key.</param>
         /// <returns></returns>
-        public HRESULT GetValue(ref PropertyKey key, out PropVariant value)
+        public HRESULT GetValueImpl(ref PropertyKey key, out PropVariant value)
         {
             if (key == RibbonProperties.Label)
             {
@@ -106,7 +106,7 @@ namespace RibbonLib
                 }
                 return HRESULT.S_OK;
             }
-            
+
             if (key == RibbonProperties.Pinned)
             {
                 if (_pinned.HasValue)
@@ -124,6 +124,17 @@ namespace RibbonLib
 
             value = PropVariant.Empty;
             return HRESULT.E_NOTIMPL;
+        }
+
+        /// <summary>
+        /// Retrieves the stored value of a given property
+        /// </summary>
+        /// <param name="key">The Property Key of interest.</param>
+        /// <param name="value">When this method returns, contains a pointer to the value for key.</param>
+        /// <returns></returns>
+        HRESULT IUISimplePropertySet.GetValue(ref PropertyKey key, out PropVariant value)
+        {
+            return GetValueImpl(ref key, out value);
         }
 
         #endregion

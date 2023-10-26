@@ -16,7 +16,7 @@ namespace RibbonLib.Controls.Events
     /// Base class for all events provider classes.
     /// provides common members like: SupportedEvents.
     /// </summary>
-    public class BaseEventsProvider : IEventsProvider
+    public abstract class BaseEventsProvider : IEventsProvider
     {
         /// <summary>
         /// list of supported events
@@ -51,9 +51,19 @@ namespace RibbonLib.Controls.Events
         /// <param name="currentValue">the new value of the property that has changed</param>
         /// <param name="commandExecutionProperties">additional data for this execution</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
-        public virtual HRESULT Execute(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
+        protected abstract HRESULT ExecuteImpl(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties);
+
+        /// <summary>
+        /// Handles IUICommandHandler.Execute function for supported events
+        /// </summary>
+        /// <param name="verb">the mode of execution</param>
+        /// <param name="key">the property that has changed</param>
+        /// <param name="currentValue">the new value of the property that has changed</param>
+        /// <param name="commandExecutionProperties">additional data for this execution</param>
+        /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
+        HRESULT IEventsProvider.Execute(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
         {
-            return HRESULT.S_OK;
+            return ExecuteImpl(verb, key, currentValue, commandExecutionProperties);
         }
 
         #endregion

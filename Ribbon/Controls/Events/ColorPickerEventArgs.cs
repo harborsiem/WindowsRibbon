@@ -43,10 +43,13 @@ namespace RibbonLib.Controls.Events
         /// <summary>
         /// Creates a ColorPickerEventArgs from ExecuteEventArgs of a RibbonDropDownColorPicker event
         /// </summary>
+        /// <param name="sender">Parameter from event: sender</param>
         /// <param name="e">Parameters from event: ExecuteEventArgs</param>
         /// <returns></returns>
-        public static ColorPickerEventArgs Create(ExecuteEventArgs e)
+        public static ColorPickerEventArgs Create(object sender, ExecuteEventArgs e)
         {
+            if (!(sender is RibbonDropDownColorPicker))
+                throw new ArgumentException("Not a RibbonDropDownColorPicker", nameof(sender));
             if (e == null)
                 throw new ArgumentNullException(nameof(e));
             return Create(ref e.Key.PropertyKey, ref e.CurrentValue.PropVariant, e.CommandExecutionProperties);
@@ -59,7 +62,7 @@ namespace RibbonLib.Controls.Events
         /// <param name="currentValue"></param>
         /// <param name="commandExecutionProperties"></param>
         /// <returns></returns>
-        public static ColorPickerEventArgs Create(ref PropertyKey key, ref PropVariant currentValue, IUISimplePropertySet commandExecutionProperties)
+        private static ColorPickerEventArgs Create(ref PropertyKey key, ref PropVariant currentValue, IUISimplePropertySet commandExecutionProperties)
         {
             Color? color= null;
             SwatchColorType colorType = (SwatchColorType)(uint)currentValue.Value;

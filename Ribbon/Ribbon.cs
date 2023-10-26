@@ -48,6 +48,12 @@ namespace RibbonLib
         private static readonly object EventViewDestroy = new object();
         private static readonly object EventRibbonHeight = new object();
 
+        //@ Size for designer
+        /// <summary>
+        /// The default height is 147, but here we have to use default height - Top Non Client Area (31)
+        /// </summary>
+        protected override Size DefaultSize => new Size(base.DefaultSize.Width, 116);
+
         /// <summary>
         /// Get EventLogger object which implements IUIEventLogger.
         /// Only available in Windows 8, 10. Can be null.
@@ -98,7 +104,7 @@ namespace RibbonLib
             if (commandId == 0)
                 return;
 
-            this.Execute(commandId, ExecutionVerb.Execute, null, null, null);
+            ((IUICommandHandler)this).Execute(commandId, ExecutionVerb.Execute, null, null, null);
 
             e.SuppressKeyPress = false;
             e.Handled = true;
@@ -1115,7 +1121,7 @@ namespace RibbonLib
         /// <param name="commandExecutionProperties">additional data for this execution</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
         /// <remarks>This method is used internally by the Ribbon class and should not be called by the user.</remarks>
-        public virtual HRESULT Execute(uint commandID, ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
+        HRESULT IUICommandHandler.Execute(uint commandID, ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
         {
 #if DEBUG
             Debug.WriteLine(string.Format("Execute verb: {0} for command {1}", verb, commandID));
@@ -1139,7 +1145,7 @@ namespace RibbonLib
         /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
         /// <remarks>This method is used internally by the Ribbon class and should not be called by the user.</remarks>
-        public virtual HRESULT UpdateProperty(uint commandID, ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
+        HRESULT IUICommandHandler.UpdateProperty(uint commandID, ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
         {
 #if DEBUG
             Debug.WriteLine(string.Format("UpdateProperty key: {0} for command {1}", RibbonProperties.GetPropertyKeyName(ref key), commandID));
@@ -1254,7 +1260,7 @@ namespace RibbonLib
             //if (size != bitmapSize)
             //    return null;
             Bitmap managedBitmap;
-            if (bitmapStruct.bmBitsPixel == 32)
+            if (Has32BitAlpha(ref bitmapStruct))
             {
                 // Create the managed bitmap using the pointer to the pixel data of the native HBitmap
                 managedBitmap = new Bitmap(
@@ -1315,6 +1321,29 @@ namespace RibbonLib
                 }
             }
 
+            return false;
+        }
+
+        private static unsafe bool Has32BitAlpha(ref BITMAP bitmapStruct)
+        {
+            if (bitmapStruct.bmBitsPixel == 32)
+            {
+                for (int i = 0; i < bitmapStruct.bmHeight; i++)
+                {
+                    for (int j = 3; j < Math.Abs(bitmapStruct.bmWidthBytes); j += 4)
+                    {
+                        // Stride here is fine since we know we're doing this on the whole image.
+                        unsafe
+                        {
+                            byte* candidate = unchecked(((byte*)bitmapStruct.bmBits) + (i * bitmapStruct.bmWidthBytes) + j);
+                            if (*candidate != 0)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
             return false;
         }
     }

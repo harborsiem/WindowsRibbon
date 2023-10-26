@@ -48,7 +48,7 @@ namespace RibbonLib.Controls.Events
         /// <param name="currentValue">the new value of the property that has changed</param>
         /// <param name="commandExecutionProperties">additional data for this execution</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
-        public override HRESULT Execute(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
+        protected override HRESULT ExecuteImpl(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
         {
             if (verb == ExecutionVerb.Execute)
             {

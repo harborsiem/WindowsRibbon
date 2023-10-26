@@ -49,7 +49,7 @@ see also:
 
 [Current Documentation](https://github.com/harborsiem/WindowsRibbon/wiki)
 
-Thanks to Arik Poznanski and Bernhard Elbl for the great work.
+Thanks to former developers Arik Poznanski and Bernhard Elbl for the great work.
 
 
 Now the WindowsRibbon project is running also in the latest Visual Studio Versions 2017, 2019, 2022. Have a look to the **WIKI** and the file "HowToUse.md" to see how to use the WindowsRibbon in a .NET WinForms application. In the Releases page of this Github repository there are also zipped *.msi setup files for the components. The msi files are build with the WIX Toolset.

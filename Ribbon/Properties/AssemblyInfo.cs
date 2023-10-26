@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Windows Ribbon for .NET")]
-[assembly: AssemblyDescription("Windows Ribbon for .NET")]
+[assembly: AssemblyTitle("Windows Ribbon Framework for .NET")]
+[assembly: AssemblyDescription("Windows Ribbon Framework for .NET")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RibbonLib")]
 [assembly: AssemblyProduct("Ribbon")]

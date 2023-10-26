@@ -41,7 +41,7 @@ namespace MainForm
             this.ribbon1.ResourceIdentifier = null;
             this.ribbon1.ResourceName = "MainForm.RibbonMarkup.ribbon";
             this.ribbon1.ShortcutTableResourceName = null;
-            this.ribbon1.Size = new System.Drawing.Size(800, 23);
+            this.ribbon1.Size = new System.Drawing.Size(800, 116);
             this.ribbon1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -52,12 +52,12 @@ namespace MainForm
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 54);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 116);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 396);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 334);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // label1

@@ -33,7 +33,7 @@
             Me._ribbon.Name = "_ribbon"
             Me._ribbon.ResourceName = "RibbonMarkup.ribbon"
             Me._ribbon.ShortcutTableResourceName = Nothing
-            Me._ribbon.Size = New System.Drawing.Size(501, 100)
+            Me._ribbon.Size = New System.Drawing.Size(501, 116)
             Me._ribbon.TabIndex = 6
             '
             'Form1

@@ -1,4 +1,4 @@
-﻿namespace _15_ContextPopup
+namespace _15_ContextPopup
 {
     partial class Form1
     {
@@ -56,9 +56,9 @@
             this.panel3.Controls.Add(this.panel2);
             this.panel3.Controls.Add(this.panel1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 100);
+            this.panel3.Location = new System.Drawing.Point(0, 116);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(501, 177);
+            this.panel3.Size = new System.Drawing.Size(501, 161);
             this.panel3.TabIndex = 1;
             // 
             // _ribbon
@@ -68,7 +68,7 @@
             this._ribbon.Name = "_ribbon";
             this._ribbon.ResourceName = "_15_ContextPopup.RibbonMarkup.ribbon";
             this._ribbon.ShortcutTableResourceName = null;
-            this._ribbon.Size = new System.Drawing.Size(501, 100);
+            this._ribbon.Size = new System.Drawing.Size(501, 116);
             this._ribbon.TabIndex = 5;
             // 
             // Form1

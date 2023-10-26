@@ -21,6 +21,8 @@ namespace RibbonLib.Controls
     /// </summary>
     public class BaseRibbonControl : IRibbonControl
     {
+        private string _name;
+
         /// <summary>
         /// reference for parent ribbon class
         /// </summary>
@@ -78,6 +80,26 @@ namespace RibbonLib.Controls
             }
         }
 
+        /// <summary>
+        /// The name of RibbonStripItem
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_name))
+                    return string.Empty;
+                return _name;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    _name = null;
+                else
+                    _name = value;
+            }
+        }
+
         #region IRibbonControl Members
 
         /// <summary>
@@ -99,7 +121,7 @@ namespace RibbonLib.Controls
         /// <param name="currentValue">the new value of the property that has changed</param>
         /// <param name="commandExecutionProperties">additional data for this execution</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
-        public virtual HRESULT Execute(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
+        protected virtual HRESULT ExecuteImpl(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
         {
             // check if verb is registered with this ribbon control
             if (_mapEvents.ContainsKey(verb))
@@ -116,13 +138,26 @@ namespace RibbonLib.Controls
         }
 
         /// <summary>
+        /// Handles IUICommandHandler.Execute function for this ribbon control
+        /// </summary>
+        /// <param name="verb">the mode of execution</param>
+        /// <param name="key">the property that has changed</param>
+        /// <param name="currentValue">the new value of the property that has changed</param>
+        /// <param name="commandExecutionProperties">additional data for this execution</param>
+        /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
+        HRESULT IRibbonControl.Execute(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
+        {
+            return ExecuteImpl(verb, key, currentValue, commandExecutionProperties);
+        }
+
+        /// <summary>
         /// Handles IUICommandHandler.UpdateProperty function for this ribbon control
         /// </summary>
         /// <param name="key">The Property Key to update</param>
         /// <param name="currentValue">A pointer to the current value for key. This parameter can be null</param>
         /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
-        public virtual HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
+        protected virtual HRESULT UpdatePropertyImpl(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
         {
             // check if property is registered with this ribbon control
             if (_mapProperties.ContainsKey(key))
@@ -136,6 +171,18 @@ namespace RibbonLib.Controls
 
             Debug.WriteLine(string.Format("Class {0} does not support property: {1}.", GetType(), RibbonProperties.GetPropertyKeyName(ref key)));
             return HRESULT.S_OK;
+        }
+
+        /// <summary>
+        /// Handles IUICommandHandler.UpdateProperty function for this ribbon control
+        /// </summary>
+        /// <param name="key">The Property Key to update</param>
+        /// <param name="currentValue">A pointer to the current value for key. This parameter can be null</param>
+        /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
+        /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
+        HRESULT IRibbonControl.UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
+        {
+            return UpdatePropertyImpl(ref key, currentValue, ref newValue);
         }
 
         /// <summary>

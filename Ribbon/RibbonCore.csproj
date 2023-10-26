@@ -20,7 +20,7 @@
 
     <PackageId>WindowsRibbon</PackageId>
     <Product>Windows Ribbon Control</Product>
-    <Version>2.14.0</Version>
+    <Version>2.15.0</Version>
     <Authors>Hartmut Borkenhagen</Authors>
     <Company>RibbonLib</Company>
     <PackageIcon>Ribbon64.png</PackageIcon>
@@ -28,6 +28,10 @@
     <Description>Windows Ribbon for WinForms is a .NET wrapper for Windows Ribbon control. It will allow WinForms developers to use Microsoft Windows Ribbon control in their WinForms applications.
 	Former developers: Arik Poznanski, Bernhard Elbl
 	</Description>
+	<PackageReadmeFile>readme.md</PackageReadmeFile>
+	<PackageReleaseNotes>
+	See CHANGELOG.md
+	</PackageReleaseNotes>
     <PackageTags>ribbon;winforms;windows-forms;RibbonTools</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
@@ -80,4 +84,7 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\readme.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </Project>

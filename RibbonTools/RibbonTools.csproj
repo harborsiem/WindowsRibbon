@@ -182,6 +182,7 @@
     <Compile Include="Misc\IActivate.cs" />
     <Compile Include="Misc\ImageManager.cs" />
     <Compile Include="Misc\ListViewColumnSorter.cs" />
+    <Compile Include="Misc\MarkupLocalizer.cs" />
     <Compile Include="Misc\NativeMethods.cs" />
     <Compile Include="Misc\Enums.cs" />
     <Compile Include="Misc\Extension.cs" />

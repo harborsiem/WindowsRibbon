@@ -65,7 +65,7 @@
             Me._ribbon.Name = "_ribbon"
             Me._ribbon.ResourceName = "RibbonMarkup.ribbon"
             Me._ribbon.ShortcutTableResourceName = Nothing
-            Me._ribbon.Size = New System.Drawing.Size(407, 100)
+            Me._ribbon.Size = New System.Drawing.Size(407, 116)
             Me._ribbon.TabIndex = 2
             '
             'panel1
@@ -74,9 +74,9 @@
             Me.panel1.Controls.Add(Me.button1)
             Me.panel1.Controls.Add(Me.button2)
             Me.panel1.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.panel1.Location = New System.Drawing.Point(0, 100)
+            Me.panel1.Location = New System.Drawing.Point(0, 116)
             Me.panel1.Name = "panel1"
-            Me.panel1.Size = New System.Drawing.Size(407, 281)
+            Me.panel1.Size = New System.Drawing.Size(407, 265)
             Me.panel1.TabIndex = 3
             '
             'Form1

@@ -40,10 +40,13 @@ namespace RibbonLib.Controls.Events
         /// <summary>
         /// Creates a FontControlEventArgs from ExecuteEventArgs of a RibbonFontControl event
         /// </summary>
+        /// <param name="sender">Parameter from event: sender</param>
         /// <param name="e">Parameters from event: ExecuteEventArgs</param>
         /// <returns></returns>
-        public static FontControlEventArgs Create(ExecuteEventArgs e)
+        public static FontControlEventArgs Create(object sender, ExecuteEventArgs e)
         {
+            if (!(sender is RibbonFontControl))
+                throw new ArgumentException("Not a RibbonFontControl", nameof(sender));
             if (e == null)
                 throw new ArgumentNullException(nameof(e));
             return Create(ref e.Key.PropertyKey, ref e.CurrentValue.PropVariant, e.CommandExecutionProperties);
@@ -56,7 +59,7 @@ namespace RibbonLib.Controls.Events
         /// <param name="currentValue"></param>
         /// <param name="commandExecutionProperties"></param>
         /// <returns></returns>
-        public static FontControlEventArgs Create(ref PropertyKey key, ref PropVariant currentValue, IUISimplePropertySet commandExecutionProperties)
+        private static FontControlEventArgs Create(ref PropertyKey key, ref PropVariant currentValue, IUISimplePropertySet commandExecutionProperties)
         {
             HRESULT hr;
             IPropertyStore currentStore = null;

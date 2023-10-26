@@ -47,7 +47,7 @@ namespace RibbonLib.Controls.Properties
         /// <param name="currentValue">A pointer to the current value for key. This parameter can be null</param>
         /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
-        public override HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
+        protected override HRESULT UpdatePropertyImpl(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
         {
             if (key == RibbonProperties.RepresentativeString)
             {

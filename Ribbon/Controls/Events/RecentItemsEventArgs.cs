@@ -17,8 +17,6 @@ namespace RibbonLib.Controls.Events
     /// </summary>
     public sealed class RecentItemsEventArgs : EventArgs
     {
-        private static RibbonRecentItems s_ribbonRecent;
-
         /// <summary>
         /// Ctor
         /// </summary>
@@ -55,29 +53,26 @@ namespace RibbonLib.Controls.Events
         /// <returns></returns>
         public static RecentItemsEventArgs Create(object sender, ExecuteEventArgs e)
         {
+            if (!(sender is RibbonRecentItems))
+                throw new ArgumentException("Not a RibbonRecentItems", nameof(sender));
             if (e == null)
                 throw new ArgumentNullException(nameof(e));
-            return Create(sender, ref e.Key.PropertyKey, ref e.CurrentValue.PropVariant, e.CommandExecutionProperties);
+            return Create((RibbonRecentItems)sender, ref e.Key.PropertyKey, ref e.CurrentValue.PropVariant, e.CommandExecutionProperties);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="recentItems"></param>
         /// <param name="key"></param>
         /// <param name="currentValue"></param>
         /// <param name="commandExecutionProperties"></param>
         /// <returns></returns>
-        public static RecentItemsEventArgs Create(object sender, ref PropertyKey key, ref PropVariant currentValue, IUISimplePropertySet commandExecutionProperties)
+        private static RecentItemsEventArgs Create(RibbonRecentItems recentItems, ref PropertyKey key, ref PropVariant currentValue, IUISimplePropertySet commandExecutionProperties)
         {
             SelectedItem<RecentItemsPropertySet> selectedRecentItem = null;
-            IList<RecentItemsPropertySet> recentItems = null;
-            IList<RecentItemsPropertySet> oldRecentItems = null;
-            s_ribbonRecent = sender as RibbonRecentItems;
-            if (s_ribbonRecent == null)
-            {
-                throw new ArgumentException("Parameter is not RibbonRecentItems", nameof(sender));
-            }
+            IList<RecentItemsPropertySet> recentItemsPropSets = null;
+            IList<RecentItemsPropertySet> oldRecentItemsPropSets = null;
 
             if (key == RibbonProperties.RecentItems)
             {
@@ -85,16 +80,16 @@ namespace RibbonLib.Controls.Events
                 {
                     // go over recent items
                     object[] objectArray = (object[])currentValue.Value;
-                    recentItems = s_ribbonRecent.RecentItems;
-                    oldRecentItems = new List<RecentItemsPropertySet>();
+                    recentItemsPropSets = recentItems.RecentItems;
+                    oldRecentItemsPropSets = new List<RecentItemsPropertySet>();
                     for (int i = 0; i < objectArray.Length; ++i)
                     {
                         IUISimplePropertySet propertySet = objectArray[i] as IUISimplePropertySet;
 
                         if (propertySet != null)
                         {
-                            oldRecentItems.Add(recentItems[i].Clone());
-                            RecentItemsPropertySet propSet = GetRecentItemProperties(propertySet, i);
+                            oldRecentItemsPropSets.Add(recentItemsPropSets[i].Clone());
+                            RecentItemsPropertySet propSet = GetRecentItemProperties(recentItems, propertySet, i);
                         }
                     }
                 }
@@ -104,23 +99,24 @@ namespace RibbonLib.Controls.Events
                 // get selected item index
                 uint selectedItemIndex = (uint)currentValue.Value;
 
-                RecentItemsPropertySet propSet = GetRecentItemProperties(commandExecutionProperties, (int)selectedItemIndex);
+                RecentItemsPropertySet propSet = GetRecentItemProperties(recentItems, commandExecutionProperties, (int)selectedItemIndex);
 
                 selectedRecentItem = new SelectedItem<RecentItemsPropertySet>((int)selectedItemIndex, propSet);
             }
-            RecentItemsEventArgs e = new RecentItemsEventArgs(selectedRecentItem, recentItems, oldRecentItems);
+            RecentItemsEventArgs e = new RecentItemsEventArgs(selectedRecentItem, recentItemsPropSets, oldRecentItemsPropSets);
             return e;
         }
 
         /// <summary>
         /// returns a RecentItemsPropertySet from IUISimplePropertySet
         /// </summary>
+        /// <param name="recentItems"></param>
         /// <param name="commandExecutionProperties"></param>
         /// <param name="index">RibbonRecentItems.RecentItems index</param>
         /// <returns>RecentItemsPropertySet</returns>
-        internal static RecentItemsPropertySet GetRecentItemProperties(IUISimplePropertySet commandExecutionProperties, int index)
+        internal static RecentItemsPropertySet GetRecentItemProperties(RibbonRecentItems recentItems, IUISimplePropertySet commandExecutionProperties, int index)
         {
-            RecentItemsPropertySet propSet = s_ribbonRecent.RecentItems[index]; //new RecentItemsPropertySet();
+            RecentItemsPropertySet propSet = recentItems.RecentItems[index]; //new RecentItemsPropertySet();
 
             // Get only the Pinned property, because the string values are the same
             //// get item label

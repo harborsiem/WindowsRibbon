@@ -142,11 +142,14 @@ namespace UIRibbonTools
             SendMessage(hWnd, WM_SETREDRAW, (IntPtr)1, IntPtr.Zero);
         }
 
-        public enum ComboBoxButtonState
+        public enum COMBOBOXINFO_BUTTON_STATE : uint
         {
             STATE_SYSTEM_NONE = 0,
             STATE_SYSTEM_INVISIBLE = 0x00008000,
-            STATE_SYSTEM_PRESSED = 0x00000008
+            STATE_SYSTEM_PRESSED = 0x00000008,
+            STATE_SYSTEM_FOCUSABLE = 1048576U,
+            STATE_SYSTEM_OFFSCREEN = 65536U,
+            STATE_SYSTEM_UNAVAILABLE = 1U,
         }
 
         public struct COMBOBOXINFO
@@ -154,7 +157,7 @@ namespace UIRibbonTools
             public Int32 cbSize;
             public RECT rcItem;
             public RECT rcButton;
-            public ComboBoxButtonState buttonState;
+            public COMBOBOXINFO_BUTTON_STATE buttonState;
             public IntPtr hwndCombo;
             public IntPtr hwndEdit;
             public IntPtr hwndList;
@@ -221,6 +224,11 @@ namespace UIRibbonTools
 
         public const int TRANSPARENT = 1;
         public const int OPAQUE = 2;
+        public enum BACKGROUND_MODE : int
+        {
+            OPAQUE = 2,
+            TRANSPARENT = 1,
+        }
 
         [DllImport("gdi32.dll")]
         public static extern int SetBkMode(IntPtr hdc, int iBkMode);
@@ -230,12 +238,49 @@ namespace UIRibbonTools
 
         [DllImport("gdi32.dll")]
         static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
-        public enum DeviceCap
+
+        public enum GET_DEVICE_CAPS_INDEX : int
         {
+            DRIVERVERSION = 0,
+            TECHNOLOGY = 2,
+            HORZSIZE = 4,
+            VERTSIZE = 6,
+            HORZRES = 8,
             VERTRES = 10,
-            DESKTOPVERTRES = 117,
+            BITSPIXEL = 12,
+            PLANES = 14,
+            NUMBRUSHES = 16,
+            NUMPENS = 18,
+            NUMMARKERS = 20,
+            NUMFONTS = 22,
+            NUMCOLORS = 24,
+            PDEVICESIZE = 26,
+            CURVECAPS = 28,
+            LINECAPS = 30,
+            POLYGONALCAPS = 32,
+            TEXTCAPS = 34,
+            CLIPCAPS = 36,
+            RASTERCAPS = 38,
+            ASPECTX = 40,
+            ASPECTY = 42,
+            ASPECTXY = 44,
             LOGPIXELSX = 88,
             LOGPIXELSY = 90,
+            SIZEPALETTE = 104,
+            NUMRESERVED = 106,
+            COLORRES = 108,
+            PHYSICALWIDTH = 110,
+            PHYSICALHEIGHT = 111,
+            PHYSICALOFFSETX = 112,
+            PHYSICALOFFSETY = 113,
+            SCALINGFACTORX = 114,
+            SCALINGFACTORY = 115,
+            VREFRESH = 116,
+            DESKTOPVERTRES = 117,
+            DESKTOPHORZRES = 118,
+            BLTALIGNMENT = 119,
+            SHADEBLENDCAPS = 120,
+            COLORMGMTCAPS = 121,
         }
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
@@ -245,9 +290,9 @@ namespace UIRibbonTools
         {
             Graphics g = Graphics.FromHwnd(IntPtr.Zero);
             IntPtr desktop = g.GetHdc();
-            int LogicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.VERTRES);
-            int PhysicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.DESKTOPVERTRES);
-            int logpixelsy = GetDeviceCaps(desktop, (int)DeviceCap.LOGPIXELSY);
+            int LogicalScreenHeight = GetDeviceCaps(desktop, (int)GET_DEVICE_CAPS_INDEX.VERTRES);
+            int PhysicalScreenHeight = GetDeviceCaps(desktop, (int)GET_DEVICE_CAPS_INDEX.DESKTOPVERTRES);
+            int logpixelsy = GetDeviceCaps(desktop, (int)GET_DEVICE_CAPS_INDEX.LOGPIXELSY);
             float screenScalingFactor = (float)PhysicalScreenHeight / (float)LogicalScreenHeight;
             float dpiScalingFactor = (float)logpixelsy / (float)96;
 

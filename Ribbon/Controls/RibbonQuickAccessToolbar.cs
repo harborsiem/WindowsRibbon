@@ -59,21 +59,10 @@ namespace RibbonLib.Controls
 
         #region IRibbonControl Members
 
-        ///// <summary>
-        ///// The command Id.
-        ///// </summary>
-        //public uint CommandID
-        //{
-        //    get 
-        //    {
-        //        return _commandID;
-        //    }
-        //}
-
         /// <summary>
         /// 
         /// </summary>
-        public override HRESULT Execute(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
+        protected override HRESULT ExecuteImpl(ExecutionVerb verb, PropertyKeyRef key, PropVariantRef currentValue, IUISimplePropertySet commandExecutionProperties)
         {
             return HRESULT.S_OK;
         }
@@ -81,7 +70,7 @@ namespace RibbonLib.Controls
         /// <summary>
         /// 
         /// </summary>
-        public override HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
+        protected override HRESULT UpdatePropertyImpl(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
         {
             QatItemsSource = new UICollection<QatCommandPropertySet>((IUICollection)currentValue.PropVariant.Value, this, CollectionType.QatItemsSource);
             //List<object> items = new List<object>();

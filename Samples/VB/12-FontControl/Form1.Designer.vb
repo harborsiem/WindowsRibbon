@@ -34,15 +34,15 @@
             Me._ribbon.Name = "_ribbon"
             Me._ribbon.ResourceName = "RibbonMarkup.ribbon"
             Me._ribbon.ShortcutTableResourceName = Nothing
-            Me._ribbon.Size = New System.Drawing.Size(651, 100)
+            Me._ribbon.Size = New System.Drawing.Size(651, 116)
             Me._ribbon.TabIndex = 4
             '
             'richTextBox1
             '
             Me.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.richTextBox1.Location = New System.Drawing.Point(0, 100)
+            Me.richTextBox1.Location = New System.Drawing.Point(0, 116)
             Me.richTextBox1.Name = "richTextBox1"
-            Me.richTextBox1.Size = New System.Drawing.Size(651, 167)
+            Me.richTextBox1.Size = New System.Drawing.Size(651, 151)
             Me.richTextBox1.TabIndex = 5
             Me.richTextBox1.Text = ""
             '

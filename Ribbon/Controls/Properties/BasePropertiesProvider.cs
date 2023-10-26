@@ -18,7 +18,7 @@ namespace RibbonLib.Controls.Properties
     /// provides common members like: _ribbon, _command_id 
     /// and _supportedProperties.
     /// </summary>
-    public class BasePropertiesProvider : IPropertiesProvider
+    public abstract class BasePropertiesProvider : IPropertiesProvider
     {
         /// <summary>
         /// reference for parent ribbon class
@@ -66,9 +66,18 @@ namespace RibbonLib.Controls.Properties
         /// <param name="currentValue">A pointer to the current value for key. This parameter can be null</param>
         /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
         /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
-        public virtual HRESULT UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
+        protected abstract HRESULT UpdatePropertyImpl(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue);
+
+        /// <summary>
+        /// Handles IUICommandHandler.UpdateProperty function for the supported properties
+        /// </summary>
+        /// <param name="key">The Property Key to update</param>
+        /// <param name="currentValue">A pointer to the current value for key. This parameter can be null</param>
+        /// <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
+        /// <returns>Returns S_OK if successful, or an error value otherwise</returns>
+        HRESULT IPropertiesProvider.UpdateProperty(ref PropertyKey key, PropVariantRef currentValue, ref PropVariant newValue)
         {
-            return HRESULT.S_OK;
+            return UpdatePropertyImpl(ref key, currentValue, ref newValue);
         }
 
         #endregion

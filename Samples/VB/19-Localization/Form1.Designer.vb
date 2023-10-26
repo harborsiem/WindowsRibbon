@@ -33,9 +33,9 @@
             '
             Me.panel1.Controls.Add(Me.label1)
             Me.panel1.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.panel1.Location = New System.Drawing.Point(0, 118)
+            Me.panel1.Location = New System.Drawing.Point(0, 116)
             Me.panel1.Name = "panel1"
-            Me.panel1.Size = New System.Drawing.Size(501, 310)
+            Me.panel1.Size = New System.Drawing.Size(501, 312)
             Me.panel1.TabIndex = 3
             '
             'label1
@@ -55,7 +55,7 @@
             Me._ribbonControl.Name = "_ribbonControl"
             Me._ribbonControl.ResourceName = "RibbonMarkup.ribbon"
             Me._ribbonControl.ShortcutTableResourceName = "RibbonMarkup.shortcuts"
-            Me._ribbonControl.Size = New System.Drawing.Size(501, 118)
+            Me._ribbonControl.Size = New System.Drawing.Size(501, 116)
             Me._ribbonControl.TabIndex = 2
             '
             'Form1
