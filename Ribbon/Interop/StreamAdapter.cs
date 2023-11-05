@@ -42,7 +42,6 @@ namespace RibbonLib.Interop
         /// <param name="streamCopy"></param>
         public void Clone(out IStream streamCopy)
         {
-            streamCopy = null;
             throw new NotSupportedException();
         }
 

@@ -768,7 +768,7 @@ namespace RibbonLib.Interop
         HRESULT CreateImage(IntPtr bitmap, Ownership options, [Out, MarshalAs(UnmanagedType.Interface)] out IUIImage image);
     }
 
-    //following types and interfaces are in UIRibbon since Windows 8, not used yet
+    //following types and interfaces are in UIRibbon since Windows 8
     /// <summary>
     /// Identifies the types of events associated with a Ribbon.
     /// UI_EVENTTYPE enum

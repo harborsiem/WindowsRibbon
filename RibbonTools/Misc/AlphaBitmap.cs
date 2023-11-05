@@ -197,9 +197,9 @@ namespace UIRibbonTools
             }
             else
             {
-                //NativeMethods.DeleteObject((IntPtr)(void*)&bitmapStruct);
                 managedBitmap = Bitmap.FromHbitmap(hBitmap);
             }
+            NativeMethods.DeleteObject(hBitmap);
             return managedBitmap;
         }
 

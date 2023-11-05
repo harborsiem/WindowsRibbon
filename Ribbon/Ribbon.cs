@@ -1272,6 +1272,7 @@ namespace RibbonLib
             {
                 managedBitmap = Bitmap.FromHbitmap(hBitmap);
             }
+            //PInvoke.DeleteObject(hBitmap); //Maybe not a good idea
             return managedBitmap;
         }
 
