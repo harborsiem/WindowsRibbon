@@ -7,11 +7,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 #### Changed (Ribbon)
 
 - Destroy EventLogger.
-- Static method GetBitmap(IUIImage) in Ribbon class added.
 - Hide Interface methods Execute, UpdateProperty, GetValue
 - Update Ribbon Size for Designer 
 - New Name property (RibbonButton, RibbonComboBox, ...) for easier debugging. One can set the Name after instantiation the RibbonButton, ...
 - Create method in GalleryItemEventArgs, ColorPickerEventArgs, FontControlEventArgs add a sender parameter for checking
+- UIImage class new designed. This class can help for handling between Bitmap class and IUIImage interface
 
 #### Changed (RibbonTools)
 

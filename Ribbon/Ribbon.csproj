@@ -152,6 +152,7 @@
     <Compile Include="RibbonUIApplication.cs" />
     <Compile Include="Controls\RibbonSpinner.cs" />
     <Compile Include="UICollectionChangedEventArgs.cs" />
+    <Compile Include="UIImage.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>

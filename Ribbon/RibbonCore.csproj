@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net7.0-windows;net6.0-windows;net40</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows;net7.0-windows;net6.0-windows;net40</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon />
@@ -25,14 +25,14 @@
     <Company>RibbonLib</Company>
     <PackageIcon>Ribbon64.png</PackageIcon>
 	<Title>Windows Ribbon Library for WinForms</Title>
-    <Description>Windows Ribbon for WinForms is a .NET wrapper for Windows Ribbon control. It will allow WinForms developers to use Microsoft Windows Ribbon control in their WinForms applications.
+    <Description>Windows Ribbon for WinForms is a .NET wrapper for Windows Ribbon Framework. It will allow WinForms developers to use Microsoft Windows Ribbon Framework in their WinForms applications.
 	Former developers: Arik Poznanski, Bernhard Elbl
 	</Description>
 	<PackageReadmeFile>readme.md</PackageReadmeFile>
 	<PackageReleaseNotes>
 	See CHANGELOG.md
 	</PackageReleaseNotes>
-    <PackageTags>ribbon;winforms;windows-forms;RibbonTools</PackageTags>
+    <PackageTags>Ribbon Framework;ribbon;winforms;windows-forms;RibbonTools</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   
@@ -41,27 +41,12 @@
     <Deterministic>false</Deterministic>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU' and ('$(TargetFramework)' == 'net7.0-windows' or '$(TargetFramework)' == 'net6.0-windows')">
-    <DefineConstants>DEBUG;Core</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU' and '$(TargetFramework)' == 'net40'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU' and '$(TargetFramework)' == 'net7.0-windows'">
-    <DefineConstants>TRACE;Core</DefineConstants>
-    <DocumentationFile>.\bin\Release\net7.0-windows\Ribbon.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU' and '$(TargetFramework)' == 'net6.0-windows'">
-    <DefineConstants>TRACE;Core</DefineConstants>
-    <DocumentationFile>.\bin\Release\net6.0-windows\Ribbon.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU' and '$(TargetFramework)' == 'net40'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>.\bin\Release\net40\Ribbon.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -705,6 +705,7 @@ namespace UIRibbonTools
         private void FormClose(object sender, FormClosedEventArgs e)
         {
             Settings.Instance.Write();
+            //UIImage.Destroy();
             Application.Exit();
         }
 
