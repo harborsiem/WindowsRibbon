@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### RibbonTools V1.7.1
+
+#### Changed (RibbonTools)
+
+- Bugfix for Localize.
+
 ### Ribbon V2.15.0 RibbonTools V1.7.0
 
 #### Changed (Ribbon)

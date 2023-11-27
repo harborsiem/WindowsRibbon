@@ -309,9 +309,10 @@ namespace UIRibbonTools
             // 
             this.labelName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelName.AutoSize = true;
             this.labelName.Location = new System.Drawing.Point(3, 19);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(95, 26);
+            this.labelName.Size = new System.Drawing.Size(35, 26);
             this.labelName.TabIndex = 4;
             this.labelName.Text = "Name";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -320,9 +321,10 @@ namespace UIRibbonTools
             // 
             this.labelLabelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelLabelTitle.AutoSize = true;
             this.labelLabelTitle.Location = new System.Drawing.Point(3, 45);
             this.labelLabelTitle.Name = "labelLabelTitle";
-            this.labelLabelTitle.Size = new System.Drawing.Size(95, 26);
+            this.labelLabelTitle.Size = new System.Drawing.Size(56, 26);
             this.labelLabelTitle.TabIndex = 8;
             this.labelLabelTitle.Text = "Label Title";
             this.labelLabelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -331,9 +333,10 @@ namespace UIRibbonTools
             // 
             this.labelLabelDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelLabelDescription.AutoSize = true;
             this.labelLabelDescription.Location = new System.Drawing.Point(3, 71);
             this.labelLabelDescription.Name = "labelLabelDescription";
-            this.labelLabelDescription.Size = new System.Drawing.Size(95, 26);
+            this.labelLabelDescription.Size = new System.Drawing.Size(89, 26);
             this.labelLabelDescription.TabIndex = 12;
             this.labelLabelDescription.Text = "Label Description";
             this.labelLabelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -342,9 +345,10 @@ namespace UIRibbonTools
             // 
             this.labelTooltipTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelTooltipTitle.AutoSize = true;
             this.labelTooltipTitle.Location = new System.Drawing.Point(3, 97);
             this.labelTooltipTitle.Name = "labelTooltipTitle";
-            this.labelTooltipTitle.Size = new System.Drawing.Size(95, 26);
+            this.labelTooltipTitle.Size = new System.Drawing.Size(62, 26);
             this.labelTooltipTitle.TabIndex = 16;
             this.labelTooltipTitle.Text = "Tooltip Title";
             this.labelTooltipTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -353,6 +357,7 @@ namespace UIRibbonTools
             // 
             this.labelTooltipDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelTooltipDescription.AutoSize = true;
             this.labelTooltipDescription.Location = new System.Drawing.Point(3, 123);
             this.labelTooltipDescription.Name = "labelTooltipDescription";
             this.labelTooltipDescription.Size = new System.Drawing.Size(95, 26);
@@ -364,9 +369,10 @@ namespace UIRibbonTools
             // 
             this.labelKeytip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelKeytip.AutoSize = true;
             this.labelKeytip.Location = new System.Drawing.Point(3, 149);
             this.labelKeytip.Name = "labelKeytip";
-            this.labelKeytip.Size = new System.Drawing.Size(95, 26);
+            this.labelKeytip.Size = new System.Drawing.Size(36, 26);
             this.labelKeytip.TabIndex = 24;
             this.labelKeytip.Text = "Keytip";
             this.labelKeytip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -375,9 +381,10 @@ namespace UIRibbonTools
             // 
             this.labelComment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelComment.AutoSize = true;
             this.labelComment.Location = new System.Drawing.Point(3, 175);
             this.labelComment.Name = "labelComment";
-            this.labelComment.Size = new System.Drawing.Size(95, 26);
+            this.labelComment.Size = new System.Drawing.Size(51, 26);
             this.labelComment.TabIndex = 28;
             this.labelComment.Text = "Comment";
             this.labelComment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

@@ -79,7 +79,7 @@ namespace UIRibbonTools
             if (valueNavigator == null)
                 return null;
 
-            var result = valueNavigator.Value;
+            var result = valueNavigator.InnerXml; //.Value;
             return result;
         }
 
