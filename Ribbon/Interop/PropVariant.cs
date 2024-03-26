@@ -1352,6 +1352,24 @@ namespace RibbonLib.Interop
 
         #endregion PropVariant macros
 
+        internal static unsafe int GetSingleDimArrayCount(ref PropVariant propVarIn)
+        {
+            if (propVarIn.VarType == (VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN))
+            {
+                IntPtr psa = propVarIn.valueData;
+                if (UnsafeNativeMethods.SafeArrayGetDim(psa) == 1)
+                {
+                    int lBound;
+                    int uBound;
+                    lBound = UnsafeNativeMethods.SafeArrayGetLBound(psa, 1);
+                    uBound = UnsafeNativeMethods.SafeArrayGetUBound(psa, 1);
+                    int count = uBound - lBound + 1;
+                    return count;
+                }
+            }
+            return 0;
+        }
+
     }
 
     // It is sometimes useful to represent the struct as a reference-type 

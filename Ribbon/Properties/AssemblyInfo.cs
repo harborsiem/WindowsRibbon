@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RibbonLib")]
 [assembly: AssemblyProduct("Ribbon")]
-[assembly: AssemblyCopyright("Copyright © 2009, 2023")]
+[assembly: AssemblyCopyright("Copyright © 2009, 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -37,5 +37,5 @@ using System.Runtime.InteropServices;
 #else
 [assembly: AssemblyVersion("1.0.0.0")]
 #endif
-[assembly: AssemblyFileVersion("2.15.0.0")]
+[assembly: AssemblyFileVersion("2.15.1.0")]
 

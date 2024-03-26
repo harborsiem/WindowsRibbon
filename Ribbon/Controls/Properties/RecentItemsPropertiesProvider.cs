@@ -6,6 +6,7 @@
 //
 //*****************************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -44,10 +45,10 @@ namespace RibbonLib.Controls.Properties
         {
             // add supported properties
             _supportedProperties.Add(RibbonProperties.RecentItems);
+            MaxCount = -1;
         }
 
         private IList<RecentItemsPropertySet> _recentItems = new List<RecentItemsPropertySet>();
-        private bool _maxCountFound;
 
         /// <summary>
         /// Handles IUICommandHandler.UpdateProperty function for the supported properties
@@ -60,18 +61,22 @@ namespace RibbonLib.Controls.Properties
         {
             if (key == RibbonProperties.RecentItems)
             {
-                if (!_maxCountFound && currentValue != null)
+                if (currentValue != null)
                 {
-                    if (currentValue.PropVariant.VarType == (VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN))
+                    if (MaxCount == -1)
                     {
-                        object[] oa = currentValue.PropVariant.Value as object[];
-                        MaxCount = oa.Length;
-                        _maxCountFound = true;
+                        if (currentValue.PropVariant.VarType == (VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN))
+                        {
+                            MaxCount = PropVariant.GetSingleDimArrayCount(ref currentValue.PropVariant);
+                        }
                     }
                 }
                 if (_recentItems != null && _recentItems.Count > 0)
                 {
-                    newValue.SetSafeArray(_recentItems.ToArray());
+                    RecentItemsPropertySet[] array = _recentItems.ToArray();
+                    if (array.Length > MaxCount)
+                        Array.Resize(ref array, MaxCount);
+                    newValue.SetSafeArray(array);
                 }
             }
 

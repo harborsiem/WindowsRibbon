@@ -2,11 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+### Ribbon V2.15.1
+
+#### Changed (Ribbon)
+
+- RibbonRecentItems MaxCount calculation optimized. Init value of MaxCount is now -1.
+  After first RibbonRecentItems ExecuteEvent one can get the designed value of MaxCount.
+
 ### RibbonTools V1.7.1
 
 #### Changed (RibbonTools)
 
-- Bugfix for Localize.
+- Bugfix for Localize with special characters (eg. &amp;).
 
 ### Ribbon V2.15.0 RibbonTools V1.7.0
 
