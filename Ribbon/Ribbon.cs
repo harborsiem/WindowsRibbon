@@ -65,6 +65,21 @@ namespace RibbonLib
 
         private string _shortcutTableResourceName;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="specified"></param>
+        /// <inheritdoc cref="SetBoundsCore"/>
+        protected override void SetBoundsCore(int x, int y, int width, int height, BoundsSpecified specified)
+        {
+            if (Util.DesignMode)
+                height = DefaultSize.Height;
+            base.SetBoundsCore(x, y, width, height, specified);
+        }
 
         /// <summary>
         /// is a reference to an embedded resource file
@@ -91,17 +106,20 @@ namespace RibbonLib
 
             _ribbonShortcutTable = Util.DeserializeEmbeddedResource<RibbonShortcutTable>(
                 this.ShortcutTableResourceName, assembly);
-
-            var form = this.FindForm();
-            form.KeyPreview = true;
-            form.KeyUp += new KeyEventHandler(Form_KeyUp);
+            if (_ribbonShortcutTable != null)
+            {
+                var form = this.FindForm();
+                form.KeyPreview = true;
+                form.KeyUp += new KeyEventHandler(Form_KeyUp);
+            }
+            else
+            {
+                throw new ArgumentException(string.Format("Embedded resource not found '{0}'", nameof(ShortcutTableResourceName)));
+            }
         }
 
         void Form_KeyUp(object sender, KeyEventArgs e)
         {
-            if (_ribbonShortcutTable == null)
-                return;
-
             var commandId = _ribbonShortcutTable.HitTest(e.KeyData);
             if (commandId == 0)
                 return;
@@ -277,7 +295,8 @@ namespace RibbonLib
                 return;
 
             if (string.IsNullOrEmpty(ResourceName))
-                return;
+                throw new ApplicationException(string.Format("'{0}' not set", nameof(ResourceName)));
+                //return;
 
             var form = this.Parent as Form;
             if (form == null)
@@ -357,7 +376,7 @@ namespace RibbonLib
             // try to get from current current culture fallback satellite assembly
             found = TryGetRibbon(ribbonResource, ribbonAssembly, ref data);
             if (!found)
-                throw new ArgumentException(string.Format("Ribbon resource '{0}' not found in assembly '{1}'.", ribbonResource, ribbonAssembly.Location));
+                throw new ArgumentException(string.Format("ResourceName resource '{0}' not found in assembly '{1}'.", ribbonResource, ribbonAssembly.Location));
 
             return data;
         }
@@ -381,6 +400,8 @@ namespace RibbonLib
             {
                 var buffer = Util.GetEmbeddedResource(ribbonResource, assembly);
                 data = buffer;
+                if (buffer == null)
+                    return false;
                 return true;
             }
             catch (Exception)
@@ -406,6 +427,10 @@ namespace RibbonLib
                 if (start > 0)
                 {
                     last = ribbonResource.IndexOf('}');
+                    if (last < start)
+                    {
+                        throw new ArgumentException("} not found in " + nameof(ResourceName));
+                    }
                     string specialFolder = ribbonResource.Substring(start + 1, last - start - 1);
                     Environment.SpecialFolder enumSpecial = (Environment.SpecialFolder)Enum.Parse(typeof(Environment.SpecialFolder), specialFolder);
                     string specialFolderPath = Environment.GetFolderPath(enumSpecial);
@@ -529,10 +554,41 @@ namespace RibbonLib
 
             if (_loadedDllHandle == IntPtr.Zero)
             {
+                FreeLibrary();
                 throw new ApplicationException("Ribbon resource DLL exists but could not be loaded.");
+            }
+            uint imageSize = 0;
+            IntPtr hrSRC = PInvoke.FindResource(_loadedDllHandle, resourceName, "UIFILE");
+            if (hrSRC != IntPtr.Zero)
+            {
+                imageSize = PInvoke.SizeofResource(_loadedDllHandle, hrSRC);
+            }
+            if (imageSize == 0)
+            {
+                FreeLibrary();
+                throw new ApplicationException("Ribbon resource DLL not valid, " + nameof(ResourceIdentifier) + "?");
             }
 
             InitFramework(resourceName, _loadedDllHandle);
+        }
+
+        private void FreeLibrary()
+        {
+            if (_loadedDllHandle != IntPtr.Zero)
+            {
+                // free dynamic library
+                PInvoke.FreeLibrary(_loadedDllHandle);
+                _loadedDllHandle = IntPtr.Zero;
+            }
+            if (!string.IsNullOrEmpty(_tempDllFilename))
+            {
+                try
+                {
+                    File.Delete(_tempDllFilename);
+                    _tempDllFilename = null;
+                }
+                catch { }
+            }
         }
 
         /// <summary>
@@ -596,12 +652,7 @@ namespace RibbonLib
             // Unregister event handlers
             RegisterForm(null);
 
-            if (_loadedDllHandle != IntPtr.Zero)
-            {
-                // free dynamic library
-                PInvoke.FreeLibrary(_loadedDllHandle);
-                _loadedDllHandle = IntPtr.Zero;
-            }
+            FreeLibrary();
 
             if (_imageFromBitmap != null)
             {
@@ -618,16 +669,6 @@ namespace RibbonLib
 
             // remove references to ribbon controls
             _mapRibbonControls.Clear();
-
-            if (!string.IsNullOrEmpty(_tempDllFilename))
-            {
-                try
-                {
-                    File.Delete(_tempDllFilename);
-                    _tempDllFilename = null;
-                }
-                catch { }
-            }
         }
 
         /// <summary>

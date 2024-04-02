@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - RibbonRecentItems MaxCount calculation optimized. Init value of MaxCount is now -1.
   After first RibbonRecentItems ExecuteEvent one can get the designed value of MaxCount.
+- Updated Errorhandling for Ribbon Properties ResourceName, ResourceIdentifier, ShortcutTableResourceName and associated embedded resources.
 
 ### RibbonTools V1.7.1
 

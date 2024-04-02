@@ -98,6 +98,14 @@ namespace RibbonLib.Interop
         //[SupportedOSPlatform("windows5.0")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool DeleteObject(IntPtr ho);
+
+        [DllImport("KERNEL32.dll", ExactSpelling = true, EntryPoint = "FindResourceW", CharSet= CharSet.Unicode)]
+        //[DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+        public static extern IntPtr FindResource(IntPtr hModule, string lpName, string lpType);
+
+        [DllImport("KERNEL32.dll", ExactSpelling = true, EntryPoint = "SizeofResource")]
+        public static extern uint SizeofResource(IntPtr hModule, IntPtr hResInfo);
+
     }
 
     [Flags]
@@ -143,5 +151,52 @@ namespace RibbonLib.Interop
         /// <summary>A pointer to the location of the bit values for the bitmap. The <b>bmBits</b> member must be a pointer to an array of character (1-byte) values.</summary>
         public unsafe void* bmBits;
     }
+
+    ///// <summary>
+    ///// A pointer to a null-terminated, constant character string.
+    ///// </summary>
+    //[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
+    //public unsafe partial struct PCWSTR
+    //    : IEquatable<PCWSTR>
+    //{
+    //    public readonly char* Value;
+
+    //    public PCWSTR(char* value) => this.Value = value;
+
+    //    public static explicit operator char* (PCWSTR value) => value.Value;
+
+    //    public static implicit operator PCWSTR(char* value) => new PCWSTR(value);
+
+    //    public bool Equals(PCWSTR other) => this.Value == other.Value;
+
+    //    public override bool Equals(object obj) => obj is PCWSTR other && this.Equals(other);
+
+    //    public override int GetHashCode() => unchecked((int)this.Value);
+
+    //    public int Length
+    //    {
+    //        get
+    //        {
+    //            char* p = this.Value;
+    //            if (p == null)
+    //                return 0;
+    //            while (*p != '\0')
+    //                p++;
+    //            return checked((int)(p - this.Value));
+    //        }
+    //    }
+
+
+    //    /// <summary>
+    //    /// Returns a <see langword="string"/> with a copy of this character array, up to the first null character (exclusive).
+    //    /// </summary>
+    //    /// <returns>A <see langword="string"/>, or <see langword="null"/> if <see cref="Value"/> is <see langword="null"/>.</returns>
+    //    public override string ToString() => this.Value == null ? null : new string(this.Value);
+
+    //    //public ReadOnlySpan<char> AsSpan() => this.Value is null ? default(ReadOnlySpan<char>) : new ReadOnlySpan<char>(this.Value, this.Length);
+
+
+    //    private string DebuggerDisplay => this.ToString();
+    //}
 
 }

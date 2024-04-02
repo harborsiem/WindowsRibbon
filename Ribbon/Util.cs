@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Resources;
 using System.Reflection;
 using System.Xml.Serialization;
@@ -43,28 +44,54 @@ namespace RibbonLib
 
         public static byte[] GetEmbeddedResource(string resourceName, Assembly assembly)
         {
-            ResourceManager rm = new ResourceManager(resourceName, assembly);
-            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            string[] resNames = assembly.GetManifestResourceNames();
+            if (!resNames.Contains(resourceName))
+            {
+                return null;
+            }
+            Stream stream = assembly.GetManifestResourceStream(resourceName);
+            if (stream == null)
+            {
+                return null;
+            }
+            try
             {
                 var buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, buffer.Length);
                 return buffer;
             }
+            finally
+            {
+                stream.Close();
+            }
         }
 
-        public static T DeserializeEmbeddedResource<T>(string resourceName, Assembly assembly)
+        public static T DeserializeEmbeddedResource<T>(string resourceName, Assembly assembly) where T : class
         {
-            ResourceManager rm = new ResourceManager(resourceName, assembly);
-            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            string[] resNames = assembly.GetManifestResourceNames();
+            if (!resNames.Contains(resourceName))
             {
-                if (stream == null)
-                    throw new ArgumentException(string.Format("resourceName is unknown '{0}'", resourceName));
-
+                return null;
+            }
+            Stream stream = assembly.GetManifestResourceStream(resourceName);
+            if (stream == null)
+            {
+                return null;
+            }
+            try
+            {
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
                 var result = (T)serializer.Deserialize(stream);
                 return result;
             }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                stream.Close();
+            }
         }
-
     }
 }
