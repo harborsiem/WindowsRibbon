@@ -2,7 +2,7 @@
 
 *Windows Ribbon Framework* for WinForms
 
-Windows Ribbon for WinForms is a .NET wrapper for *Microsoft Windows Ribbon Framework* control UIRibbon.dll. It will allow WinForms developers to use *Microsoft Windows Ribbon Framework* control in their WinForms applications. Supported Windows versions are Windows 7 and newer versions (Windows 8, Windows 10, Windows 11).
+Windows Ribbon for WinForms is a .NET wrapper for *Microsoft Windows Ribbon Framework* control UIRibbon.dll. It will allow WinForms developers to use *Microsoft Windows Ribbon Framework* control in their WinForms applications. Supported Windows versions are Windows 7 and later versions (Windows 8, Windows 10, Windows 11).
 
 *Windows Ribbon* is sometimes called UIRibbon. The former development title is *Scenic Ribbon*.
 
@@ -56,7 +56,7 @@ Now the WindowsRibbon project is running also in the latest Visual Studio Versio
 
 ---
 
-WindowsRibbon is also available on NuGet, with Package Id [WindowsRibbon](https://www.nuget.org/packages/WindowsRibbon). Via this package you can get a compiled Ribbon Library also for .NET Framework 4.0, .NET 6 and .NET 7
+WindowsRibbon is also available on NuGet, with Package Id [WindowsRibbon](https://www.nuget.org/packages/WindowsRibbon). Via this package you can get a compiled Ribbon Library also for .NET Framework 4.0, .NET 6 , .NET 7 , .NET 8
 
 ---
 
