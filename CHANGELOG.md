@@ -1,6 +1,6 @@
 # Changelog
 All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](http://semver.org/).
+This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Ribbon V2.15.1
 
@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - RibbonRecentItems MaxCount calculation optimized. Init value of MaxCount is now -1.
   After first RibbonRecentItems ExecuteEvent one can get the designed value of MaxCount.
 - Updated Errorhandling for Ribbon Properties ResourceName, ResourceIdentifier, ShortcutTableResourceName and associated embedded resources.
+- Updated C# samples (Directory Samples\Updated-CS). Samples are build by RibbonTools and are using newer classes and functions from RibbonLib.
 
 ### RibbonTools V1.7.1
 

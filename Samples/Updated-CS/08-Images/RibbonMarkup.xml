@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+  <Application.Commands>
+
+    <Command Name="cmdButtonDropA"
+             Id="1008"
+             LabelTitle="Swap Once">
+      <Command.LargeImages>
+        <Image>Res/DropA32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropB"
+             Id="1009"
+             LabelTitle="Swap Image">
+      <Command.LargeImages>
+        <Image>Res/DropB32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDropC"
+             Id="1010"
+             LabelTitle="Drop C">
+      <Command.LargeImages>
+        <Image>Res/DropC32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdTabDrop"
+         Id="1012"
+         LabelTitle="Drop">
+    </Command>
+
+    <Command Name="cmdGroupDrop"
+             Id="1015"
+             LabelTitle="">
+    </Command>
+
+  </Application.Commands>
+
+  <Application.Views>
+    <Ribbon>
+      <Ribbon.Tabs>
+        <Tab CommandName ="cmdTabDrop">
+          <Group CommandName="cmdGroupDrop" SizeDefinition="ThreeButtons">
+            <Button CommandName="cmdButtonDropA" />
+            <Button CommandName="cmdButtonDropB" />
+            <Button CommandName="cmdButtonDropC" />
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+    </Ribbon>
+  </Application.Views>
+</Application>

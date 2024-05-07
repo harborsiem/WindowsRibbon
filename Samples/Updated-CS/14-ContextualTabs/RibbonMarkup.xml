@@ -1,0 +1,134 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<Application xmlns='http://schemas.microsoft.com/windows/2009/Ribbon'>
+	<Application.Commands>
+    
+    <Command Name="cmdTabMain"
+         Id="1001"
+         LabelTitle="Main">
+    </Command>
+
+    <Command Name="cmdGroupMain"
+         Id="1002"
+         LabelTitle="">
+    </Command>
+
+    <Command Name="cmdTabGroupTableTools"
+             Id="1003"
+             LabelTitle="Table Tools">
+    </Command>
+
+    <Command Name="cmdTabDesign"
+             Id="1004"
+             LabelTitle="Design">
+    </Command>
+
+    <Command Name="cmdTabLayout"
+             Id="1005"
+             LabelTitle="Layout">
+    </Command>
+
+    <Command Name="cmdGroupDesign"
+             Id="1006"
+             LabelTitle="">
+    </Command>
+
+    <Command Name="cmdGroupLayout"
+             Id="1007"
+             LabelTitle="">
+    </Command>
+
+    <Command Name="cmdButtonSelect"
+             Id="1008"
+             LabelTitle="Select"
+             LabelDescription="Simulates selecting a table"
+             TooltipTitle="Select"
+             TooltipDescription="Simulates selecting a table">
+      <Command.LargeImages>
+        <Image>Res/Select32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonUnselect"
+             Id="1009"
+             LabelTitle="Unselect"
+             LabelDescription="Simulates unselecting a table"
+             TooltipTitle="Unselect"
+             TooltipDescription="Simulates unselecting a table">
+      <Command.LargeImages>
+        <Image>Res/Unselect32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDesign1"
+             Id="1010"
+             LabelTitle="Design 1">
+      <Command.LargeImages>
+        <Image>Res/DropA32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDesign2"
+             Id="1011"
+             LabelTitle="Design 2">
+      <Command.LargeImages>
+        <Image>Res/DropB32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonDesign3"
+             Id="1012"
+             LabelTitle="Design 3">
+      <Command.LargeImages>
+        <Image>Res/DropC32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonLayout1"
+             Id="1013"
+             LabelTitle="Layout 1">
+      <Command.LargeImages>
+        <Image>Res/DropA32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdButtonLayout2"
+             Id="1014"
+             LabelTitle="Layout 2">
+      <Command.LargeImages>
+        <Image>Res/DropB32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+
+  </Application.Commands>
+
+	<Application.Views>
+		<Ribbon>
+      <Ribbon.ContextualTabs>
+        <TabGroup CommandName='cmdTabGroupTableTools'>
+          <Tab CommandName='cmdTabDesign'>
+            <Group CommandName='cmdGroupDesign' SizeDefinition='ThreeButtons'>
+              <Button CommandName='cmdButtonDesign1' />
+              <Button CommandName='cmdButtonDesign2' />
+              <Button CommandName='cmdButtonDesign3' />
+            </Group>
+          </Tab>
+          <Tab CommandName='cmdTabLayout'>
+            <Group CommandName='cmdGroupLayout' SizeDefinition='TwoButtons'>
+              <Button CommandName='cmdButtonLayout1' />
+              <Button CommandName='cmdButtonLayout2' />
+            </Group>
+          </Tab>
+        </TabGroup>
+      </Ribbon.ContextualTabs>
+      <Ribbon.Tabs>
+        <Tab CommandName='cmdTabMain'>
+          <Group CommandName='cmdGroupMain' SizeDefinition='TwoButtons'>
+            <Button CommandName='cmdButtonSelect' />
+            <Button CommandName='cmdButtonUnselect' />
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+      
+    </Ribbon>
+	</Application.Views>
+</Application>
