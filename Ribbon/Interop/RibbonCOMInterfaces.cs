@@ -868,29 +868,36 @@ namespace RibbonLib.Interop
         public EventLocation Location;
     }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     /// <summary>
     /// Contains information about a Ribbon event.
     /// UI_EVENTPARAMS struct
     /// </summary>
-    [StructLayout(LayoutKind.Explicit)]
     public struct EventParameters
     {
         /// <summary>
         /// The event type
         /// </summary>
-        [FieldOffset(0)]
         public EventType EventType;
-        /// <summary>
-        /// Application modes
-        /// </summary>
-        [FieldOffset(4)]
-        public Int32 Modes;
-        /// <summary>
-        /// Event command parameters
-        /// </summary>
-        [FieldOffset(4)]
-        public EventParametersCommand Params;
+
+        public _Anonymous_e__Union Anonymous;
+
+        [StructLayout(LayoutKind.Explicit)]
+        public struct _Anonymous_e__Union
+        {
+            /// <summary>
+            /// Application modes
+            /// </summary>
+            [FieldOffset(0)]
+            public Int32 Modes;
+            /// <summary>
+            /// Event command parameters
+            /// </summary>
+            [FieldOffset(0)]
+            public EventParametersCommand Params;
+        }
     }
+#pragma warning restore CS1591
 
     /// <summary>
     /// The IUIEventLogger interface is implemented by the application

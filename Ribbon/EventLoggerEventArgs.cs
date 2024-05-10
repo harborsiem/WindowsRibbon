@@ -52,7 +52,7 @@ namespace RibbonLib
             switch (pEventParams.EventType)
             {
                 case EventType.ApplicationModeSwitched:
-                    Modes = (pEventParams.Modes);
+                    Modes = (pEventParams.Anonymous.Modes);
                     break;
                 case EventType.CommandExecuted:
                 case EventType.TooltipShown:
@@ -70,12 +70,12 @@ namespace RibbonLib
 
         private void CopyAndMarshal(ref EventParameters pEventParams)
         {
-            CommandID = pEventParams.Params.CommandID;
-            CommandName = Marshal.PtrToStringUni(pEventParams.Params.CommandName); //PCWStr
-            ParentCommandID = pEventParams.Params.ParentCommandID;
-            ParentCommandName = Marshal.PtrToStringUni(pEventParams.Params.ParentCommandName); //PCWStr
-            SelectionIndex = pEventParams.Params.SelectionIndex;
-            Location = pEventParams.Params.Location;
+            CommandID = pEventParams.Anonymous.Params.CommandID;
+            CommandName = Marshal.PtrToStringUni(pEventParams.Anonymous.Params.CommandName); //PCWStr
+            ParentCommandID = pEventParams.Anonymous.Params.ParentCommandID;
+            ParentCommandName = Marshal.PtrToStringUni(pEventParams.Anonymous.Params.ParentCommandName); //PCWStr
+            SelectionIndex = pEventParams.Anonymous.Params.SelectionIndex;
+            Location = pEventParams.Anonymous.Params.Location;
         }
     }
 }

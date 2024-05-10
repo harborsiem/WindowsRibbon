@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
   After first RibbonRecentItems ExecuteEvent one can get the designed value of MaxCount.
 - Updated Errorhandling for Ribbon Properties ResourceName, ResourceIdentifier, ShortcutTableResourceName and associated embedded resources.
 - Updated C# samples (Directory Samples\Updated-CS). Samples are build by RibbonTools and are using newer classes and functions from RibbonLib.
+- Bugfix EventLogger for x64
 
 ### RibbonTools V1.7.1
 
