@@ -9,7 +9,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:WixUI="http://schemas.microsoft.com/wix/UIExtension">
-  <Product Id="{3F81003A-CEA1-452A-BA72-8DDD77D24656}" Name="Ribbon" Language="1033" Version="2.15.1.0" Manufacturer="RibbonLib" UpgradeCode="FA403F70-F169-497E-8DC2-CCA0609A1E30">
+  <Product Id="{E64A8A23-D03B-4B5E-8D3C-3CC3B4A37DE4}" Name="Ribbon" Language="1033" Version="2.15.2.0" Manufacturer="RibbonLib" UpgradeCode="FA403F70-F169-497E-8DC2-CCA0609A1E30">
     <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x86" Description="Windows Ribbon Framework Library for .NET" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />

@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
-### Ribbon V2.15.1, RibbonTools V1.7.2
+### Ribbon V2.15.2, RibbonTools V1.7.2
 
 #### Changed (Ribbon)
 
@@ -15,7 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 #### Changed (RibbonTools)
 
 - Changes for Errorhandling of Ribbon ResourceName.
-- Newline \n allowed for LabelTitle and TooltipTitle.
+- Newline (Line break) \n allowed for LabelTitle and TooltipTitle.
 
 ### RibbonTools V1.7.1
 
