@@ -296,7 +296,7 @@ namespace RibbonLib
 
             if (string.IsNullOrEmpty(ResourceName))
                 throw new ApplicationException(string.Format("'{0}' not set", nameof(ResourceName)));
-                //return;
+            //return;
 
             var form = this.Parent as Form;
             if (form == null)

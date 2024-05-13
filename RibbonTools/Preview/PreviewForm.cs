@@ -16,6 +16,7 @@ namespace UIRibbonTools
 {
     partial class PreviewForm : Form
     {
+        private RibbonLib.Ribbon ribbon;
         private BuildPreviewHelper _buildPreviewHelper;
         private List<RibbonTabGroup> _tabGroups = new List<RibbonTabGroup>();
         private RibbonClassBuilder _classBuilder;
@@ -31,9 +32,18 @@ namespace UIRibbonTools
             this.Font = SystemFonts.MessageBoxFont;
 #endif
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
+            // 
+            // ribbon
+            // 
+            this.ribbon = new RibbonLib.Ribbon();
+            this.ribbon.Location = new System.Drawing.Point(0, 0);
+            this.ribbon.Name = "ribbon";
+            this.ribbon.Size = new System.Drawing.Size(800, 116);
+            this.ribbon.TabIndex = 0;
             ribbon.ResourceIdentifier = _buildPreviewHelper.ResourceIdentifier;
             ribbon.ResourceName = _buildPreviewHelper.RibbonResourceName;
             ribbon.RibbonHeightChanged += Ribbon_RibbonHeightChanged;
+            this.Controls.Add(this.ribbon);
             _classBuilder = new RibbonClassBuilder(ribbon);
 
             Load += MainForm_Load;

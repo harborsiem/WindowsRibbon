@@ -28,7 +28,6 @@ namespace UIRibbonTools
         /// </summary>
         private void InitializeComponent()
         {
-            this.ribbon = new RibbonLib.Ribbon();
             this.tabSheetAppModes = new System.Windows.Forms.TabPage();
             this.checkedListBoxAppModes = new System.Windows.Forms.CheckedListBox();
             this.labelAppModes = new System.Windows.Forms.Label();
@@ -95,16 +94,6 @@ namespace UIRibbonTools
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownT_B)).BeginInit();
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // ribbon
-            // 
-            this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Name = "ribbon";
-            this.ribbon.ResourceIdentifier = null;
-            this.ribbon.ResourceName = null;
-            this.ribbon.ShortcutTableResourceName = null;
-            this.ribbon.Size = new System.Drawing.Size(800, 114);
-            this.ribbon.TabIndex = 0;
             // 
             // tabSheetAppModes
             // 
@@ -661,7 +650,6 @@ namespace UIRibbonTools
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 462);
             this.Controls.Add(this.tabControl);
-            this.Controls.Add(this.ribbon);
             this.Name = "PreviewForm";
             this.ShowInTaskbar = false;
             this.Text = "Ribbon Preview";
@@ -699,7 +687,6 @@ namespace UIRibbonTools
 
         #endregion
 
-        private RibbonLib.Ribbon ribbon;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabSheetAppModes;
         private System.Windows.Forms.CheckedListBox checkedListBoxAppModes;

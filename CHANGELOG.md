@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
-### Ribbon V2.15.1
+### Ribbon V2.15.1, RibbonTools V1.7.2
 
 #### Changed (Ribbon)
 
@@ -11,6 +11,11 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Updated Errorhandling for Ribbon Properties ResourceName, ResourceIdentifier, ShortcutTableResourceName and associated embedded resources.
 - Updated C# samples (Directory Samples\Updated-CS). Samples are build by RibbonTools and are using newer classes and functions from RibbonLib.
 - Bugfix EventLogger for x64
+
+#### Changed (RibbonTools)
+
+- Changes for Errorhandling of Ribbon ResourceName.
+- Newline \n allowed for LabelTitle and TooltipTitle.
 
 ### RibbonTools V1.7.1
 
