@@ -48,17 +48,7 @@ namespace UIRibbonTools
             {
                 string directory = Path.GetDirectoryName(path);
 
-                string xmlFileName = Path.GetFileNameWithoutExtension(path);
-                char last = xmlFileName[xmlFileName.Length - 1];
-                if (Char.IsNumber(last))
-                {
-                    ribbonItemsClass = RibbonItems + last.ToString();
-                }
-                else
-                {
-                    ribbonItemsClass = RibbonItems;
-                }
-
+                ribbonItemsClass = Path.GetFileNameWithoutExtension(path);
 
                 RibbonParser.ParseResult results = parser.Results;
 #if OldCode
