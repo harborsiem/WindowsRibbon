@@ -234,10 +234,11 @@ namespace UIRibbonTools
 
         private static void CodeWrapperBuilder(string path, RibbonParser parser)
         {
+            bool advWrapperClassFile = Settings.Instance.AdvancedWrapperClassFile;
             if (Settings.Instance.BuildCSharpWrapper)
-                new CSharpCodeBuilder().Execute(path, parser);
+                new CSharpCodeBuilder().Execute(path, parser, advWrapperClassFile);
             if (Settings.Instance.BuildVBWrapper)
-                new VBCodeBuilder().Execute(path, parser);
+                new VBCodeBuilder().Execute(path, parser, advWrapperClassFile);
         }
 
         public static void ConsoleBuild(string path, string resourceIdentifier)

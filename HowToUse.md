@@ -24,7 +24,9 @@
     ![Schemas](./Images/Schemas.png)
 
     Insert Application Commands and Application Views as you can see in the samples and the documentation in the wiki.
-    **Hint**: If you have more than one Ribbon Control for different Forms in the project, then you should name the RibbonMarkup.xml to RibbonMarkup1.xml, RibbonMarkup2.xml, ... ,RibbonMarkup9.xml 
+
+    **Hint**: If you have more than one Ribbon Control for different Forms in the project, then you should name the RibbonMarkup.xml to RibbonMarkup1.xml, RibbonMarkup2.xml, ... ,RibbonMarkup9.xml
+	or with a new wrapper option (Version v2.16.0) you can generate wrapper class names like markup xml files (e.g. *First.xml* => *First.Designer.cs* with class name *First* instead RibbonItems.Designer.cs)
 
 7. Because CustomTools, like Bernhard Elbl said, do not work this way in newer Visual Studio versions like VS 2017 you have to
     open a Console Window in the folder of RibbonMarkup.xml (maybe we have a solution for a CustomTool later on). Or you can use the RibbonTools.exe to design, build and preview the markup file.
@@ -33,7 +35,7 @@
 
 9. If the build fails with a "No Tools" error, then check the installation of the Windows SDK and the C++ Tools in Visual Studio. If the installations are OK, start the RibbonTools from Windows Startmenu, go to Settings and search for the tools uicc.exe, rc.exe and link.exe and build again.
 
-12. Now you get some generated files, eg. RibbonMarkup.ribbon and RibbonItems.Designer.cs. Add these files to your project.
+12. Now you get some generated files, eg. RibbonMarkup.ribbon and RibbonItems.Designer.cs. Add these files to your project. (See hint in 6.)
 
 13. Set the Property Build Action of RibbonMarkup.ribbon to Embedded Resource.
 ![Embedded Resource](./Images/Embedded.png)
@@ -49,7 +51,7 @@
 ```
 
 to the Form1.cs. In the Constructor (Ctor) of the Forms1 after InitializeComponents() you have to call   RibbonItems ribbonItems = new RibbonItems(ribbon1);
-This is a wrapper class for all defined Ribbon Items. You can extend this class because it is a partial class.
+This is a wrapper class for all defined Ribbon Items. You can extend this class because it is a partial class. (See hint in 6.)
 
 16. Define the code behind for the Ribbon items in C# or VB language.
 

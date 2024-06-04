@@ -103,6 +103,22 @@ namespace RibbonLib.Controls
         }
 
         /// <summary>
+        /// Invalidate GalleryCategories or Categories if one change a value
+        /// </summary>
+        public void InvalidateCategories()
+        {
+            _galleryPropertiesProvider.InvalidateCategories();
+        }
+
+        /// <summary>
+        /// Invalidate GalleryItemItemsSource or ItemsSource if one change a value
+        /// </summary>
+        public void InvalidateItemsSource()
+        {
+            _galleryPropertiesProvider.InvalidateItemsSource();
+        }
+
+        /// <summary>
         /// The index of the selected item in the InRibbonGallery.
         /// If nothing is selected returns UI_Collection_InvalidIndex,
         /// which is a fancy way to say -1

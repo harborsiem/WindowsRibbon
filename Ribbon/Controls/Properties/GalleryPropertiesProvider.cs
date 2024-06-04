@@ -38,6 +38,16 @@ namespace RibbonLib.Controls.Properties
         IUICollection ItemsSource { get; }
 
         /// <summary>
+        /// Invalidate GalleryCategories or Categories if one change a value
+        /// </summary>
+        void InvalidateCategories();
+
+        /// <summary>
+        /// Invalidate GalleryItemItemsSource or ItemsSource if one change a value
+        /// </summary>
+        void InvalidateItemsSource();
+
+        /// <summary>
         /// Selected item property
         /// </summary>
         uint SelectedItem { get; set; }
@@ -207,6 +217,28 @@ namespace RibbonLib.Controls.Properties
                 }
 
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Invalidate GalleryCategories or Categories if one change a value
+        /// </summary>
+        public void InvalidateCategories()
+        {
+            if (_ribbon.Framework != null)
+            {
+                    _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.Categories));
+            }
+        }
+
+        /// <summary>
+        /// Invalidate GalleryItemItemsSource or ItemsSource if one change a value
+        /// </summary>
+        public void InvalidateItemsSource()
+        {
+            if (_ribbon.Framework != null)
+            {
+                    _ribbon.Framework.InvalidateUICommand(_commandID, Invalidations.Property, PropertyKeyRef.From(RibbonProperties.ItemsSource));
             }
         }
 

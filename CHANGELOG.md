@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+### Ribbon V2.16.0, RibbonTools V1.8.0
+
+#### Changed (Ribbon)
+
+- New functions for Gallery controls (InvalidateItemsSource() InvalidateCategories()).
+- Remove deprecated .NET7 assembly
+
+#### Changed (RibbonTools)
+
+- Unlimited Ribbons for an application via Settings (Wrapper class name like Markup file instead of RibbonItems), solves Issue#18.
+
 ### Ribbon V2.15.2, RibbonTools V1.7.2
 
 #### Changed (Ribbon)

@@ -41,24 +41,30 @@ namespace UIRibbonTools
         /// Method builds a C# file RibbonItems.Designer.cs
         /// </summary>
         /// <param name="path">RibbonMarkup.xml with path</param>
-        public void Execute(string path, RibbonParser parser)
+        public void Execute(string path, RibbonParser parser, bool advWrapperClassFile)
         {
             //string @namespace = System.Reflection.Assembly.GetEntryAssembly().EntryPoint.DeclaringType.Namespace;
             if (File.Exists(path))
             {
                 string directory = Path.GetDirectoryName(path);
 
-                string xmlFileName = Path.GetFileNameWithoutExtension(path);
-                char last = xmlFileName[xmlFileName.Length - 1];
-                if (Char.IsNumber(last))
+                if (advWrapperClassFile)
                 {
-                    ribbonItemsClass = RibbonItems + last.ToString();
+                    ribbonItemsClass = Path.GetFileNameWithoutExtension(path);
                 }
                 else
                 {
-                    ribbonItemsClass = RibbonItems;
+                    string xmlFileName = Path.GetFileNameWithoutExtension(path);
+                    char last = xmlFileName[xmlFileName.Length - 1];
+                    if (Char.IsNumber(last))
+                    {
+                        ribbonItemsClass = RibbonItems + last.ToString();
+                    }
+                    else
+                    {
+                        ribbonItemsClass = RibbonItems;
+                    }
                 }
-
 
                 RibbonParser.ParseResult results = parser.Results;
 #if OldCode

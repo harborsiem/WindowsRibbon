@@ -40,6 +40,7 @@ namespace UIRibbonTools
         public bool AutoUpdateToolsPath { get; set; } = true;
         public bool DeleteTempFiles { get; set; } = false; // or just delete?
         public bool DeleteResFile { get; set; } = true;
+        public bool AdvancedWrapperClassFile { get; set; }
         public bool BuildCSharpWrapper { get; set; } = true;
         public bool BuildVBWrapper { get; set; }
         //public bool BuildCppWrapper { get; set; }
@@ -146,6 +147,9 @@ namespace UIRibbonTools
                             case Attributes.DeleteResFile:
                                 DeleteResFile = XmlConvert.ToBoolean(ele.Value);
                                 break;
+                            case Attributes.AdvancedWrapperClassFile:
+                                AdvancedWrapperClassFile = XmlConvert.ToBoolean(ele.Value);
+                                break;
                             case Attributes.BuildCSharpWrapper:
                                 BuildCSharpWrapper = XmlConvert.ToBoolean(ele.Value);
                                 break;
@@ -219,6 +223,10 @@ namespace UIRibbonTools
 
                     writer.WriteStartElement(Attributes.DeleteResFile);
                     writer.WriteString(XmlConvert.ToString(DeleteResFile));
+                    writer.WriteEndElement();
+
+                    writer.WriteStartElement(Attributes.AdvancedWrapperClassFile);
+                    writer.WriteString(XmlConvert.ToString(AdvancedWrapperClassFile));
                     writer.WriteEndElement();
 
                     writer.WriteStartElement(Attributes.BuildCSharpWrapper);
@@ -295,6 +303,7 @@ namespace UIRibbonTools
             public const string AutoUpdateToolsPath = nameof(AutoUpdateToolsPath);
             public const string DeleteTempFiles = nameof(DeleteTempFiles);
             public const string DeleteResFile = nameof(DeleteResFile);
+            public const string AdvancedWrapperClassFile = nameof(AdvancedWrapperClassFile);
             public const string BuildCSharpWrapper = nameof(BuildCSharpWrapper);
             public const string BuildVBWrapper = nameof(BuildVBWrapper);
             public const string BuildCppWrapper = nameof(BuildCppWrapper);

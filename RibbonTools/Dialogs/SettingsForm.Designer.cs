@@ -42,6 +42,7 @@ namespace UIRibbonTools
             this.wrapperGroupLayout = new System.Windows.Forms.TableLayoutPanel();
             this.cSharpCheck = new System.Windows.Forms.CheckBox();
             this.vbCheck = new System.Windows.Forms.CheckBox();
+            this.advancedWrapperClassFile = new System.Windows.Forms.CheckBox();
             this.wrapperGroup = new System.Windows.Forms.GroupBox();
             this.extrasGroupLayout = new System.Windows.Forms.TableLayoutPanel();
             this.autoUpdateToolsPath = new System.Windows.Forms.CheckBox();
@@ -203,17 +204,18 @@ namespace UIRibbonTools
             this.wrapperGroupLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wrapperGroupLayout.AutoSize = true;
-            this.wrapperGroupLayout.ColumnCount = 1;
-            this.wrapperGroupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.wrapperGroupLayout.ColumnCount = 2;
+            this.wrapperGroupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.wrapperGroupLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.wrapperGroupLayout.Controls.Add(this.cSharpCheck, 0, 0);
             this.wrapperGroupLayout.Controls.Add(this.vbCheck, 0, 1);
+            this.wrapperGroupLayout.Controls.Add(this.advancedWrapperClassFile, 1, 0);
             this.wrapperGroupLayout.Location = new System.Drawing.Point(3, 19);
             this.wrapperGroupLayout.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.wrapperGroupLayout.Name = "wrapperGroupLayout";
             this.wrapperGroupLayout.RowCount = 2;
             this.wrapperGroupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.wrapperGroupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.wrapperGroupLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.wrapperGroupLayout.Size = new System.Drawing.Size(688, 46);
             this.wrapperGroupLayout.TabIndex = 0;
             // 
@@ -236,6 +238,16 @@ namespace UIRibbonTools
             this.vbCheck.TabIndex = 1;
             this.vbCheck.Text = "Visual Basic Wrapper";
             this.vbCheck.UseVisualStyleBackColor = true;
+            // 
+            // advancedWrapperClassFile
+            // 
+            this.advancedWrapperClassFile.AutoSize = true;
+            this.advancedWrapperClassFile.Location = new System.Drawing.Point(347, 3);
+            this.advancedWrapperClassFile.Name = "advancedWrapperClassFile";
+            this.advancedWrapperClassFile.Size = new System.Drawing.Size(296, 17);
+            this.advancedWrapperClassFile.TabIndex = 2;
+            this.advancedWrapperClassFile.Text = "Wrapper class name like Markup file instead RibbonItems";
+            this.advancedWrapperClassFile.UseVisualStyleBackColor = true;
             // 
             // wrapperGroup
             // 
@@ -459,5 +471,6 @@ namespace UIRibbonTools
         private System.Windows.Forms.Button linkerButton;
         private System.Windows.Forms.Button resourceButton;
         private System.Windows.Forms.Button compilerButton;
+        private System.Windows.Forms.CheckBox advancedWrapperClassFile;
     }
 }

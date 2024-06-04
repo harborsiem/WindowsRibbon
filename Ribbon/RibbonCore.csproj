@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net8.0-windows;net7.0-windows;net6.0-windows;net40</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows;net6.0-windows;net40</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon />
@@ -20,7 +20,7 @@
 
     <PackageId>WindowsRibbon</PackageId>
     <Product>Windows Ribbon Control</Product>
-    <Version>2.15.2</Version>
+    <Version>2.16.0</Version>
     <Authors>Hartmut Borkenhagen</Authors>
     <Company>RibbonLib</Company>
     <PackageIcon>Ribbon64.png</PackageIcon>

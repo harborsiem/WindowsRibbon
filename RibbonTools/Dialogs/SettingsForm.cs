@@ -55,6 +55,7 @@ namespace UIRibbonTools
             _settingsTip = new ToolTip(components);
             _settingsTip.SetToolTip(allowChangingResourceName, "Changing of default ResourceName is not recommended in .NET WindowsRibbon");
             _settingsTip.SetToolTip(allowPngImages, "*.png images are only allowed in Windows 8 and later versions");
+            _settingsTip.SetToolTip(advancedWrapperClassFile, "For unlimited Ribbons in an application");
             InitEvents();
         }
 
@@ -71,6 +72,7 @@ namespace UIRibbonTools
             linkerButton.MouseLeave += OpenDialogButton_MouseLeave;
             cSharpCheck.Click += CheckBox_Click;
             vbCheck.Click += CheckBox_Click;
+            advancedWrapperClassFile.Click += CheckBox_Click;
             autoUpdateToolsPath.Click += CheckBox_Click;
             allowChangingResourceName.Click += CheckBox_Click;
             deleteResFile.Click += CheckBox_Click;
@@ -87,6 +89,7 @@ namespace UIRibbonTools
                 _settings.AllowPngImages = allowPngImages.Checked;
                 _settings.AutoUpdateToolsPath = autoUpdateToolsPath.Checked;
                 _settings.DeleteResFile = deleteResFile.Checked;
+                _settings.AdvancedWrapperClassFile = advancedWrapperClassFile.Checked;
                 _settings.BuildCSharpWrapper = cSharpCheck.Checked;
                 _settings.BuildVBWrapper = vbCheck.Checked;
                 _settings.RibbonCompilerPath = ribbonCompilerText.Text;
@@ -200,6 +203,7 @@ namespace UIRibbonTools
                 resourceCompilerText.Text = _settings.ResourceCompilerPath;
             if (string.IsNullOrEmpty(linkerText.Text))
                 linkerText.Text = _settings.LinkPath;
+            advancedWrapperClassFile.Checked = _settings.AdvancedWrapperClassFile;
             cSharpCheck.Checked = _settings.BuildCSharpWrapper;
             vbCheck.Checked = _settings.BuildVBWrapper;
             autoUpdateToolsPath.Checked = _settings.AutoUpdateToolsPath;
