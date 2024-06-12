@@ -23,6 +23,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.ComponentModel;
 using MethodInvoker = System.Windows.Forms.MethodInvoker;
+using RibbonLib.Controls;
 
 namespace RibbonLib
 {
@@ -36,8 +37,7 @@ namespace RibbonLib
         private IUIImageFromBitmap _imageFromBitmap;
         private UIImage _uiImage;
         private RibbonUIApplication _application;
-        private Dictionary<uint, IRibbonControl> _mapRibbonControls = new Dictionary<uint, IRibbonControl>();
-        internal Dictionary<uint, IRibbonControl> MapRibbonControls { get { return _mapRibbonControls; } }
+        private Dictionary<uint, BaseRibbonControl> _mapRibbonControls = new Dictionary<uint, BaseRibbonControl>();
         private IntPtr _loadedDllHandle = IntPtr.Zero;
 
         private const string DefaultResourceName = "APPLICATION_RIBBON";
@@ -1122,7 +1122,7 @@ namespace RibbonLib
         /// Adds a ribbon control to the internal map
         /// </summary>
         /// <param name="ribbonControl">ribbon control to add</param>
-        internal void AddRibbonControl(IRibbonControl ribbonControl)
+        internal void AddRibbonControl(BaseRibbonControl ribbonControl)
         {
             _mapRibbonControls.Add(ribbonControl.CommandID, ribbonControl);
         }
@@ -1172,9 +1172,10 @@ namespace RibbonLib
             Debug.WriteLine(string.Format("Execute verb: {0} for command {1}", verb, commandID));
 #endif
 
-            if (_mapRibbonControls.ContainsKey(commandID))
+            if (TryGetRibbonControlById(commandID, out BaseRibbonControl control))
             {
-                return _mapRibbonControls[commandID].Execute(verb, key, currentValue, commandExecutionProperties);
+                IRibbonControl item = control as IRibbonControl;
+                return item.Execute(verb, key, currentValue, commandExecutionProperties);
             }
 
             return HRESULT.S_OK;
@@ -1196,9 +1197,10 @@ namespace RibbonLib
             Debug.WriteLine(string.Format("UpdateProperty key: {0} for command {1}", RibbonProperties.GetPropertyKeyName(ref key), commandID));
 #endif
 
-            if (_mapRibbonControls.ContainsKey(commandID))
+            if (TryGetRibbonControlById(commandID, out BaseRibbonControl control))
             {
-                return _mapRibbonControls[commandID].UpdateProperty(ref key, currentValue, ref newValue);
+                IRibbonControl item = control as IRibbonControl;
+                return item.UpdateProperty(ref key, currentValue, ref newValue);
             }
 
             return HRESULT.S_OK;
@@ -1284,6 +1286,26 @@ namespace RibbonLib
             {
                 return _loadedDllHandle;
             }
+        }
+
+        /// <summary>
+        /// Get the control by commandId
+        /// </summary>
+        /// <param name="commandId"></param>
+        /// <returns>IRibbonControl</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public IRibbonControl GetRibbonControlById(uint commandId)
+        {
+            bool result = _mapRibbonControls.TryGetValue(commandId, out BaseRibbonControl item);
+            if (result)
+                return item;
+            throw new ArgumentException("Not found", nameof(commandId));
+        }
+
+        internal bool TryGetRibbonControlById(uint commandId, out BaseRibbonControl item)
+        {
+            bool result = _mapRibbonControls.TryGetValue(commandId, out item);
+            return result;
         }
     }
 }

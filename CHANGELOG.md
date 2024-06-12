@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 #### Changed (Ribbon)
 
 - New functions for Gallery controls (InvalidateItemsSource() InvalidateCategories()).
+- New function in the Ribbon class (IRibbonControl GetRibbonControlById(uint commandId)) to get an IRibbonControl by a CommandId.
 - Remove deprecated .NET7 assembly
 
 #### Changed (RibbonTools)

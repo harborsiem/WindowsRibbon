@@ -407,7 +407,7 @@ namespace RibbonLib
                         if (gSet != null && gSet.RibbonCtrl == null)
                         {
                             uint cmdId = gSet.CommandID;
-                            if (!_ribbon.MapRibbonControls.TryGetValue(cmdId, out IRibbonControl ctrl))
+                            if (!_ribbon.TryGetRibbonControlById(cmdId, out BaseRibbonControl ctrl))
                                 ctrl = null;
                             gSet.RibbonCtrl = ctrl;
                         }
@@ -433,7 +433,7 @@ namespace RibbonLib
 
                     hr = uiItem.GetValue(ref RibbonProperties.CommandID, out variant);
                     uint cmdId = PropVariant.UnsafeNativeMethods.PropVariantToUInt32WithDefault(ref variant, 0);
-                    if (!_ribbon.MapRibbonControls.TryGetValue(cmdId, out IRibbonControl ctrl))
+                    if (!_ribbon.TryGetRibbonControlById(cmdId, out BaseRibbonControl ctrl))
                         ctrl = null;
                     QatCommandPropertySet result = new QatCommandPropertySet()
                     {
@@ -452,7 +452,7 @@ namespace RibbonLib
                     PropVariant.UnsafeNativeMethods.PropVariantClear(ref variant);
                     hr = uiItem.GetValue(ref RibbonProperties.CommandType, out variant);
                     CommandType cType = (CommandType)PropVariant.UnsafeNativeMethods.PropVariantToUInt32WithDefault(ref variant, 0);
-                    if (!_ribbon.MapRibbonControls.TryGetValue(cmdId, out IRibbonControl ctrl))
+                    if (!_ribbon.TryGetRibbonControlById(cmdId, out BaseRibbonControl ctrl))
                         ctrl = null;
                     GalleryCommandPropertySet result = new GalleryCommandPropertySet()
                     {

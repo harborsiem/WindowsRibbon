@@ -114,9 +114,8 @@ namespace RibbonLib
         /// <returns>Returns S_OK if successful, or an error value otherwise.</returns>
         public HRESULT OnCreateUICommand(uint commandId, CommandType typeID, out IUICommandHandler commandHandler)
         {
-            if (_ribbonControl.MapRibbonControls.ContainsKey(commandId))
+            if (_ribbonControl.TryGetRibbonControlById(commandId, out BaseRibbonControl control))
             {
-                BaseRibbonControl control = _ribbonControl.MapRibbonControls[commandId] as BaseRibbonControl;
                 if (control != null)
                     control.CommandType = typeID;
             }
