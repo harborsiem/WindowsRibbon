@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+### Ribbon V2.16.0, RibbonTools V1.8.1
+
+#### Changed (Ribbon)
+
+#### Changed (RibbonTools)
+
+- No Error message for Command Name with only 1 character, solves Issue#36.
+
 ### Ribbon V2.16.0, RibbonTools V1.8.0
 
 #### Changed (Ribbon)

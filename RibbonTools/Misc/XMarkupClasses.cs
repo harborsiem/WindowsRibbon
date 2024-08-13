@@ -116,7 +116,7 @@ namespace UIRibbonTools
                 result = 0;
             else if (!int.TryParse(s, out result))
             {
-                if (s.Substring(0, 2).ToUpperInvariant() == "0X")
+                if (s.Length > 2 && s.Substring(0, 2).ToUpperInvariant() == "0X")
                     result = Convert.ToInt32(s.Substring(2), 16);
                 else
                     result = -1; // Invalid
