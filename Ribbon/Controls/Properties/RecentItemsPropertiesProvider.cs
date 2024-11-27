@@ -71,7 +71,7 @@ namespace RibbonLib.Controls.Properties
                         }
                     }
                 }
-                if (_recentItems != null && _recentItems.Count > 0)
+                if (_recentItems != null)
                 {
                     RecentItemsPropertySet[] array = _recentItems.ToArray();
                     if (array.Length > MaxCount)

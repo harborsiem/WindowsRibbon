@@ -130,8 +130,12 @@ namespace RibbonLib.Controls.Events
             //PropVariant.UnsafeNativeMethods.PropVariantClear(ref propLabelDescription);
 
             // get item pinned value
-            commandExecutionProperties.GetValue(ref RibbonProperties.Pinned, out PropVariant propPinned);
-            propSet.Pinned = (bool)propPinned.Value;
+            // If Pinning is not set then output is null and HRESULT is not S_OK
+            HRESULT hr = commandExecutionProperties.GetValue(ref RibbonProperties.Pinned, out PropVariant propPinned);
+            if (hr == HRESULT.S_OK)
+            {
+                propSet.Pinned = (bool)propPinned.Value;
+            }
             return propSet;
         }
     }

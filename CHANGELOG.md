@@ -2,9 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
-### Ribbon V2.16.0, RibbonTools V1.8.1
+### Ribbon V2.16.1, RibbonTools V1.8.1
 
 #### Changed (Ribbon)
+
+- Remove deprecated .NET6
+- Issue NullReferenceException with RibbonItemsEventArgs.Create when pinning is not set for RecentItems
+- Issue RibbonRecentItems.RecentItems can not cleared
 
 #### Changed (RibbonTools)
 
