@@ -60,7 +60,7 @@ namespace UIRibbonTools
             if (_selectedCulture.ToUpperInvariant().Equals(Neutral.ToUpperInvariant()))
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             else
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(_selectedCulture);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(_selectedCulture);
         }
 
         private void ResetPreviewUiCulture()
