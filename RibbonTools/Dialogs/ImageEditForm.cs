@@ -248,7 +248,7 @@ namespace UIRibbonTools
                 }
                 _image.Id = (int)EditResourceId.Value;
                 _image.Symbol = EditSymbol.Text;
-                MainForm.FormMain.Modified();
+                Program.ApplicationForm.Modified();
             }
         }
 

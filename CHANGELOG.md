@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+### Ribbon V2.16.2, RibbonTools V1.8.2
+
+#### Changed (Ribbon)
+
+- Designer Toolbox Bitmap added
+- Bugfix NullReferenceException in RibbonComboBox with IsEditable
+
+#### Changed (RibbonTools)
+
+- Bugfix in localization with Preview
+- Internal optimisation
+
 ### Ribbon V2.16.1, RibbonTools V1.8.1
 
 #### Changed (Ribbon)

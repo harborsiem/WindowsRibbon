@@ -346,7 +346,7 @@ namespace UIRibbonTools
             commandSearchForm = new CommandSearchForm(this, ListViewCommands);
             try
             {
-                if (commandSearchForm.ShowDialog(FindForm()) == DialogResult.OK)
+                if (commandSearchForm.ShowDialog(Program.ApplicationForm) == DialogResult.OK)
                 {
                     if (commandSearchForm.ListViewCommands.SelectedItems.Count == 0 || commandSearchForm.ListViewCommands.SelectedItems[0] == null)
                         return;
@@ -366,7 +366,7 @@ namespace UIRibbonTools
 
         public void ActivateFrame()
         {
-            ((MainForm)FindForm()).ShortCutKeysHandler.Add(_actionList);
+            Program.ApplicationForm.ShortCutKeysHandler.Add(_actionList);
             //@ changed
             //_actionRemoveCommand.Shortcut = Shortcut.CtrlDel;
             //_actionMoveUp.Shortcut = Shortcut.AltUpArrow;
@@ -439,7 +439,7 @@ namespace UIRibbonTools
 
         public void DeactivateFrame()
         {
-            ((MainForm)FindForm()).ShortCutKeysHandler.Remove(_actionList);
+            Program.ApplicationForm.ShortCutKeysHandler.Remove(_actionList);
             //@ changed
             //_actionRemoveCommand.Shortcut = 0;
             //_actionMoveUp.Shortcut = 0;
@@ -752,7 +752,7 @@ namespace UIRibbonTools
         private void Modified()
         {
             if (!_updating)
-                ((MainForm)FindForm()).Modified();
+                Program.ApplicationForm.Modified();
         }
 
         private void MoveCommand(int direction)

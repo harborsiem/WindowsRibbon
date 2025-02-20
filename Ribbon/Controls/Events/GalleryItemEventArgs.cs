@@ -96,15 +96,17 @@ namespace RibbonLib.Controls.Events
 
             if (propSet == null)
             {
+                HRESULT hr;
                 propSet = new GalleryItemPropertySet();
                 // get item label
-                commandExecutionProperties.GetValue(ref RibbonProperties.Label, out PropVariant propLabel);
+                hr = commandExecutionProperties.GetValue(ref RibbonProperties.Label, out PropVariant propLabel);
                 propSet.Label = (string)propLabel.Value;
                 PropVariant.UnsafeNativeMethods.PropVariantClear(ref propLabel);
 
                 // get item CategoryID value
-                commandExecutionProperties.GetValue(ref RibbonProperties.CategoryID, out PropVariant propCategoryID);
-                propSet.CategoryID = (uint)propCategoryID.Value;
+                hr = commandExecutionProperties.GetValue(ref RibbonProperties.CategoryID, out PropVariant propCategoryID);
+                if (hr == HRESULT.S_OK)
+                    propSet.CategoryID = (uint)propCategoryID.Value;
 
                 // get item ItemImage value
                 commandExecutionProperties.GetValue(ref RibbonProperties.ItemImage, out PropVariant propItemImage);

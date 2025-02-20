@@ -8,6 +8,8 @@ namespace UIRibbonTools
 {
     static class Program
     {
+        internal static MainForm ApplicationForm { get; private set; }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -21,7 +23,7 @@ namespace UIRibbonTools
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(ApplicationForm = new MainForm());
         }
     }
 }

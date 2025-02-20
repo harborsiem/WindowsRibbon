@@ -279,7 +279,7 @@ namespace UIRibbonTools
         {
             if (!_updating)
             {
-                MainForm.FormMain.Modified();
+                Program.ApplicationForm.Modified();
                 UpdateCurrentNode();
             }
         }

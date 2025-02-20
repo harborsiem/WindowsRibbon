@@ -30,6 +30,7 @@ namespace RibbonLib
     /// <summary>
     /// Main class for using the windows ribbon in a .NET application
     /// </summary>
+    [ToolboxBitmap(typeof(Ribbon), "Ribbon16.bmp")]
     public class Ribbon : Control, IUICommandHandler
     {
         private const string uriFile = "file://";

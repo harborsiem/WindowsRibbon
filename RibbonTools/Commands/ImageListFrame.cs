@@ -123,7 +123,7 @@ namespace UIRibbonTools
                     == DialogResult.No)
                     return;
 
-                MainForm.FormMain._actionSaveAs.PerformClick();
+                Program.ApplicationForm._actionSaveAs.PerformClick();
                 if (string.IsNullOrEmpty(_command.Owner.Filename))
                     return;
             }
@@ -263,7 +263,7 @@ namespace UIRibbonTools
                     //SetImageItem(item, image);
                     //listView.Items[item.Index].Selected = true;
                     //item.Focused = true;
-                    MainForm.FormMain.Modified();
+                    Program.ApplicationForm.Modified();
                 }
                 _command.SortImages(_images);
                 ShowImages(_command, _flags);
@@ -288,7 +288,7 @@ namespace UIRibbonTools
                     image = (TRibbonImage)listView.SelectedItems[0].Tag;
                     _command.RemoveImage(image);
                     listView.SelectedItems[0].Remove();
-                    MainForm.FormMain.Modified();
+                    Program.ApplicationForm.Modified();
                 }
             }
         }
@@ -307,7 +307,7 @@ namespace UIRibbonTools
             }
 
             listView.Items.Clear();
-            MainForm.FormMain.Modified();
+            Program.ApplicationForm.Modified();
         }
 
         private void ActionEditImageExecute(object sender, EventArgs e)

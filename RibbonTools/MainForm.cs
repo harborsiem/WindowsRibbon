@@ -58,7 +58,6 @@ namespace UIRibbonTools
         //private PreviewForm  _previewForm;
         private BuildPreviewHelper _buildPreviewHelper;
         private ImageList _imageListMain;
-        public static MainForm FormMain;
         public ShortCutKeysHandler ShortCutKeysHandler { get; private set; }
 
         public MainForm()
@@ -83,7 +82,6 @@ namespace UIRibbonTools
                 components = new Container();
             this.Text = RS_RIBBON_TOOLS;
             this.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
-            FormMain = this;
             CreateMainBitmaps();
 
             Settings.Instance.Read(this.MinimumSize);

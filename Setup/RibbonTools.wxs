@@ -9,7 +9,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
      xmlns:WixUI="http://schemas.microsoft.com/wix/UIExtension">
-  <Product Id="{51FEF2AF-02BE-45AF-93D1-15ED13091AD2}" Name="RibbonTools" Language="1033" Version="1.8.1.0" Manufacturer="RibbonLib" UpgradeCode="8D7B31EC-7EA5-4A82-A4AB-31E2B98A3D21">
+  <Product Id="{306691A3-23FB-4787-854B-01BC5EB3C23B}" Name="RibbonTools" Language="1033" Version="1.8.2.0" Manufacturer="RibbonLib" UpgradeCode="8D7B31EC-7EA5-4A82-A4AB-31E2B98A3D21">
     <Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x86" Description="Design, Build and Preview the Ribbon" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />

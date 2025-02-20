@@ -103,11 +103,11 @@ namespace UIRibbonTools
 
         private void SizeButton_Click(object sender, EventArgs e)
         {
-            if (MainForm.FormMain.WindowState == FormWindowState.Maximized)
+            if (Program.ApplicationForm.WindowState == FormWindowState.Maximized)
                 MessageBox.Show("Can't set default size when application is maximized", "Set default size", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
             {
-                _size = MainForm.FormMain.Size;
+                _size = Program.ApplicationForm.Size;
                 _modified = true;
             }
         }

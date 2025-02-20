@@ -562,7 +562,7 @@ namespace UIRibbonTools
 
         public void DeactivateFrame()
         {
-            ((MainForm)FindForm()).ShortCutKeysHandler.Remove(_actionList);
+            Program.ApplicationForm.ShortCutKeysHandler.Remove(_actionList);
             //@ different
             //_actionRemove.Shortcut = 0;
             //_actionMoveUp.Shortcut = 0;
@@ -592,7 +592,7 @@ namespace UIRibbonTools
 
         public void Modified()
         {
-            ((MainForm)FindForm()).Modified();
+            Program.ApplicationForm.Modified();
         }
 
         private void MoveNode(int direction)
@@ -1365,7 +1365,7 @@ namespace UIRibbonTools
             if (treeViewRibbon.Nodes.Count == 0)
                 return; // Nothing to do here
 
-            ((MainForm)FindForm()).ShortCutKeysHandler.Add(_actionList);
+            Program.ApplicationForm.ShortCutKeysHandler.Add(_actionList);
             //@ changed
             //_actionRemove.ShortCut = ShortCut(VK_DELETE, [ssCtrl]);
             //_actionMoveUp.ShortCut = ShortCut(VK_UP, [ssCtrl]);

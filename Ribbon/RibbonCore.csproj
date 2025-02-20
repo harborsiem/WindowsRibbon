@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -20,7 +20,7 @@
 
     <PackageId>WindowsRibbon</PackageId>
     <Product>Windows Ribbon Control</Product>
-    <Version>2.16.1</Version>
+    <Version>2.16.2</Version>
     <Authors>Hartmut Borkenhagen</Authors>
     <Company>RibbonLib</Company>
     <PackageIcon>Ribbon64.png</PackageIcon>
@@ -55,6 +55,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Ribbon16.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Ribbon64.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   
@@ -68,8 +72,12 @@
       <PackagePath>Setup\</PackagePath>
     </Content>
   </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Ribbon16.bmp" />
+  </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\readme.md" Pack="true" PackagePath="\"/>
+    <None Include="..\readme.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>
