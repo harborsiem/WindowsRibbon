@@ -139,6 +139,11 @@ namespace RibbonLib
             {
                 PropVariant propForegroundColorType;
                 HRESULT hr = _propertyStore.GetValue(ref RibbonProperties.FontProperties_ForegroundColorType, out propForegroundColorType);
+                uint result;
+                if (propForegroundColorType.VarType == System.Runtime.InteropServices.VarEnum.VT_I4)
+                    result = (uint)(int)propForegroundColorType.Value; //Bug in UIRibbon
+                else
+                    result = (uint)propForegroundColorType.Value;
                 return (SwatchColorType)(uint)propForegroundColorType.Value;
             }
         }
@@ -182,7 +187,12 @@ namespace RibbonLib
             {
                 PropVariant propBackgroundColorType;
                 HRESULT hr = _propertyStore.GetValue(ref RibbonProperties.FontProperties_BackgroundColorType, out propBackgroundColorType);
-                return (SwatchColorType)(uint)propBackgroundColorType.Value;
+                uint result;
+                if (propBackgroundColorType.VarType == System.Runtime.InteropServices.VarEnum.VT_I4)
+                    result = (uint)(int)propBackgroundColorType.Value; //Bug in UIRibbon
+                else
+                    result = (uint)propBackgroundColorType.Value;
+                return (SwatchColorType)result;
             }
         }
 

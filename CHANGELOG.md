@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 - Designer Toolbox Bitmap added
 - Bugfix NullReferenceException in RibbonComboBox with IsEditable
+- Bugfix for wrong datatype UIRibbon bugs in FontProperties ForeGroundColorType, BackGroundColorType, ContextAvailable
 
 #### Changed (RibbonTools)
 

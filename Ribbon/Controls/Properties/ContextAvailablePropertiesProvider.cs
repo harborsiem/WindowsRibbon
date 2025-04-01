@@ -75,7 +75,12 @@ namespace RibbonLib.Controls.Properties
                     HRESULT hr = _ribbon.Framework.GetUICommandProperty(_commandID, ref RibbonProperties.ContextAvailable, out uintValue);
                     if (hr.Succeeded)
                     {
-                        return (ContextAvailability)uintValue.Value;
+                        uint result;
+                        if (uintValue.VarType == System.Runtime.InteropServices.VarEnum.VT_I4)
+                            result = (uint)(int)uintValue.Value; //Bug in UIRibbon
+                        else
+                            result = (uint)uintValue.Value;
+                        return (ContextAvailability)result;
                     }
                 }
 
